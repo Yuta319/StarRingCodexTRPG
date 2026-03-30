@@ -161,6 +161,42 @@ def _play_source_from_bundle(bundle: Dict[str, Any]) -> Dict[str, Optional[str]]
     }
 
 
+def _read_model_from_after_bundle(after_bundle: Dict[str, Any]) -> tuple[Dict[str, Optional[str]], Dict[str, Any]]:
+    play_source = _play_source_from_bundle(after_bundle)
+    world_json = play_source.get("world_json")
+    read_model = build_gpt_read_model_from_bundle(
+        after_bundle,
+        request_seed=None,
+        request_world_json=Path(world_json) if world_json else None,
+        request_archetype="balanced",
+        request_seasons=10,
+    )
+    return play_source, read_model
+
+
+def _compact_transition_payload(
+    *,
+    choice_id: str,
+    intent_type: str,
+    outcome: str,
+    before_scene: str,
+    after_scene: str,
+    message: str,
+    discovery_state: Optional[str] = None,
+) -> Dict[str, Any]:
+    payload = {
+        "choiceId": choice_id,
+        "intentType": intent_type,
+        "outcome": outcome,
+        "beforeScene": before_scene,
+        "afterScene": after_scene,
+        "message": message,
+    }
+    if discovery_state:
+        payload["discoveryState"] = discovery_state
+    return payload
+
+
 def build_ui_payload(request: ViewerRequest) -> Dict[str, Any]:
     bundle = build_bundle(
         seed=request.seed,
@@ -206,14 +242,14 @@ def build_gpt_read_model_payload(request: ViewerRequest) -> Dict[str, Any]:
     }
 
 
-def play_request_from_body(body: Dict[str, Any]) -> PlayRequest:
+def play_request_from_body(body: Dict[str, Any], *, prefer_world_json_when_both: bool = False) -> PlayRequest:
     choice_id = str(body.get("choiceId") or "").strip()
     seed_raw = body.get("seed")
     world_json_raw = body.get("world_json")
 
     if not choice_id:
         raise UiRequestError("`choiceId` is required.")
-    if seed_raw is not None and world_json_raw:
+    if seed_raw is not None and world_json_raw and not prefer_world_json_when_both:
         raise UiRequestError("Provide either `seed` or `world_json`, not both.")
 
     seed: Optional[int] = None
@@ -227,6 +263,8 @@ def play_request_from_body(body: Dict[str, Any]) -> PlayRequest:
         if not isinstance(world_json_raw, str):
             raise UiRequestError("`world_json` must be a string or null.")
         world_json = Path(world_json_raw)
+        if prefer_world_json_when_both:
+            seed = None
 
     if seed is None and world_json is None:
         raise UiRequestError("Either `seed` or `world_json` is required for /api/play.")
@@ -234,14 +272,14 @@ def play_request_from_body(body: Dict[str, Any]) -> PlayRequest:
     return PlayRequest(choice_id=choice_id, seed=seed, world_json=world_json)
 
 
-def free_action_request_from_body(body: Dict[str, Any]) -> FreeActionRequest:
+def free_action_request_from_body(body: Dict[str, Any], *, prefer_world_json_when_both: bool = False) -> FreeActionRequest:
     action_text = str(body.get("actionText") or "").strip()
     seed_raw = body.get("seed")
     world_json_raw = body.get("world_json")
 
     if not action_text:
         raise UiRequestError("`actionText` is required.")
-    if seed_raw is not None and world_json_raw:
+    if seed_raw is not None and world_json_raw and not prefer_world_json_when_both:
         raise UiRequestError("Provide either `seed` or `world_json`, not both.")
 
     seed: Optional[int] = None
@@ -255,6 +293,8 @@ def free_action_request_from_body(body: Dict[str, Any]) -> FreeActionRequest:
         if not isinstance(world_json_raw, str):
             raise UiRequestError("`world_json` must be a string or null.")
         world_json = Path(world_json_raw)
+        if prefer_world_json_when_both:
+            seed = None
 
     if seed is None and world_json is None:
         raise UiRequestError("Either `seed` or `world_json` is required for /api/free-action.")
@@ -328,6 +368,29 @@ def build_play_payload(request: PlayRequest) -> Dict[str, Any]:
     }
 
 
+def build_gpt_play_payload(request: PlayRequest) -> Dict[str, Any]:
+    result = play_choice(
+        choice_id=request.choice_id,
+        seed=request.seed,
+        world_json=request.world_json,
+    )
+    after_bundle = result["after"]["bundle"]
+    transition = after_bundle["world_state"]["campaign_state"].get("lastTransition") or {}
+    play_source, read_model = _read_model_from_after_bundle(after_bundle)
+    return {
+        "playSource": play_source,
+        "readModel": read_model,
+        "transition": _compact_transition_payload(
+            choice_id=request.choice_id,
+            intent_type=result["intent"]["intent_type"],
+            outcome=result["resolution"]["outcome"],
+            before_scene=result["before"]["scene_title"],
+            after_scene=result["after"]["scene_title"],
+            message=compose_transition_message(transition, result["resolution"]["outcome"]),
+        ),
+    }
+
+
 def build_free_action_payload(request: FreeActionRequest) -> Dict[str, Any]:
     result = play_free_action(
         action_text=request.action_text,
@@ -361,6 +424,49 @@ def build_free_action_payload(request: FreeActionRequest) -> Dict[str, Any]:
     }
 
 
+def build_gpt_free_action_payload(request: FreeActionRequest) -> Dict[str, Any]:
+    result = play_free_action(
+        action_text=request.action_text,
+        seed=request.seed,
+        world_json=request.world_json,
+    )
+    after_bundle = result["after"]["bundle"]
+    structured_result = result["structured_result"]
+    transition = after_bundle["world_state"]["campaign_state"].get("lastTransition") or {}
+    free_action = after_bundle["world_state"]["campaign_state"].get("lastFreeAction") or {}
+    action_summary = structured_result["source"]["player_summary"]
+    message = (
+        f"{action_summary}。"
+        f"{structured_result['adjudication']['note']} "
+        f"{free_action.get('logs', {}).get('afterglow', structured_result['consequence']['logs']['afterglow'])}"
+    )
+    play_source, read_model = _read_model_from_after_bundle(after_bundle)
+    return {
+        "playSource": play_source,
+        "readModel": read_model,
+        "structuredResult": {
+            "summary": action_summary,
+            "residue": free_action.get("freeActionResidueLabel") or "",
+            "intentType": structured_result["normalized_intent"]["intent_type"],
+            "outcome": structured_result["adjudication"]["outcome"],
+            "successBand": structured_result["adjudication"]["success_band"],
+            "discoveryState": structured_result["adjudication"]["discovery_state"],
+            "note": structured_result["adjudication"]["note"],
+            "viceTags": list(structured_result["normalized_intent"].get("vice_tags", [])),
+            "tabooTags": list(structured_result["normalized_intent"].get("taboo_tags", [])),
+        },
+        "transition": _compact_transition_payload(
+            choice_id="custom_action",
+            intent_type=structured_result["normalized_intent"]["intent_type"],
+            outcome=structured_result["adjudication"]["outcome"],
+            before_scene=result["before"]["scene_title"],
+            after_scene=result["after"]["scene_title"],
+            message=message,
+            discovery_state=structured_result["adjudication"]["discovery_state"],
+        ),
+    }
+
+
 def build_save_session_payload(request: SaveSessionRequest) -> Dict[str, Any]:
     return save_session_state(world_json=request.world_json, world_state=request.world_state)
 
@@ -382,6 +488,23 @@ def build_load_session_payload(request: LoadSessionRequest) -> Dict[str, Any]:
     }
 
 
+def build_gpt_load_session_payload(request: LoadSessionRequest) -> Dict[str, Any]:
+    resolved_path = resolve_saved_session_path(save_id=request.save_id, save_path=request.save_path)
+    bundle = build_bundle(world_json=resolved_path)
+    save_meta = bundle["world_state"]["campaign_state"].get("saveMeta") or {}
+    play_source, read_model = _read_model_from_after_bundle(bundle)
+    return {
+        "request": {
+            "saveId": request.save_id,
+            "savePath": str(request.save_path) if request.save_path else None,
+            "resolvedSavePath": str(resolved_path),
+        },
+        "saveMeta": save_meta,
+        "playSource": play_source,
+        "readModel": read_model,
+    }
+
+
 def build_next_session_payload(request: NextSessionRequest) -> Dict[str, Any]:
     updated_world = build_next_session_state(request.world_json)
     runtime_world_json = Path(_persist_world_state(updated_world))
@@ -394,6 +517,23 @@ def build_next_session_payload(request: NextSessionRequest) -> Dict[str, Any]:
         "playSource": _play_source_from_bundle(bundle),
         "bundle": _bundle_payload(bundle),
         "display": _display_from_bundle(bundle),
+        "nextSessionHook": campaign.get("nextSessionHook"),
+        "sessionArchiveSize": len(campaign.get("sessionArchive", [])),
+    }
+
+
+def build_gpt_next_session_payload(request: NextSessionRequest) -> Dict[str, Any]:
+    updated_world = build_next_session_state(request.world_json)
+    runtime_world_json = Path(_persist_world_state(updated_world))
+    bundle = build_bundle(world_json=runtime_world_json)
+    campaign = bundle["world_state"]["campaign_state"]
+    play_source, read_model = _read_model_from_after_bundle(bundle)
+    return {
+        "request": {
+            "world_json": str(request.world_json),
+        },
+        "playSource": play_source,
+        "readModel": read_model,
         "nextSessionHook": campaign.get("nextSessionHook"),
         "sessionArchiveSize": len(campaign.get("sessionArchive", [])),
     }

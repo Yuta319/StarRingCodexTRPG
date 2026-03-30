@@ -11,8 +11,15 @@ from http.server import ThreadingHTTPServer
 from star_ring_codex_trpg.errors import UiRequestError
 from star_ring_codex_trpg.playable_loop import play_choice
 from star_ring_codex_trpg.read_only_ui.controller import (
+    build_gpt_free_action_payload,
+    build_gpt_load_session_payload,
+    build_gpt_next_session_payload,
+    build_gpt_play_payload,
     build_play_payload,
     build_ui_payload,
+    free_action_request_from_body,
+    load_session_request_from_body,
+    next_session_request_from_body,
     play_request_from_body,
     viewer_request_from_query,
 )
@@ -63,6 +70,26 @@ class ReadOnlyUiTests(unittest.TestCase):
         self.assertIn("shell_snapshot", payload["bundle"])
         self.assertIn("campaign", payload["transition"])
 
+    def test_build_gpt_play_payload_returns_compact_state(self) -> None:
+        payload = build_gpt_play_payload(play_request_from_body({"choiceId": "observe", "seed": 1729, "world_json": None}))
+        self.assertIn("playSource", payload)
+        self.assertIn("transition", payload)
+        self.assertIn("readModel", payload)
+        self.assertNotIn("bundle", payload)
+        self.assertNotIn("display", payload)
+        self.assertEqual(payload["transition"]["choiceId"], "observe")
+        self.assertTrue(payload["playSource"]["world_json"])
+        self.assertIn("scene", payload["readModel"])
+
+    def test_gpt_play_request_prefers_world_json_when_both_are_present(self) -> None:
+        initial = build_ui_payload(viewer_request_from_query({"seed": ["1729"]}))
+        request = play_request_from_body(
+            {"choiceId": "observe", "seed": 1729, "world_json": initial["playSource"]["world_json"]},
+            prefer_world_json_when_both=True,
+        )
+        self.assertIsNone(request.seed)
+        self.assertIsNotNone(request.world_json)
+
     def test_ui_static_copy_avoids_internal_labels(self) -> None:
         app_js = Path("star_ring_codex_trpg/read_only_ui/static/app.js").read_text(encoding="utf-8")
         self.assertNotIn('["識別子"', app_js)
@@ -106,6 +133,49 @@ class ReadOnlyUiTests(unittest.TestCase):
             server.server_close()
             thread.join(timeout=1)
 
+    def test_gpt_play_api_returns_compact_state(self) -> None:
+        initial = build_ui_payload(viewer_request_from_query({"seed": ["1729"]}))
+        server = ThreadingHTTPServer(("127.0.0.1", 0), ReadOnlyUiHandler)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        try:
+            port = server.server_address[1]
+            request = urllib.request.Request(
+                f"http://127.0.0.1:{port}/api/gpt/play",
+                data=json.dumps(
+                    {
+                        "choiceId": "observe",
+                        "seed": 1729,
+                        "world_json": initial["playSource"]["world_json"],
+                    }
+                ).encode("utf-8"),
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+            with urllib.request.urlopen(request) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+            self.assertIn("playSource", payload)
+            self.assertIn("transition", payload)
+            self.assertIn("readModel", payload)
+            self.assertNotIn("bundle", payload)
+            self.assertEqual(payload["transition"]["choiceId"], "observe")
+        finally:
+            server.shutdown()
+            server.server_close()
+            thread.join(timeout=1)
+
+    def test_gpt_free_action_payload_returns_compact_state(self) -> None:
+        payload = build_gpt_free_action_payload(
+            free_action_request_from_body({"actionText": "夜中に宿の裏から入り、裏帳面を盗み出す", "seed": 1729, "world_json": None})
+        )
+        self.assertIn("playSource", payload)
+        self.assertIn("transition", payload)
+        self.assertIn("structuredResult", payload)
+        self.assertIn("readModel", payload)
+        self.assertNotIn("bundle", payload)
+        self.assertNotIn("display", payload)
+        self.assertTrue(payload["structuredResult"]["summary"])
+
     def test_gpt_read_model_api_returns_read_only_surface(self) -> None:
         server = ThreadingHTTPServer(("127.0.0.1", 0), ReadOnlyUiHandler)
         thread = threading.Thread(target=server.serve_forever, daemon=True)
@@ -123,6 +193,34 @@ class ReadOnlyUiTests(unittest.TestCase):
             server.shutdown()
             server.server_close()
             thread.join(timeout=1)
+
+    def test_gpt_load_session_payload_returns_compact_state(self) -> None:
+        initial = build_ui_payload(viewer_request_from_query({"seed": ["1729"]}))
+        saved = save_session_state = None
+        server = ThreadingHTTPServer(("127.0.0.1", 0), ReadOnlyUiHandler)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        try:
+            port = server.server_address[1]
+            save_request = urllib.request.Request(
+                f"http://127.0.0.1:{port}/api/save-session",
+                data=json.dumps({"world_json": initial["playSource"]["world_json"]}).encode("utf-8"),
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+            with urllib.request.urlopen(save_request) as response:
+                saved = json.loads(response.read().decode("utf-8"))
+        finally:
+            server.shutdown()
+            server.server_close()
+            thread.join(timeout=1)
+        self.assertIsNotNone(saved)
+        payload = build_gpt_load_session_payload(load_session_request_from_body({"saveId": saved["saveId"]}))
+        self.assertIn("playSource", payload)
+        self.assertIn("readModel", payload)
+        self.assertIn("saveMeta", payload)
+        self.assertNotIn("bundle", payload)
+        self.assertNotIn("display", payload)
 
     def test_save_and_load_session_api_contracts(self) -> None:
         initial = build_ui_payload(viewer_request_from_query({"seed": ["1729"]}))
@@ -197,6 +295,24 @@ class ReadOnlyUiTests(unittest.TestCase):
                 server.shutdown()
                 server.server_close()
                 thread.join(timeout=1)
+
+    def test_gpt_next_session_payload_returns_compact_state(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            world_json = Path(temp_dir) / "completed_session.json"
+            current_world = build_bundle(seed=1729, seasons=10)["world_state"]
+            for choice_id in ["observe", "inspect", "speak", "observe", "intervene", "inspect"]:
+                world_json.write_text(json.dumps(current_world, ensure_ascii=False, indent=2), encoding="utf-8")
+                result = play_choice(choice_id=choice_id, seed=None, world_json=world_json)
+                current_world = result["after"]["bundle"]["world_state"]
+            world_json.write_text(json.dumps(current_world, ensure_ascii=False, indent=2), encoding="utf-8")
+
+            payload = build_gpt_next_session_payload(next_session_request_from_body({"world_json": str(world_json)}))
+            self.assertIn("playSource", payload)
+            self.assertIn("readModel", payload)
+            self.assertIn("nextSessionHook", payload)
+            self.assertIn("sessionArchiveSize", payload)
+            self.assertNotIn("bundle", payload)
+            self.assertNotIn("display", payload)
 
 
 if __name__ == "__main__":
