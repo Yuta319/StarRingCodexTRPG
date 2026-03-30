@@ -135,7 +135,7 @@ function humanizeEndingTone(value) {
 function archivePrefix(entry) {
   const title = String(entry?.title ?? "").trim();
   const sessionNumber = entry?.sessionNumber ?? "?";
-  return title ? `第${sessionNumber}節「${title}」` : `第${sessionNumber}節`;
+  return title ? `第${sessionNumber}セッション「${title}」` : `第${sessionNumber}セッション`;
 }
 
 function currentArchiveEntries() {
@@ -225,8 +225,8 @@ function buildArchiveEntryDetail(entry, hook) {
 
   const overview = document.createElement("div");
   renderKeyValueBlock(overview, [
-    ["節の始まり", entry.openingSummary || "-"],
-    ["節", archivePrefix(entry)],
+    ["セッションの始まり", entry.openingSummary || "-"],
+    ["セッション", archivePrefix(entry)],
     ["結末", humanizeEndingTone(entry.tone)],
     ["主役の座", `${entry.keyRoleLabel || "-"} / ${entry.keyOccupantLabel || "-"}`],
     ["守れたもの", entry.protected || "-"],
@@ -241,13 +241,13 @@ function buildArchiveEntryDetail(entry, hook) {
     entry.hiddenCrimeSummary,
     entry.ritualPollutionSummary,
   ].filter(Boolean);
-  wrapper.append(createArchiveSection("残った因果", renderTextList(residueLines, "この節で強く残った因果は整理中。")));
+  wrapper.append(createArchiveSection("残った因果", renderTextList(residueLines, "このセッションで強く残った因果は整理中。")));
 
   const echoLines = [entry.archivedCauseEcho, entry.resurfacingRisk].filter(Boolean);
   wrapper.append(createArchiveSection("残響と再燃", renderTextList(echoLines, "まだ大きな再燃は見えていない。")));
 
   const hookLines = entry.hookConnections || [];
-  wrapper.append(createArchiveSection("いまの hook への効き方", renderTextList(hookLines, "いまはこの節の因果が前面には出ていない。")));
+  wrapper.append(createArchiveSection("いまの hook への効き方", renderTextList(hookLines, "いまはこのセッションの因果が前面には出ていない。")));
 
   const priorityBlock = document.createElement("div");
   renderKeyValueBlock(priorityBlock, [
@@ -310,7 +310,7 @@ function renderArchiveHistory(display) {
   };
 
   if (inspector) {
-    campaignWorld.append(createCard("節の記録の絞り込み", buildArchiveFilters(inspector, () => {
+    campaignWorld.append(createCard("セッション記録の絞り込み", buildArchiveFilters(inspector, () => {
       renderCampaignWorld(currentDisplay);
     })));
     if (inspector.archiveCompression?.compressedCount > 0) {
@@ -322,7 +322,7 @@ function renderArchiveHistory(display) {
   }
 
   renderEntries();
-  campaignWorld.append(createCard("節の記録", wrapper));
+  campaignWorld.append(createCard("セッション記録", wrapper));
 }
 
 function describeRequestSource(request) {
@@ -368,7 +368,7 @@ function renderActor(actor, playCycle, namedCast) {
   blocks[1].append(renderTagList(actor.blessings.map((item) => item.label), "tag tag--accent"));
   blocks[2].append(renderTagList(actor.quickSlots.map((item) => item.label), "tag tag--slot"));
   blocks[3].append(renderTagList([
-    `第${playCycle.sessionNumber}節`,
+    `第${playCycle.sessionNumber}セッション`,
     `${playCycle.turnInSession}/${playCycle.maxTurns}手目`,
     playCycle.phaseLabel,
     `残り${playCycle.remainingTurns}手`,
@@ -385,7 +385,7 @@ function renderStoryGuide(display) {
     storyGuide.append(
       createCard(
         display.sessionOpeningGuide.headline,
-        renderTextList(display.sessionOpeningGuide.lines, "この節の持ち越しを確認している。"),
+        renderTextList(display.sessionOpeningGuide.lines, "このセッションの持ち越しを確認している。"),
       ),
     );
   }
@@ -571,7 +571,7 @@ function renderCampaignWorld(display) {
   }
   renderArchiveHistory(display);
   if (display.nextSessionHook) {
-    campaignWorld.append(createCard("次の節への持ち越し", renderTextList(display.nextSessionHook.nextMainEventCandidates, "まだ次の主事件候補は固まっていない。")));
+    campaignWorld.append(createCard("次のセッションへの持ち越し", renderTextList(display.nextSessionHook.nextMainEventCandidates, "まだ次の主事件候補は固まっていない。")));
     campaignWorld.append(createCard("残る圧力", renderTextList(display.nextSessionHook.carriedPressures, "まだ大きな圧は残っていない。")));
     campaignWorld.append(createCard("続く関係", renderTextList(display.nextSessionHook.npcCarryOvers, "まだ強いしこりは残っていない。")));
     campaignWorld.append(createCard("残った傷", renderTextList(display.nextSessionHook.scarsRemaining, "まだ大きな傷は残っていない。")));
@@ -746,7 +746,7 @@ async function saveSession() {
   }
   isPending = true;
   syncActionButtons();
-  setStatus("この節の記録を保存しています...", "loading");
+  setStatus("このセッションの記録を保存しています...", "loading");
   const response = await fetch("/api/save-session", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -758,11 +758,11 @@ async function saveSession() {
   isPending = false;
   syncActionButtons();
   if (!response.ok) {
-    setStatus(payload.error || "節の記録を保存できませんでした。", "error");
+    setStatus(payload.error || "セッションの記録を保存できませんでした。", "error");
     return;
   }
   setSaveRef(payload);
-  setStatus(`節の記録を保存しました。保存ID: ${payload.saveId}。続けるならこのまま遊べます。`, "ok");
+  setStatus(`セッションの記録を保存しました。保存ID: ${payload.saveId}。続けるならこのまま遊べます。`, "ok");
 }
 
 async function loadSavedSession() {
@@ -789,7 +789,7 @@ async function loadSavedSession() {
   setSaveRef(payload.saveMeta);
   currentBundle = payload.bundle;
   renderDisplay(payload.display);
-  setStatus("保存した続きから開きました。まずは「この節の入り口」を確認してください。", "ok");
+  setStatus("保存した続きから開きました。まずは「このセッションの入り口」を確認してください。", "ok");
 }
 
 async function nextSession() {
@@ -798,7 +798,7 @@ async function nextSession() {
   }
   isPending = true;
   syncActionButtons();
-  setStatus("次の節を開いています...", "loading");
+  setStatus("次のセッションを開いています...", "loading");
   const response = await fetch("/api/next-session", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -810,14 +810,14 @@ async function nextSession() {
   isPending = false;
   syncActionButtons();
   if (!response.ok) {
-    setStatus(payload.error || "次の節へ進めませんでした。", "error");
+    setStatus(payload.error || "次のセッションへ進めませんでした。", "error");
     return;
   }
   setPlaySource(payload.playSource);
   setSaveRef(payload.display?.saveMeta);
   currentBundle = payload.bundle;
   renderDisplay(payload.display);
-  setStatus("次の節を開きました。持ち越しを確認してから一手目を選んでください。", "ok");
+  setStatus("次のセッションを開きました。持ち越しを確認してから一手目を選んでください。", "ok");
 }
 
 async function submitFreeAction() {

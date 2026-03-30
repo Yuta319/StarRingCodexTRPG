@@ -472,12 +472,12 @@ def _archive_compression_defaults(campaign_state: Dict[str, Any]) -> None:
 
 
 def _initial_session_opening_summary() -> str:
-    return "最初の節だ。まだ前節から強く持ち越された因果はない。"
+    return "最初のセッションだ。まだ前のセッションから強く持ち越された因果はない。"
 
 
 def _session_opening_summary_from_hook(hook: Dict[str, Any] | None) -> str:
     if not isinstance(hook, dict):
-        return "前節からの大きな持ち越しはまだ整理されていない。"
+        return "前のセッションから、いま強く引きずっている問題はまだない。"
     lines: List[str] = []
     if hook.get("archivedCauseEchoes"):
         lines.append(str(hook["archivedCauseEchoes"][0]))
@@ -486,10 +486,10 @@ def _session_opening_summary_from_hook(hook: Dict[str, Any] | None) -> str:
     if hook.get("carriedPressures"):
         lines.append(str(hook["carriedPressures"][0]))
     if not lines:
-        return "前節からの大きな持ち越しはまだ整理されていない。"
+        return "前のセッションから、いま強く引きずっている問題はまだない。"
     if len(lines) == 1:
-        return f"節の始まりに強く残っていたのは、{lines[0]}"
-    return f"節の始まりに強く残っていたのは、{lines[0]} {lines[1]}"
+        return f"セッションの始まりに強く残っていたのは、{lines[0]}"
+    return f"セッションの始まりに強く残っていたのは、{lines[0]} {lines[1]}"
 
 
 ROLE_SLOT_REPERCUSSION_KEYS = (
@@ -1057,7 +1057,7 @@ def _advance_npc_arcs(campaign_state: Dict[str, Any], focus_npc_ids: List[str], 
         if not npc.get("knownWeakness") and float(npc["weaknessPressure"]) >= 3.0:
             npc["knownWeakness"] = npc["weakness"]
             npc["lastWeaknessTrigger"] = npc.get("weaknessTrigger")
-            _append_memory(npc, f"弱みの発火: {npc.get('weaknessTrigger')}")
+            _append_memory(npc, f"弱みが表に出た: {npc.get('weaknessTrigger')}")
 
 
 def _reaction_for_npc(
@@ -1725,7 +1725,7 @@ def _carried_forward_text(
                 return f"{base} {reverberation['carryClause']}"
             return base
         if tone == "mixed":
-            base = f"{current_event['label']}の圧と「{last_branch}」の後腐れ、{carry_hook}が次節の借りになる。"
+            base = f"{current_event['label']}の圧と「{last_branch}」の後腐れ、{carry_hook}が次のセッションの借りになる。"
             if reverberation["carryClause"]:
                 return f"{base} {reverberation['carryClause']}"
             return base
@@ -1739,7 +1739,7 @@ def _carried_forward_text(
             return f"{base} {reverberation['carryClause']}"
         return base
     if tone == "mixed":
-        base = f"{current_event['label']}の圧と{main_wound}が次節の借りになる。"
+        base = f"{current_event['label']}の圧と{main_wound}が次のセッションの借りになる。"
         if reverberation["carryClause"]:
             return f"{base} {reverberation['carryClause']}"
         return base
@@ -2091,7 +2091,7 @@ def _overlay_sentence_key(text: object) -> str:
         "ここで誤ると、",
         "ここで見誤ると、",
         "いま強く戻ってきているのは、",
-        "前節の因果として、",
+        "前のセッションの因果として、",
         "隠れた不正の痕として、",
     ):
         if normalized.startswith(prefix):
@@ -2146,7 +2146,7 @@ def _archive_scene_brief(campaign_state: Dict[str, Any]) -> Dict[str, Any]:
 
     if int(campaign_state["session"].get("turnInSession", 1)) == 1:
         if protected or lost:
-            opening_lines.append(f"前節では{protected or '守るべきもの'}を残した一方で、{lost or '痛手'}を失った。")
+            opening_lines.append(f"前のセッションでは{protected or '守るべきもの'}を残した一方で、{lost or '痛手'}を失った。")
         if resurfacing:
             opening_lines.append(f"いま強く戻ってきているのは、{_trim_copy_text(resurfacing)}。")
         if tension:
@@ -2188,7 +2188,7 @@ def _archive_scene_brief(campaign_state: Dict[str, Any]) -> Dict[str, Any]:
         }[tension["mode"]]
         world_state = _compose_overlay_sentence(world_state, world_tail, world_tail)
     event_summary = (
-        f"前節の因果として、{_trim_copy_text(archived_echo or resurfacing)}"
+        f"前のセッションの因果として、{_trim_copy_text(archived_echo or resurfacing)}"
         if (archived_echo or resurfacing)
         else ""
     )
@@ -2303,7 +2303,7 @@ def _archive_role_slot_overlays(campaign_state: Dict[str, Any]) -> Dict[str, Dic
     for tension in _top_role_slot_repercussions(campaign_state):
         role_slot_id = tension["roleSlotId"]
         archive_entry = tension["archiveEntry"]
-        prefix = _archive_prefix(archive_entry) if archive_entry else "前節の余波"
+        prefix = _archive_prefix(archive_entry) if archive_entry else "前のセッションの余波"
         if role_slot_id in overlays:
             if tension["mode"] == "retaliation":
                 overlays[role_slot_id]["archiveReactionMode"] = "retaliation"
@@ -2590,9 +2590,9 @@ def _compress_session_archive(campaign_state: Dict[str, Any]) -> None:
         )
         latest_entry = overflow[-1]
         compression["latestSummary"] = (
-            f"第{overflow_numbers[0]}節から第{overflow_numbers[-1]}節までの古い記録は圧縮して保持している。"
+            f"第{overflow_numbers[0]}セッションから第{overflow_numbers[-1]}セッションまでの古い記録は圧縮して保持している。"
             if len(overflow_numbers) > 1
-            else f"第{overflow_numbers[0]}節の古い記録は圧縮して保持している。"
+            else f"第{overflow_numbers[0]}セッションの古い記録は圧縮して保持している。"
         )
     campaign_state["sessionArchive"] = kept
 
@@ -2709,8 +2709,8 @@ def _archive_prefix(entry: Dict[str, Any]) -> str:
     session_number = int(entry.get("sessionNumber", 0))
     title = str(entry.get("title") or "").strip()
     if title:
-        return f"第{session_number}節「{title}」"
-    return f"第{session_number}節"
+        return f"第{session_number}セッション「{title}」"
+    return f"第{session_number}セッション"
 
 
 def _archive_role_labels(entry: Dict[str, Any], campaign_state: Dict[str, Any]) -> tuple[str, str]:
@@ -2952,12 +2952,12 @@ def _apply_archive_echoes_to_state(state: Dict[str, Any], campaign: Dict[str, An
                     event["status"] = _event_status(float(event["pressure"]))
 
         if str(entry.get("archivedCauseEcho") or "").strip():
-            notes.append(f"第{session_number}節の余波: {entry['archivedCauseEcho']}")
+            notes.append(f"第{session_number}セッションの余波: {entry['archivedCauseEcho']}")
         if str(entry.get("resurfacingRisk") or "").strip():
-            notes.append(f"第{session_number}節の再浮上: {entry['resurfacingRisk']}")
+            notes.append(f"第{session_number}セッションの再浮上: {entry['resurfacingRisk']}")
         role_slot_pressure_summary = str(entry.get("roleSlotPressureSummary") or "").strip()
         if role_slot_pressure_summary:
-            notes.append(f"第{session_number}節の座のこじれ: {role_slot_pressure_summary}")
+            notes.append(f"第{session_number}セッションの座のこじれ: {role_slot_pressure_summary}")
         applied.add(session_number)
 
     campaign["archiveEchoAppliedSessions"] = sorted(applied)[-12:]
@@ -3054,7 +3054,7 @@ def _archive_inspector(campaign_state: Dict[str, Any], hook: Dict[str, Any] | No
         entries.append(
             {
                 "sessionNumber": session_number,
-                "openingSummary": str(entry.get("openingSummary") or "節の始まりの記録はまだ整理されていない。"),
+                "openingSummary": str(entry.get("openingSummary") or "セッションの始まりの記録はまだまとまっていない。"),
                 "title": entry.get("title"),
                 "tone": entry.get("tone"),
                 "keyRoleSlotId": entry.get("keyRoleSlotId"),

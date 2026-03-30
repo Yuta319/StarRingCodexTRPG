@@ -50,7 +50,7 @@ def _session_summary(world_state: Dict[str, Any]) -> Dict[str, Any]:
         "sessionNumber": session["sessionNumber"],
         "title": current_event["label"],
         "tone": None,
-        "summary": f"第{session['sessionNumber']}節の{session['turnInSession']}/{session['maxTurns']}手目。事件は「{current_event['label']}」。",
+        "summary": f"第{session['sessionNumber']}セッションの{session['turnInSession']}/{session['maxTurns']}手目。事件は「{current_event['label']}」。",
     }
 
 

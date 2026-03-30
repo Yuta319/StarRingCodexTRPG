@@ -24,6 +24,14 @@ def _trim_terminal(text: object, fallback: str = "") -> str:
     return normalized.rstrip("。！？").strip()
 
 
+def _soften_weakness_copy(text: object, fallback: str = "") -> str:
+    normalized = _trim_terminal(text, fallback)
+    normalized = normalized.replace(" 火がつくのは ", " 起きやすいのは ")
+    normalized = normalized.replace("火がつくのは ", "起きやすいのは ")
+    normalized = normalized.replace("弱みの発火", "弱みが表に出た")
+    return normalized
+
+
 def _join_sentences(parts: Iterable[object], fallback: str) -> str:
     cleaned = _dedupe_sentence_chunks(_trim_terminal(part) for part in parts if _text(part))
     if not cleaned:
@@ -200,10 +208,10 @@ def compose_session_opening_guide(
         ]
     )
     if not lines:
-        lines = ["前節からの大きな持ち越しはまだ整理されていない"]
+        lines = ["前のセッションから、いま強く引きずっている問題はまだない"]
     return {
-        "headline": ensure_copy_quality(f"第{session['sessionNumber']}節の入り口", "ui"),
-        "lines": [ensure_copy_quality(_sentence(line, "節の始まりを確認している。"), "explanation") for line in lines[:3]],
+        "headline": ensure_copy_quality(f"第{session['sessionNumber']}セッションの入り口", "ui"),
+        "lines": [ensure_copy_quality(_sentence(line, "セッションの始まりを確認している。"), "explanation") for line in lines[:3]],
     }
 
 
@@ -230,7 +238,7 @@ def compose_action_mode_guide(
         ),
         "sessionFlow": ensure_copy_quality(
             _sentence(
-                "途中で区切るなら保存する。6手を終えたら次の節へ進み、持ち越しを見てから一手目を選ぶ",
+                "途中で区切るなら保存する。6手を終えたら次のセッションへ進み、持ち越しを見てから一手目を選ぶ",
                 "保存と継続の流れを確認する。",
             ),
             "explanation",
@@ -256,7 +264,7 @@ def compose_world_pulse_panel_copy(world_pulse: Mapping[str, Any], world_pulse_g
         "summary": ensure_copy_quality(_sentence(world_pulse_guide.get("summaryText"), "世界の気配を見ている。"), "explanation"),
         "focus": ensure_copy_quality(_sentence(focus, "強い圧を見ている。"), "explanation"),
         "read": ensure_copy_quality(
-            _sentence("数字が高い項目ほど、その節の判断や事件の空気に割り込んできやすい", "数字の見方を確認している。"),
+            _sentence("数字が高い項目ほど、その場面の判断や事件の空気に割り込んできやすい", "数字の見方を確認している。"),
             "explanation",
         ),
     }
@@ -383,7 +391,7 @@ def compose_story_guide_copy(
 ) -> dict[str, Any]:
     now = ensure_copy_quality(
         _sentence(
-            f"第{session['sessionNumber']}節の{session['phaseLabel']}だ。いま前面に出ているのは「{event['label']}」で、場面の焦点は「{scene_title}」にある",
+            f"第{session['sessionNumber']}セッションの{session['phaseLabel']}だ。いま前面に出ているのは「{event['label']}」で、場面の焦点は「{scene_title}」にある",
             "いまの局面を整理している。",
         ),
         "explanation",
@@ -463,8 +471,8 @@ def compose_npc_copy(npc: Mapping[str, Any]) -> dict[str, Any]:
         )
 
     weakness_text = _sentence(
-        f"{_trim_terminal(npc.get('knownWeakness') or npc.get('weakness'), '弱みはまだ見えていない')} "
-        f"火がつくのは {_trim_terminal(npc.get('lastWeaknessTrigger') or npc.get('weaknessTrigger'), '追い込まれたときだ')}",
+        f"{_soften_weakness_copy(npc.get('knownWeakness') or npc.get('weakness'), '弱みはまだ見えていない')} "
+        f"起きやすいのは {_trim_terminal(npc.get('lastWeaknessTrigger') or npc.get('weaknessTrigger'), '追い込まれたときだ')}",
         "弱みはまだ見えていない。",
     )
     conflict_text = _sentence(npc.get("conflictDetail") or f"{npc['conflictsWithLabel']}と利害がぶつかっている", "利害の衝突を抱えている。")
@@ -556,5 +564,5 @@ def compose_transition_message(transition: Mapping[str, Any], outcome: str) -> s
     ending_title = _text(transition.get("endingTitle"))
     body = f"「{branch_label}」では{outcome_text}。{'。'.join(movements[:2])}。"
     if ending_title:
-        body = f"{body} {ending_title}でこの節が締めくくられた。"
+        body = f"{body} {ending_title}でこのセッションが締めくくられた。"
     return ensure_copy_quality(body, "explanation")

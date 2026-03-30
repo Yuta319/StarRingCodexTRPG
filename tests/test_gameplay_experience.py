@@ -344,7 +344,7 @@ class GameplayExperienceTests(unittest.TestCase):
         self.assertLessEqual(len(hook["resurfacingRisks"]), 3)
         self.assertLessEqual(len(hook["unresolvedVice"]), 3)
         self.assertLessEqual(len(hook["unresolvedTaboo"]), 3)
-        self.assertTrue(hook["archivedCauseEchoes"][0].startswith("第3節"))
+        self.assertTrue(hook["archivedCauseEchoes"][0].startswith("第3セッション"))
 
     def test_archive_review_separates_latest_record_resurfacing_spark_and_hidden_wound(self) -> None:
         raw_texts = [
@@ -374,7 +374,7 @@ class GameplayExperienceTests(unittest.TestCase):
         self.assertIn("latestArchiveSummary", review)
         self.assertIn("resurfacingSpark", review)
         self.assertIn("hiddenWound", review)
-        self.assertTrue(review["latestArchiveSummary"].startswith("第3節"))
+        self.assertTrue(review["latestArchiveSummary"].startswith("第3セッション"))
         self.assertTrue(review["resurfacingSpark"].strip())
         self.assertTrue(review["hiddenWound"].strip())
         combined = " ".join(review.values())
