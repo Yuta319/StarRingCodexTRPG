@@ -174,6 +174,13 @@ def _read_model_from_after_bundle(after_bundle: Dict[str, Any]) -> tuple[Dict[st
     return play_source, read_model
 
 
+def _front_snapshot_from_bundle(bundle: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "playSource": _play_source_from_bundle(bundle),
+        "display": _display_from_bundle(bundle),
+    }
+
+
 def _compact_transition_payload(
     *,
     choice_id: str,
@@ -214,6 +221,24 @@ def build_ui_payload(request: ViewerRequest) -> Dict[str, Any]:
         "playSource": _play_source_from_bundle(bundle),
         "bundle": _bundle_payload(bundle),
         "display": _display_from_bundle(bundle),
+    }
+
+
+def build_front_snapshot_payload(request: ViewerRequest) -> Dict[str, Any]:
+    bundle = build_bundle(
+        seed=request.seed,
+        seasons=request.seasons,
+        archetype=request.archetype,
+        world_json=request.world_json,
+    )
+    return {
+        "request": {
+            "seed": request.seed,
+            "seasons": request.seasons,
+            "archetype": request.archetype,
+            "world_json": str(request.world_json) if request.world_json else None,
+        },
+        **_front_snapshot_from_bundle(bundle),
     }
 
 
@@ -391,6 +416,27 @@ def build_gpt_play_payload(request: PlayRequest) -> Dict[str, Any]:
     }
 
 
+def build_front_play_payload(request: PlayRequest) -> Dict[str, Any]:
+    result = play_choice(
+        choice_id=request.choice_id,
+        seed=request.seed,
+        world_json=request.world_json,
+    )
+    after_bundle = result["after"]["bundle"]
+    transition = after_bundle["world_state"]["campaign_state"].get("lastTransition") or {}
+    return {
+        **_front_snapshot_from_bundle(after_bundle),
+        "transition": {
+            "choiceId": request.choice_id,
+            "intentType": result["intent"]["intent_type"],
+            "outcome": result["resolution"]["outcome"],
+            "beforeScene": result["before"]["scene_title"],
+            "afterScene": result["after"]["scene_title"],
+            "message": compose_transition_message(transition, result["resolution"]["outcome"]),
+        },
+    }
+
+
 def build_free_action_payload(request: FreeActionRequest) -> Dict[str, Any]:
     result = play_free_action(
         action_text=request.action_text,
@@ -467,6 +513,47 @@ def build_gpt_free_action_payload(request: FreeActionRequest) -> Dict[str, Any]:
     }
 
 
+def build_front_free_action_payload(request: FreeActionRequest) -> Dict[str, Any]:
+    result = play_free_action(
+        action_text=request.action_text,
+        seed=request.seed,
+        world_json=request.world_json,
+    )
+    after_bundle = result["after"]["bundle"]
+    structured_result = result["structured_result"]
+    transition = after_bundle["world_state"]["campaign_state"].get("lastTransition") or {}
+    free_action = after_bundle["world_state"]["campaign_state"].get("lastFreeAction") or {}
+    action_summary = structured_result["source"]["player_summary"]
+    message = (
+        f"{action_summary}。"
+        f"{structured_result['adjudication']['note']} "
+        f"{free_action.get('logs', {}).get('afterglow', structured_result['consequence']['logs']['afterglow'])}"
+    )
+    return {
+        **_front_snapshot_from_bundle(after_bundle),
+        "structuredResult": {
+            "summary": action_summary,
+            "residue": free_action.get("freeActionResidueLabel") or "",
+            "intentType": structured_result["normalized_intent"]["intent_type"],
+            "outcome": structured_result["adjudication"]["outcome"],
+            "successBand": structured_result["adjudication"]["success_band"],
+            "discoveryState": structured_result["adjudication"]["discovery_state"],
+            "note": structured_result["adjudication"]["note"],
+            "viceTags": list(structured_result["normalized_intent"].get("vice_tags", [])),
+            "tabooTags": list(structured_result["normalized_intent"].get("taboo_tags", [])),
+        },
+        "transition": _compact_transition_payload(
+            choice_id="custom_action",
+            intent_type=structured_result["normalized_intent"]["intent_type"],
+            outcome=structured_result["adjudication"]["outcome"],
+            before_scene=result["before"]["scene_title"],
+            after_scene=result["after"]["scene_title"],
+            message=message,
+            discovery_state=structured_result["adjudication"]["discovery_state"],
+        ),
+    }
+
+
 def build_save_session_payload(request: SaveSessionRequest) -> Dict[str, Any]:
     return save_session_state(world_json=request.world_json, world_state=request.world_state)
 
@@ -505,6 +592,21 @@ def build_gpt_load_session_payload(request: LoadSessionRequest) -> Dict[str, Any
     }
 
 
+def build_front_load_session_payload(request: LoadSessionRequest) -> Dict[str, Any]:
+    resolved_path = resolve_saved_session_path(save_id=request.save_id, save_path=request.save_path)
+    bundle = build_bundle(world_json=resolved_path)
+    save_meta = bundle["world_state"]["campaign_state"].get("saveMeta") or {}
+    return {
+        "request": {
+            "saveId": request.save_id,
+            "savePath": str(request.save_path) if request.save_path else None,
+            "resolvedSavePath": str(resolved_path),
+        },
+        "saveMeta": save_meta,
+        **_front_snapshot_from_bundle(bundle),
+    }
+
+
 def build_next_session_payload(request: NextSessionRequest) -> Dict[str, Any]:
     updated_world = build_next_session_state(request.world_json)
     runtime_world_json = Path(_persist_world_state(updated_world))
@@ -517,6 +619,21 @@ def build_next_session_payload(request: NextSessionRequest) -> Dict[str, Any]:
         "playSource": _play_source_from_bundle(bundle),
         "bundle": _bundle_payload(bundle),
         "display": _display_from_bundle(bundle),
+        "nextSessionHook": campaign.get("nextSessionHook"),
+        "sessionArchiveSize": len(campaign.get("sessionArchive", [])),
+    }
+
+
+def build_front_next_session_payload(request: NextSessionRequest) -> Dict[str, Any]:
+    updated_world = build_next_session_state(request.world_json)
+    runtime_world_json = Path(_persist_world_state(updated_world))
+    bundle = build_bundle(world_json=runtime_world_json)
+    campaign = bundle["world_state"]["campaign_state"]
+    return {
+        "request": {
+            "world_json": str(request.world_json),
+        },
+        **_front_snapshot_from_bundle(bundle),
         "nextSessionHook": campaign.get("nextSessionHook"),
         "sessionArchiveSize": len(campaign.get("sessionArchive", [])),
     }

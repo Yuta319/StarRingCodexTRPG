@@ -1,0 +1,133 @@
+:root {
+  color-scheme: dark;
+  --bg: #120f0c;
+  --panel: #1b1512;
+  --panel-soft: #241c18;
+  --line: rgba(222, 185, 132, 0.18);
+  --text: #f6eee1;
+  --muted: #cdbca5;
+  --accent: #d4a66a;
+  --button: linear-gradient(135deg, #6f4327, #9b6135);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(212, 166, 106, 0.12), transparent 32%),
+    linear-gradient(180deg, #0d0b0a, var(--bg));
+  color: var(--text);
+  font-family: "Segoe UI Variable", "Yu Gothic UI", "Hiragino Sans", sans-serif;
+}
+
+.panel-shell {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.panel-header,
+.card {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(27, 21, 18, 0.92);
+  padding: 16px;
+}
+
+.eyebrow,
+.card-eyebrow {
+  margin: 0;
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.panel-header h1,
+.card h2 {
+  margin: 4px 0 0;
+}
+
+.lede,
+.status-text {
+  margin: 10px 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.status-detail {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.status-detail__row {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: var(--panel-soft);
+  color: var(--muted);
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+label span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: var(--panel-soft);
+  color: var(--text);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+button {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: var(--button);
+  color: #fff3dd;
+  cursor: pointer;
+}
+
+.flat-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.flat-list li + li {
+  margin-top: 8px;
+}

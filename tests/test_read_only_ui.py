@@ -11,16 +11,23 @@ from http.server import ThreadingHTTPServer
 from star_ring_codex_trpg.errors import UiRequestError
 from star_ring_codex_trpg.playable_loop import play_choice
 from star_ring_codex_trpg.read_only_ui.controller import (
+    build_front_free_action_payload,
+    build_front_load_session_payload,
+    build_front_next_session_payload,
+    build_front_play_payload,
+    build_front_snapshot_payload,
     build_gpt_free_action_payload,
     build_gpt_load_session_payload,
     build_gpt_next_session_payload,
     build_gpt_play_payload,
     build_play_payload,
+    build_save_session_payload,
     build_ui_payload,
     free_action_request_from_body,
     load_session_request_from_body,
     next_session_request_from_body,
     play_request_from_body,
+    save_session_request_from_body,
     viewer_request_from_query,
 )
 from star_ring_codex_trpg.runner import build_bundle
@@ -61,6 +68,21 @@ class ReadOnlyUiTests(unittest.TestCase):
         self.assertTrue(payload["display"]["npcBeats"])
         self.assertTrue(payload["playSource"]["world_json"])
 
+    def test_build_front_snapshot_payload_contains_display_without_bundle(self) -> None:
+        payload = build_front_snapshot_payload(viewer_request_from_query({"seed": ["1729"]}))
+        self.assertIn("display", payload)
+        self.assertIn("playSource", payload)
+        self.assertNotIn("bundle", payload)
+        self.assertIn("worldSpine", payload["display"])
+        self.assertIn("scenePacket", payload["display"])
+
+    def test_front_snapshot_is_smaller_than_full_ui_payload(self) -> None:
+        full_payload = build_ui_payload(viewer_request_from_query({"seed": ["1729"]}))
+        front_payload = build_front_snapshot_payload(viewer_request_from_query({"seed": ["1729"]}))
+        full_size = len(json.dumps(full_payload, ensure_ascii=False))
+        front_size = len(json.dumps(front_payload, ensure_ascii=False))
+        self.assertLess(front_size, full_size)
+
     def test_build_play_payload_returns_after_bundle(self) -> None:
         payload = build_play_payload(play_request_from_body({"choiceId": "observe", "seed": 1729, "world_json": None}))
         self.assertIn("bundle", payload)
@@ -69,6 +91,15 @@ class ReadOnlyUiTests(unittest.TestCase):
         self.assertTrue(payload["playSource"]["world_json"])
         self.assertIn("shell_snapshot", payload["bundle"])
         self.assertIn("campaign", payload["transition"])
+
+    def test_build_front_play_payload_returns_compact_display(self) -> None:
+        payload = build_front_play_payload(play_request_from_body({"choiceId": "observe", "seed": 1729, "world_json": None}))
+        self.assertIn("playSource", payload)
+        self.assertIn("display", payload)
+        self.assertIn("transition", payload)
+        self.assertNotIn("bundle", payload)
+        self.assertEqual(payload["transition"]["choiceId"], "observe")
+        self.assertTrue(payload["playSource"]["world_json"])
 
     def test_build_gpt_play_payload_returns_compact_state(self) -> None:
         payload = build_gpt_play_payload(play_request_from_body({"choiceId": "observe", "seed": 1729, "world_json": None}))
@@ -164,6 +195,52 @@ class ReadOnlyUiTests(unittest.TestCase):
             server.server_close()
             thread.join(timeout=1)
 
+    def test_front_snapshot_api_returns_compact_display(self) -> None:
+        server = ThreadingHTTPServer(("127.0.0.1", 0), ReadOnlyUiHandler)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        try:
+            port = server.server_address[1]
+            with urllib.request.urlopen(f"http://127.0.0.1:{port}/api/front/snapshot?seed=1729") as response:
+                payload = json.loads(response.read().decode("utf-8"))
+            self.assertIn("display", payload)
+            self.assertIn("playSource", payload)
+            self.assertNotIn("bundle", payload)
+        finally:
+            server.shutdown()
+            server.server_close()
+            thread.join(timeout=1)
+
+    def test_front_play_api_returns_compact_display(self) -> None:
+        initial = build_ui_payload(viewer_request_from_query({"seed": ["1729"]}))
+        server = ThreadingHTTPServer(("127.0.0.1", 0), ReadOnlyUiHandler)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        try:
+            port = server.server_address[1]
+            request = urllib.request.Request(
+                f"http://127.0.0.1:{port}/api/front/play",
+                data=json.dumps(
+                    {
+                        "choiceId": "observe",
+                        "seed": 1729,
+                        "world_json": initial["playSource"]["world_json"],
+                    }
+                ).encode("utf-8"),
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+            with urllib.request.urlopen(request) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+            self.assertIn("playSource", payload)
+            self.assertIn("display", payload)
+            self.assertIn("transition", payload)
+            self.assertNotIn("bundle", payload)
+        finally:
+            server.shutdown()
+            server.server_close()
+            thread.join(timeout=1)
+
     def test_gpt_free_action_payload_returns_compact_state(self) -> None:
         payload = build_gpt_free_action_payload(
             free_action_request_from_body({"actionText": "夜中に宿の裏から入り、裏帳面を盗み出す", "seed": 1729, "world_json": None})
@@ -175,6 +252,16 @@ class ReadOnlyUiTests(unittest.TestCase):
         self.assertNotIn("bundle", payload)
         self.assertNotIn("display", payload)
         self.assertTrue(payload["structuredResult"]["summary"])
+
+    def test_front_free_action_payload_returns_compact_display(self) -> None:
+        payload = build_front_free_action_payload(
+            free_action_request_from_body({"actionText": "夜中に宿の裏から入り、裏帳面を盗み出す", "seed": 1729, "world_json": None})
+        )
+        self.assertIn("playSource", payload)
+        self.assertIn("display", payload)
+        self.assertIn("structuredResult", payload)
+        self.assertIn("transition", payload)
+        self.assertNotIn("bundle", payload)
 
     def test_gpt_read_model_api_returns_read_only_surface(self) -> None:
         server = ThreadingHTTPServer(("127.0.0.1", 0), ReadOnlyUiHandler)
@@ -221,6 +308,15 @@ class ReadOnlyUiTests(unittest.TestCase):
         self.assertIn("saveMeta", payload)
         self.assertNotIn("bundle", payload)
         self.assertNotIn("display", payload)
+
+    def test_front_load_session_payload_returns_compact_display(self) -> None:
+        initial = build_ui_payload(viewer_request_from_query({"seed": ["1729"]}))
+        saved = build_save_session_payload(save_session_request_from_body({"world_json": initial["playSource"]["world_json"]}))
+        payload = build_front_load_session_payload(load_session_request_from_body({"saveId": saved["saveId"]}))
+        self.assertIn("playSource", payload)
+        self.assertIn("display", payload)
+        self.assertIn("saveMeta", payload)
+        self.assertNotIn("bundle", payload)
 
     def test_save_and_load_session_api_contracts(self) -> None:
         initial = build_ui_payload(viewer_request_from_query({"seed": ["1729"]}))
@@ -295,6 +391,23 @@ class ReadOnlyUiTests(unittest.TestCase):
                 server.shutdown()
                 server.server_close()
                 thread.join(timeout=1)
+
+    def test_front_next_session_payload_returns_compact_display(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            world_json = Path(temp_dir) / "completed_session.json"
+            current_world = build_bundle(seed=1729, seasons=10)["world_state"]
+            for choice_id in ["observe", "inspect", "speak", "observe", "intervene", "inspect"]:
+                world_json.write_text(json.dumps(current_world, ensure_ascii=False, indent=2), encoding="utf-8")
+                result = play_choice(choice_id=choice_id, seed=None, world_json=world_json)
+                current_world = result["after"]["bundle"]["world_state"]
+            world_json.write_text(json.dumps(current_world, ensure_ascii=False, indent=2), encoding="utf-8")
+
+            payload = build_front_next_session_payload(next_session_request_from_body({"world_json": str(world_json)}))
+            self.assertIn("playSource", payload)
+            self.assertIn("display", payload)
+            self.assertIn("nextSessionHook", payload)
+            self.assertIn("sessionArchiveSize", payload)
+            self.assertNotIn("bundle", payload)
 
     def test_gpt_next_session_payload_returns_compact_state(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

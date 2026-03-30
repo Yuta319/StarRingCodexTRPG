@@ -9,6 +9,7 @@
 ## 設計ロック
 
 - [design_lock_alignment.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/docs/design_lock_alignment.md)
+- [chrome_extension_ui_blueprint.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/docs/chrome_extension_ui_blueprint.md)
 - [japanese_output_policy.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/docs/japanese_output_policy.md)
 - [second_part_integration_map.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/docs/second_part_integration_map.md)
 

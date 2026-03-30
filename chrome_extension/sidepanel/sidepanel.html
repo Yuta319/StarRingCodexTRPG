@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Star Ring Codex Panel</title>
+    <link rel="stylesheet" href="./sidepanel.css">
+  </head>
+  <body>
+    <main class="panel-shell">
+      <header class="panel-header">
+        <p class="eyebrow">Star Ring Codex</p>
+        <h1>Shell Control</h1>
+        <p class="lede">ChatGPT 上に重ねる shell の接続先と表示状態を管理します。</p>
+      </header>
+
+      <section class="card">
+        <p class="card-eyebrow">Shell</p>
+        <h2>表示操作</h2>
+        <div class="action-row">
+          <button id="open-chatgpt" type="button">ChatGPT を開く</button>
+          <button id="show-shell" type="button">shell を開く</button>
+          <button id="hide-shell" type="button">shell を閉じる</button>
+          <button id="refresh-shell" type="button">再読込</button>
+          <button id="ping-api" type="button">API 疎通確認</button>
+        </div>
+      </section>
+
+      <form id="settings-form" class="card">
+        <p class="card-eyebrow">Source</p>
+        <h2>接続設定</h2>
+        <label>
+          <span>API Base URL</span>
+          <input id="api-base-url" name="apiBaseUrl" type="url">
+        </label>
+        <label>
+          <span>seed</span>
+          <input id="seed" name="seed" type="number">
+        </label>
+        <label>
+          <span>seasons</span>
+          <input id="seasons" name="seasons" type="number">
+        </label>
+        <label>
+          <span>archetype</span>
+          <input id="archetype" name="archetype" type="text">
+        </label>
+        <label>
+          <span>world_json</span>
+          <textarea id="world-json" name="worldJson" rows="4" placeholder="保存した world_json を直接使う場合だけ入れます。"></textarea>
+        </label>
+        <div class="action-row">
+          <button type="submit">設定を保存</button>
+          <button id="clear-world-json" type="button">world_json を空にする</button>
+        </div>
+      </form>
+
+      <section class="card">
+        <p class="card-eyebrow">Scope</p>
+        <h2>この段階で入っているもの</h2>
+        <ul class="flat-list">
+          <li>World Spine / Actor Rail / Narrative Core / Context Rail</li>
+          <li>Choice / Free Action / Save / Load / Next Session</li>
+          <li>Hotbar と Hub の器</li>
+          <li>Assets 導線の placeholder</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <p class="card-eyebrow">Status</p>
+        <h2>状態</h2>
+        <p id="status-text" class="status-text">設定を読んでいます。</p>
+        <div id="status-detail" class="status-detail"></div>
+      </section>
+    </main>
+    <script src="./sidepanel.js" defer></script>
+  </body>
+  </html>

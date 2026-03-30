@@ -110,6 +110,11 @@ GET /api/gpt-read-model?world_json=C:\path\to\world.json
 
 設計方針は [custom_gpt_integration.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/docs/custom_gpt_integration.md)、プロンプトたたき台は [custom_gpt_narrator_prompt.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/docs/prompts/custom_gpt_narrator_prompt.md) を参照してください。
 
+## Chrome Extension Shell
+
+Chrome 拡張の shell は [chrome_extension/README.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/chrome_extension/README.md) を参照してください。  
+これは `read_only_ui` の代替ではなく、ChatGPT 上に重ねる完成版プレイヤー UI の最初の実装です。
+
 ## Docs
 
 - [index.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/docs/index.md)
