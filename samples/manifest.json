@@ -1,0 +1,14 @@
+{
+  "samples": {
+    "openingBundle1729": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\samples\\bundles\\seed1729_opening_bundle.json",
+    "openingBundle2048": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\samples\\bundles\\seed2048_opening_bundle.json",
+    "sampleSave": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\samples\\saves\\seed1729_turn3_save.json",
+    "sampleCampaignWorld": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\samples\\campaigns\\seed1729_two_sessions_world.json",
+    "sampleGptReadModel": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\samples\\gpt\\seed1729_two_sessions_read_model.json"
+  },
+  "notes": [
+    "sample save は /api/load-session の savePath でも読める。",
+    "sample campaign は archive / nextSessionHook / current scene echo が入った状態。",
+    "sample GPT read model は narration 専用で、truth mutation はしない。"
+  ]
+}

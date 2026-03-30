@@ -1,0 +1,2358 @@
+{
+  "world": {
+    "seed": 1729,
+    "world_name": "霧環連界",
+    "calendar_name": "ラレイナ暦",
+    "calendar_year": 174,
+    "season_index": 6,
+    "main_god_name": "ラレイナ",
+    "current_world_era": "瘴潮期"
+  },
+  "regions": {
+    "north_granary": {
+      "label_ja": "北穀州",
+      "biome": "plains",
+      "dominant_race": "human",
+      "values": {
+        "food": 66.0,
+        "housing": 58,
+        "law_order": 44.9,
+        "legitimacy": 52,
+        "faith_density": 41,
+        "trade_routes": 61.7,
+        "mana_level": 46,
+        "miasma_level": 29.1,
+        "succession_stability": 38,
+        "racial_tension": 31
+      },
+      "adjacency": [
+        "river_gate",
+        "ash_frontier"
+      ],
+      "local_tags": [
+        "granary",
+        "borderland"
+      ]
+    },
+    "river_gate": {
+      "label_ja": "川門州",
+      "biome": "river",
+      "dominant_race": "fishfolk",
+      "values": {
+        "food": 42.7,
+        "housing": 61,
+        "law_order": 46.4,
+        "legitimacy": 59,
+        "faith_density": 48,
+        "trade_routes": 67.9,
+        "mana_level": 50,
+        "miasma_level": 25.4,
+        "succession_stability": 56,
+        "racial_tension": 28
+      },
+      "adjacency": [
+        "north_granary",
+        "white_shrine",
+        "deep_mouth"
+      ],
+      "local_tags": [
+        "port",
+        "river"
+      ]
+    },
+    "white_shrine": {
+      "label_ja": "白祠圏",
+      "biome": "highland",
+      "dominant_race": "birdfolk",
+      "values": {
+        "food": 38.1,
+        "housing": 53,
+        "law_order": 49.4,
+        "legitimacy": 63,
+        "faith_density": 77.0,
+        "trade_routes": 42.9,
+        "mana_level": 55,
+        "miasma_level": 20.1,
+        "succession_stability": 60,
+        "racial_tension": 24
+      },
+      "adjacency": [
+        "river_gate",
+        "seal_marsh"
+      ],
+      "local_tags": [
+        "shrine",
+        "pilgrimage"
+      ]
+    },
+    "deep_mouth": {
+      "label_ja": "深口盆地",
+      "biome": "cavern",
+      "dominant_race": "dwarf",
+      "values": {
+        "food": 24.5,
+        "housing": 41.8,
+        "law_order": 36.1,
+        "legitimacy": 46,
+        "faith_density": 29,
+        "trade_routes": 46.1,
+        "mana_level": 42,
+        "miasma_level": 70.0,
+        "succession_stability": 44,
+        "racial_tension": 39
+      },
+      "adjacency": [
+        "river_gate",
+        "ash_frontier"
+      ],
+      "local_tags": [
+        "mine",
+        "dungeon"
+      ]
+    },
+    "ash_frontier": {
+      "label_ja": "灰縁辺州",
+      "biome": "ashlands",
+      "dominant_race": "dragonewt",
+      "values": {
+        "food": 17.2,
+        "housing": 35,
+        "law_order": 30.3,
+        "legitimacy": 41,
+        "faith_density": 37,
+        "trade_routes": 20.4,
+        "mana_level": 48,
+        "miasma_level": 77.0,
+        "succession_stability": 34,
+        "racial_tension": 52
+      },
+      "adjacency": [
+        "north_granary",
+        "deep_mouth",
+        "seal_marsh"
+      ],
+      "local_tags": [
+        "frontier",
+        "warzone"
+      ]
+    },
+    "seal_marsh": {
+      "label_ja": "封泥湿域",
+      "biome": "marsh",
+      "dominant_race": "plantfolk",
+      "values": {
+        "food": 30.6,
+        "housing": 41,
+        "law_order": 29.8,
+        "legitimacy": 36,
+        "faith_density": 58,
+        "trade_routes": 16.9,
+        "mana_level": 62,
+        "miasma_level": 78.8,
+        "succession_stability": 47,
+        "racial_tension": 36
+      },
+      "adjacency": [
+        "white_shrine",
+        "ash_frontier"
+      ],
+      "local_tags": [
+        "rift",
+        "sealing",
+        "marsh"
+      ]
+    }
+  },
+  "factions": {
+    "kingdom": {
+      "label_ja": "穀冠王国",
+      "faction_type": "state",
+      "dominant_race": "human",
+      "regions": [
+        "north_granary",
+        "river_gate"
+      ],
+      "legitimacy": 56.6,
+      "militarization": 51.9,
+      "treasury": 59.3,
+      "zeal": 42,
+      "doctrine_tags": [
+        "order",
+        "grain",
+        "law"
+      ]
+    },
+    "shrine_synod": {
+      "label_ja": "白祠宗務会",
+      "faction_type": "religion",
+      "dominant_race": "birdfolk",
+      "regions": [
+        "white_shrine"
+      ],
+      "legitimacy": 57.5,
+      "militarization": 26.5,
+      "treasury": 38.0,
+      "zeal": 81.2,
+      "doctrine_tags": [
+        "light",
+        "pilgrimage",
+        "purity"
+      ]
+    },
+    "miners_compact": {
+      "label_ja": "黒鎚採鉱盟",
+      "faction_type": "guild",
+      "dominant_race": "dwarf",
+      "regions": [
+        "deep_mouth"
+      ],
+      "legitimacy": 48.0,
+      "militarization": 28.5,
+      "treasury": 57.5,
+      "zeal": 22,
+      "doctrine_tags": [
+        "mining",
+        "delve",
+        "metal"
+      ]
+    },
+    "march_clans": {
+      "label_ja": "灰縁侯族",
+      "faction_type": "state",
+      "dominant_race": "dragonewt",
+      "regions": [
+        "ash_frontier"
+      ],
+      "legitimacy": 48.5,
+      "militarization": 68.2,
+      "treasury": 38.7,
+      "zeal": 49,
+      "doctrine_tags": [
+        "frontier",
+        "martial",
+        "blood"
+      ]
+    },
+    "mire_circle": {
+      "label_ja": "封泥環",
+      "faction_type": "religion",
+      "dominant_race": "plantfolk",
+      "regions": [
+        "seal_marsh"
+      ],
+      "legitimacy": 50.6,
+      "militarization": 27.2,
+      "treasury": 27.5,
+      "zeal": 73.2,
+      "doctrine_tags": [
+        "sealing",
+        "healing",
+        "marsh"
+      ]
+    },
+    "demon_domain": {
+      "label_ja": "瘴冠魔域",
+      "faction_type": "demon_domain",
+      "dominant_race": "demonian",
+      "regions": [
+        "ash_frontier",
+        "seal_marsh"
+      ],
+      "legitimacy": 20.6,
+      "militarization": 74.0,
+      "treasury": 46.6,
+      "zeal": 67.0,
+      "doctrine_tags": [
+        "miasma",
+        "dark",
+        "infiltration"
+      ]
+    }
+  },
+  "institutions": {
+    "inst_trade_01": {
+      "institution_id": "inst_trade_01",
+      "institution_kind": "trade_compact",
+      "label_ja": "穀冠王国＝黒鎚採鉱盟通商盟約",
+      "party_a": "kingdom",
+      "party_b": "miners_compact",
+      "support": 40.2,
+      "breach_risk": 62.5,
+      "age_seasons": 6,
+      "status": "strained",
+      "clauses": [
+        {
+          "clause_id": "cl_grain_tariff_relief_81800",
+          "clause_kind": "grain_tariff_relief",
+          "label_ja": "穀物関税軽減",
+          "support": 18,
+          "strain": 76,
+          "intensity": 62,
+          "status": "violated",
+          "last_tension": 89.6,
+          "notes": [
+            "食糧圧迫が関税軽減の履行を難化"
+          ]
+        },
+        {
+          "clause_id": "cl_joint_mining_rights_97298",
+          "clause_kind": "joint_mining_rights",
+          "label_ja": "共同採掘権",
+          "support": 67,
+          "strain": 0.0,
+          "intensity": 56,
+          "status": "active",
+          "last_tension": 33.2,
+          "notes": [
+            "鉱区利権と瘴気で共同採掘が不安定化"
+          ]
+        },
+        {
+          "clause_id": "cl_river_passage_rights_45671",
+          "clause_kind": "river_passage_rights",
+          "label_ja": "河川通行権",
+          "support": 76,
+          "strain": 0.0,
+          "intensity": 54,
+          "status": "active",
+          "last_tension": 40.3,
+          "notes": [
+            "河川通行が交易不安と検問強化で詰まる"
+          ]
+        },
+        {
+          "clause_id": "cl_joint_delving_recovery_36840",
+          "clause_kind": "joint_delving_recovery",
+          "label_ja": "共同深層回収",
+          "support": 0.0,
+          "strain": 93,
+          "intensity": 59,
+          "status": "violated",
+          "last_tension": 95.4,
+          "notes": [
+            "深層回収で損耗と利権摩擦"
+          ]
+        }
+      ]
+    },
+    "inst_pilgrim_01": {
+      "institution_id": "inst_pilgrim_01",
+      "institution_kind": "religious_concord",
+      "label_ja": "白祠宗務会＝封泥環宗教同盟",
+      "party_a": "shrine_synod",
+      "party_b": "mire_circle",
+      "support": 14.7,
+      "breach_risk": 86.3,
+      "age_seasons": 6,
+      "status": "broken",
+      "clauses": [
+        {
+          "clause_id": "cl_pilgrimage_route_protection_19059",
+          "clause_kind": "pilgrimage_route_protection",
+          "label_ja": "巡礼路保護",
+          "support": 22,
+          "strain": 75,
+          "intensity": 71,
+          "status": "violated",
+          "last_tension": 83.4,
+          "notes": [
+            "巡礼路で信仰摩擦と襲撃圧が増大"
+          ]
+        },
+        {
+          "clause_id": "cl_joint_sealing_duty_23063",
+          "clause_kind": "joint_sealing_duty",
+          "label_ja": "共同封印義務",
+          "support": 17,
+          "strain": 79,
+          "intensity": 68,
+          "status": "violated",
+          "last_tension": 84.5,
+          "notes": [
+            "封印義務が瘴気増大で過負荷"
+          ]
+        },
+        {
+          "clause_id": "cl_sacred_relic_custody_06820",
+          "clause_kind": "sacred_relic_custody",
+          "label_ja": "聖遺物保管",
+          "support": 5,
+          "strain": 87,
+          "intensity": 65,
+          "status": "violated",
+          "last_tension": 93.4,
+          "notes": [
+            "聖遺物をめぐる信仰競合が先鋭化"
+          ]
+        }
+      ]
+    },
+    "inst_border_01": {
+      "institution_id": "inst_border_01",
+      "institution_kind": "non_aggression_pact",
+      "label_ja": "穀冠王国＝灰縁侯族不可侵条約",
+      "party_a": "kingdom",
+      "party_b": "march_clans",
+      "support": 10.3,
+      "breach_risk": 86.5,
+      "age_seasons": 6,
+      "status": "broken",
+      "clauses": [
+        {
+          "clause_id": "cl_demilitarized_border_91742",
+          "clause_kind": "demilitarized_border",
+          "label_ja": "非武装境界",
+          "support": 0.0,
+          "strain": 96,
+          "intensity": 67,
+          "status": "violated",
+          "last_tension": 90.6,
+          "notes": [
+            "境界の軍事化が非武装条項を侵害"
+          ]
+        },
+        {
+          "clause_id": "cl_hostage_exchange_02364",
+          "clause_kind": "hostage_exchange",
+          "label_ja": "人質交換",
+          "support": 31,
+          "strain": 58,
+          "intensity": 54,
+          "status": "violated",
+          "last_tension": 71.4,
+          "notes": [
+            "人質外交が継承不安と不信で軋む"
+          ]
+        },
+        {
+          "clause_id": "cl_dynastic_marriage_47153",
+          "clause_kind": "dynastic_marriage",
+          "label_ja": "婚姻同盟",
+          "support": 0.0,
+          "strain": 98,
+          "intensity": 52,
+          "status": "violated",
+          "last_tension": 100.0,
+          "notes": [
+            "継承危機が婚姻同盟を不安定化"
+          ]
+        }
+      ]
+    },
+    "inst_tributary_01": {
+      "institution_id": "inst_tributary_01",
+      "institution_kind": "tributary_compact",
+      "label_ja": "灰縁侯族＝瘴冠魔域属国化盟約",
+      "party_a": "march_clans",
+      "party_b": "demon_domain",
+      "support": 0.0,
+      "breach_risk": 89.0,
+      "age_seasons": 6,
+      "status": "broken",
+      "clauses": [
+        {
+          "clause_id": "cl_tribute_delivery_65688",
+          "clause_kind": "tribute_delivery",
+          "label_ja": "朝貢納付",
+          "support": 0.0,
+          "strain": 100.0,
+          "intensity": 63,
+          "status": "violated",
+          "last_tension": 100.0,
+          "notes": [
+            "朝貢履行が疲弊と密輸で崩れ始める"
+          ]
+        },
+        {
+          "clause_id": "cl_hostage_exchange_03295",
+          "clause_kind": "hostage_exchange",
+          "label_ja": "人質交換",
+          "support": 0.0,
+          "strain": 100.0,
+          "intensity": 58,
+          "status": "violated",
+          "last_tension": 100.0,
+          "notes": [
+            "人質外交が継承不安と不信で軋む"
+          ]
+        }
+      ]
+    },
+    "inst_blockade_01": {
+      "institution_id": "inst_blockade_01",
+      "institution_kind": "blockade",
+      "label_ja": "白祠宗務会＝瘴冠魔域封鎖令",
+      "party_a": "shrine_synod",
+      "party_b": "demon_domain",
+      "support": 0.0,
+      "breach_risk": 86.2,
+      "age_seasons": 6,
+      "status": "broken",
+      "clauses": [
+        {
+          "clause_id": "cl_refugee_corridor_50121",
+          "clause_kind": "refugee_corridor",
+          "label_ja": "難民回廊",
+          "support": 0.0,
+          "strain": 100.0,
+          "intensity": 55,
+          "status": "violated",
+          "last_tension": 100.0,
+          "notes": [
+            "難民回廊が襲撃・飢え・治安悪化で逼迫"
+          ]
+        },
+        {
+          "clause_id": "cl_war_reparation_23026",
+          "clause_kind": "war_reparation",
+          "label_ja": "戦後賠償",
+          "support": 0.0,
+          "strain": 75,
+          "intensity": 0,
+          "status": "violated",
+          "last_tension": 92.5,
+          "notes": [
+            "賠償負担が財政と民心を圧迫"
+          ]
+        }
+      ]
+    },
+    "inst_holywar_01": {
+      "institution_id": "inst_holywar_01",
+      "institution_kind": "holy_war",
+      "label_ja": "白祠宗務会＝瘴冠魔域聖戦布告",
+      "party_a": "shrine_synod",
+      "party_b": "demon_domain",
+      "support": 0.0,
+      "breach_risk": 89.0,
+      "age_seasons": 6,
+      "status": "broken",
+      "clauses": [
+        {
+          "clause_id": "cl_prisoner_exchange_14018",
+          "clause_kind": "prisoner_exchange",
+          "label_ja": "捕虜交換",
+          "support": 0.0,
+          "strain": 95,
+          "intensity": 48,
+          "status": "violated",
+          "last_tension": 100.0,
+          "notes": [
+            "戦時不信が捕虜交換を遅延"
+          ]
+        },
+        {
+          "clause_id": "cl_sacred_relic_custody_36221",
+          "clause_kind": "sacred_relic_custody",
+          "label_ja": "聖遺物保管",
+          "support": 0.0,
+          "strain": 100.0,
+          "intensity": 66,
+          "status": "violated",
+          "last_tension": 100.0,
+          "notes": [
+            "聖遺物をめぐる信仰競合が先鋭化"
+          ]
+        }
+      ]
+    }
+  },
+  "active_nodes": {
+    "node_inst_tributary_01_cl_tribute_delivery_65688_1": {
+      "node_id": "node_inst_tributary_01_cl_tribute_delivery_65688_1",
+      "node_type": "historical_event",
+      "event_family": "tributary_revolt",
+      "title": "朝貢納付拒絶",
+      "description": "朝貢停止が属国反乱と討伐動員の口実になりつつある。",
+      "severity": 100.0,
+      "urgency": 100.0,
+      "source_institution_id": "inst_tributary_01",
+      "source_clause_id": "cl_tribute_delivery_65688",
+      "factions": [
+        "demon_domain",
+        "march_clans"
+      ],
+      "regions": [
+        "ash_frontier",
+        "seal_marsh"
+      ],
+      "promoted_from": "tribute_delivery",
+      "chain_id": "chain_tributary_revolt_001",
+      "stage": 1,
+      "status": "active",
+      "era_impetus": {
+        "state_collapse": 12,
+        "border_war": 12,
+        "class_conflict": 10
+      },
+      "projected_legacies": [
+        "制度",
+        "正史",
+        "伝承"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_node_inst_tributary_01_cl_tribute_delivery_65688_1",
+          "title": "朝貢納付拒絶への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "demon_domain",
+          "counterparty_faction_id": "march_clans",
+          "region_id": "ash_frontier",
+          "node_id": "node_inst_tributary_01_cl_tribute_delivery_65688_1",
+          "urgency": 100.0,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "combat",
+            "diplomacy",
+            "stewardship"
+          ],
+          "race_hooks": [
+            "demonian",
+            "dragonewt"
+          ],
+          "pressure_hooks": [
+            "state_collapse",
+            "border_war",
+            "class_conflict"
+          ],
+          "dialogue_mood": "屈辱・挑発・動員",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "制度",
+            "正史",
+            "伝承"
+          ]
+        }
+      ]
+    },
+    "node_inst_blockade_01_cl_refugee_corridor_50121_1": {
+      "node_id": "node_inst_blockade_01_cl_refugee_corridor_50121_1",
+      "node_type": "historical_event",
+      "event_family": "food_crisis",
+      "title": "難民回廊封鎖",
+      "description": "難民回廊が襲撃と配給破綻で崩れかけている。",
+      "severity": 100.0,
+      "urgency": 100.0,
+      "source_institution_id": "inst_blockade_01",
+      "source_clause_id": "cl_refugee_corridor_50121",
+      "factions": [
+        "demon_domain",
+        "shrine_synod"
+      ],
+      "regions": [
+        "ash_frontier",
+        "seal_marsh",
+        "white_shrine"
+      ],
+      "promoted_from": "refugee_corridor",
+      "chain_id": "chain_food_crisis_002",
+      "stage": 1,
+      "status": "active",
+      "era_impetus": {
+        "food_shortage": 18,
+        "trade_rupture": 12,
+        "migration": 8
+      },
+      "projected_legacies": [
+        "制度",
+        "伝承",
+        "正史"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_node_inst_blockade_01_cl_refugee_corridor_50121_1",
+          "title": "難民回廊封鎖への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "demon_domain",
+          "counterparty_faction_id": "shrine_synod",
+          "region_id": "ash_frontier",
+          "node_id": "node_inst_blockade_01_cl_refugee_corridor_50121_1",
+          "urgency": 100.0,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "stewardship",
+            "diplomacy",
+            "combat"
+          ],
+          "race_hooks": [
+            "birdfolk",
+            "demonian"
+          ],
+          "pressure_hooks": [
+            "food_shortage",
+            "trade_rupture",
+            "migration"
+          ],
+          "dialogue_mood": "切迫・疲弊・計算",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "制度",
+            "伝承",
+            "正史"
+          ]
+        }
+      ]
+    },
+    "node_inst_holywar_01_cl_sacred_relic_custody_36221_2": {
+      "node_id": "node_inst_holywar_01_cl_sacred_relic_custody_36221_2",
+      "node_type": "historical_event",
+      "event_family": "relic_dispute",
+      "title": "聖遺物保管争奪",
+      "description": "聖遺物の保管権が信仰圏の境界そのものを揺らしている。",
+      "severity": 100.0,
+      "urgency": 100.0,
+      "source_institution_id": "inst_holywar_01",
+      "source_clause_id": "cl_sacred_relic_custody_36221",
+      "factions": [
+        "demon_domain",
+        "shrine_synod"
+      ],
+      "regions": [
+        "ash_frontier",
+        "seal_marsh",
+        "white_shrine"
+      ],
+      "promoted_from": "sacred_relic_custody",
+      "chain_id": "chain_relic_dispute_003",
+      "stage": 1,
+      "status": "active",
+      "era_impetus": {
+        "holy_war": 16,
+        "faith_schism": 12
+      },
+      "projected_legacies": [
+        "信仰",
+        "正史",
+        "魂"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_node_inst_holywar_01_cl_sacred_relic_custody_36221_2",
+          "title": "聖遺物保管争奪への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "demon_domain",
+          "counterparty_faction_id": "shrine_synod",
+          "region_id": "ash_frontier",
+          "node_id": "node_inst_holywar_01_cl_sacred_relic_custody_36221_2",
+          "urgency": 100.0,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "ritual",
+            "stealth",
+            "combat"
+          ],
+          "race_hooks": [
+            "birdfolk",
+            "demonian"
+          ],
+          "pressure_hooks": [
+            "holy_war",
+            "faith_schism"
+          ],
+          "dialogue_mood": "敬意・執着・冒涜恐怖",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "信仰",
+            "正史",
+            "魂"
+          ]
+        }
+      ]
+    },
+    "node_inst_border_01_cl_dynastic_marriage_47153_3": {
+      "node_id": "node_inst_border_01_cl_dynastic_marriage_47153_3",
+      "node_type": "historical_event",
+      "event_family": "succession_conflict",
+      "title": "婚姻条約継承危機",
+      "description": "婚姻同盟が継承危機と正統性争いに巻き込まれている。",
+      "severity": 100.0,
+      "urgency": 100.0,
+      "source_institution_id": "inst_border_01",
+      "source_clause_id": "cl_dynastic_marriage_47153",
+      "factions": [
+        "kingdom",
+        "march_clans"
+      ],
+      "regions": [
+        "ash_frontier",
+        "north_granary",
+        "river_gate"
+      ],
+      "promoted_from": "dynastic_marriage",
+      "chain_id": "chain_succession_conflict_004",
+      "stage": 1,
+      "status": "active",
+      "era_impetus": {
+        "succession_crisis": 18,
+        "legitimacy": 10
+      },
+      "projected_legacies": [
+        "制度",
+        "正史",
+        "信仰"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_node_inst_border_01_cl_dynastic_marriage_47153_3",
+          "title": "婚姻条約継承危機への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "kingdom",
+          "counterparty_faction_id": "march_clans",
+          "region_id": "ash_frontier",
+          "node_id": "node_inst_border_01_cl_dynastic_marriage_47153_3",
+          "urgency": 100.0,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "authority",
+            "diplomacy",
+            "stealth"
+          ],
+          "race_hooks": [
+            "dragonewt",
+            "human"
+          ],
+          "pressure_hooks": [
+            "succession_crisis",
+            "legitimacy"
+          ],
+          "dialogue_mood": "儀礼・血統・不安",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "制度",
+            "正史",
+            "信仰"
+          ]
+        }
+      ]
+    },
+    "node_inst_tributary_01_cl_hostage_exchange_03295_3": {
+      "node_id": "node_inst_tributary_01_cl_hostage_exchange_03295_3",
+      "node_type": "historical_event",
+      "event_family": "hostage_breakdown",
+      "title": "人質交換破綻",
+      "description": "人質外交の破断が報復と疑心を急速に広げている。",
+      "severity": 100.0,
+      "urgency": 100.0,
+      "source_institution_id": "inst_tributary_01",
+      "source_clause_id": "cl_hostage_exchange_03295",
+      "factions": [
+        "demon_domain",
+        "march_clans"
+      ],
+      "regions": [
+        "ash_frontier",
+        "seal_marsh"
+      ],
+      "promoted_from": "hostage_exchange",
+      "chain_id": "chain_hostage_breakdown_005",
+      "stage": 1,
+      "status": "active",
+      "era_impetus": {
+        "diplomatic_rupture": 18,
+        "retaliation": 10
+      },
+      "projected_legacies": [
+        "正史",
+        "伝承"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_node_inst_tributary_01_cl_hostage_exchange_03295_3",
+          "title": "人質交換破綻への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "demon_domain",
+          "counterparty_faction_id": "march_clans",
+          "region_id": "ash_frontier",
+          "node_id": "node_inst_tributary_01_cl_hostage_exchange_03295_3",
+          "urgency": 100.0,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "stealth",
+            "diplomacy",
+            "combat"
+          ],
+          "race_hooks": [
+            "demonian",
+            "dragonewt"
+          ],
+          "pressure_hooks": [
+            "diplomatic_rupture",
+            "retaliation"
+          ],
+          "dialogue_mood": "硬い沈黙・取引・焦り",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "正史",
+            "伝承"
+          ]
+        }
+      ]
+    },
+    "collapse_inst_tributary_01_3": {
+      "node_id": "collapse_inst_tributary_01_3",
+      "node_type": "institutional_collapse",
+      "event_family": "institutional_breakdown",
+      "title": "灰縁侯族＝瘴冠魔域属国化盟約崩壊",
+      "description": "条項違反が累積し、制度そのものが歴史事件として崩壊局面に入った。",
+      "severity": 100.0,
+      "urgency": 81.1,
+      "source_institution_id": "inst_tributary_01",
+      "source_clause_id": null,
+      "factions": [
+        "demon_domain",
+        "march_clans"
+      ],
+      "regions": [
+        "ash_frontier",
+        "seal_marsh"
+      ],
+      "promoted_from": "tributary_compact",
+      "chain_id": "chain_institutional_breakdown_006",
+      "stage": 1,
+      "status": "active",
+      "era_impetus": {
+        "institutional_breakdown": 18
+      },
+      "projected_legacies": [
+        "制度",
+        "正史",
+        "伝承"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_collapse_inst_tributary_01_3",
+          "title": "灰縁侯族＝瘴冠魔域属国化盟約崩壊への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "demon_domain",
+          "counterparty_faction_id": "march_clans",
+          "region_id": "ash_frontier",
+          "node_id": "collapse_inst_tributary_01_3",
+          "urgency": 81.1,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "diplomacy",
+            "stewardship",
+            "authority"
+          ],
+          "race_hooks": [
+            "demonian",
+            "dragonewt"
+          ],
+          "pressure_hooks": [
+            "institutional_breakdown"
+          ],
+          "dialogue_mood": "冷えた実務・責任転嫁・保身",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "制度",
+            "正史",
+            "伝承"
+          ]
+        }
+      ]
+    },
+    "node_inst_trade_01_cl_joint_delving_recovery_36840_4": {
+      "node_id": "node_inst_trade_01_cl_joint_delving_recovery_36840_4",
+      "node_type": "historical_event",
+      "event_family": "deep_delving_conflict",
+      "title": "共同深層回収破綻",
+      "description": "深層回収の取り分と死者処理をめぐり提携が崩れ始めている。",
+      "severity": 100.0,
+      "urgency": 90.8,
+      "source_institution_id": "inst_trade_01",
+      "source_clause_id": "cl_joint_delving_recovery_36840",
+      "factions": [
+        "kingdom",
+        "miners_compact"
+      ],
+      "regions": [
+        "deep_mouth",
+        "north_granary",
+        "river_gate"
+      ],
+      "promoted_from": "joint_delving_recovery",
+      "chain_id": "chain_deep_delving_conflict_007",
+      "stage": 1,
+      "status": "active",
+      "era_impetus": {
+        "dungeon_activation": 16,
+        "miasma_growth": 10,
+        "guild_friction": 8
+      },
+      "projected_legacies": [
+        "魂",
+        "伝承",
+        "正史"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_node_inst_trade_01_cl_joint_delving_recovery_36840_4",
+          "title": "共同深層回収破綻への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "kingdom",
+          "counterparty_faction_id": "miners_compact",
+          "region_id": "deep_mouth",
+          "node_id": "node_inst_trade_01_cl_joint_delving_recovery_36840_4",
+          "urgency": 90.8,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "combat",
+            "ritual",
+            "stealth"
+          ],
+          "race_hooks": [
+            "dwarf",
+            "human"
+          ],
+          "pressure_hooks": [
+            "dungeon_activation",
+            "miasma_growth",
+            "guild_friction"
+          ],
+          "dialogue_mood": "利権・恐怖・秘匿",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "魂",
+            "伝承",
+            "正史"
+          ]
+        }
+      ]
+    },
+    "node_inst_pilgrim_01_cl_sacred_relic_custody_06820_4": {
+      "node_id": "node_inst_pilgrim_01_cl_sacred_relic_custody_06820_4",
+      "node_type": "historical_event",
+      "event_family": "relic_dispute",
+      "title": "聖遺物保管争奪",
+      "description": "聖遺物の保管権が信仰圏の境界そのものを揺らしている。",
+      "severity": 100.0,
+      "urgency": 97.1,
+      "source_institution_id": "inst_pilgrim_01",
+      "source_clause_id": "cl_sacred_relic_custody_06820",
+      "factions": [
+        "mire_circle",
+        "shrine_synod"
+      ],
+      "regions": [
+        "seal_marsh",
+        "white_shrine"
+      ],
+      "promoted_from": "sacred_relic_custody",
+      "chain_id": "chain_relic_dispute_003",
+      "stage": 2,
+      "status": "active",
+      "era_impetus": {
+        "holy_war": 16,
+        "faith_schism": 12
+      },
+      "projected_legacies": [
+        "信仰",
+        "正史",
+        "魂"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_node_inst_pilgrim_01_cl_sacred_relic_custody_06820_4",
+          "title": "聖遺物保管争奪への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "mire_circle",
+          "counterparty_faction_id": "shrine_synod",
+          "region_id": "seal_marsh",
+          "node_id": "node_inst_pilgrim_01_cl_sacred_relic_custody_06820_4",
+          "urgency": 97.1,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "ritual",
+            "stealth",
+            "combat"
+          ],
+          "race_hooks": [
+            "birdfolk",
+            "plantfolk"
+          ],
+          "pressure_hooks": [
+            "holy_war",
+            "faith_schism"
+          ],
+          "dialogue_mood": "敬意・執着・冒涜恐怖",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "信仰",
+            "正史",
+            "魂"
+          ]
+        }
+      ]
+    },
+    "node_inst_border_01_cl_demilitarized_border_91742_4": {
+      "node_id": "node_inst_border_01_cl_demilitarized_border_91742_4",
+      "node_type": "historical_event",
+      "event_family": "frontier_militarization",
+      "title": "非武装境界破り",
+      "description": "境界の軍事化により相互不可侵の根幹が崩れている。",
+      "severity": 100.0,
+      "urgency": 96.3,
+      "source_institution_id": "inst_border_01",
+      "source_clause_id": "cl_demilitarized_border_91742",
+      "factions": [
+        "kingdom",
+        "march_clans"
+      ],
+      "regions": [
+        "ash_frontier",
+        "north_granary",
+        "river_gate"
+      ],
+      "promoted_from": "demilitarized_border",
+      "chain_id": "chain_frontier_militarization_008",
+      "stage": 1,
+      "status": "active",
+      "era_impetus": {
+        "border_war": 20,
+        "racial_tension": 8
+      },
+      "projected_legacies": [
+        "建築",
+        "制度",
+        "伝承"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_node_inst_border_01_cl_demilitarized_border_91742_4",
+          "title": "非武装境界破りへの介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "kingdom",
+          "counterparty_faction_id": "march_clans",
+          "region_id": "ash_frontier",
+          "node_id": "node_inst_border_01_cl_demilitarized_border_91742_4",
+          "urgency": 96.3,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "combat",
+            "authority",
+            "diplomacy"
+          ],
+          "race_hooks": [
+            "dragonewt",
+            "human"
+          ],
+          "pressure_hooks": [
+            "border_war",
+            "racial_tension"
+          ],
+          "dialogue_mood": "警戒・短気・命令",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "建築",
+            "制度",
+            "伝承"
+          ]
+        }
+      ]
+    },
+    "node_inst_blockade_01_cl_war_reparation_23026_4": {
+      "node_id": "node_inst_blockade_01_cl_war_reparation_23026_4",
+      "node_type": "historical_event",
+      "event_family": "institutional_breakdown",
+      "title": "賠償履行争議",
+      "description": "戦後賠償をめぐり再び封鎖と略奪が起こり始めた。",
+      "severity": 100.0,
+      "urgency": 99.8,
+      "source_institution_id": "inst_blockade_01",
+      "source_clause_id": "cl_war_reparation_23026",
+      "factions": [
+        "demon_domain",
+        "shrine_synod"
+      ],
+      "regions": [
+        "ash_frontier",
+        "seal_marsh",
+        "white_shrine"
+      ],
+      "promoted_from": "war_reparation",
+      "chain_id": "chain_institutional_breakdown_006",
+      "stage": 2,
+      "status": "active",
+      "era_impetus": {
+        "institutional_breakdown": 18
+      },
+      "projected_legacies": [
+        "制度",
+        "正史",
+        "伝承"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_node_inst_blockade_01_cl_war_reparation_23026_4",
+          "title": "賠償履行争議への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "demon_domain",
+          "counterparty_faction_id": "shrine_synod",
+          "region_id": "ash_frontier",
+          "node_id": "node_inst_blockade_01_cl_war_reparation_23026_4",
+          "urgency": 99.8,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "diplomacy",
+            "stewardship",
+            "authority"
+          ],
+          "race_hooks": [
+            "birdfolk",
+            "demonian"
+          ],
+          "pressure_hooks": [
+            "institutional_breakdown"
+          ],
+          "dialogue_mood": "冷えた実務・責任転嫁・保身",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "制度",
+            "正史",
+            "伝承"
+          ]
+        }
+      ]
+    },
+    "collapse_inst_blockade_01_4": {
+      "node_id": "collapse_inst_blockade_01_4",
+      "node_type": "institutional_collapse",
+      "event_family": "institutional_breakdown",
+      "title": "白祠宗務会＝瘴冠魔域封鎖令崩壊",
+      "description": "条項違反が累積し、制度そのものが歴史事件として崩壊局面に入った。",
+      "severity": 100.0,
+      "urgency": 78.6,
+      "source_institution_id": "inst_blockade_01",
+      "source_clause_id": null,
+      "factions": [
+        "demon_domain",
+        "shrine_synod"
+      ],
+      "regions": [
+        "ash_frontier",
+        "seal_marsh",
+        "white_shrine"
+      ],
+      "promoted_from": "blockade",
+      "chain_id": "chain_institutional_breakdown_006",
+      "stage": 2,
+      "status": "active",
+      "era_impetus": {
+        "institutional_breakdown": 18
+      },
+      "projected_legacies": [
+        "制度",
+        "正史",
+        "伝承"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_collapse_inst_blockade_01_4",
+          "title": "白祠宗務会＝瘴冠魔域封鎖令崩壊への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "demon_domain",
+          "counterparty_faction_id": "shrine_synod",
+          "region_id": "ash_frontier",
+          "node_id": "collapse_inst_blockade_01_4",
+          "urgency": 78.6,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "diplomacy",
+            "stewardship",
+            "authority"
+          ],
+          "race_hooks": [
+            "birdfolk",
+            "demonian"
+          ],
+          "pressure_hooks": [
+            "institutional_breakdown"
+          ],
+          "dialogue_mood": "冷えた実務・責任転嫁・保身",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "制度",
+            "正史",
+            "伝承"
+          ]
+        }
+      ]
+    },
+    "node_inst_holywar_01_cl_prisoner_exchange_14018_4": {
+      "node_id": "node_inst_holywar_01_cl_prisoner_exchange_14018_4",
+      "node_type": "historical_event",
+      "event_family": "institutional_breakdown",
+      "title": "捕虜交換破綻",
+      "description": "捕虜交換の停滞が停戦や聖戦の再燃を招いている。",
+      "severity": 100.0,
+      "urgency": 100.0,
+      "source_institution_id": "inst_holywar_01",
+      "source_clause_id": "cl_prisoner_exchange_14018",
+      "factions": [
+        "demon_domain",
+        "shrine_synod"
+      ],
+      "regions": [
+        "ash_frontier",
+        "seal_marsh",
+        "white_shrine"
+      ],
+      "promoted_from": "prisoner_exchange",
+      "chain_id": "chain_institutional_breakdown_006",
+      "stage": 3,
+      "status": "active",
+      "era_impetus": {
+        "institutional_breakdown": 18
+      },
+      "projected_legacies": [
+        "制度",
+        "正史",
+        "伝承"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_node_inst_holywar_01_cl_prisoner_exchange_14018_4",
+          "title": "捕虜交換破綻への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "demon_domain",
+          "counterparty_faction_id": "shrine_synod",
+          "region_id": "ash_frontier",
+          "node_id": "node_inst_holywar_01_cl_prisoner_exchange_14018_4",
+          "urgency": 100.0,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "diplomacy",
+            "stewardship",
+            "authority"
+          ],
+          "race_hooks": [
+            "birdfolk",
+            "demonian"
+          ],
+          "pressure_hooks": [
+            "institutional_breakdown"
+          ],
+          "dialogue_mood": "冷えた実務・責任転嫁・保身",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "制度",
+            "正史",
+            "伝承"
+          ]
+        }
+      ]
+    },
+    "collapse_inst_holywar_01_4": {
+      "node_id": "collapse_inst_holywar_01_4",
+      "node_type": "institutional_collapse",
+      "event_family": "institutional_breakdown",
+      "title": "白祠宗務会＝瘴冠魔域聖戦布告崩壊",
+      "description": "条項違反が累積し、制度そのものが歴史事件として崩壊局面に入った。",
+      "severity": 100.0,
+      "urgency": 79.6,
+      "source_institution_id": "inst_holywar_01",
+      "source_clause_id": null,
+      "factions": [
+        "demon_domain",
+        "shrine_synod"
+      ],
+      "regions": [
+        "ash_frontier",
+        "seal_marsh",
+        "white_shrine"
+      ],
+      "promoted_from": "holy_war",
+      "chain_id": "chain_institutional_breakdown_006",
+      "stage": 3,
+      "status": "active",
+      "era_impetus": {
+        "institutional_breakdown": 18
+      },
+      "projected_legacies": [
+        "制度",
+        "正史",
+        "伝承"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_collapse_inst_holywar_01_4",
+          "title": "白祠宗務会＝瘴冠魔域聖戦布告崩壊への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "demon_domain",
+          "counterparty_faction_id": "shrine_synod",
+          "region_id": "ash_frontier",
+          "node_id": "collapse_inst_holywar_01_4",
+          "urgency": 79.6,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "diplomacy",
+            "stewardship",
+            "authority"
+          ],
+          "race_hooks": [
+            "birdfolk",
+            "demonian"
+          ],
+          "pressure_hooks": [
+            "institutional_breakdown"
+          ],
+          "dialogue_mood": "冷えた実務・責任転嫁・保身",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "制度",
+            "正史",
+            "伝承"
+          ]
+        }
+      ]
+    },
+    "node_inst_trade_01_cl_grain_tariff_relief_81800_5": {
+      "node_id": "node_inst_trade_01_cl_grain_tariff_relief_81800_5",
+      "node_type": "historical_event",
+      "event_family": "food_crisis",
+      "title": "穀価盟約違反",
+      "description": "穀物流通の約定違反が市場と配給を揺らしている。",
+      "severity": 100.0,
+      "urgency": 85.1,
+      "source_institution_id": "inst_trade_01",
+      "source_clause_id": "cl_grain_tariff_relief_81800",
+      "factions": [
+        "kingdom",
+        "miners_compact"
+      ],
+      "regions": [
+        "deep_mouth",
+        "north_granary",
+        "river_gate"
+      ],
+      "promoted_from": "grain_tariff_relief",
+      "chain_id": "chain_food_crisis_009",
+      "stage": 1,
+      "status": "active",
+      "era_impetus": {
+        "food_shortage": 18,
+        "trade_rupture": 12,
+        "migration": 8
+      },
+      "projected_legacies": [
+        "制度",
+        "伝承",
+        "正史"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_node_inst_trade_01_cl_grain_tariff_relief_81800_5",
+          "title": "穀価盟約違反への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "kingdom",
+          "counterparty_faction_id": "miners_compact",
+          "region_id": "deep_mouth",
+          "node_id": "node_inst_trade_01_cl_grain_tariff_relief_81800_5",
+          "urgency": 85.1,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "stewardship",
+            "diplomacy",
+            "combat"
+          ],
+          "race_hooks": [
+            "dwarf",
+            "human"
+          ],
+          "pressure_hooks": [
+            "food_shortage",
+            "trade_rupture",
+            "migration"
+          ],
+          "dialogue_mood": "切迫・疲弊・計算",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "制度",
+            "伝承",
+            "正史"
+          ]
+        }
+      ]
+    },
+    "node_inst_pilgrim_01_cl_pilgrimage_route_protection_19059_5": {
+      "node_id": "node_inst_pilgrim_01_cl_pilgrimage_route_protection_19059_5",
+      "node_type": "historical_event",
+      "event_family": "pilgrimage_conflict",
+      "title": "巡礼路襲撃事件",
+      "description": "巡礼路保護条項が破れ、信徒と武装勢力が対立している。",
+      "severity": 100.0,
+      "urgency": 85.0,
+      "source_institution_id": "inst_pilgrim_01",
+      "source_clause_id": "cl_pilgrimage_route_protection_19059",
+      "factions": [
+        "mire_circle",
+        "shrine_synod"
+      ],
+      "regions": [
+        "seal_marsh",
+        "white_shrine"
+      ],
+      "promoted_from": "pilgrimage_route_protection",
+      "chain_id": "chain_pilgrimage_conflict_010",
+      "stage": 1,
+      "status": "active",
+      "era_impetus": {
+        "faith_violence": 16,
+        "law_rupture": 8,
+        "legitimacy": 6
+      },
+      "projected_legacies": [
+        "信仰",
+        "伝承",
+        "異端文書"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_node_inst_pilgrim_01_cl_pilgrimage_route_protection_19059_5",
+          "title": "巡礼路襲撃事件への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "mire_circle",
+          "counterparty_faction_id": "shrine_synod",
+          "region_id": "seal_marsh",
+          "node_id": "node_inst_pilgrim_01_cl_pilgrimage_route_protection_19059_5",
+          "urgency": 85.0,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "diplomacy",
+            "ritual",
+            "combat"
+          ],
+          "race_hooks": [
+            "birdfolk",
+            "plantfolk"
+          ],
+          "pressure_hooks": [
+            "faith_violence",
+            "law_rupture",
+            "legitimacy"
+          ],
+          "dialogue_mood": "敬虔・疑念・抑えた怒気",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "信仰",
+            "伝承",
+            "異端文書"
+          ]
+        }
+      ]
+    },
+    "node_inst_pilgrim_01_cl_joint_sealing_duty_23063_5": {
+      "node_id": "node_inst_pilgrim_01_cl_joint_sealing_duty_23063_5",
+      "node_type": "historical_event",
+      "event_family": "religious_schism",
+      "title": "共同封印義務逸脱",
+      "description": "封印義務の不履行が神官団と境界守の対立を激化させている。",
+      "severity": 100.0,
+      "urgency": 87.3,
+      "source_institution_id": "inst_pilgrim_01",
+      "source_clause_id": "cl_joint_sealing_duty_23063",
+      "factions": [
+        "mire_circle",
+        "shrine_synod"
+      ],
+      "regions": [
+        "seal_marsh",
+        "white_shrine"
+      ],
+      "promoted_from": "joint_sealing_duty",
+      "chain_id": "chain_religious_schism_011",
+      "stage": 1,
+      "status": "active",
+      "era_impetus": {
+        "faith_schism": 20,
+        "divine_interference": 10
+      },
+      "projected_legacies": [
+        "信仰",
+        "異端文書",
+        "伝承"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_node_inst_pilgrim_01_cl_joint_sealing_duty_23063_5",
+          "title": "共同封印義務逸脱への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "mire_circle",
+          "counterparty_faction_id": "shrine_synod",
+          "region_id": "seal_marsh",
+          "node_id": "node_inst_pilgrim_01_cl_joint_sealing_duty_23063_5",
+          "urgency": 87.3,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "ritual",
+            "diplomacy",
+            "authority"
+          ],
+          "race_hooks": [
+            "birdfolk",
+            "plantfolk"
+          ],
+          "pressure_hooks": [
+            "faith_schism",
+            "divine_interference"
+          ],
+          "dialogue_mood": "静かな断絶・反復・禁忌",
+          "success_effects": {
+            "severity_drop": 30.0,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 18.0,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "信仰",
+            "異端文書",
+            "伝承"
+          ]
+        }
+      ]
+    },
+    "collapse_inst_pilgrim_01_5": {
+      "node_id": "collapse_inst_pilgrim_01_5",
+      "node_type": "institutional_collapse",
+      "event_family": "institutional_breakdown",
+      "title": "白祠宗務会＝封泥環宗教同盟崩壊",
+      "description": "条項違反が累積し、制度そのものが歴史事件として崩壊局面に入った。",
+      "severity": 97.9,
+      "urgency": 76.8,
+      "source_institution_id": "inst_pilgrim_01",
+      "source_clause_id": null,
+      "factions": [
+        "mire_circle",
+        "shrine_synod"
+      ],
+      "regions": [
+        "seal_marsh",
+        "white_shrine"
+      ],
+      "promoted_from": "religious_concord",
+      "chain_id": "chain_institutional_breakdown_006",
+      "stage": 4,
+      "status": "active",
+      "era_impetus": {
+        "institutional_breakdown": 18
+      },
+      "projected_legacies": [
+        "制度",
+        "正史",
+        "伝承"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_collapse_inst_pilgrim_01_5",
+          "title": "白祠宗務会＝封泥環宗教同盟崩壊への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "mire_circle",
+          "counterparty_faction_id": "shrine_synod",
+          "region_id": "seal_marsh",
+          "node_id": "collapse_inst_pilgrim_01_5",
+          "urgency": 76.8,
+          "difficulty": 100.0,
+          "recommended_vectors": [
+            "diplomacy",
+            "stewardship",
+            "authority"
+          ],
+          "race_hooks": [
+            "birdfolk",
+            "plantfolk"
+          ],
+          "pressure_hooks": [
+            "institutional_breakdown"
+          ],
+          "dialogue_mood": "冷えた実務・責任転嫁・保身",
+          "success_effects": {
+            "severity_drop": 29.4,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 17.6,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "制度",
+            "正史",
+            "伝承"
+          ]
+        }
+      ]
+    },
+    "collapse_inst_border_01_5": {
+      "node_id": "collapse_inst_border_01_5",
+      "node_type": "institutional_collapse",
+      "event_family": "institutional_breakdown",
+      "title": "穀冠王国＝灰縁侯族不可侵条約崩壊",
+      "description": "条項違反が累積し、制度そのものが歴史事件として崩壊局面に入った。",
+      "severity": 93.6,
+      "urgency": 74.0,
+      "source_institution_id": "inst_border_01",
+      "source_clause_id": null,
+      "factions": [
+        "kingdom",
+        "march_clans"
+      ],
+      "regions": [
+        "ash_frontier",
+        "north_granary",
+        "river_gate"
+      ],
+      "promoted_from": "non_aggression_pact",
+      "chain_id": "chain_institutional_breakdown_006",
+      "stage": 4,
+      "status": "active",
+      "era_impetus": {
+        "institutional_breakdown": 18
+      },
+      "projected_legacies": [
+        "制度",
+        "正史",
+        "伝承"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_collapse_inst_border_01_5",
+          "title": "穀冠王国＝灰縁侯族不可侵条約崩壊への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "kingdom",
+          "counterparty_faction_id": "march_clans",
+          "region_id": "ash_frontier",
+          "node_id": "collapse_inst_border_01_5",
+          "urgency": 74.0,
+          "difficulty": 97.5,
+          "recommended_vectors": [
+            "diplomacy",
+            "stewardship",
+            "authority"
+          ],
+          "race_hooks": [
+            "dragonewt",
+            "human"
+          ],
+          "pressure_hooks": [
+            "institutional_breakdown"
+          ],
+          "dialogue_mood": "冷えた実務・責任転嫁・保身",
+          "success_effects": {
+            "severity_drop": 28.1,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 16.8,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "制度",
+            "正史",
+            "伝承"
+          ]
+        }
+      ]
+    },
+    "node_inst_border_01_cl_hostage_exchange_02364_6": {
+      "node_id": "node_inst_border_01_cl_hostage_exchange_02364_6",
+      "node_type": "historical_event",
+      "event_family": "hostage_breakdown",
+      "title": "人質交換破綻",
+      "description": "人質外交の破断が報復と疑心を急速に広げている。",
+      "severity": 88.2,
+      "urgency": 70.8,
+      "source_institution_id": "inst_border_01",
+      "source_clause_id": "cl_hostage_exchange_02364",
+      "factions": [
+        "kingdom",
+        "march_clans"
+      ],
+      "regions": [
+        "north_granary",
+        "river_gate",
+        "ash_frontier"
+      ],
+      "promoted_from": "hostage_exchange",
+      "chain_id": "chain_hostage_breakdown_005",
+      "stage": 2,
+      "status": "active",
+      "era_impetus": {
+        "diplomatic_rupture": 18,
+        "retaliation": 10
+      },
+      "projected_legacies": [
+        "正史",
+        "伝承"
+      ],
+      "quest_offers": [
+        {
+          "quest_id": "hq_node_inst_border_01_cl_hostage_exchange_02364_6",
+          "title": "人質交換破綻への介入",
+          "source_kind": "historical_node",
+          "issuer_faction_id": "kingdom",
+          "counterparty_faction_id": "march_clans",
+          "region_id": "north_granary",
+          "node_id": "node_inst_border_01_cl_hostage_exchange_02364_6",
+          "urgency": 70.8,
+          "difficulty": 92.1,
+          "recommended_vectors": [
+            "stealth",
+            "diplomacy",
+            "combat"
+          ],
+          "race_hooks": [
+            "dragonewt",
+            "human"
+          ],
+          "pressure_hooks": [
+            "diplomatic_rupture",
+            "retaliation"
+          ],
+          "dialogue_mood": "硬い沈黙・取引・焦り",
+          "success_effects": {
+            "severity_drop": 26.5,
+            "institution_breach_risk_drop": 8.0,
+            "legitimacy_gain": 4.0
+          },
+          "failure_effects": {
+            "severity_rise": 15.9,
+            "institution_breach_risk_rise": 9.0,
+            "law_order_drop": 5.0
+          },
+          "projected_media": [
+            "正史",
+            "伝承"
+          ]
+        }
+      ]
+    }
+  },
+  "chains": {
+    "chain_tributary_revolt_001": {
+      "chain_id": "chain_tributary_revolt_001",
+      "family": "tributary_revolt",
+      "label_ja": "属国反乱連鎖",
+      "factions": [
+        "march_clans",
+        "demon_domain"
+      ],
+      "regions": [
+        "ash_frontier",
+        "seal_marsh"
+      ],
+      "stage": 1,
+      "cumulative_severity": 94.9,
+      "active_nodes": [
+        "node_inst_tributary_01_cl_tribute_delivery_65688_1"
+      ],
+      "history": [
+        "朝貢納付拒絶"
+      ]
+    },
+    "chain_food_crisis_002": {
+      "chain_id": "chain_food_crisis_002",
+      "family": "food_crisis",
+      "label_ja": "食糧危機連鎖",
+      "factions": [
+        "shrine_synod",
+        "demon_domain"
+      ],
+      "regions": [
+        "white_shrine",
+        "ash_frontier",
+        "seal_marsh"
+      ],
+      "stage": 1,
+      "cumulative_severity": 83.3,
+      "active_nodes": [
+        "node_inst_blockade_01_cl_refugee_corridor_50121_1"
+      ],
+      "history": [
+        "難民回廊封鎖"
+      ]
+    },
+    "chain_relic_dispute_003": {
+      "chain_id": "chain_relic_dispute_003",
+      "family": "relic_dispute",
+      "label_ja": "聖遺物争奪連鎖",
+      "factions": [
+        "demon_domain",
+        "mire_circle",
+        "shrine_synod"
+      ],
+      "regions": [
+        "ash_frontier",
+        "seal_marsh",
+        "white_shrine"
+      ],
+      "stage": 2,
+      "cumulative_severity": 143.4,
+      "active_nodes": [
+        "node_inst_holywar_01_cl_sacred_relic_custody_36221_2",
+        "node_inst_pilgrim_01_cl_sacred_relic_custody_06820_4"
+      ],
+      "history": [
+        "聖遺物保管争奪",
+        "聖遺物保管争奪"
+      ]
+    },
+    "chain_succession_conflict_004": {
+      "chain_id": "chain_succession_conflict_004",
+      "family": "succession_conflict",
+      "label_ja": "継承連鎖",
+      "factions": [
+        "kingdom",
+        "march_clans"
+      ],
+      "regions": [
+        "north_granary",
+        "river_gate",
+        "ash_frontier"
+      ],
+      "stage": 1,
+      "cumulative_severity": 76.8,
+      "active_nodes": [
+        "node_inst_border_01_cl_dynastic_marriage_47153_3"
+      ],
+      "history": [
+        "婚姻条約継承危機"
+      ]
+    },
+    "chain_hostage_breakdown_005": {
+      "chain_id": "chain_hostage_breakdown_005",
+      "family": "hostage_breakdown",
+      "label_ja": "人質外交破綻連鎖",
+      "factions": [
+        "demon_domain",
+        "kingdom",
+        "march_clans"
+      ],
+      "regions": [
+        "ash_frontier",
+        "north_granary",
+        "river_gate",
+        "seal_marsh"
+      ],
+      "stage": 2,
+      "cumulative_severity": 155.3,
+      "active_nodes": [
+        "node_inst_tributary_01_cl_hostage_exchange_03295_3",
+        "node_inst_border_01_cl_hostage_exchange_02364_6"
+      ],
+      "history": [
+        "人質交換破綻",
+        "人質交換破綻"
+      ]
+    },
+    "chain_institutional_breakdown_006": {
+      "chain_id": "chain_institutional_breakdown_006",
+      "family": "institutional_breakdown",
+      "label_ja": "制度崩落連鎖",
+      "factions": [
+        "demon_domain",
+        "kingdom",
+        "march_clans",
+        "mire_circle",
+        "shrine_synod"
+      ],
+      "regions": [
+        "ash_frontier",
+        "north_granary",
+        "river_gate",
+        "seal_marsh",
+        "white_shrine"
+      ],
+      "stage": 4,
+      "cumulative_severity": 442.2,
+      "active_nodes": [
+        "collapse_inst_tributary_01_3",
+        "node_inst_blockade_01_cl_war_reparation_23026_4",
+        "collapse_inst_blockade_01_4",
+        "node_inst_holywar_01_cl_prisoner_exchange_14018_4",
+        "collapse_inst_holywar_01_4",
+        "collapse_inst_pilgrim_01_5",
+        "collapse_inst_border_01_5"
+      ],
+      "history": [
+        "灰縁侯族＝瘴冠魔域属国化盟約崩壊",
+        "賠償履行争議",
+        "白祠宗務会＝瘴冠魔域封鎖令崩壊",
+        "捕虜交換破綻",
+        "白祠宗務会＝瘴冠魔域聖戦布告崩壊",
+        "白祠宗務会＝封泥環宗教同盟崩壊",
+        "穀冠王国＝灰縁侯族不可侵条約崩壊"
+      ]
+    },
+    "chain_deep_delving_conflict_007": {
+      "chain_id": "chain_deep_delving_conflict_007",
+      "family": "deep_delving_conflict",
+      "label_ja": "深層利権紛争",
+      "factions": [
+        "kingdom",
+        "miners_compact"
+      ],
+      "regions": [
+        "north_granary",
+        "river_gate",
+        "deep_mouth"
+      ],
+      "stage": 1,
+      "cumulative_severity": 73.8,
+      "active_nodes": [
+        "node_inst_trade_01_cl_joint_delving_recovery_36840_4"
+      ],
+      "history": [
+        "共同深層回収破綻"
+      ]
+    },
+    "chain_frontier_militarization_008": {
+      "chain_id": "chain_frontier_militarization_008",
+      "family": "frontier_militarization",
+      "label_ja": "境界軍事化連鎖",
+      "factions": [
+        "kingdom",
+        "march_clans"
+      ],
+      "regions": [
+        "north_granary",
+        "river_gate",
+        "ash_frontier"
+      ],
+      "stage": 1,
+      "cumulative_severity": 82.6,
+      "active_nodes": [
+        "node_inst_border_01_cl_demilitarized_border_91742_4"
+      ],
+      "history": [
+        "非武装境界破り"
+      ]
+    },
+    "chain_food_crisis_009": {
+      "chain_id": "chain_food_crisis_009",
+      "family": "food_crisis",
+      "label_ja": "食糧危機連鎖",
+      "factions": [
+        "kingdom",
+        "miners_compact"
+      ],
+      "regions": [
+        "north_granary",
+        "river_gate",
+        "deep_mouth"
+      ],
+      "stage": 1,
+      "cumulative_severity": 82.5,
+      "active_nodes": [
+        "node_inst_trade_01_cl_grain_tariff_relief_81800_5"
+      ],
+      "history": [
+        "穀価盟約違反"
+      ]
+    },
+    "chain_pilgrimage_conflict_010": {
+      "chain_id": "chain_pilgrimage_conflict_010",
+      "family": "pilgrimage_conflict",
+      "label_ja": "巡礼路紛争連鎖",
+      "factions": [
+        "shrine_synod",
+        "mire_circle"
+      ],
+      "regions": [
+        "white_shrine",
+        "seal_marsh"
+      ],
+      "stage": 1,
+      "cumulative_severity": 88.3,
+      "active_nodes": [
+        "node_inst_pilgrim_01_cl_pilgrimage_route_protection_19059_5"
+      ],
+      "history": [
+        "巡礼路襲撃事件"
+      ]
+    },
+    "chain_religious_schism_011": {
+      "chain_id": "chain_religious_schism_011",
+      "family": "religious_schism",
+      "label_ja": "宗教分裂連鎖",
+      "factions": [
+        "shrine_synod",
+        "mire_circle"
+      ],
+      "regions": [
+        "white_shrine",
+        "seal_marsh"
+      ],
+      "stage": 1,
+      "cumulative_severity": 90.8,
+      "active_nodes": [
+        "node_inst_pilgrim_01_cl_joint_sealing_duty_23063_5"
+      ],
+      "history": [
+        "共同封印義務逸脱"
+      ]
+    }
+  },
+  "history_log": [
+    {
+      "season": 0,
+      "year": 168,
+      "entry": "seed world initialized"
+    },
+    {
+      "season": 1,
+      "year": 169,
+      "entry": "historical node promoted: 朝貢納付拒絶",
+      "node_id": "node_inst_tributary_01_cl_tribute_delivery_65688_1"
+    },
+    {
+      "season": 1,
+      "year": 169,
+      "entry": "historical node promoted: 難民回廊封鎖",
+      "node_id": "node_inst_blockade_01_cl_refugee_corridor_50121_1"
+    },
+    {
+      "season": 2,
+      "year": 170,
+      "entry": "historical node promoted: 聖遺物保管争奪",
+      "node_id": "node_inst_holywar_01_cl_sacred_relic_custody_36221_2"
+    },
+    {
+      "season": 3,
+      "year": 171,
+      "entry": "historical node promoted: 婚姻条約継承危機",
+      "node_id": "node_inst_border_01_cl_dynastic_marriage_47153_3"
+    },
+    {
+      "season": 3,
+      "year": 171,
+      "entry": "historical node promoted: 人質交換破綻",
+      "node_id": "node_inst_tributary_01_cl_hostage_exchange_03295_3"
+    },
+    {
+      "season": 3,
+      "year": 171,
+      "entry": "historical node promoted: 灰縁侯族＝瘴冠魔域属国化盟約崩壊",
+      "node_id": "collapse_inst_tributary_01_3"
+    },
+    {
+      "season": 4,
+      "year": 172,
+      "entry": "historical node promoted: 共同深層回収破綻",
+      "node_id": "node_inst_trade_01_cl_joint_delving_recovery_36840_4"
+    },
+    {
+      "season": 4,
+      "year": 172,
+      "entry": "historical node promoted: 聖遺物保管争奪",
+      "node_id": "node_inst_pilgrim_01_cl_sacred_relic_custody_06820_4"
+    },
+    {
+      "season": 4,
+      "year": 172,
+      "entry": "historical node promoted: 非武装境界破り",
+      "node_id": "node_inst_border_01_cl_demilitarized_border_91742_4"
+    },
+    {
+      "season": 4,
+      "year": 172,
+      "entry": "historical node promoted: 賠償履行争議",
+      "node_id": "node_inst_blockade_01_cl_war_reparation_23026_4"
+    },
+    {
+      "season": 4,
+      "year": 172,
+      "entry": "historical node promoted: 白祠宗務会＝瘴冠魔域封鎖令崩壊",
+      "node_id": "collapse_inst_blockade_01_4"
+    },
+    {
+      "season": 4,
+      "year": 172,
+      "entry": "historical node promoted: 捕虜交換破綻",
+      "node_id": "node_inst_holywar_01_cl_prisoner_exchange_14018_4"
+    },
+    {
+      "season": 4,
+      "year": 172,
+      "entry": "historical node promoted: 白祠宗務会＝瘴冠魔域聖戦布告崩壊",
+      "node_id": "collapse_inst_holywar_01_4"
+    },
+    {
+      "season": 5,
+      "year": 173,
+      "entry": "historical node promoted: 穀価盟約違反",
+      "node_id": "node_inst_trade_01_cl_grain_tariff_relief_81800_5"
+    },
+    {
+      "season": 5,
+      "year": 173,
+      "entry": "historical node promoted: 巡礼路襲撃事件",
+      "node_id": "node_inst_pilgrim_01_cl_pilgrimage_route_protection_19059_5"
+    },
+    {
+      "season": 5,
+      "year": 173,
+      "entry": "historical node promoted: 共同封印義務逸脱",
+      "node_id": "node_inst_pilgrim_01_cl_joint_sealing_duty_23063_5"
+    },
+    {
+      "season": 5,
+      "year": 173,
+      "entry": "historical node promoted: 白祠宗務会＝封泥環宗教同盟崩壊",
+      "node_id": "collapse_inst_pilgrim_01_5"
+    },
+    {
+      "season": 5,
+      "year": 173,
+      "entry": "historical node promoted: 穀冠王国＝灰縁侯族不可侵条約崩壊",
+      "node_id": "collapse_inst_border_01_5"
+    },
+    {
+      "season": 6,
+      "year": 174,
+      "entry": "historical node promoted: 人質交換破綻",
+      "node_id": "node_inst_border_01_cl_hostage_exchange_02364_6"
+    }
+  ]
+}

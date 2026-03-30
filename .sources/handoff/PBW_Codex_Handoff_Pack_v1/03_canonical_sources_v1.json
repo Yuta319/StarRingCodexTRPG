@@ -1,0 +1,29 @@
+{
+  "authoritative_policy": "/mnt/data/pbw_development_policy_v1.md",
+  "authoritative_runtime_practical": {
+    "governance": "/mnt/data/pbw_development_policy_v1.md",
+    "project_archive": "/mnt/data/StarRingCodexRPG.zip",
+    "npc_speech_dict": "/mnt/data/pbw_npc発話辞書_v_1_0.md",
+    "world_highest_code": "pbw_world_mythic_integration_v9.py",
+    "world_highest_runtime_json": "pbw_generated_world_seed1729_v9_mythic_integration.json",
+    "ui_contract_dir": "pbw_ui_contracts_v1/",
+    "style_engine": "pbw_style_engine_v1.json",
+    "scene_output_schema": "pbw_scene_output_schema_v1.json",
+    "worldbuilding_instruction": "pbw_codex_worldbuilding_instruction_v_1.md"
+  },
+  "priority_order_when_conflicting": [
+    "pbw_development_policy_v1.md",
+    "00_READ_FIRST_codex_handoff_v1.md",
+    "pbw_world_mythic_integration_v9.py",
+    "pbw_generated_world_seed1729_v9_mythic_integration.json",
+    "pbw_ui_contracts_v1/",
+    "pbw_style_engine_v1.json",
+    "pbw_scene_output_schema_v1.json",
+    "pbw_npc発話辞書_v_1_0.md",
+    "content bible files",
+    "older v1-v8 materials and readmes"
+  ],
+  "issues_detected": [
+    "開発方針書は「第二部統合版 v10 を正本」と記述しているが、アップロード実体には v10 ファイル群が含まれていない。"
+  ]
+}

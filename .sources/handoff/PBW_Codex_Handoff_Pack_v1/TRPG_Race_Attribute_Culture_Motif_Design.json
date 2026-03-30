@@ -1,0 +1,1834 @@
+{
+  "schema_version": "2.0",
+  "project": "TRPG_Race_Attribute_Culture_Motif_Design",
+  "design_goal": "種族ごとの生態・哲学・文化モチーフ・紋様設計・色素材設計・属性対応を統合し、装備生成とビジュアル生成の基準辞書として使う",
+  "attribute_system": {
+    "structure": {
+      "base_attributes": [
+        "火",
+        "水",
+        "風",
+        "地",
+        "光",
+        "闇"
+      ],
+      "sub_attributes": [
+        "爆発",
+        "氷",
+        "雷",
+        "金",
+        "回復",
+        "精神"
+      ],
+      "pairing_rules": [
+        {
+          "base": "火",
+          "sub": "爆発"
+        },
+        {
+          "base": "水",
+          "sub": "氷"
+        },
+        {
+          "base": "風",
+          "sub": "雷"
+        },
+        {
+          "base": "地",
+          "sub": "金"
+        },
+        {
+          "base": "光",
+          "sub": "回復"
+        },
+        {
+          "base": "闇",
+          "sub": "精神"
+        }
+      ]
+    },
+    "attributes": [
+      {
+        "id": "fire",
+        "label_ja": "火",
+        "class": "base",
+        "keywords": [
+          "炎",
+          "熱",
+          "焼滅",
+          "情熱",
+          "闘争",
+          "浄火"
+        ],
+        "visual_motifs": [
+          "炎紋",
+          "鋸歯状の太陽",
+          "燃える線",
+          "赤い刻線"
+        ],
+        "effects": [
+          "継続ダメージ",
+          "高火力",
+          "威圧",
+          "燃焼"
+        ]
+      },
+      {
+        "id": "water",
+        "label_ja": "水",
+        "class": "base",
+        "keywords": [
+          "流動",
+          "浄化",
+          "静寂",
+          "適応",
+          "潮流",
+          "月"
+        ],
+        "visual_motifs": [
+          "波紋",
+          "流水線",
+          "雫",
+          "月下水面文"
+        ],
+        "effects": [
+          "浄化",
+          "機動補助",
+          "流体操作",
+          "柔軟防御"
+        ]
+      },
+      {
+        "id": "wind",
+        "label_ja": "風",
+        "class": "base",
+        "keywords": [
+          "疾走",
+          "飛翔",
+          "回避",
+          "伝達",
+          "狩猟",
+          "軽さ"
+        ],
+        "visual_motifs": [
+          "風切文",
+          "渦線",
+          "羽文",
+          "流線"
+        ],
+        "effects": [
+          "移動補助",
+          "回避上昇",
+          "速度上昇",
+          "斥候性能"
+        ]
+      },
+      {
+        "id": "earth",
+        "label_ja": "地",
+        "class": "base",
+        "keywords": [
+          "基盤",
+          "安定",
+          "山岳",
+          "蓄積",
+          "耐久",
+          "重圧"
+        ],
+        "visual_motifs": [
+          "山形文",
+          "地脈線",
+          "方形印",
+          "岩層文"
+        ],
+        "effects": [
+          "防御上昇",
+          "耐久上昇",
+          "固定",
+          "重撃"
+        ]
+      },
+      {
+        "id": "light",
+        "label_ja": "光",
+        "class": "base",
+        "keywords": [
+          "聖性",
+          "秩序",
+          "加護",
+          "祝福",
+          "正統",
+          "照明"
+        ],
+        "visual_motifs": [
+          "光輪",
+          "十字",
+          "白金の放射文",
+          "日輪"
+        ],
+        "effects": [
+          "対邪補正",
+          "加護",
+          "浄化",
+          "命中補助"
+        ]
+      },
+      {
+        "id": "dark",
+        "label_ja": "闇",
+        "class": "base",
+        "keywords": [
+          "深淵",
+          "秘匿",
+          "契約",
+          "呪詛",
+          "夜",
+          "異界"
+        ],
+        "visual_motifs": [
+          "黒円環",
+          "深淵螺旋",
+          "影文",
+          "逆位印"
+        ],
+        "effects": [
+          "呪詛",
+          "隠密",
+          "異界接続",
+          "吸収"
+        ]
+      },
+      {
+        "id": "explosion",
+        "label_ja": "爆発",
+        "class": "sub",
+        "paired_base": "fire",
+        "keywords": [
+          "破裂",
+          "衝撃",
+          "暴発",
+          "断裂",
+          "粉砕",
+          "瞬発"
+        ],
+        "visual_motifs": [
+          "破断線",
+          "飛散線",
+          "亀裂紋",
+          "衝撃波輪"
+        ],
+        "effects": [
+          "範囲攻撃",
+          "ノックバック",
+          "自壊リスク",
+          "高瞬間火力"
+        ]
+      },
+      {
+        "id": "ice",
+        "label_ja": "氷",
+        "class": "sub",
+        "paired_base": "water",
+        "keywords": [
+          "凍結",
+          "保存",
+          "静止",
+          "深海",
+          "冷却",
+          "結晶"
+        ],
+        "visual_motifs": [
+          "雪華",
+          "氷結格子",
+          "霜文",
+          "結晶片"
+        ],
+        "effects": [
+          "減速",
+          "拘束",
+          "封印",
+          "保存"
+        ]
+      },
+      {
+        "id": "thunder",
+        "label_ja": "雷",
+        "class": "sub",
+        "paired_base": "wind",
+        "keywords": [
+          "通電",
+          "神速",
+          "落雷",
+          "覚醒",
+          "瞬撃",
+          "空鳴り"
+        ],
+        "visual_motifs": [
+          "稲妻",
+          "分岐線",
+          "閃光角",
+          "雷輪"
+        ],
+        "effects": [
+          "先制攻撃",
+          "麻痺",
+          "瞬間加速",
+          "貫通"
+        ]
+      },
+      {
+        "id": "metal",
+        "label_ja": "金",
+        "class": "sub",
+        "paired_base": "earth",
+        "keywords": [
+          "硬質",
+          "切断",
+          "研磨",
+          "共鳴",
+          "宝石",
+          "鉱晶"
+        ],
+        "visual_motifs": [
+          "結晶格子",
+          "宝玉枠",
+          "鉱脈線",
+          "金属格子文"
+        ],
+        "effects": [
+          "装甲貫通",
+          "耐久強化",
+          "切削",
+          "共鳴増幅"
+        ]
+      },
+      {
+        "id": "healing",
+        "label_ja": "回復",
+        "class": "sub",
+        "paired_base": "light",
+        "keywords": [
+          "治癒",
+          "再生",
+          "発芽",
+          "保護",
+          "慈愛",
+          "修復"
+        ],
+        "visual_motifs": [
+          "花弁文",
+          "葉脈",
+          "聖滴",
+          "再生輪"
+        ],
+        "effects": [
+          "治癒",
+          "再生",
+          "状態異常回復",
+          "支援"
+        ]
+      },
+      {
+        "id": "mind",
+        "label_ja": "精神",
+        "class": "sub",
+        "paired_base": "dark",
+        "keywords": [
+          "幻惑",
+          "夢",
+          "記憶",
+          "狂気",
+          "意志",
+          "魅了"
+        ],
+        "visual_motifs": [
+          "夢文",
+          "瞳文",
+          "月影紋",
+          "多重円環"
+        ],
+        "effects": [
+          "魅了",
+          "恐怖",
+          "精神干渉",
+          "幻術"
+        ]
+      }
+    ]
+  },
+  "weapon_system": {
+    "weapon_types": [
+      {
+        "id": "straight_sword",
+        "label_ja": "直剣",
+        "affinities": [
+          "light",
+          "wind",
+          "metal"
+        ]
+      },
+      {
+        "id": "greatsword",
+        "label_ja": "大剣",
+        "affinities": [
+          "fire",
+          "earth",
+          "explosion"
+        ]
+      },
+      {
+        "id": "katana",
+        "label_ja": "刀",
+        "affinities": [
+          "mind",
+          "wind",
+          "explosion"
+        ]
+      },
+      {
+        "id": "spear",
+        "label_ja": "槍",
+        "affinities": [
+          "thunder",
+          "water",
+          "light"
+        ]
+      },
+      {
+        "id": "axe",
+        "label_ja": "斧",
+        "affinities": [
+          "metal",
+          "earth",
+          "fire"
+        ]
+      },
+      {
+        "id": "warhammer",
+        "label_ja": "戦槌",
+        "affinities": [
+          "earth",
+          "metal",
+          "explosion"
+        ]
+      },
+      {
+        "id": "bow",
+        "label_ja": "弓",
+        "affinities": [
+          "water",
+          "wind",
+          "ice"
+        ]
+      },
+      {
+        "id": "dagger",
+        "label_ja": "短剣",
+        "affinities": [
+          "dark",
+          "wind",
+          "mind"
+        ]
+      },
+      {
+        "id": "staff",
+        "label_ja": "杖",
+        "affinities": [
+          "healing",
+          "water",
+          "mind"
+        ]
+      },
+      {
+        "id": "grimoire",
+        "label_ja": "魔導書",
+        "affinities": [
+          "dark",
+          "fire",
+          "mind"
+        ]
+      },
+      {
+        "id": "gauntlet",
+        "label_ja": "拳甲",
+        "affinities": [
+          "wind",
+          "thunder",
+          "fire"
+        ]
+      },
+      {
+        "id": "chain_sickle",
+        "label_ja": "鎖鎌",
+        "affinities": [
+          "ice",
+          "dark",
+          "explosion"
+        ]
+      }
+    ]
+  },
+  "races": [
+    {
+      "id": "human",
+      "label_ja": "人類種（ヒューマン）",
+      "ecology": {
+        "essence": "社会性・制度・継承を最も強く持つ標準種",
+        "biological_image": [
+          "適応力が高い",
+          "多様な環境へ進出する",
+          "集団規模が大きい",
+          "文明化が早い"
+        ]
+      },
+      "philosophy": {
+        "core_ideas": [
+          "秩序",
+          "誓約",
+          "家名",
+          "国家",
+          "公的身分"
+        ],
+        "worldview": "個人の力だけでなく、家・団体・制度に属することで力を得る"
+      },
+      "primary_attribute": "light",
+      "secondary_affinities": [
+        "earth",
+        "wind"
+      ],
+      "primary_weapon": "straight_sword",
+      "secondary_weapons": [
+        "spear",
+        "staff"
+      ],
+      "culture_reference": {
+        "primary_source": "中世ヨーロッパ紋章学",
+        "reason": "国家・騎士・家系・秩序の可視化に最も向く"
+      },
+      "motif_design_rules": {
+        "line_quality": "太めで明快、視認性重視",
+        "composition": "中央集中、左右対称、面構成",
+        "frequent_motifs": [
+          "盾形",
+          "剣",
+          "鍵",
+          "冠",
+          "百合",
+          "獅子",
+          "鷲",
+          "十字"
+        ],
+        "avoid_motifs": [
+          "過剰な螺旋",
+          "有機曲線過多",
+          "細密反復過多",
+          "曖昧な非対称"
+        ],
+        "placement": [
+          "盾面中央",
+          "外套の背",
+          "胸当て中央",
+          "印章指輪",
+          "軍旗",
+          "鞘金具"
+        ],
+        "meaning_rules": [
+          "所属",
+          "正統性",
+          "誓約",
+          "守護",
+          "家名"
+        ],
+        "one_line_rule": "中央に大きく、明快で識別性の高い紋章を置く"
+      },
+      "visual_design_rules": {
+        "primary_colors": [
+          "白",
+          "金",
+          "深紅",
+          "紺"
+        ],
+        "accent_colors": [
+          "銀",
+          "黒"
+        ],
+        "materials": [
+          "鋼",
+          "革",
+          "白布",
+          "金糸",
+          "木"
+        ],
+        "surface_finish": [
+          "磨かれた金属",
+          "整った布地",
+          "紋章塗装"
+        ],
+        "ornament_density": "中",
+        "line_thickness": "中〜太",
+        "gem_usage": "中",
+        "metal_tendency": "高",
+        "carving_style": "面で見せる紋章彫り、印章的な深彫り"
+      }
+    },
+    {
+      "id": "elf",
+      "label_ja": "長命種（エルフ）",
+      "ecology": {
+        "essence": "長い時間を森や月と共に生きる精霊親和種",
+        "biological_image": [
+          "寿命が長い",
+          "感覚が鋭い",
+          "自然環境との同調が強い",
+          "老いが緩やか"
+        ]
+      },
+      "philosophy": {
+        "core_ideas": [
+          "循環",
+          "永続",
+          "森と一体であること",
+          "記憶の継承",
+          "静かな完成度"
+        ],
+        "worldview": "時は直線ではなく巡る環であり、技と祈りは自然に溶ける"
+      },
+      "primary_attribute": "water",
+      "secondary_affinities": [
+        "light",
+        "wind"
+      ],
+      "primary_weapon": "bow",
+      "secondary_weapons": [
+        "staff",
+        "katana"
+      ],
+      "culture_reference": {
+        "primary_source": "ケルト／インスラー文様",
+        "reason": "自然、螺旋、永続、絡み合う生命観が最も合う"
+      },
+      "motif_design_rules": {
+        "line_quality": "細く流麗",
+        "composition": "連続、循環、絡み合い、終わりのない流れ",
+        "frequent_motifs": [
+          "組紐",
+          "螺旋",
+          "三重螺旋",
+          "葉",
+          "枝",
+          "月輪",
+          "星",
+          "樹木文"
+        ],
+        "avoid_motifs": [
+          "無骨な直線主体",
+          "角張った断絶",
+          "重厚すぎる塊感",
+          "単発紋章中心"
+        ],
+        "placement": [
+          "弓",
+          "杖",
+          "ローブの裾",
+          "耳飾り",
+          "額冠",
+          "刀身の地紋"
+        ],
+        "meaning_rules": [
+          "循環",
+          "精霊加護",
+          "記憶",
+          "永続",
+          "浄化"
+        ],
+        "one_line_rule": "螺旋と蔓を連続させ、終わりのない流れとして描く"
+      },
+      "visual_design_rules": {
+        "primary_colors": [
+          "深緑",
+          "青緑",
+          "銀",
+          "月白"
+        ],
+        "accent_colors": [
+          "薄金",
+          "淡紫"
+        ],
+        "materials": [
+          "霊木",
+          "薄布",
+          "銀",
+          "骨角",
+          "水晶"
+        ],
+        "surface_finish": [
+          "半透明",
+          "磨かれた木肌",
+          "静かな光沢"
+        ],
+        "ornament_density": "中〜高",
+        "line_thickness": "細",
+        "gem_usage": "中",
+        "metal_tendency": "中",
+        "carving_style": "細密彫刻、流れる連続文、葉脈状の線刻"
+      }
+    },
+    {
+      "id": "dwarf",
+      "label_ja": "小人種（ドワーフ）",
+      "ecology": {
+        "essence": "鉱石・火床・鍛造に密接した工匠種",
+        "biological_image": [
+          "筋骨が強い",
+          "骨密度が高い",
+          "寒冷や高地に強い",
+          "鉱山環境へ適応"
+        ]
+      },
+      "philosophy": {
+        "core_ideas": [
+          "誓い",
+          "機能",
+          "実用の美",
+          "祖先技術",
+          "刻印の力"
+        ],
+        "worldview": "物には名と役目があり、刻印はそれを固定する契約である"
+      },
+      "primary_attribute": "earth",
+      "secondary_affinities": [
+        "metal",
+        "fire"
+      ],
+      "primary_weapon": "warhammer",
+      "secondary_weapons": [
+        "axe",
+        "greatsword"
+      ],
+      "culture_reference": {
+        "primary_source": "北欧・ゲルマン系ルーン文化",
+        "reason": "刻印と機能記号、鍛造と誓いの思想が噛み合う"
+      },
+      "motif_design_rules": {
+        "line_quality": "短く、直線的で鋭い",
+        "composition": "縁や継ぎ目に連続する刻印",
+        "frequent_motifs": [
+          "直線ルーン",
+          "山形",
+          "鉄床",
+          "槌",
+          "鉱脈線",
+          "方形",
+          "結節点"
+        ],
+        "avoid_motifs": [
+          "柔らかな花綱",
+          "過剰な曲線",
+          "夢幻的なぼかし",
+          "軽薄な小紋"
+        ],
+        "placement": [
+          "斧頭",
+          "槌頭",
+          "鎧板の縁",
+          "ベルト金具",
+          "指輪内側",
+          "鍛造銘"
+        ],
+        "meaning_rules": [
+          "補強",
+          "固定",
+          "誓約",
+          "製作者印",
+          "祖先継承"
+        ],
+        "one_line_rule": "直線刻印を縁や継ぎ目に刻み、機能記号として扱う"
+      },
+      "visual_design_rules": {
+        "primary_colors": [
+          "鉄黒",
+          "鈍銀",
+          "土茶",
+          "銅赤"
+        ],
+        "accent_colors": [
+          "金",
+          "熔岩橙"
+        ],
+        "materials": [
+          "鋼",
+          "鉄",
+          "青銅",
+          "厚革",
+          "石",
+          "鉱石"
+        ],
+        "surface_finish": [
+          "打痕",
+          "鍛造肌",
+          "鈍い光沢"
+        ],
+        "ornament_density": "低〜中",
+        "line_thickness": "太",
+        "gem_usage": "低〜中",
+        "metal_tendency": "最高",
+        "carving_style": "深く短い刻印、直線打刻、金属嵌め込み"
+      }
+    },
+    {
+      "id": "werebeast",
+      "label_ja": "獣人種（ワービースト）",
+      "ecology": {
+        "essence": "狩猟本能と部族性を持つ身体能力特化種",
+        "biological_image": [
+          "筋肉や反射神経が発達",
+          "感覚器が鋭い",
+          "部族単位で行動しやすい",
+          "獣相を持つ"
+        ]
+      },
+      "philosophy": {
+        "core_ideas": [
+          "狩猟",
+          "部族",
+          "精霊との連続性",
+          "通過儀礼",
+          "群れの誇り"
+        ],
+        "worldview": "身体に刻まれた傷や紋がそのまま生の履歴である"
+      },
+      "primary_attribute": "wind",
+      "secondary_affinities": [
+        "mind",
+        "earth"
+      ],
+      "primary_weapon": "gauntlet",
+      "secondary_weapons": [
+        "dagger",
+        "spear"
+      ],
+      "culture_reference": {
+        "primary_source": "ネイティブアメリカン系＋広義トライバル意匠",
+        "reason": "精霊・動物・狩猟・部族・身体装飾の思想が合う"
+      },
+      "motif_design_rules": {
+        "line_quality": "身体の流れに沿う帯状の強い線",
+        "composition": "反復、部位依存、筋肉や毛流れに沿う配置",
+        "frequent_motifs": [
+          "爪",
+          "牙",
+          "羽",
+          "太陽",
+          "獣眼",
+          "矢羽根",
+          "トーテム顔",
+          "骨列"
+        ],
+        "avoid_motifs": [
+          "王権的な中央紋章",
+          "工業的格子",
+          "過度な幾何学術式",
+          "宮廷風装飾"
+        ],
+        "placement": [
+          "肩当て",
+          "籠手",
+          "額帯",
+          "首飾り",
+          "槍柄",
+          "面具",
+          "皮鎧"
+        ],
+        "meaning_rules": [
+          "狩猟階位",
+          "群れ所属",
+          "精霊守護",
+          "獲物記録",
+          "成熟"
+        ],
+        "one_line_rule": "身体や装備の流れに沿う帯状反復文で力を表す"
+      },
+      "visual_design_rules": {
+        "primary_colors": [
+          "土赤",
+          "黒",
+          "焦茶",
+          "白骨色"
+        ],
+        "accent_colors": [
+          "朱",
+          "ターコイズ",
+          "羽色"
+        ],
+        "materials": [
+          "毛皮",
+          "皮革",
+          "骨",
+          "角",
+          "木",
+          "石"
+        ],
+        "surface_finish": [
+          "マット",
+          "擦れた革",
+          "骨磨き"
+        ],
+        "ornament_density": "中",
+        "line_thickness": "中〜太",
+        "gem_usage": "低",
+        "metal_tendency": "低〜中",
+        "carving_style": "焼印、染色、骨や革への線刻、編み込み"
+      }
+    },
+    {
+      "id": "birdfolk",
+      "label_ja": "翼人種（バードフォーク）",
+      "ecology": {
+        "essence": "高所生活と風読みに特化した飛翔種",
+        "biological_image": [
+          "軽量骨格",
+          "高度差移動に強い",
+          "視力が高い",
+          "歌や発声が発達"
+        ],
+        "special_notes": [
+          "風と気圧への感覚が鋭い"
+        ]
+      },
+      "philosophy": {
+        "core_ideas": [
+          "飛翔",
+          "祈りの拡散",
+          "巡礼",
+          "高所の聖性",
+          "伝令使命"
+        ],
+        "worldview": "声と風は同質であり、祈りは流れに乗って届く"
+      },
+      "primary_attribute": "thunder",
+      "secondary_affinities": [
+        "wind",
+        "light"
+      ],
+      "primary_weapon": "spear",
+      "secondary_weapons": [
+        "bow",
+        "straight_sword"
+      ],
+      "culture_reference": {
+        "primary_source": "チベット仏教圏の祈祷旗・風の聖記号文化",
+        "reason": "風に乗る祈り、空へ開かれた聖性が非常に合う"
+      },
+      "motif_design_rules": {
+        "line_quality": "軽く上昇感がある細線",
+        "composition": "縦長、流線型、風にたなびく構図",
+        "frequent_motifs": [
+          "羽",
+          "雲",
+          "稲妻",
+          "太陽輪",
+          "風の渦",
+          "聖字",
+          "鳥脚印"
+        ],
+        "avoid_motifs": [
+          "重い面構成",
+          "下向きの構図",
+          "密集格子",
+          "鈍重な記号"
+        ],
+        "placement": [
+          "槍旗",
+          "翼根の布",
+          "胸飾り",
+          "喉飾り",
+          "飛行具の縁",
+          "弓上端"
+        ],
+        "meaning_rules": [
+          "飛翔補助",
+          "追い風",
+          "神託",
+          "旅の安全",
+          "伝令"
+        ],
+        "one_line_rule": "軽く上昇する線で、風に流れる祈りとして描く"
+      },
+      "visual_design_rules": {
+        "primary_colors": [
+          "空青",
+          "白",
+          "金",
+          "濃紺"
+        ],
+        "accent_colors": [
+          "雷銀",
+          "朱"
+        ],
+        "materials": [
+          "軽金属",
+          "薄布",
+          "羽",
+          "木",
+          "骨"
+        ],
+        "surface_finish": [
+          "軽い光沢",
+          "薄く重なる布",
+          "磨かれた軽金属"
+        ],
+        "ornament_density": "中",
+        "line_thickness": "細〜中",
+        "gem_usage": "低〜中",
+        "metal_tendency": "中",
+        "carving_style": "細い風切線、旗布印、羽状の抜き装飾"
+      }
+    },
+    {
+      "id": "fishfolk",
+      "label_ja": "魚人種（フィッシュフォーク）",
+      "ecology": {
+        "essence": "潮流・航路・海中共同体に適応した海洋種",
+        "biological_image": [
+          "水圧や潮流に適応",
+          "遊泳筋が発達",
+          "鱗や皮膜を持つ",
+          "群れや家族単位の協調が強い"
+        ]
+      },
+      "philosophy": {
+        "core_ideas": [
+          "航海",
+          "海神",
+          "潮流知",
+          "共同体",
+          "歌による記憶伝達"
+        ],
+        "worldview": "海は道でもあり祖でもあり、流れを読むことが知恵である"
+      },
+      "primary_attribute": "ice",
+      "secondary_affinities": [
+        "water",
+        "healing"
+      ],
+      "primary_weapon": "spear",
+      "secondary_weapons": [
+        "chain_sickle",
+        "dagger"
+      ],
+      "culture_reference": {
+        "primary_source": "ポリネシアン／オセアニア航海文様",
+        "reason": "波、航路、身体と海の一体性、共同体の記憶が噛み合う"
+      },
+      "motif_design_rules": {
+        "line_quality": "波打ち、横流れ、反復性のある線",
+        "composition": "帯状、段状、潮流に沿った水平展開",
+        "frequent_motifs": [
+          "波",
+          "渦",
+          "魚鱗",
+          "鉤",
+          "航路線",
+          "貝",
+          "三叉槍",
+          "海獣抽象文"
+        ],
+        "avoid_motifs": [
+          "静止的な中央大紋",
+          "陸上系の角ばった幾何学",
+          "過剰な上下対称",
+          "王冠的シンボル"
+        ],
+        "placement": [
+          "鱗鎧",
+          "槍身の根元",
+          "耳飾り",
+          "胸飾り",
+          "腕輪",
+          "網や縄の端"
+        ],
+        "meaning_rules": [
+          "航路記憶",
+          "海神加護",
+          "潮流適応",
+          "豊漁",
+          "群れの絆"
+        ],
+        "one_line_rule": "横流れの波状反復で、潮流と航路を示す"
+      },
+      "visual_design_rules": {
+        "primary_colors": [
+          "深青",
+          "青緑",
+          "白",
+          "珊瑚赤"
+        ],
+        "accent_colors": [
+          "真珠色",
+          "黒"
+        ],
+        "materials": [
+          "貝",
+          "珊瑚",
+          "骨",
+          "鱗革",
+          "潮木",
+          "真珠"
+        ],
+        "surface_finish": [
+          "濡れた光沢",
+          "真珠光",
+          "滑らかな鱗面"
+        ],
+        "ornament_density": "中〜高",
+        "line_thickness": "中",
+        "gem_usage": "中",
+        "metal_tendency": "低〜中",
+        "carving_style": "波状の反復彫り、貝象嵌、縄や網の結び模様"
+      }
+    },
+    {
+      "id": "dragonewt",
+      "label_ja": "竜鱗種（ドラゴニュート）",
+      "ecology": {
+        "essence": "古代血統と威圧性を持つ王権的種族",
+        "biological_image": [
+          "鱗や角を持つ",
+          "高体温または高代謝",
+          "強靭な体躯",
+          "血統差が顕著"
+        ],
+        "special_notes": [
+          "高貴な家系ほど鱗紋や角の意匠が強い"
+        ]
+      },
+      "philosophy": {
+        "core_ideas": [
+          "王権",
+          "血統",
+          "古代の記憶",
+          "秩序の維持",
+          "威厳"
+        ],
+        "worldview": "強さは支配の権利であると同時に世界秩序を背負う責務でもある"
+      },
+      "primary_attribute": "fire",
+      "secondary_affinities": [
+        "earth",
+        "light"
+      ],
+      "primary_weapon": "greatsword",
+      "secondary_weapons": [
+        "spear",
+        "warhammer"
+      ],
+      "culture_reference": {
+        "primary_source": "メソポタミア王権・守護獣意匠",
+        "reason": "古代王権・守護獣・威光の表現が最も似合う"
+      },
+      "motif_design_rules": {
+        "line_quality": "強く太い線、厳格な輪郭",
+        "composition": "中央軸の強い対称構図",
+        "frequent_motifs": [
+          "有翼円盤",
+          "王印",
+          "鱗",
+          "守護獣",
+          "太陽円盤",
+          "角",
+          "対称文"
+        ],
+        "avoid_motifs": [
+          "繊細すぎる草花文",
+          "軽薄な小紋",
+          "曖昧な非対称",
+          "夢想的な曲線のみ"
+        ],
+        "placement": [
+          "胸甲中央",
+          "大剣の鍔",
+          "王笏",
+          "首飾り",
+          "頭冠",
+          "盾面"
+        ],
+        "meaning_rules": [
+          "血統",
+          "王権",
+          "神授",
+          "威圧",
+          "守護獣の加護"
+        ],
+        "one_line_rule": "強い中心軸を持つ対称構図で権威を示す"
+      },
+      "visual_design_rules": {
+        "primary_colors": [
+          "深紅",
+          "黒",
+          "金",
+          "青銅"
+        ],
+        "accent_colors": [
+          "白金",
+          "熔岩橙"
+        ],
+        "materials": [
+          "鱗板",
+          "金",
+          "青銅",
+          "黒鋼",
+          "骨角",
+          "宝玉"
+        ],
+        "surface_finish": [
+          "高光沢金属",
+          "重厚な鱗面",
+          "磨かれた宝石"
+        ],
+        "ornament_density": "中〜高",
+        "line_thickness": "太",
+        "gem_usage": "高",
+        "metal_tendency": "高",
+        "carving_style": "王印風の深彫り、鱗の規則反復、浮彫対称文"
+      }
+    },
+    {
+      "id": "fey",
+      "label_ja": "妖精種（フェイ）",
+      "ecology": {
+        "essence": "夢と境界に生きる小型または軽量の異界寄り種族",
+        "biological_image": [
+          "外見差が大きい",
+          "光や香りに反応する",
+          "季節や月齢に影響されやすい",
+          "生態が不定形"
+        ]
+      },
+      "philosophy": {
+        "core_ideas": [
+          "美",
+          "夢",
+          "魅了",
+          "祝福と呪いの同居",
+          "境界の曖昧さ"
+        ],
+        "worldview": "美は力であり、祝福と呪いは同じ花から咲く"
+      },
+      "primary_attribute": "mind",
+      "secondary_affinities": [
+        "healing",
+        "water"
+      ],
+      "primary_weapon": "staff",
+      "secondary_weapons": [
+        "dagger",
+        "grimoire"
+      ],
+      "culture_reference": {
+        "primary_source": "アール・ヌーヴォー的植物曲線様式",
+        "reason": "花、蔓、夢、非対称の美、誘惑的曲線が非常によく合う"
+      },
+      "motif_design_rules": {
+        "line_quality": "極めて流麗で柔らかい",
+        "composition": "花開くように広がる、非対称でも美しい",
+        "frequent_motifs": [
+          "花",
+          "蔓",
+          "蝶",
+          "月",
+          "星",
+          "水滴",
+          "鈴",
+          "リボン状曲線"
+        ],
+        "avoid_motifs": [
+          "無骨な直線",
+          "軍隊的紋章",
+          "工業格子",
+          "単純対称のみ"
+        ],
+        "placement": [
+          "ティアラ",
+          "指輪",
+          "細剣の鍔",
+          "靴飾り",
+          "杖頭",
+          "ペンダント"
+        ],
+        "meaning_rules": [
+          "魅了",
+          "夢",
+          "祝福",
+          "契約",
+          "月夜の加護"
+        ],
+        "one_line_rule": "非対称でも美しい花蔓曲線で夢のように広げる"
+      },
+      "visual_design_rules": {
+        "primary_colors": [
+          "薄紫",
+          "月白",
+          "薄桃",
+          "若草"
+        ],
+        "accent_colors": [
+          "金",
+          "青緑",
+          "夜色"
+        ],
+        "materials": [
+          "花弁布",
+          "細銀",
+          "蝶翅風膜",
+          "水晶",
+          "真珠"
+        ],
+        "surface_finish": [
+          "繊細な光沢",
+          "半透明",
+          "露のような反射"
+        ],
+        "ornament_density": "高",
+        "line_thickness": "細",
+        "gem_usage": "高",
+        "metal_tendency": "中",
+        "carving_style": "花弁状透かし、曲線彫り、非対称の蔓装飾"
+      }
+    },
+    {
+      "id": "demonian",
+      "label_ja": "魔生種（デモニアン）",
+      "ecology": {
+        "essence": "契約と異界法則に強く結びついた超常種",
+        "biological_image": [
+          "角や異形の特徴を持つことが多い",
+          "魔力循環が強い",
+          "個体差が大きい",
+          "血や名に強い意味を持つ"
+        ]
+      },
+      "philosophy": {
+        "core_ideas": [
+          "契約",
+          "名",
+          "幾何学",
+          "封印",
+          "対価"
+        ],
+        "worldview": "力は名と形に宿り、契約は世界そのものを拘束する"
+      },
+      "primary_attribute": "dark",
+      "secondary_affinities": [
+        "mind",
+        "fire"
+      ],
+      "primary_weapon": "grimoire",
+      "secondary_weapons": [
+        "staff",
+        "dagger"
+      ],
+      "culture_reference": {
+        "primary_source": "西アジア系の文字護符・幾何護符文化",
+        "reason": "文字、印、術式、対称図形が現実改変の骨組みとして扱える"
+      },
+      "motif_design_rules": {
+        "line_quality": "精密、硬質、記号的",
+        "composition": "円、方、星形を中心とした術式構成",
+        "frequent_motifs": [
+          "円陣",
+          "鍵",
+          "目",
+          "星形",
+          "契約文字",
+          "封印符",
+          "重なった幾何学"
+        ],
+        "avoid_motifs": [
+          "素朴すぎる部族文",
+          "自然な蔓草主体",
+          "紋章一個だけ",
+          "粗い線のみ"
+        ],
+        "placement": [
+          "魔導書表紙",
+          "杖頭",
+          "指輪面",
+          "儀式短剣",
+          "胸飾り",
+          "角飾り"
+        ],
+        "meaning_rules": [
+          "契約",
+          "封印",
+          "呪詛",
+          "召喚",
+          "対価固定"
+        ],
+        "one_line_rule": "精密な幾何と文字で術式回路のように描く"
+      },
+      "visual_design_rules": {
+        "primary_colors": [
+          "黒",
+          "深紫",
+          "血赤",
+          "鈍金"
+        ],
+        "accent_colors": [
+          "蒼白",
+          "暗銀"
+        ],
+        "materials": [
+          "黒革",
+          "黒鉄",
+          "羊皮紙",
+          "骨",
+          "黒水晶",
+          "封蝋"
+        ],
+        "surface_finish": [
+          "マットな闇色",
+          "古書質感",
+          "冷たい金属光"
+        ],
+        "ornament_density": "中〜高",
+        "line_thickness": "細〜中",
+        "gem_usage": "中",
+        "metal_tendency": "中",
+        "carving_style": "微細刻印、円陣彫り、文字と図形の重層配置"
+      }
+    },
+    {
+      "id": "fallen",
+      "label_ja": "堕性種（フォールン）",
+      "ecology": {
+        "essence": "失われた聖性と破損した秩序を背負う逸脱種",
+        "biological_image": [
+          "片翼・瘢痕・欠損などの象徴を持つことが多い",
+          "強い個体差と悲劇性",
+          "外見に『欠け』が現れやすい"
+        ]
+      },
+      "philosophy": {
+        "core_ideas": [
+          "贖罪",
+          "断罪",
+          "欠落",
+          "聖性の痕跡",
+          "自己封印"
+        ],
+        "worldview": "光を失った者ほど光の重さを知り、その欠損そのものが印となる"
+      },
+      "primary_attribute": "explosion",
+      "secondary_affinities": [
+        "mind",
+        "light"
+      ],
+      "primary_weapon": "katana",
+      "secondary_weapons": [
+        "greatsword",
+        "chain_sickle"
+      ],
+      "culture_reference": {
+        "primary_source": "反転聖印／東方キリスト教的聖性崩壊意匠",
+        "reason": "元は聖なるものだった痕跡が最も重要だから"
+      },
+      "motif_design_rules": {
+        "line_quality": "基本は聖性を思わせる端正さ、そこに亀裂や欠損を混ぜる",
+        "composition": "対称を基礎に一部を崩す",
+        "frequent_motifs": [
+          "欠けた光輪",
+          "片翼",
+          "砕けた十字",
+          "封印鎖",
+          "黒い聖印",
+          "断罪線",
+          "亀裂"
+        ],
+        "avoid_motifs": [
+          "完璧な王権対称",
+          "祝祭的花文",
+          "無邪気な小紋",
+          "完全無感情の格子"
+        ],
+        "placement": [
+          "胸元",
+          "刀身の地紋",
+          "枷",
+          "首輪",
+          "マント留め",
+          "片翼装具"
+        ],
+        "meaning_rules": [
+          "贖罪",
+          "自己封印",
+          "失われた聖性",
+          "断罪",
+          "再起の誓い"
+        ],
+        "one_line_rule": "聖なる対称を基本に、一部を欠けさせ反転させる"
+      },
+      "visual_design_rules": {
+        "primary_colors": [
+          "黒",
+          "白",
+          "灰銀",
+          "暗紅"
+        ],
+        "accent_colors": [
+          "鈍金",
+          "青白"
+        ],
+        "materials": [
+          "黒鉄",
+          "聖布の残骸",
+          "鎖",
+          "骨",
+          "硝子",
+          "欠けた宝石"
+        ],
+        "surface_finish": [
+          "傷んだ光沢",
+          "亀裂",
+          "煤けた白"
+        ],
+        "ornament_density": "中",
+        "line_thickness": "中",
+        "gem_usage": "中",
+        "metal_tendency": "高",
+        "carving_style": "裂断線、欠損表現、黒染め彫り、片側だけの意匠崩し"
+      }
+    },
+    {
+      "id": "plantfolk",
+      "label_ja": "樹生種（プラントフォーク）",
+      "ecology": {
+        "essence": "花・蔓・根・胞子・季節性を持つ植物生命種",
+        "biological_image": [
+          "花人や樹人として分化可能",
+          "発芽・開花・落葉などの季節変化がある",
+          "胞子や香りを用いる",
+          "根系感覚や光合成的性質を持つ場合がある"
+        ]
+      },
+      "philosophy": {
+        "core_ideas": [
+          "成長",
+          "季節循環",
+          "境界防御",
+          "豊穣",
+          "発芽と再生"
+        ],
+        "worldview": "花は飾りではなく生の宣言であり、根は見えぬ絆である"
+      },
+      "primary_attribute": "healing",
+      "secondary_affinities": [
+        "earth",
+        "water"
+      ],
+      "primary_weapon": "staff",
+      "secondary_weapons": [
+        "bow",
+        "chain_sickle"
+      ],
+      "culture_reference": {
+        "primary_source": "アイヌ文様＋豊穣儀礼文",
+        "reason": "境界を守る線と生命成長の意匠を両立できる"
+      },
+      "motif_design_rules": {
+        "line_quality": "縁を守るように巡る有機線",
+        "composition": "袖口・裾・輪郭沿い、境界防御型",
+        "frequent_motifs": [
+          "棘返し",
+          "葉脈",
+          "蔓",
+          "花弁",
+          "種子",
+          "根",
+          "渦と境界線の複合"
+        ],
+        "avoid_motifs": [
+          "王権的中央大紋",
+          "硬すぎる格子",
+          "無機的印章だけ",
+          "断裂主体の攻撃紋"
+        ],
+        "placement": [
+          "袖口",
+          "裾",
+          "杖",
+          "花冠",
+          "肩布",
+          "種子護符"
+        ],
+        "meaning_rules": [
+          "成長",
+          "再生",
+          "季節循環",
+          "境界防御",
+          "豊穣",
+          "発芽"
+        ],
+        "one_line_rule": "輪郭や境界を守るように、棘や蔓を縁へ巡らせる"
+      },
+      "visual_design_rules": {
+        "primary_colors": [
+          "若葉緑",
+          "花色",
+          "土色",
+          "白"
+        ],
+        "accent_colors": [
+          "金",
+          "赤花色",
+          "深緑"
+        ],
+        "materials": [
+          "生木",
+          "蔓",
+          "花弁布",
+          "樹皮",
+          "種子殻",
+          "琥珀"
+        ],
+        "surface_finish": [
+          "柔らかいマット感",
+          "生きた艶",
+          "樹液光沢"
+        ],
+        "ornament_density": "中〜高",
+        "line_thickness": "細〜中",
+        "gem_usage": "低〜中",
+        "metal_tendency": "低",
+        "carving_style": "蔓彫り、葉脈状染色、花弁や種子の縫い付け"
+      }
+    },
+    {
+      "id": "gemfolk",
+      "label_ja": "石人種（ジェムフォーク／鉱晶種）",
+      "ecology": {
+        "essence": "鉱物・宝石・結晶を核とする静的生命種",
+        "biological_image": [
+          "額や胸に核石を持つ",
+          "皮膚や体表に鉱脈や結晶線が走る",
+          "寿命が長い",
+          "成長や記憶が層として蓄積される"
+        ]
+      },
+      "philosophy": {
+        "core_ideas": [
+          "核",
+          "記憶",
+          "蓄積",
+          "真理",
+          "共鳴",
+          "沈黙"
+        ],
+        "worldview": "真理は削られて残るものであり、記憶は結晶の層となる"
+      },
+      "primary_attribute": "metal",
+      "secondary_affinities": [
+        "earth",
+        "light"
+      ],
+      "primary_weapon": "axe",
+      "secondary_weapons": [
+        "warhammer",
+        "straight_sword"
+      ],
+      "culture_reference": {
+        "primary_source": "アディンクラ＋結晶幾何学",
+        "reason": "単純記号が理念を担い、結晶の対称性と極めて相性が良い"
+      },
+      "motif_design_rules": {
+        "line_quality": "簡潔で硬質、明快な直線と放射",
+        "composition": "放射対称、格子、中心核からの展開",
+        "frequent_motifs": [
+          "放射線",
+          "菱形",
+          "六角格子",
+          "宝玉枠",
+          "結晶断面",
+          "格言紋",
+          "地脈図"
+        ],
+        "avoid_motifs": [
+          "だらりとした有機曲線",
+          "風に流れる帯文",
+          "過剰装飾",
+          "文字の重ねすぎ"
+        ],
+        "placement": [
+          "額石の枠",
+          "胸部核の周辺",
+          "斧頭",
+          "戦槌",
+          "籠手",
+          "首飾り"
+        ],
+        "meaning_rules": [
+          "核",
+          "記憶",
+          "真理",
+          "共鳴",
+          "蓄積",
+          "防御"
+        ],
+        "one_line_rule": "中心核から広がる硬質な対称格子で理念を示す"
+      },
+      "visual_design_rules": {
+        "primary_colors": [
+          "水晶白",
+          "黒曜石黒",
+          "宝石青",
+          "鉱石灰"
+        ],
+        "accent_colors": [
+          "金",
+          "銀",
+          "翡翠緑",
+          "琥珀色"
+        ],
+        "materials": [
+          "結晶",
+          "宝石",
+          "石",
+          "金属枠",
+          "鉱繊維"
+        ],
+        "surface_finish": [
+          "鏡面",
+          "結晶面",
+          "断面の輝き"
+        ],
+        "ornament_density": "中",
+        "line_thickness": "中〜太",
+        "gem_usage": "最高",
+        "metal_tendency": "中〜高",
+        "carving_style": "格子彫り、宝玉枠彫刻、核を中心にした放射線刻"
+      }
+    }
+  ],
+  "generation_support": {
+    "race_order": [
+      "human",
+      "elf",
+      "dwarf",
+      "werebeast",
+      "birdfolk",
+      "fishfolk",
+      "dragonewt",
+      "fey",
+      "demonian",
+      "fallen",
+      "plantfolk",
+      "gemfolk"
+    ],
+    "simple_race_attribute_map": [
+      {
+        "race": "人類種",
+        "primary_attribute": "光"
+      },
+      {
+        "race": "長命種",
+        "primary_attribute": "水"
+      },
+      {
+        "race": "小人種",
+        "primary_attribute": "地"
+      },
+      {
+        "race": "獣人種",
+        "primary_attribute": "風"
+      },
+      {
+        "race": "翼人種",
+        "primary_attribute": "雷"
+      },
+      {
+        "race": "魚人種",
+        "primary_attribute": "氷"
+      },
+      {
+        "race": "竜鱗種",
+        "primary_attribute": "火"
+      },
+      {
+        "race": "妖精種",
+        "primary_attribute": "精神"
+      },
+      {
+        "race": "魔生種",
+        "primary_attribute": "闇"
+      },
+      {
+        "race": "堕性種",
+        "primary_attribute": "爆発"
+      },
+      {
+        "race": "樹生種",
+        "primary_attribute": "回復"
+      },
+      {
+        "race": "石人種",
+        "primary_attribute": "金"
+      }
+    ],
+    "simple_style_rules": [
+      {
+        "race_id": "human",
+        "rule": "中央に大きく明快な紋章を置く"
+      },
+      {
+        "race_id": "elf",
+        "rule": "螺旋と蔓を連続させて描く"
+      },
+      {
+        "race_id": "dwarf",
+        "rule": "直線刻印を縁や継ぎ目へ刻む"
+      },
+      {
+        "race_id": "werebeast",
+        "rule": "身体や装備の流れに沿う帯状反復文で表す"
+      },
+      {
+        "race_id": "birdfolk",
+        "rule": "上昇する細線で風に流れる祈りとして描く"
+      },
+      {
+        "race_id": "fishfolk",
+        "rule": "横流れの波状反復で潮流と航路を表す"
+      },
+      {
+        "race_id": "dragonewt",
+        "rule": "中心軸の強い対称構図で権威を示す"
+      },
+      {
+        "race_id": "fey",
+        "rule": "非対称でも美しい花蔓曲線で夢のように広げる"
+      },
+      {
+        "race_id": "demonian",
+        "rule": "精密な幾何と文字で術式回路のように描く"
+      },
+      {
+        "race_id": "fallen",
+        "rule": "聖なる対称を基本に一部を欠けさせ反転させる"
+      },
+      {
+        "race_id": "plantfolk",
+        "rule": "輪郭や境界を守るように蔓や棘を縁へ巡らせる"
+      },
+      {
+        "race_id": "gemfolk",
+        "rule": "中心核から広がる硬質な対称格子で理念を示す"
+      }
+    ],
+    "equipment_prompt_template": "[種族] + [主属性] + [武器種] + [文化モチーフ] + [紋様ルール] + [主色] + [素材] + [効果意図]",
+    "equipment_prompt_examples": [
+      "長命種 + 水 + 弓 + ケルト文様 + 螺旋と蔓を連続させる + 深緑と銀 + 霊木と銀 + 浄化と精密射撃",
+      "魚人種 + 氷 + 槍 + ポリネシアン航海文様 + 横流れの波状反復 + 深青と真珠色 + 鱗革と珊瑚 + 減速拘束",
+      "石人種 + 金 + 斧 + 結晶幾何学 + 中心核から広がる格子 + 水晶白と金 + 宝石と金属枠 + 装甲貫通",
+      "堕性種 + 爆発 + 刀 + 反転聖印 + 聖なる対称を欠けさせる + 黒と灰銀 + 黒鉄と欠けた宝石 + 断裂高火力"
+    ]
+  }
+}

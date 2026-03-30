@@ -1,0 +1,75 @@
+{
+  "sceneId": "scene_deep_mouth_node_inst_trade_01_cl_joint_delving_recovery_32710_4",
+  "locationLabel": "深口盆地",
+  "focusLabel": "共同深層回収破綻",
+  "playerFacing": {
+    "headline": "深口盆地で、共同深層回収破綻の気配が表へにじみ出ている。",
+    "lines": [
+      "深口盆地では、共同深層回収破綻をめぐるざわめきが、もう奥に隠れきっていない。",
+      "穀冠王国と黒鎚採鉱盟のあいだで責任の押し付け合いが始まり、見張りも通行人も視線を落ち着けられずにいる。",
+      "深層回収の取り分と死者処理をめぐり提携が崩れ始めている。",
+      "もともとの約定は「穀冠王国＝黒鎚採鉱盟通商盟約」だが、その文言はもう現場を縛りきれていない。",
+      "聞き流して通れる気配ではない。手を入れるなら、今のうちだ。"
+    ],
+    "choiceChips": [
+      {
+        "choiceId": "observe",
+        "label": "現場を観察する",
+        "intentType": "observe",
+        "emphasis": "primary"
+      },
+      {
+        "choiceId": "speak",
+        "label": "代表に話しかける",
+        "intentType": "speak"
+      },
+      {
+        "choiceId": "inspect",
+        "label": "条文を確かめる",
+        "intentType": "inspect"
+      },
+      {
+        "choiceId": "intervene",
+        "label": "介入方針を決める",
+        "intentType": "intervene",
+        "emphasis": "risky"
+      }
+    ]
+  },
+  "dramaticLayers": {
+    "place": "深口盆地",
+    "focus": "共同深層回収破綻",
+    "discrepancy": "深層回収の取り分と死者処理をめぐり提携が崩れ始めている。",
+    "reaction": "関係者が互いの顔色を見ながら言葉を選んでいる",
+    "aftermath": "介入の仕方次第で制度・関係・Era圧まで動きうる"
+  },
+  "npcBeats": [
+    {
+      "npcId": "npc_kingdom",
+      "displayName": "穀冠王国の執達吏",
+      "roleBeat": "場を仕切るつもりで、一歩だけ前へ出る。",
+      "relationBeat": "こちらを値踏みしながらも、追い返しきれずにいる。",
+      "emotionBeat": "平静を装っているが、息の継ぎ目がわずかに浅い。",
+      "suppression": "medium",
+      "ruptureState": "clear_break"
+    },
+    {
+      "npcId": "npc_miners_compact",
+      "displayName": "黒鎚採鉱盟の帳場頭",
+      "roleBeat": "列の外側から、崩れた均衡を見張っている。",
+      "relationBeat": "介入を期待しつつも、先に頼るのは避けたがっている。",
+      "emotionBeat": "苛立ちより疲労が先に見える。",
+      "suppression": "medium",
+      "ruptureState": "clear_break"
+    }
+  ],
+  "linkedNodeIds": [
+    "node_inst_trade_01_cl_joint_delving_recovery_32710_4"
+  ],
+  "internalFoldCount": 3,
+  "renderHints": {
+    "preferredMode": "intervention",
+    "showDiceTray": true,
+    "highlightNodeId": "node_inst_trade_01_cl_joint_delving_recovery_32710_4"
+  }
+}

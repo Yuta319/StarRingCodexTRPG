@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/pbw/schemas/UiEventEnvelope.schema.json",
+  "title": "UiEventEnvelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "seq",
+    "eventId",
+    "sessionId",
+    "type",
+    "occurredAt",
+    "payload"
+  ],
+  "properties": {
+    "seq": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Monotonic UI event sequence number."
+    },
+    "eventId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sessionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]+$",
+      "description": "Dot-delimited event name such as scene.packet.updated."
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "payload": {
+      "description": "Event-specific payload. Keep this compact and pair it with invalidate targets."
+    },
+    "invalidate": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "shell",
+          "worldSpine",
+          "actorRail",
+          "scenePacket",
+          "contextRail",
+          "nodeBoard",
+          "codex",
+          "worldDrawer",
+          "journal",
+          "assets",
+          "dice",
+          "npcFocus",
+          "characterHub"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "uiHints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/UiHint"
+      }
+    }
+  },
+  "$defs": {
+    "UiHint": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ToastHint"
+        },
+        {
+          "$ref": "#/$defs/VesselGainFxHint"
+        },
+        {
+          "$ref": "#/$defs/DiceFxHint"
+        },
+        {
+          "$ref": "#/$defs/OpenDrawerHint"
+        },
+        {
+          "$ref": "#/$defs/BadgeBumpHint"
+        },
+        {
+          "$ref": "#/$defs/HighlightHotbarHint"
+        }
+      ]
+    },
+    "ToastHint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "key"
+      ],
+      "properties": {
+        "type": {
+          "const": "toast"
+        },
+        "key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "level": {
+          "type": "string",
+          "enum": [
+            "info",
+            "warn",
+            "success",
+            "error"
+          ],
+          "default": "info"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "VesselGainFxHint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "amount"
+      ],
+      "properties": {
+        "type": {
+          "const": "fx.vessel_gain"
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "DiceFxHint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "rollId"
+      ],
+      "properties": {
+        "type": {
+          "const": "fx.dice"
+        },
+        "rollId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "formula": {
+          "type": "string"
+        }
+      }
+    },
+    "OpenDrawerHint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "target",
+        "refId"
+      ],
+      "properties": {
+        "type": {
+          "const": "open.drawer"
+        },
+        "target": {
+          "type": "string",
+          "enum": [
+            "npc",
+            "codex",
+            "node",
+            "asset",
+            "world",
+            "character"
+          ]
+        },
+        "refId": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "BadgeBumpHint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "target"
+      ],
+      "properties": {
+        "type": {
+          "const": "badge.bump"
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1
+        }
+      }
+    },
+    "HighlightHotbarHint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "target"
+      ],
+      "properties": {
+        "type": {
+          "const": "highlight.hotbar"
+        },
+        "target": {
+          "type": "string",
+          "enum": [
+            "character",
+            "relics",
+            "skills",
+            "node_board",
+            "codex",
+            "journal",
+            "world",
+            "dice",
+            "assets",
+            "settings"
+          ]
+        }
+      }
+    }
+  }
+}

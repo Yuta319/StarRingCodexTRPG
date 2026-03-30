@@ -1,0 +1,75 @@
+{
+  "player_facing": {
+    "chapter_title": "オルシェル暦 7年 / 昇神期",
+    "scene_title": "共同深層回収破綻",
+    "scene_record": "深口盆地では、共同深層回収破綻をめぐるざわめきが、もう奥に隠れきっていない。\n穀冠王国と黒鎚採鉱盟のあいだで責任の押し付け合いが始まり、見張りも通行人も視線を落ち着けられずにいる。\n深層回収の取り分と死者処理をめぐり提携が崩れ始めている。\nもともとの約定は「穀冠王国＝黒鎚採鉱盟通商盟約」だが、その文言はもう現場を縛りきれていない。\n聞き流して通れる気配ではない。手を入れるなら、今のうちだ。",
+    "current_objective": "共同深層回収破綻への介入",
+    "choices": [
+      {
+        "id": "observe",
+        "label": "現場を観察する",
+        "risk_hint": "low"
+      },
+      {
+        "id": "speak_issuer",
+        "label": "代表に話す",
+        "relation_hint": "issuer"
+      },
+      {
+        "id": "inspect_terms",
+        "label": "条文を確かめる",
+        "risk_hint": "medium"
+      },
+      {
+        "id": "trace_pressure",
+        "label": "火種を探る",
+        "risk_hint": "high"
+      }
+    ]
+  },
+  "dramatic_layers": {
+    "scene_pulse": "深口盆地で事件の熱が表面化している",
+    "human_drama": {
+      "label": "言い逃れと保身",
+      "subtext": "深層回収の取り分と死者処理をめぐり提携が崩れ始めている。",
+      "cannot_say": "誰が先に約定を食い破ったか"
+    },
+    "relation_cost": "穀冠王国＝黒鎚採鉱盟通商盟約の傷みが人間関係の負債として噴き出している",
+    "memory_echo": "過去の違約や見逃しが、いまの空気を重くしている",
+    "world_echo": "この局地のほころびが、Era の圧力へ再接続されている"
+  },
+  "npc_beats": [
+    {
+      "npc_id": "npc_kingdom",
+      "display_name": "穀冠王国の執達吏",
+      "role": "行政代表",
+      "relation_stage": "S4",
+      "rupture_stage": "clear_break",
+      "motion_cue": "書板を持つ指先が一度だけ止まった。",
+      "first_line": "こちらの出方を量るように、先に文言だけを整えてくる。",
+      "second_line": "譲歩を口にする前に、どこまで責任を切り離せるかを探っている。",
+      "third_line_or_null": "ほんの一瞬だけ、失うものの大きさが声の底に落ちた。",
+      "subsurface_note": "穀冠王国側の利害と保身が交錯している。"
+    },
+    {
+      "npc_id": "npc_miners_compact",
+      "display_name": "黒鎚採鉱盟の帳場頭",
+      "role": "利権代表",
+      "relation_stage": "S4",
+      "rupture_stage": "clear_break",
+      "motion_cue": "肩口の力を抜きかけて、すぐに戻した。",
+      "first_line": "返答の前に、門と人の流れを見比べている。",
+      "second_line": "こちらへ近づく気配はあるが、決定的な言葉だけを飲み込んだ。",
+      "third_line_or_null": "怒りよりも、長引く面倒への疲れが先ににじむ。",
+      "subsurface_note": "黒鎚採鉱盟側の利害と保身が交錯している。"
+    }
+  ],
+  "internal": {
+    "style_checks": [
+      "場→焦点→差異→反応→余波の順で構成",
+      "第一声=役割 / 二言目=関係 / 三言目=感情 の骨格を維持",
+      "抽象語を抑え、行動と視線を先に置いた"
+    ],
+    "violations": []
+  }
+}

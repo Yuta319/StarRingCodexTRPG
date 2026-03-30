@@ -1,0 +1,38 @@
+{
+  "seq": 2010,
+  "eventId": "evt_node_inst_pilgrim_01_cl_pilgrimage_route_protection_40973_6_7_10",
+  "sessionId": "sess_1729",
+  "type": "node.resolution.committed",
+  "occurredAt": "0007-01-01T00:00:00+09:00",
+  "payload": {
+    "nodeId": "node_inst_pilgrim_01_cl_pilgrimage_route_protection_40973_6",
+    "approach": "reconcile",
+    "outcome": "partial_success",
+    "vesselDelta": 34.5,
+    "realizedMedia": [
+      "信仰",
+      "伝承"
+    ]
+  },
+  "invalidate": [
+    "actorRail",
+    "contextRail",
+    "worldSpine",
+    "journal"
+  ],
+  "uiHints": [
+    {
+      "type": "toast",
+      "key": "node-updated",
+      "level": "success"
+    },
+    {
+      "type": "fx.vessel_gain",
+      "amount": 34.5
+    },
+    {
+      "type": "highlight.hotbar",
+      "target": "journal"
+    }
+  ]
+}

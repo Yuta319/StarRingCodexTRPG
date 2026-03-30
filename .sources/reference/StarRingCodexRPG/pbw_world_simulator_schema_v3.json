@@ -1,0 +1,1699 @@
+{
+  "schema_version": "3.0",
+  "project": "PBW_Autonomous_World_Simulator",
+  "design_goal": "12種族・神格化・輪廻・マナ/魔素・ダンジョン・異界・魔王・国家・宗教・ギルド・生活層を同一法則上で自走させ、固定テンプレートではなく世界状態から新しいEra・事件・クエストを自動生成する。",
+  "design_principles": [
+    "Eraは固定カテゴリではなく、複数の世界変数の支配的な変動状態に後付けで与えられる名前である。",
+    "神は創造神に直接作られる存在と、召し上げられて神格化する存在の両方がありうる。",
+    "主人公の成長は戦闘勝利だけでなく、歴史への因果足跡によって存在級位が上昇する。",
+    "種族はロールではなく歴史反応傾向であり、Era・資源・信仰・環境・没落条件への感受性が異なる。",
+    "ミクロの人間関係がマクロの社会変化を生み、一定の閾値を超えるとメタ構造とEraへ波及する。"
+  ],
+  "cosmology": {
+    "root_laws": {
+      "creator_god_exists": true,
+      "main_god_exists": true,
+      "calendar_rule": "主神が交代すると暦名が変わる。各時代は（主神名）暦XX年で記録される。",
+      "reincarnation_exists": true,
+      "protagonist_is_exceptional_soul": true,
+      "apotheosis_rule": "人・精霊・魔族・英雄・その他の存在は、創造神に召し上げられることで神格化しうる。",
+      "divine_wars_possible": true,
+      "institutional_gods_possible": true
+    },
+    "mana_and_miasma": {
+      "mana": {
+        "nature": "秩序立った術式・文明・祝福・工芸・神殿回路に乗りやすい超常エネルギー",
+        "scarcity_effects": [
+          "魔術文明の衰弱",
+          "術式効率低下",
+          "神殿技術の崩れ",
+          "回復資源の不足"
+        ],
+        "surplus_effects": [
+          "術式過負荷",
+          "奇跡頻発",
+          "祝福飽和",
+          "夢見や幻視の増加"
+        ]
+      },
+      "miasma": {
+        "nature": "粗く野生で、魔物・呪い・変異・ダンジョン・世界の傷と相性が良い超常濃度",
+        "scarcity_effects": [
+          "怪異生態の衰弱",
+          "ダンジョン収束",
+          "魔物圧低下"
+        ],
+        "surplus_effects": [
+          "魔物繁殖",
+          "呪詛多発",
+          "地形異変",
+          "怪異化",
+          "ダンジョン活性"
+        ]
+      }
+    },
+    "vessel_rank": {
+      "definition": "魂が歴史と世界法則を受け止められる容量。",
+      "growth_axes": [
+        "影響人口",
+        "影響層の数",
+        "継続年数",
+        "残った媒体",
+        "払った代償",
+        "既存法則の変形量"
+      ],
+      "endgame_routes": [
+        "神の一柱となり管理者の一端へ移る",
+        "創造神の代替わりを補助する",
+        "輪廻の構造そのものを停止させ、神々を滅ぼす"
+      ]
+    }
+  },
+  "world_dynamics": {
+    "core_variables": {
+      "material": [
+        "food",
+        "water",
+        "housing",
+        "timber",
+        "metal_stock",
+        "medicine",
+        "trade_routes",
+        "labor_force"
+      ],
+      "population_ecology": [
+        "population",
+        "birth_rate",
+        "death_rate",
+        "age_structure",
+        "refugee_flow",
+        "monster_density",
+        "plague_load"
+      ],
+      "supernatural": [
+        "mana_level",
+        "miasma_level",
+        "divine_interference",
+        "interworld_intrusion",
+        "dungeon_density",
+        "cycle_stability",
+        "soul_residue"
+      ],
+      "social": [
+        "legitimacy",
+        "faith_density",
+        "class_gap",
+        "slavery_rate",
+        "succession_stability",
+        "law_order",
+        "recordkeeping",
+        "racial_tension"
+      ]
+    },
+    "transform_operators": [
+      "scarcity",
+      "surplus",
+      "imbalance",
+      "contamination",
+      "stagnation",
+      "acceleration",
+      "rupture",
+      "runaway",
+      "resonance",
+      "inversion",
+      "fixation",
+      "collapse"
+    ],
+    "pressure_formulas_concept": [
+      "現象 = 変数 × 演算子 × 地域共鳴 × 種族感受性 × 残滓補正",
+      "Era候補 = 複数地域で長期間支配的な現象クラスタ",
+      "Era名 = 現象クラスタ + 文化圏ごとの命名規則"
+    ],
+    "resonance_vector": {
+      "description": "地域・種族・神格・ダンジョン・Eraは12属性の共鳴ベクトルを持つ。同じ原因でも共鳴により現象の表情が変わる。",
+      "attributes_used": [
+        "fire",
+        "water",
+        "wind",
+        "earth",
+        "light",
+        "dark",
+        "explosion",
+        "ice",
+        "thunder",
+        "metal",
+        "healing",
+        "mind"
+      ]
+    }
+  },
+  "era_synthesis": {
+    "era_definition": "ある期間、世界全体または大陸規模で、複数の基盤変数の変動が日常生活・政治・信仰・戦争を支配し続けた状態。",
+    "era_layers": [
+      {
+        "layer": "main_god_calendar",
+        "description": "主神単位の長大な紀年。主神の交代や沈黙で暦名が変わる。"
+      },
+      {
+        "layer": "world_era",
+        "description": "全球的・大陸的に支配的な現象クラスタ。"
+      },
+      {
+        "layer": "regional_phase",
+        "description": "同じ世界Eraの中で地方ごとに異なる生活圧・宗教相・戦時相。"
+      }
+    ],
+    "era_generation_pipeline": [
+      "地域ごとの世界変数を更新する",
+      "演算子を適用し、現象クラスタを抽出する",
+      "複数地域・複数勢力に跨る持続支配が起きたら世界Era候補とする",
+      "公式名・民間名・異端名・年代記名を並列生成する",
+      "前Eraの残滓を新Eraへ継承する"
+    ],
+    "naming_grammar": {
+      "official": "[主因名詞]+[再編/戦役/統制/期/令]",
+      "popular": "[色/自然物/日用品/身体感覚]+[やせた/燃えた/溢れた/眠らぬ]+[年/時代]",
+      "heretical": "[神格否定語/偽/断/逆]+[光/契約/潮/輪]+[期/暦/禍]",
+      "chronicle": "（主神名）暦[年数]年より続く[原因+社会相+期]"
+    },
+    "era_inertia_rules": {
+      "entry": "単月・単季節ではEra化しない。複数季節〜複数年の支配持続が必要。",
+      "exit": "主因が減衰しても残滓が一定以上なら移行相に留まる。",
+      "overlap": "旧Eraの制度残滓と新Eraの生活圧が重なるため、遷移相イベントが多発する。"
+    }
+  },
+  "race_simulation_profiles": [
+    {
+      "race_id": "human",
+      "label_ja": "人類種（ヒューマン）",
+      "continuity_from_visual_dictionary": {
+        "primary_attribute": "light",
+        "secondary_affinities": [
+          "earth",
+          "wind"
+        ],
+        "primary_weapon": "straight_sword",
+        "culture_motif_anchor": "中世ヨーロッパ紋章学"
+      },
+      "historical_tagline": "制度・家名・国家を増殖させ、英雄を法や神話へ編み込む中心拡張種。",
+      "simulation_genome": {
+        "ecology_bias": {
+          "preferred_biomes": [
+            "平原",
+            "河川流域",
+            "交易路結節点",
+            "城壁都市圏"
+          ],
+          "stress_tolerance": {
+            "cold": "medium",
+            "heat": "medium",
+            "famine": "low_to_medium",
+            "plague": "medium",
+            "migration": "high"
+          },
+          "mana_response": {
+            "scarcity": "制度側へ回帰し術者特権化",
+            "surplus": "神殿・学院・軍が魔術を制度化"
+          },
+          "miasma_response": {
+            "scarcity": "怪異管理が進み都市化が進展",
+            "surplus": "異端狩りと治安国家化"
+          },
+          "population_mode": "増殖力が高く、余剰人口を植民・傭兵・開拓へ流しやすい"
+        },
+        "social_bias": {
+          "statehood": "very_high",
+          "guildization": "high",
+          "kinship_model": "家名・婚姻・相続",
+          "hierarchy": "high",
+          "urbanization": "very_high",
+          "diaspora": "medium",
+          "slavery_relation": "保有側にも被支配側にもなりうるが、制度化能力が高い",
+          "recordkeeping": "very_high"
+        },
+        "sacred_bias": {
+          "faith_style": "制度神・主神・英雄聖人の体系化",
+          "hero_apotheosis": "very_high",
+          "heresy_risk": "medium",
+          "god_distance": "variable",
+          "ritual_tendency": "公的・国家的・秩序維持的"
+        },
+        "historical_bias": {
+          "era_strengths": [
+            "人口膨張期",
+            "建国期",
+            "再編期",
+            "大飢饉後の行政時代"
+          ],
+          "era_weaknesses": [
+            "継承危機期",
+            "宗派分裂期",
+            "正統性崩壊期"
+          ],
+          "collapse_triggers": [
+            "家督争い",
+            "官僚腐敗",
+            "宗教対立",
+            "難民流入失敗"
+          ],
+          "survival_media": [
+            "法",
+            "城壁",
+            "公文書",
+            "暦",
+            "騎士叙任儀礼"
+          ],
+          "downfall_modes": [
+            "内戦",
+            "分裂継承",
+            "過剰徴税による反乱",
+            "異端粛清の連鎖"
+          ]
+        },
+        "macro_sensitivity": {
+          "food_scarcity": "high",
+          "housing_crisis": "high",
+          "mana_surplus": "medium_high",
+          "mana_shortage": "medium",
+          "miasma_flood": "high",
+          "population_boom": "very_high",
+          "dungeon_boom": "high",
+          "divine_war": "high",
+          "interworld_intrusion": "medium_high"
+        },
+        "micro_conflict_vectors": [
+          "家督争い",
+          "徴兵忌避",
+          "異端密告",
+          "政略婚",
+          "出世競争",
+          "帳簿改竄"
+        ]
+      }
+    },
+    {
+      "race_id": "elf",
+      "label_ja": "長命種（エルフ）",
+      "continuity_from_visual_dictionary": {
+        "primary_attribute": "water",
+        "secondary_affinities": [
+          "light",
+          "wind"
+        ],
+        "primary_weapon": "bow",
+        "culture_motif_anchor": "ケルト／インスラー文様"
+      },
+      "historical_tagline": "森・月・循環・長い記憶を保ち、時間を味方にして衰退を生き延びる長命共同体。",
+      "simulation_genome": {
+        "ecology_bias": {
+          "preferred_biomes": [
+            "深森",
+            "月光林",
+            "霧の谷",
+            "聖樹圏"
+          ],
+          "stress_tolerance": {
+            "cold": "medium",
+            "heat": "low_to_medium",
+            "famine": "medium",
+            "plague": "high",
+            "migration": "low"
+          },
+          "mana_response": {
+            "scarcity": "秘儀の精度が落ち、森との同調が薄れる",
+            "surplus": "夢・記憶・精霊交流が増える"
+          },
+          "miasma_response": {
+            "scarcity": "聖域の静穏化",
+            "surplus": "森そのものが閉じて異界化しやすい"
+          },
+          "population_mode": "出生は緩やかだが、記憶継承で文化密度を維持する"
+        },
+        "social_bias": {
+          "statehood": "medium_low",
+          "guildization": "medium",
+          "kinship_model": "血統と師資伝承の混合",
+          "hierarchy": "medium",
+          "urbanization": "low",
+          "diaspora": "low",
+          "slavery_relation": "奴隷制を嫌うが、没落時は保護種族化されやすい",
+          "recordkeeping": "high"
+        },
+        "sacred_bias": {
+          "faith_style": "精霊・月・樹・泉への長期循環信仰",
+          "hero_apotheosis": "medium",
+          "heresy_risk": "low",
+          "god_distance": "close_to_spirits",
+          "ritual_tendency": "歌・巡り・浄化・記憶保存"
+        },
+        "historical_bias": {
+          "era_strengths": [
+            "静穏期",
+            "夢潮期",
+            "再生期",
+            "長期衰退期"
+          ],
+          "era_weaknesses": [
+            "人口爆発期",
+            "重工業期",
+            "総動員戦争期"
+          ],
+          "collapse_triggers": [
+            "聖樹喪失",
+            "時間感覚の断絶",
+            "外界との接続崩壊",
+            "若年層流出"
+          ],
+          "survival_media": [
+            "歌",
+            "地名",
+            "聖域",
+            "弓術流派",
+            "月暦"
+          ],
+          "downfall_modes": [
+            "薄化",
+            "隠遁",
+            "保護区化",
+            "森ごとの分断"
+          ]
+        },
+        "macro_sensitivity": {
+          "food_scarcity": "medium",
+          "housing_crisis": "low",
+          "mana_surplus": "high",
+          "mana_shortage": "high",
+          "miasma_flood": "medium_high",
+          "population_boom": "low",
+          "dungeon_boom": "medium",
+          "divine_war": "medium_high",
+          "interworld_intrusion": "high"
+        },
+        "micro_conflict_vectors": [
+          "継承歌の欠落",
+          "外婚への反発",
+          "聖域伐採",
+          "記憶継承の失敗",
+          "精霊契約の破れ"
+        ]
+      }
+    },
+    {
+      "race_id": "dwarf",
+      "label_ja": "小人種（ドワーフ）",
+      "continuity_from_visual_dictionary": {
+        "primary_attribute": "earth",
+        "secondary_affinities": [
+          "metal",
+          "fire"
+        ],
+        "primary_weapon": "warhammer",
+        "culture_motif_anchor": "北欧・ゲルマン系ルーン文化"
+      },
+      "historical_tagline": "炉・鉱脈・刻印・機能美で文明を支える工匠種。資源時代に栄え、鉱脈死に弱い。",
+      "simulation_genome": {
+        "ecology_bias": {
+          "preferred_biomes": [
+            "山岳",
+            "坑道",
+            "火山裾野",
+            "鉱脈都市"
+          ],
+          "stress_tolerance": {
+            "cold": "high",
+            "heat": "medium_high",
+            "famine": "medium",
+            "plague": "medium_high",
+            "migration": "low_to_medium"
+          },
+          "mana_response": {
+            "scarcity": "鍛造儀礼の神秘が弱まり実用一辺倒へ",
+            "surplus": "鍛造刻印が神器化しやすい"
+          },
+          "miasma_response": {
+            "scarcity": "地下怪異が減り採掘安定",
+            "surplus": "坑道汚染・鉱脈怪異化"
+          },
+          "population_mode": "増減は緩いが、生産力が文明影響を大きくする"
+        },
+        "social_bias": {
+          "statehood": "high",
+          "guildization": "very_high",
+          "kinship_model": "氏族工房・祖先銘",
+          "hierarchy": "medium_high",
+          "urbanization": "medium_high",
+          "diaspora": "medium",
+          "slavery_relation": "強制労働に敏感で、他種族から鉱山奴隷として狙われやすい",
+          "recordkeeping": "high"
+        },
+        "sacred_bias": {
+          "faith_style": "炉神・契約神・祖先工匠信仰",
+          "hero_apotheosis": "medium_high",
+          "heresy_risk": "low_to_medium",
+          "god_distance": "ritual_contractual",
+          "ritual_tendency": "銘打ち・誓約・鍛造奉納"
+        },
+        "historical_bias": {
+          "era_strengths": [
+            "資源高騰期",
+            "ダンジョン時代",
+            "戦時兵站期",
+            "再建期"
+          ],
+          "era_weaknesses": [
+            "鉱脈枯渇期",
+            "物流断絶期",
+            "深層汚染期"
+          ],
+          "collapse_triggers": [
+            "鉱脈消失",
+            "炉火断絶",
+            "坑道魔素汚染",
+            "氏族分裂"
+          ],
+          "survival_media": [
+            "武具",
+            "橋",
+            "坑道網",
+            "銘",
+            "鍛冶流儀"
+          ],
+          "downfall_modes": [
+            "閉鎖死",
+            "資源従属",
+            "地下放棄",
+            "工房都市の買収"
+          ]
+        },
+        "macro_sensitivity": {
+          "food_scarcity": "medium",
+          "housing_crisis": "low",
+          "mana_surplus": "medium",
+          "mana_shortage": "medium_high",
+          "miasma_flood": "high",
+          "population_boom": "low",
+          "dungeon_boom": "very_high",
+          "divine_war": "medium",
+          "interworld_intrusion": "medium"
+        },
+        "micro_conflict_vectors": [
+          "鍛造銘の偽造",
+          "祖先誓約違反",
+          "工房継承争い",
+          "坑道封鎖",
+          "鉱夫失踪"
+        ]
+      }
+    },
+    {
+      "race_id": "werebeast",
+      "label_ja": "獣人種（ワービースト）",
+      "continuity_from_visual_dictionary": {
+        "primary_attribute": "wind",
+        "secondary_affinities": [
+          "mind",
+          "earth"
+        ],
+        "primary_weapon": "gauntlet",
+        "culture_motif_anchor": "ネイティブアメリカン系＋広義トライバル意匠"
+      },
+      "historical_tagline": "部族・狩猟・身体記憶に根ざし、崩壊期にしぶとく生きる辺境適応種。",
+      "simulation_genome": {
+        "ecology_bias": {
+          "preferred_biomes": [
+            "草原",
+            "辺境林",
+            "寒冷荒野",
+            "遊牧地"
+          ],
+          "stress_tolerance": {
+            "cold": "medium_high",
+            "heat": "medium",
+            "famine": "medium_high",
+            "plague": "medium",
+            "migration": "very_high"
+          },
+          "mana_response": {
+            "scarcity": "身体能力偏重へ戻る",
+            "surplus": "獣性覚醒・通過儀礼の神秘化"
+          },
+          "miasma_response": {
+            "scarcity": "怪異狩り文化が衰える",
+            "surplus": "一部氏族が呪化・神獣化"
+          },
+          "population_mode": "群れ単位で増減し、戦乱で分散・再編しやすい"
+        },
+        "social_bias": {
+          "statehood": "low_to_medium",
+          "guildization": "medium",
+          "kinship_model": "群れ・血縁・狩猟階位",
+          "hierarchy": "medium",
+          "urbanization": "low",
+          "diaspora": "high",
+          "slavery_relation": "捕獲されると戦闘奴・追跡奴として使役されやすい",
+          "recordkeeping": "low_to_medium"
+        },
+        "sacred_bias": {
+          "faith_style": "祖霊・狩神・土地精霊信仰",
+          "hero_apotheosis": "medium",
+          "heresy_risk": "low",
+          "god_distance": "ancestral_and_immediate",
+          "ritual_tendency": "通過儀礼・狩猟祝福・牙と傷の証明"
+        },
+        "historical_bias": {
+          "era_strengths": [
+            "文明崩壊期",
+            "辺境戦争期",
+            "飢饉後の再移動期"
+          ],
+          "era_weaknesses": [
+            "中央集権期",
+            "大規模定住拡張期"
+          ],
+          "collapse_triggers": [
+            "遊牧地喪失",
+            "群れ分裂",
+            "奴隷狩り",
+            "疫病で狩獲物減少"
+          ],
+          "survival_media": [
+            "狩歌",
+            "身体傷紋",
+            "トーテム",
+            "狩道"
+          ],
+          "downfall_modes": [
+            "奴隷化",
+            "傭兵化",
+            "部族断片化",
+            "同化"
+          ]
+        },
+        "macro_sensitivity": {
+          "food_scarcity": "medium",
+          "housing_crisis": "low",
+          "mana_surplus": "medium",
+          "mana_shortage": "low",
+          "miasma_flood": "medium_high",
+          "population_boom": "medium",
+          "dungeon_boom": "medium",
+          "divine_war": "medium",
+          "interworld_intrusion": "medium"
+        },
+        "micro_conflict_vectors": [
+          "通過儀礼失敗",
+          "群れの裏切り",
+          "狩場侵犯",
+          "血の借り",
+          "捕縛仲間の奪還"
+        ]
+      }
+    },
+    {
+      "race_id": "birdfolk",
+      "label_ja": "翼人種（バードフォーク）",
+      "continuity_from_visual_dictionary": {
+        "primary_attribute": "thunder",
+        "secondary_affinities": [
+          "wind",
+          "light"
+        ],
+        "primary_weapon": "spear",
+        "culture_motif_anchor": "チベット仏教圏の祈祷旗・風の聖記号文化"
+      },
+      "historical_tagline": "風・高所・巡礼・伝令を司り、神託と戦場のあいだを結ぶ高地の飛翔種。",
+      "simulation_genome": {
+        "ecology_bias": {
+          "preferred_biomes": [
+            "断崖",
+            "高原神殿",
+            "風道",
+            "天空回廊"
+          ],
+          "stress_tolerance": {
+            "cold": "medium",
+            "heat": "medium",
+            "famine": "medium",
+            "plague": "high",
+            "migration": "high"
+          },
+          "mana_response": {
+            "scarcity": "聖歌と飛行補助が弱まり巡礼路が断たれる",
+            "surplus": "風祈祷・雷神託が過密化"
+          },
+          "miasma_response": {
+            "scarcity": "空路安定",
+            "surplus": "乱気流怪異・堕翼化"
+          },
+          "population_mode": "人口は少数精鋭で、喪失が社会全体へ直撃する"
+        },
+        "social_bias": {
+          "statehood": "medium",
+          "guildization": "high",
+          "kinship_model": "神殿家系・巡礼団",
+          "hierarchy": "medium_high",
+          "urbanization": "medium",
+          "diaspora": "medium",
+          "slavery_relation": "伝令・観測役として捕獲されやすい",
+          "recordkeeping": "medium_high"
+        },
+        "sacred_bias": {
+          "faith_style": "天候神・雷神・巡礼神・主神の使徒信仰",
+          "hero_apotheosis": "medium_high",
+          "heresy_risk": "medium",
+          "god_distance": "close_to_omens",
+          "ritual_tendency": "旗・歌・飛翔儀礼・高所奉納"
+        },
+        "historical_bias": {
+          "era_strengths": [
+            "神代戦争期",
+            "巡礼隆盛期",
+            "情報戦時代",
+            "雷嵐期"
+          ],
+          "era_weaknesses": [
+            "人口圧時代",
+            "長期包囲戦時代"
+          ],
+          "collapse_triggers": [
+            "聖峰喪失",
+            "風道遮断",
+            "神託の分裂",
+            "出生減"
+          ],
+          "survival_media": [
+            "旗文",
+            "聖歌",
+            "空路碑",
+            "伝令記録"
+          ],
+          "downfall_modes": [
+            "聖地喪失",
+            "保護属領化",
+            "人口希薄化",
+            "宗派分裂"
+          ]
+        },
+        "macro_sensitivity": {
+          "food_scarcity": "medium",
+          "housing_crisis": "low",
+          "mana_surplus": "high",
+          "mana_shortage": "medium_high",
+          "miasma_flood": "high",
+          "population_boom": "low",
+          "dungeon_boom": "medium",
+          "divine_war": "very_high",
+          "interworld_intrusion": "high"
+        },
+        "micro_conflict_vectors": [
+          "神託改竄",
+          "伝令失踪",
+          "聖峰巡礼事故",
+          "片翼差別",
+          "風旗の禁制"
+        ]
+      }
+    },
+    {
+      "race_id": "fishfolk",
+      "label_ja": "魚人種（フィッシュフォーク）",
+      "continuity_from_visual_dictionary": {
+        "primary_attribute": "ice",
+        "secondary_affinities": [
+          "water",
+          "healing"
+        ],
+        "primary_weapon": "spear",
+        "culture_motif_anchor": "ポリネシアン／オセアニア航海文様"
+      },
+      "historical_tagline": "潮流・航路・歌の記憶で生きる海洋共同体。飢饉時代に物流の覇者となりうる。",
+      "simulation_genome": {
+        "ecology_bias": {
+          "preferred_biomes": [
+            "沿岸",
+            "島嶼",
+            "礁湖",
+            "河口",
+            "海底集落"
+          ],
+          "stress_tolerance": {
+            "cold": "medium",
+            "heat": "medium_high",
+            "famine": "high",
+            "plague": "medium_high",
+            "migration": "high"
+          },
+          "mana_response": {
+            "scarcity": "海祭儀の効きが落ち航路保全が困難に",
+            "surplus": "潮歌・深海祈祷が増幅"
+          },
+          "miasma_response": {
+            "scarcity": "海獣と怪魚が減少",
+            "surplus": "深海怪異・赤潮呪災・沿岸遺跡覚醒"
+          },
+          "population_mode": "海路と漁場に応じて集散し、共同体歌で記憶を維持する"
+        },
+        "social_bias": {
+          "statehood": "medium",
+          "guildization": "high",
+          "kinship_model": "船団・血縁・歌系譜",
+          "hierarchy": "medium",
+          "urbanization": "medium_high",
+          "diaspora": "high",
+          "slavery_relation": "港湾労働・操船技術者として従属させられやすい",
+          "recordkeeping": "medium"
+        },
+        "sacred_bias": {
+          "faith_style": "海神・潮神・嵐神・祖波信仰",
+          "hero_apotheosis": "medium",
+          "heresy_risk": "low_to_medium",
+          "god_distance": "reciprocal",
+          "ritual_tendency": "航海歌・網奉納・潮位儀礼"
+        },
+        "historical_bias": {
+          "era_strengths": [
+            "飢饉期",
+            "海路支配期",
+            "避難輸送期",
+            "沿岸遺物期"
+          ],
+          "era_weaknesses": [
+            "海路封鎖期",
+            "淡水不足期",
+            "深海汚染期"
+          ],
+          "collapse_triggers": [
+            "港湾喪失",
+            "海神信仰の断裂",
+            "赤潮災厄",
+            "内陸帝国への従属"
+          ],
+          "survival_media": [
+            "航海歌",
+            "港祭",
+            "航路図",
+            "真珠装具"
+          ],
+          "downfall_modes": [
+            "海路断絶",
+            "港湾属州化",
+            "漁場崩壊",
+            "歌系譜散逸"
+          ]
+        },
+        "macro_sensitivity": {
+          "food_scarcity": "low",
+          "housing_crisis": "medium",
+          "mana_surplus": "medium_high",
+          "mana_shortage": "medium",
+          "miasma_flood": "high",
+          "population_boom": "medium",
+          "dungeon_boom": "medium_high",
+          "divine_war": "medium",
+          "interworld_intrusion": "high"
+        },
+        "micro_conflict_vectors": [
+          "禁漁違反",
+          "航路歌の盗用",
+          "真珠税逃れ",
+          "漂着異界民の処遇",
+          "沈船遺物争い"
+        ]
+      }
+    },
+    {
+      "race_id": "dragonewt",
+      "label_ja": "竜鱗種（ドラゴニュート）",
+      "continuity_from_visual_dictionary": {
+        "primary_attribute": "fire",
+        "secondary_affinities": [
+          "earth",
+          "light"
+        ],
+        "primary_weapon": "greatsword",
+        "culture_motif_anchor": "メソポタミア王権・守護獣意匠"
+      },
+      "historical_tagline": "古代王権と血統の威厳を体現し、秩序の統一者にも圧政者にもなりうる支配種。",
+      "simulation_genome": {
+        "ecology_bias": {
+          "preferred_biomes": [
+            "火山麓",
+            "古都",
+            "高台要塞",
+            "乾燥高原"
+          ],
+          "stress_tolerance": {
+            "cold": "medium",
+            "heat": "high",
+            "famine": "medium",
+            "plague": "medium_high",
+            "migration": "low"
+          },
+          "mana_response": {
+            "scarcity": "血統神授の権威が弱まり武断化",
+            "surplus": "神授王権が強化され神格に接近"
+          },
+          "miasma_response": {
+            "scarcity": "統治が安定しやすい",
+            "surplus": "暴君・竜化・粛清神話が増える"
+          },
+          "population_mode": "数は少ないが家系ごとの影響力が巨大"
+        },
+        "social_bias": {
+          "statehood": "very_high",
+          "guildization": "medium",
+          "kinship_model": "名家・王裔・血統序列",
+          "hierarchy": "very_high",
+          "urbanization": "high",
+          "diaspora": "low",
+          "slavery_relation": "支配側に回りやすいが、没落時は血統狩りの対象になる",
+          "recordkeeping": "high"
+        },
+        "sacred_bias": {
+          "faith_style": "王権神授・守護獣・太陽火・祖竜信仰",
+          "hero_apotheosis": "high",
+          "heresy_risk": "medium_high",
+          "god_distance": "close_to_sovereignty",
+          "ritual_tendency": "戴冠・血火試練・陵墓祭"
+        },
+        "historical_bias": {
+          "era_strengths": [
+            "統一期",
+            "神代戦争期",
+            "大征服期",
+            "秩序回復期"
+          ],
+          "era_weaknesses": [
+            "血統断絶期",
+            "反乱多発期",
+            "食料危機期"
+          ],
+          "collapse_triggers": [
+            "王裔断絶",
+            "暴政反乱",
+            "神授失効",
+            "継承内戦"
+          ],
+          "survival_media": [
+            "王印",
+            "陵墓",
+            "軍制",
+            "神器",
+            "戴冠儀礼"
+          ],
+          "downfall_modes": [
+            "血統断絶",
+            "簒奪",
+            "神授否認",
+            "王都焼失"
+          ]
+        },
+        "macro_sensitivity": {
+          "food_scarcity": "medium_high",
+          "housing_crisis": "medium",
+          "mana_surplus": "high",
+          "mana_shortage": "medium_high",
+          "miasma_flood": "high",
+          "population_boom": "medium",
+          "dungeon_boom": "medium",
+          "divine_war": "very_high",
+          "interworld_intrusion": "medium_high"
+        },
+        "micro_conflict_vectors": [
+          "継承争い",
+          "王命偽造",
+          "血統隠し子",
+          "戴冠神器の紛失",
+          "属州反乱"
+        ]
+      }
+    },
+    {
+      "race_id": "fey",
+      "label_ja": "妖精種（フェイ）",
+      "continuity_from_visual_dictionary": {
+        "primary_attribute": "mind",
+        "secondary_affinities": [
+          "healing",
+          "water"
+        ],
+        "primary_weapon": "staff",
+        "culture_motif_anchor": "アール・ヌーヴォー的植物曲線様式"
+      },
+      "historical_tagline": "夢・魅了・境界の曖昧さを増幅する異界寄りの軽量種。美と呪いを同時に撒く。",
+      "simulation_genome": {
+        "ecology_bias": {
+          "preferred_biomes": [
+            "花園",
+            "境界森",
+            "霧野",
+            "月下水辺"
+          ],
+          "stress_tolerance": {
+            "cold": "low_to_medium",
+            "heat": "low_to_medium",
+            "famine": "low",
+            "plague": "high",
+            "migration": "medium"
+          },
+          "mana_response": {
+            "scarcity": "薄化し物語性を失いやすい",
+            "surplus": "夢・魅了・祝呪が暴走しやすい"
+          },
+          "miasma_response": {
+            "scarcity": "祝福寄りに傾く",
+            "surplus": "妖異化・悪戯の惨事化"
+          },
+          "population_mode": "数ではなく“現れ方”が増減する"
+        },
+        "social_bias": {
+          "statehood": "low",
+          "guildization": "low_to_medium",
+          "kinship_model": "縁・契り・季節共同体",
+          "hierarchy": "low",
+          "urbanization": "very_low",
+          "diaspora": "medium",
+          "slavery_relation": "捕獲・収集の対象にされやすい",
+          "recordkeeping": "low"
+        },
+        "sacred_bias": {
+          "faith_style": "信仰される側にもなる半神話的存在",
+          "hero_apotheosis": "medium_low",
+          "heresy_risk": "medium",
+          "god_distance": "ambiguous",
+          "ritual_tendency": "夜宴・契り・夢境・花月"
+        },
+        "historical_bias": {
+          "era_strengths": [
+            "マナ過剰期",
+            "夢潮期",
+            "境界薄化期",
+            "祝呪競合期"
+          ],
+          "era_weaknesses": [
+            "行政画一期",
+            "契約硬化期",
+            "飢饉期"
+          ],
+          "collapse_triggers": [
+            "境界固定化",
+            "花季の断絶",
+            "狩猟対象化",
+            "夢の枯渇"
+          ],
+          "survival_media": [
+            "昔話",
+            "恋歌",
+            "禁忌",
+            "夢印",
+            "奇譚"
+          ],
+          "downfall_modes": [
+            "散逸",
+            "薄化",
+            "見世物化",
+            "収集対象化"
+          ]
+        },
+        "macro_sensitivity": {
+          "food_scarcity": "high",
+          "housing_crisis": "low",
+          "mana_surplus": "very_high",
+          "mana_shortage": "very_high",
+          "miasma_flood": "medium_high",
+          "population_boom": "low",
+          "dungeon_boom": "medium",
+          "divine_war": "medium",
+          "interworld_intrusion": "very_high"
+        },
+        "micro_conflict_vectors": [
+          "夢契約の破り",
+          "祝福と呪いの取り違え",
+          "花季婚の妨害",
+          "子どもの連れ去り疑惑",
+          "美術品としての捕獲"
+        ]
+      }
+    },
+    {
+      "race_id": "demonian",
+      "label_ja": "魔生種（デモニアン）",
+      "continuity_from_visual_dictionary": {
+        "primary_attribute": "dark",
+        "secondary_affinities": [
+          "mind",
+          "fire"
+        ],
+        "primary_weapon": "grimoire",
+        "culture_motif_anchor": "西アジア系の文字護符・幾何護符文化"
+      },
+      "historical_tagline": "名・契約・幾何によって世界を縛る超常種。行政崩壊と異界接触の時代に強い。",
+      "simulation_genome": {
+        "ecology_bias": {
+          "preferred_biomes": [
+            "瘴地",
+            "封印都市",
+            "地下書庫",
+            "異界裂け目周辺"
+          ],
+          "stress_tolerance": {
+            "cold": "medium",
+            "heat": "medium_high",
+            "famine": "medium",
+            "plague": "high",
+            "migration": "medium"
+          },
+          "mana_response": {
+            "scarcity": "契約コストが高騰し少数精鋭化",
+            "surplus": "契約回路が網のように拡張"
+          },
+          "miasma_response": {
+            "scarcity": "魔生権能が痩せる",
+            "surplus": "術式・召喚・変異が暴走"
+          },
+          "population_mode": "血統より契約系譜と名簿で共同体を維持する"
+        },
+        "social_bias": {
+          "statehood": "medium",
+          "guildization": "very_high",
+          "kinship_model": "契約家門・名の継承",
+          "hierarchy": "high",
+          "urbanization": "medium_high",
+          "diaspora": "medium",
+          "slavery_relation": "名を握る支配を行うが、逆に封印奴隷にされることもある",
+          "recordkeeping": "very_high"
+        },
+        "sacred_bias": {
+          "faith_style": "封印神・契約神・異界律・対価信仰",
+          "hero_apotheosis": "medium",
+          "heresy_risk": "high",
+          "god_distance": "transactional",
+          "ritual_tendency": "署名・円陣・血印・呼称"
+        },
+        "historical_bias": {
+          "era_strengths": [
+            "契約硬化期",
+            "異界侵食期",
+            "行政崩壊期",
+            "知識独占期"
+          ],
+          "era_weaknesses": [
+            "純粋信仰期",
+            "対邪統一期",
+            "回復主義時代"
+          ],
+          "collapse_triggers": [
+            "大契約の破綻",
+            "真名漏洩",
+            "封印反転",
+            "対価インフレ"
+          ],
+          "survival_media": [
+            "禁書",
+            "術式碑",
+            "印章",
+            "契約網",
+            "召喚陣"
+          ],
+          "downfall_modes": [
+            "内紛",
+            "封印",
+            "名称消去",
+            "契約連鎖崩壊"
+          ]
+        },
+        "macro_sensitivity": {
+          "food_scarcity": "medium",
+          "housing_crisis": "medium",
+          "mana_surplus": "high",
+          "mana_shortage": "medium_high",
+          "miasma_flood": "very_high",
+          "population_boom": "low",
+          "dungeon_boom": "high",
+          "divine_war": "high",
+          "interworld_intrusion": "very_high"
+        },
+        "micro_conflict_vectors": [
+          "契約文言の偽装",
+          "真名売買",
+          "封印更新の失敗",
+          "召喚事故の隠蔽",
+          "負債の転嫁"
+        ]
+      }
+    },
+    {
+      "race_id": "fallen",
+      "label_ja": "堕性種（フォールン）",
+      "continuity_from_visual_dictionary": {
+        "primary_attribute": "explosion",
+        "secondary_affinities": [
+          "mind",
+          "light"
+        ],
+        "primary_weapon": "katana",
+        "culture_motif_anchor": "反転聖印／東方キリスト教的聖性崩壊意匠"
+      },
+      "historical_tagline": "失われた聖性と反転した救済を背負う逸脱種。贖罪と爆裂的変化をもたらす。",
+      "simulation_genome": {
+        "ecology_bias": {
+          "preferred_biomes": [
+            "廃聖堂",
+            "断罪地",
+            "戦場跡",
+            "灰都"
+          ],
+          "stress_tolerance": {
+            "cold": "medium",
+            "heat": "medium",
+            "famine": "medium",
+            "plague": "medium",
+            "migration": "medium_high"
+          },
+          "mana_response": {
+            "scarcity": "聖痕が疼き暴発しやすい",
+            "surplus": "贖罪火・断罪奇跡・自己破壊が増える"
+          },
+          "miasma_response": {
+            "scarcity": "自己制御がしやすい",
+            "surplus": "罪業の具現化・局所災厄化"
+          },
+          "population_mode": "増えるというより“発生”し、社会から外縁に押し出される"
+        },
+        "social_bias": {
+          "statehood": "low",
+          "guildization": "medium",
+          "kinship_model": "修道会・罪人団・断罪縁",
+          "hierarchy": "medium",
+          "urbanization": "medium",
+          "diaspora": "high",
+          "slavery_relation": "贖罪兵・罰人として徴発されやすい",
+          "recordkeeping": "medium"
+        },
+        "sacred_bias": {
+          "faith_style": "失われた光・反転聖印・贖罪祈祷",
+          "hero_apotheosis": "medium_high",
+          "heresy_risk": "very_high",
+          "god_distance": "fractured",
+          "ritual_tendency": "封印・沈黙・断食・自傷的誓約"
+        },
+        "historical_bias": {
+          "era_strengths": [
+            "神代災厄期",
+            "贖罪戦役期",
+            "断罪統治期",
+            "大崩壊後の反転救済期"
+          ],
+          "era_weaknesses": [
+            "祝祭繁栄期",
+            "純白秩序期"
+          ],
+          "collapse_triggers": [
+            "贖罪の政治利用",
+            "封印破綻",
+            "自己同族断罪",
+            "神の沈黙"
+          ],
+          "survival_media": [
+            "反転聖印",
+            "鎖",
+            "罪人伝承",
+            "破損神器"
+          ],
+          "downfall_modes": [
+            "封印",
+            "断罪軍化",
+            "神話化",
+            "完全排斥"
+          ]
+        },
+        "macro_sensitivity": {
+          "food_scarcity": "medium",
+          "housing_crisis": "medium",
+          "mana_surplus": "high",
+          "mana_shortage": "medium_high",
+          "miasma_flood": "high",
+          "population_boom": "low",
+          "dungeon_boom": "medium_high",
+          "divine_war": "very_high",
+          "interworld_intrusion": "high"
+        },
+        "micro_conflict_vectors": [
+          "贖罪証文の偽造",
+          "断罪命令への抵抗",
+          "失われた聖名の探索",
+          "旧友からの密告",
+          "封印鎖の破断"
+        ]
+      }
+    },
+    {
+      "race_id": "plantfolk",
+      "label_ja": "樹生種（プラントフォーク）",
+      "continuity_from_visual_dictionary": {
+        "primary_attribute": "healing",
+        "secondary_affinities": [
+          "earth",
+          "water"
+        ],
+        "primary_weapon": "staff",
+        "culture_motif_anchor": "アイヌ文様＋豊穣儀礼文"
+      },
+      "historical_tagline": "成長・回復・季節循環を体現し、生態系そのものを再編する樹花の生命種。",
+      "simulation_genome": {
+        "ecology_bias": {
+          "preferred_biomes": [
+            "森縁",
+            "庭園聖域",
+            "湿潤平野",
+            "胞子林"
+          ],
+          "stress_tolerance": {
+            "cold": "low_to_medium",
+            "heat": "medium",
+            "famine": "high",
+            "plague": "high",
+            "migration": "low_to_medium"
+          },
+          "mana_response": {
+            "scarcity": "開花不全・治癒力低下",
+            "surplus": "急成長・過繁茂・花粉幻惑"
+          },
+          "miasma_response": {
+            "scarcity": "浄化生態が広がる",
+            "surplus": "寄生・菌禍・絡み森化"
+          },
+          "population_mode": "季節変化・種子散布・群落形成で増減する"
+        },
+        "social_bias": {
+          "statehood": "medium_low",
+          "guildization": "medium",
+          "kinship_model": "群落・根系・庭園守り",
+          "hierarchy": "low_to_medium",
+          "urbanization": "low",
+          "diaspora": "medium",
+          "slavery_relation": "薬園・温室・治癒役として囲い込まれやすい",
+          "recordkeeping": "medium"
+        },
+        "sacred_bias": {
+          "faith_style": "豊穣・回復・境界守護・種子循環の信仰",
+          "hero_apotheosis": "medium",
+          "heresy_risk": "low",
+          "god_distance": "nurturing",
+          "ritual_tendency": "発芽祭・花守・境界巡り"
+        },
+        "historical_bias": {
+          "era_strengths": [
+            "再生期",
+            "疫病後復興期",
+            "飢饉緩和期",
+            "緑化回復期"
+          ],
+          "era_weaknesses": [
+            "大火災期",
+            "伐採拡張期",
+            "寒冷長期化"
+          ],
+          "collapse_triggers": [
+            "火災",
+            "土壌汚染",
+            "胞子疫病",
+            "聖庭侵略"
+          ],
+          "survival_media": [
+            "種子",
+            "庭園",
+            "薬草知",
+            "境界祭",
+            "根系地図"
+          ],
+          "downfall_modes": [
+            "温室支配",
+            "伐採",
+            "薬材搾取",
+            "病害崩壊"
+          ]
+        },
+        "macro_sensitivity": {
+          "food_scarcity": "low",
+          "housing_crisis": "low",
+          "mana_surplus": "high",
+          "mana_shortage": "high",
+          "miasma_flood": "medium_high",
+          "population_boom": "medium",
+          "dungeon_boom": "medium",
+          "divine_war": "medium",
+          "interworld_intrusion": "medium_high"
+        },
+        "micro_conflict_vectors": [
+          "種子独占",
+          "薬草横流し",
+          "花守継承問題",
+          "病木伐採の是非",
+          "温室誘拐"
+        ]
+      }
+    },
+    {
+      "race_id": "gemfolk",
+      "label_ja": "石人種（ジェムフォーク／鉱晶種）",
+      "continuity_from_visual_dictionary": {
+        "primary_attribute": "metal",
+        "secondary_affinities": [
+          "earth",
+          "light"
+        ],
+        "primary_weapon": "axe",
+        "culture_motif_anchor": "アディンクラ＋結晶幾何学"
+      },
+      "historical_tagline": "核石・結晶・共鳴記憶を蓄積する静的長命種。記録と真理の保存者にも採掘対象にもなる。",
+      "simulation_genome": {
+        "ecology_bias": {
+          "preferred_biomes": [
+            "結晶洞",
+            "鉱晶台地",
+            "乾燥岩原",
+            "古代共鳴都市"
+          ],
+          "stress_tolerance": {
+            "cold": "high",
+            "heat": "medium",
+            "famine": "very_high",
+            "plague": "very_high",
+            "migration": "low"
+          },
+          "mana_response": {
+            "scarcity": "共鳴弱化で記憶伝送が途切れる",
+            "surplus": "核石が歌い出し記録が顕在化"
+          },
+          "miasma_response": {
+            "scarcity": "結晶秩序が安定",
+            "surplus": "核石汚染・暴走共鳴・採掘争奪"
+          },
+          "population_mode": "増殖は遅いが、個体ひとつの記録価値が非常に高い"
+        },
+        "social_bias": {
+          "statehood": "medium",
+          "guildization": "high",
+          "kinship_model": "核石系譜・共鳴縁",
+          "hierarchy": "medium",
+          "urbanization": "medium",
+          "diaspora": "low_to_medium",
+          "slavery_relation": "核石採掘・記憶抽出の対象になりやすい",
+          "recordkeeping": "very_high"
+        },
+        "sacred_bias": {
+          "faith_style": "真理・核・地脈・結晶記憶の信仰",
+          "hero_apotheosis": "medium_low",
+          "heresy_risk": "low",
+          "god_distance": "contemplative",
+          "ritual_tendency": "共鳴儀・沈黙祈祷・断面公開"
+        },
+        "historical_bias": {
+          "era_strengths": [
+            "ダンジョン時代",
+            "鉱晶期",
+            "記録崩壊後の再編期",
+            "真理争奪期"
+          ],
+          "era_weaknesses": [
+            "核石狩り期",
+            "大打撃戦期",
+            "魔素汚染期"
+          ],
+          "collapse_triggers": [
+            "核石破損",
+            "共鳴断絶",
+            "採掘支配",
+            "記録奪取"
+          ],
+          "survival_media": [
+            "碑文",
+            "格子建築",
+            "核歌",
+            "結晶武具",
+            "共鳴図"
+          ],
+          "downfall_modes": [
+            "採掘植民地化",
+            "核抽出",
+            "都市沈黙化",
+            "記録凍結"
+          ]
+        },
+        "macro_sensitivity": {
+          "food_scarcity": "very_low",
+          "housing_crisis": "low",
+          "mana_surplus": "high",
+          "mana_shortage": "high",
+          "miasma_flood": "high",
+          "population_boom": "low",
+          "dungeon_boom": "very_high",
+          "divine_war": "medium",
+          "interworld_intrusion": "medium_high"
+        },
+        "micro_conflict_vectors": [
+          "核石盗掘",
+          "共鳴記録の改竄",
+          "沈黙儀礼違反",
+          "断面公開の是非",
+          "結晶都市の封鎖"
+        ]
+      }
+    }
+  ],
+  "world_simulator_bridges": {
+    "meta_structures": [
+      "states",
+      "races",
+      "ethnic_tribes",
+      "religions",
+      "guilds",
+      "dungeon_networks",
+      "demon_lord_domains",
+      "interworld_frontiers",
+      "divine_factions"
+    ],
+    "macro_systems": [
+      "food",
+      "housing",
+      "politics",
+      "materials",
+      "resources",
+      "faith",
+      "military",
+      "public_order",
+      "class_structure",
+      "culture",
+      "disaster",
+      "population",
+      "mana",
+      "miasma"
+    ],
+    "micro_systems": [
+      "family",
+      "debt",
+      "loyalty",
+      "envy",
+      "love",
+      "co-conspiracy",
+      "master_disciple",
+      "class_difference",
+      "racial_difference",
+      "faith_difference",
+      "hidden_past",
+      "guilt"
+    ],
+    "propagation_rules": [
+      "ミクロイベントは地域変数を増減させる",
+      "地域変数が閾値を超えると勢力方針や国家方針が変化する",
+      "複数勢力・複数地域に跨る支配的変動はEra候補になる",
+      "主人公の介入は『因果足跡』として媒体別に保存される"
+    ],
+    "legacy_media": [
+      "law",
+      "architecture",
+      "ritual",
+      "song",
+      "chronicle",
+      "scar",
+      "curse",
+      "soul_residue",
+      "trade_custom",
+      "place_name"
+    ]
+  },
+  "quest_generation_frame": {
+    "macro_issue_seeds": [
+      "food_shortage",
+      "housing_crisis",
+      "succession_dispute",
+      "religious_split",
+      "smuggling",
+      "slave_escape",
+      "dungeon_surge",
+      "monster_attack",
+      "miasma_bloom",
+      "mana_drought",
+      "pilgrimage_crisis",
+      "refugee_wave",
+      "tax_fraud",
+      "port_blockade",
+      "sacred_tree_blight",
+      "contract_breach",
+      "plague_coverup"
+    ],
+    "micro_relation_seeds": [
+      "family_obligation",
+      "old_debt",
+      "secret_love",
+      "shared_crime",
+      "mentor_failure",
+      "sibling_rivalry",
+      "racial_prejudice",
+      "faith_difference",
+      "hidden_lineage",
+      "survivor_guilt"
+    ],
+    "quest_roles": [
+      "innkeeper",
+      "gatekeeper",
+      "merchant",
+      "priest",
+      "librarian",
+      "apothecary",
+      "mercenary",
+      "official",
+      "farmer",
+      "sailor",
+      "miner",
+      "grave_keeper",
+      "pilgrim",
+      "smith",
+      "captured_slave",
+      "heretic"
+    ],
+    "quest_types": [
+      "escort",
+      "investigation",
+      "retrieval",
+      "sealing",
+      "rescue",
+      "negotiation",
+      "concealment",
+      "escape_support",
+      "burial",
+      "supply_run",
+      "oath_repair",
+      "record_recovery",
+      "frontier_scouting"
+    ],
+    "npc_dialogue_bridge": {
+      "principle": "役割→関係→感情→破綻の順に発話を組み、Era空気・種族文化・階級差を上乗せする。",
+      "context_inputs": [
+        "role",
+        "personality_tags",
+        "relation_values",
+        "emotion_values",
+        "suppression_state",
+        "race_culture",
+        "era_pressure",
+        "class_position",
+        "faith_pressure",
+        "local_soundscape"
+      ]
+    }
+  },
+  "sample_generated_eras": [
+    {
+      "generated_from": {
+        "dominant_cluster": [
+          "mana_level:surplus",
+          "faith_density:surplus",
+          "resonance:water+mind",
+          "race_bias:fey+elf"
+        ],
+        "regional_spread": "沿岸3、森域2、学都1"
+      },
+      "official_name": "星脈再誦期",
+      "popular_name": "夢潮の年",
+      "heretical_name": "偽月氾濫期",
+      "chronicle_name": "ミレイア暦三一二年より続く夢潮氾濫期",
+      "daily_life_effects": [
+        "夢見病",
+        "記憶混濁",
+        "預言市場の膨張",
+        "夜間失踪"
+      ],
+      "beneficiaries": [
+        "fey",
+        "elf",
+        "demonian"
+      ],
+      "losers": [
+        "human_bureaucracies",
+        "dwarf_industrial_holds"
+      ]
+    },
+    {
+      "generated_from": {
+        "dominant_cluster": [
+          "food:scarcity",
+          "population:surplus",
+          "trade_routes:rupture",
+          "regional_phase:urban_seige"
+        ],
+        "regional_spread": "内陸4、港湾2"
+      },
+      "official_name": "施穀再編期",
+      "popular_name": "灰麦の年",
+      "heretical_name": "偽光断食期",
+      "chronicle_name": "アルゼス暦一八九年より続く灰麦飢饉期",
+      "daily_life_effects": [
+        "配給統制",
+        "子売り",
+        "穀倉護衛",
+        "暴動"
+      ],
+      "beneficiaries": [
+        "fishfolk",
+        "merchant_guilds",
+        "coastal_states"
+      ],
+      "losers": [
+        "inland_human_peasantry",
+        "werebeast_border_clans"
+      ]
+    },
+    {
+      "generated_from": {
+        "dominant_cluster": [
+          "miasma_level:surplus",
+          "dungeon_density:surplus",
+          "soul_residue:fixation",
+          "resonance:earth+metal+dark"
+        ],
+        "regional_spread": "山岳2、地下3、荒野1"
+      },
+      "official_name": "深層封鎖令期",
+      "popular_name": "穴の開いた時代",
+      "heretical_name": "逆契坑期",
+      "chronicle_name": "ヴァルケン暦七四年より続く深層固定期",
+      "daily_life_effects": [
+        "遺物流通",
+        "地下失踪",
+        "封鎖都市",
+        "魔物競売"
+      ],
+      "beneficiaries": [
+        "dwarf",
+        "gemfolk",
+        "demonian"
+      ],
+      "losers": [
+        "surface_agriculture",
+        "pilgrim_routes"
+      ]
+    }
+  ]
+}

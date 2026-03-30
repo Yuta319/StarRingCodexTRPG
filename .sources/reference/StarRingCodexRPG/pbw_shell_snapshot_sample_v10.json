@@ -1,0 +1,315 @@
+{
+  "sessionId": "sess_1729",
+  "generatedAt": "0007-01-01T00:00:00+09:00",
+  "shellMode": "intervention",
+  "worldSpine": {
+    "worldName": "霧環連界",
+    "calendarName": "オルシェル暦",
+    "year": 7,
+    "seasonIndex": 10,
+    "eraLabel": "昇神期",
+    "mainGodLabel": "オルシェル",
+    "activeChainLabel": "深層利権紛争",
+    "cycleDistortion": 58.2,
+    "divineWarPressure": 67.0,
+    "dominantBranch": "管理者の端",
+    "topNotes": [
+      "新たな神格が立ち上がる条件が熟している"
+    ],
+    "syncState": "synced"
+  },
+  "actorRail": {
+    "actorId": "protagonist_main",
+    "label": "均衡者の旅人",
+    "hp": {
+      "current": 115,
+      "max": 140
+    },
+    "mp": {
+      "current": 69,
+      "max": 84
+    },
+    "exp": {
+      "current": 35,
+      "next": 1355.7,
+      "label": "Vessel換算"
+    },
+    "vessel": 1035.7,
+    "existenceTitle": "神話に触れる者",
+    "skills": {
+      "combat": 55.2,
+      "diplomacy": 59.5,
+      "ritual": 62.9,
+      "stewardship": 62.7,
+      "stealth": 59.4,
+      "authority": 55.4
+    },
+    "tendencies": {
+      "mercy": 57.6,
+      "zeal": 46.2,
+      "ambition": 54.8,
+      "prudence": 61.3
+    },
+    "statuses": [
+      {
+        "statusId": "era_pressure",
+        "label": "昇神期",
+        "tone": "warning"
+      },
+      {
+        "statusId": "cycle_distortion",
+        "label": "輪廻歪み",
+        "tone": "warning"
+      }
+    ],
+    "blessings": [
+      {
+        "blessingId": "main_god_mark",
+        "label": "オルシェルの徴",
+        "tier": "major",
+        "tone": "holy"
+      },
+      {
+        "blessingId": "pantheon_god",
+        "label": "神意",
+        "tier": "minor",
+        "tone": "seal"
+      }
+    ],
+    "quickSlots": [
+      {
+        "slotIndex": 0,
+        "slotType": "skill",
+        "label": "観察",
+        "actionRef": "skill.observe"
+      },
+      {
+        "slotIndex": 1,
+        "slotType": "skill",
+        "label": "交渉",
+        "actionRef": "skill.negotiate"
+      },
+      {
+        "slotIndex": 2,
+        "slotType": "skill",
+        "label": "調査",
+        "actionRef": "skill.inspect"
+      },
+      {
+        "slotIndex": 3,
+        "slotType": "skill",
+        "label": "介入",
+        "actionRef": "skill.intervene"
+      }
+    ]
+  },
+  "scenePacket": {
+    "sceneId": "scene_deep_mouth_node_inst_trade_01_cl_joint_delving_recovery_32710_4",
+    "locationLabel": "深口盆地",
+    "focusLabel": "共同深層回収破綻",
+    "playerFacing": {
+      "headline": "深口盆地で、共同深層回収破綻の気配が表へにじみ出ている。",
+      "lines": [
+        "深口盆地では、共同深層回収破綻をめぐるざわめきが、もう奥に隠れきっていない。",
+        "穀冠王国と黒鎚採鉱盟のあいだで責任の押し付け合いが始まり、見張りも通行人も視線を落ち着けられずにいる。",
+        "深層回収の取り分と死者処理をめぐり提携が崩れ始めている。",
+        "もともとの約定は「穀冠王国＝黒鎚採鉱盟通商盟約」だが、その文言はもう現場を縛りきれていない。",
+        "聞き流して通れる気配ではない。手を入れるなら、今のうちだ。"
+      ],
+      "choiceChips": [
+        {
+          "choiceId": "observe",
+          "label": "現場を観察する",
+          "intentType": "observe",
+          "emphasis": "primary"
+        },
+        {
+          "choiceId": "speak",
+          "label": "代表に話しかける",
+          "intentType": "speak"
+        },
+        {
+          "choiceId": "inspect",
+          "label": "条文を確かめる",
+          "intentType": "inspect"
+        },
+        {
+          "choiceId": "intervene",
+          "label": "介入方針を決める",
+          "intentType": "intervene",
+          "emphasis": "risky"
+        }
+      ]
+    },
+    "dramaticLayers": {
+      "place": "深口盆地",
+      "focus": "共同深層回収破綻",
+      "discrepancy": "深層回収の取り分と死者処理をめぐり提携が崩れ始めている。",
+      "reaction": "関係者が互いの顔色を見ながら言葉を選んでいる",
+      "aftermath": "介入の仕方次第で制度・関係・Era圧まで動きうる"
+    },
+    "npcBeats": [
+      {
+        "npcId": "npc_kingdom",
+        "displayName": "穀冠王国の執達吏",
+        "roleBeat": "場を仕切るつもりで、一歩だけ前へ出る。",
+        "relationBeat": "こちらを値踏みしながらも、追い返しきれずにいる。",
+        "emotionBeat": "平静を装っているが、息の継ぎ目がわずかに浅い。",
+        "suppression": "medium",
+        "ruptureState": "clear_break"
+      },
+      {
+        "npcId": "npc_miners_compact",
+        "displayName": "黒鎚採鉱盟の帳場頭",
+        "roleBeat": "列の外側から、崩れた均衡を見張っている。",
+        "relationBeat": "介入を期待しつつも、先に頼るのは避けたがっている。",
+        "emotionBeat": "苛立ちより疲労が先に見える。",
+        "suppression": "medium",
+        "ruptureState": "clear_break"
+      }
+    ],
+    "linkedNodeIds": [
+      "node_inst_trade_01_cl_joint_delving_recovery_32710_4"
+    ],
+    "internalFoldCount": 3,
+    "renderHints": {
+      "preferredMode": "intervention",
+      "showDiceTray": true,
+      "highlightNodeId": "node_inst_trade_01_cl_joint_delving_recovery_32710_4"
+    }
+  },
+  "contextRail": {
+    "companions": [
+      {
+        "companionId": "cmp_record",
+        "label": "記録役",
+        "role": "観測補佐"
+      }
+    ],
+    "npcFocus": {
+      "npcId": "npc_kingdom",
+      "displayName": "穀冠王国の執達吏",
+      "role": "焦点人物",
+      "relationSummary": "利害の均衡を崩さぬよう距離を取っている",
+      "emotionSummary": "疲れを隠して手順を守ろうとしている",
+      "suppression": "medium",
+      "ruptureState": "clear_break"
+    },
+    "activeNode": {
+      "nodeId": "node_inst_trade_01_cl_joint_delving_recovery_32710_4",
+      "title": "共同深層回収破綻",
+      "chainLabel": "深層利権紛争",
+      "institutionLabel": "穀冠王国＝黒鎚採鉱盟通商盟約",
+      "questTitle": "共同深層回収破綻への介入",
+      "severity": 100.0,
+      "urgency": 100.0,
+      "stage": 2,
+      "status": "active",
+      "recommendedVectors": [
+        "combat",
+        "ritual",
+        "stealth"
+      ],
+      "projectedLegacies": [
+        "魂",
+        "伝承",
+        "正史"
+      ]
+    },
+    "institutionAlert": {
+      "institutionId": "inst_trade_01",
+      "label": "穀冠王国＝黒鎚採鉱盟通商盟約",
+      "status": "strained",
+      "breachRisk": 55.4
+    },
+    "worldPulse": {
+      "cycleDistortion": 58.2,
+      "apotheosisFlux": 97.1,
+      "successionPressure": 58.3,
+      "divineWarPressure": 67.0,
+      "topNote": "新たな神格が立ち上がる条件が熟している"
+    }
+  },
+  "hotbar": {
+    "items": [
+      {
+        "itemId": "tab_character",
+        "label": "Character",
+        "target": "character",
+        "iconKey": "char"
+      },
+      {
+        "itemId": "tab_relics",
+        "label": "Relics",
+        "target": "relics",
+        "iconKey": "relic"
+      },
+      {
+        "itemId": "tab_skills",
+        "label": "Skills",
+        "target": "skills",
+        "iconKey": "skill"
+      },
+      {
+        "itemId": "tab_node_board",
+        "label": "Node Board",
+        "target": "node_board",
+        "iconKey": "node",
+        "badgeCount": 1
+      },
+      {
+        "itemId": "tab_codex",
+        "label": "Codex",
+        "target": "codex",
+        "iconKey": "book"
+      },
+      {
+        "itemId": "tab_journal",
+        "label": "Journal",
+        "target": "journal",
+        "iconKey": "journal"
+      },
+      {
+        "itemId": "tab_world",
+        "label": "World",
+        "target": "world",
+        "iconKey": "world"
+      },
+      {
+        "itemId": "tab_dice",
+        "label": "Dice",
+        "target": "dice",
+        "iconKey": "dice"
+      },
+      {
+        "itemId": "tab_assets",
+        "label": "Assets",
+        "target": "assets",
+        "iconKey": "image"
+      },
+      {
+        "itemId": "tab_settings",
+        "label": "Settings",
+        "target": "settings",
+        "iconKey": "gear"
+      }
+    ]
+  },
+  "badges": [
+    {
+      "badgeId": "quest_badge",
+      "target": "node_board",
+      "label": "介入候補あり",
+      "tone": "warn",
+      "count": 9
+    }
+  ],
+  "overlays": [
+    {
+      "overlayId": "olv_intervention",
+      "type": "intervention",
+      "state": "hidden"
+    }
+  ],
+  "lastSeq": 2010
+}

@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/pbw/schemas/ScenePacketV1.schema.json",
+  "title": "ScenePacketV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sceneId",
+    "playerFacing",
+    "dramaticLayers",
+    "npcBeats",
+    "linkedNodeIds"
+  ],
+  "properties": {
+    "sceneId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable scene packet identifier."
+    },
+    "locationLabel": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Player-facing current location label."
+    },
+    "focusLabel": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Short label for the immediate dramatic focus."
+    },
+    "playerFacing": {
+      "$ref": "#/$defs/PlayerFacingBlock"
+    },
+    "dramaticLayers": {
+      "$ref": "#/$defs/DramaticLayers"
+    },
+    "npcBeats": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/NpcBeatRM"
+      },
+      "description": "Compact, renderer-friendly NPC beat packets for the current scene."
+    },
+    "linkedNodeIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "Related historical node IDs or active node IDs."
+    },
+    "internalFoldCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "How many internal/debug-only items were folded away from the player-facing HUD."
+    },
+    "renderHints": {
+      "$ref": "#/$defs/RenderHints"
+    }
+  },
+  "$defs": {
+    "PlayerFacingBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "headline",
+        "lines",
+        "choiceChips"
+      ],
+      "properties": {
+        "headline": {
+          "type": "string",
+          "minLength": 1,
+          "description": "One-line scene headline."
+        },
+        "lines": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 6,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "3-6 player-facing lines, aligned to the PBW event display template."
+        },
+        "choiceChips": {
+          "type": "array",
+          "maxItems": 4,
+          "items": {
+            "$ref": "#/$defs/ChoiceChipRM"
+          },
+          "description": "Compact choice buttons shown under the event packet."
+        }
+      }
+    },
+    "ChoiceChipRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "choiceId",
+        "label",
+        "intentType"
+      ],
+      "properties": {
+        "choiceId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 24,
+          "description": "UI-safe action label, typically 12-20 JP characters."
+        },
+        "intentType": {
+          "type": "string",
+          "enum": [
+            "observe",
+            "speak",
+            "intervene",
+            "move",
+            "inspect",
+            "use",
+            "open",
+            "continue",
+            "custom"
+          ]
+        },
+        "emphasis": {
+          "type": "string",
+          "enum": [
+            "primary",
+            "default",
+            "risky",
+            "muted"
+          ],
+          "default": "default"
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "confirmRequired": {
+          "type": "boolean",
+          "default": false
+        },
+        "payload": {
+          "type": "object",
+          "description": "Optional structured intent payload forwarded to the GPT input adapter or command layer."
+        }
+      }
+    },
+    "DramaticLayers": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "place": {
+          "type": "string"
+        },
+        "focus": {
+          "type": "string"
+        },
+        "discrepancy": {
+          "type": "string"
+        },
+        "reaction": {
+          "type": "string"
+        },
+        "aftermath": {
+          "type": "string"
+        }
+      },
+      "description": "Renderer-side dramatic decomposition: place -> focus -> discrepancy -> reaction -> aftermath."
+    },
+    "NpcBeatRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "npcId",
+        "displayName",
+        "roleBeat",
+        "relationBeat",
+        "emotionBeat",
+        "ruptureState"
+      ],
+      "properties": {
+        "npcId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "portraitAssetId": {
+          "type": "string"
+        },
+        "roleBeat": {
+          "type": "string",
+          "description": "The NPC's first line or first visible beat driven by role."
+        },
+        "relationBeat": {
+          "type": "string",
+          "description": "Second beat driven by current relation."
+        },
+        "emotionBeat": {
+          "type": "string",
+          "description": "Third beat driven by current emotion."
+        },
+        "suppression": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "sealed"
+          ],
+          "description": "How strongly the NPC is suppressing what they really feel or know."
+        },
+        "ruptureState": {
+          "type": "string",
+          "enum": [
+            "stable",
+            "micro_leak",
+            "local_break",
+            "clear_break"
+          ]
+        }
+      }
+    },
+    "RenderHints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "preferredMode": {
+          "type": "string",
+          "enum": [
+            "narrative",
+            "dialogue",
+            "combat",
+            "intervention",
+            "menu",
+            "cinematic"
+          ]
+        },
+        "showDiceTray": {
+          "type": "boolean",
+          "default": false
+        },
+        "openNpcDrawerOnLoad": {
+          "type": "boolean",
+          "default": false
+        },
+        "highlightNodeId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

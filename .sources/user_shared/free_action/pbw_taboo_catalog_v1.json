@@ -1,0 +1,631 @@
+{
+  "schema_version": "1.0",
+  "project": "PBW_TABOO_CATALOG",
+  "design_goal": "宗教・儀礼・神話・死者・輪廻に関わる禁忌を、世界因果と圧力値へ接続するための基準辞書。",
+  "core_principles": [
+    "禁忌は単なる悪徳ではなく、世界の神話構造・共同体規範・役割継承に傷を残す。",
+    "禁忌は law より faith と legitimacy と ritual pollution を強く動かす。",
+    "禁忌行為は発覚しなくても、痕跡・汚染・噂・加護の喪失として残りうる。",
+    "禁忌の担い手も有限であり、座や役割だけが継承されうる。"
+  ],
+  "entries": [
+    {
+      "id": "relic_defilement",
+      "label_ja": "聖遺物冒涜",
+      "layer": "mythic",
+      "typical_forms": [
+        "聖遺物の売買",
+        "血で汚す",
+        "封印具の私用",
+        "遺物解体"
+      ],
+      "primary_motives": [
+        "利得",
+        "絶望",
+        "禁制の力への欲望",
+        "信仰軽視"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "tabooPressure",
+          "ritualPollution",
+          "scarcity",
+          "divineWarPressure"
+        ],
+        "mitigators": [
+          "faith_density高",
+          "sanctuary_protection",
+          "ritual_discipline高"
+        ]
+      },
+      "role_slot_affinities": [
+        "祈鐘士",
+        "神殿保管役",
+        "遺物商",
+        "目録官"
+      ],
+      "default_consequences": {
+        "institution": [
+          "faith legitimacy低下",
+          "holy_war口実"
+        ],
+        "world": [
+          "ritualPollution上昇",
+          "divineWarPressure上昇",
+          "publicShame上昇"
+        ],
+        "narrative": [
+          "冷えた加護",
+          "割れた聖具",
+          "血のしみ",
+          "祈りの濁り"
+        ]
+      }
+    },
+    {
+      "id": "corpse_desecration",
+      "label_ja": "死体損壊・死者冒涜",
+      "layer": "mythic_to_social",
+      "typical_forms": [
+        "死体の解体",
+        "墓荒らし",
+        "遺体からの剥ぎ取り",
+        "儀礼なき焼却"
+      ],
+      "primary_motives": [
+        "利得",
+        "恐怖",
+        "急ぎの隠蔽",
+        "禁呪素材収集"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "war_pressure",
+          "law_order低下",
+          "ritualPollution",
+          "desperation"
+        ],
+        "mitigators": [
+          "funerary_rituals",
+          "community_watch",
+          "faith_density高"
+        ]
+      },
+      "role_slot_affinities": [
+        "坑路案内",
+        "死体処理役",
+        "禁呪師",
+        "墓守"
+      ],
+      "default_consequences": {
+        "npc": [
+          "haunting fear",
+          "publicShame",
+          "secretState進行"
+        ],
+        "world": [
+          "tabooPressure上昇",
+          "ritualPollution上昇",
+          "undead rumor"
+        ],
+        "narrative": [
+          "荒れた墓",
+          "欠けた骨",
+          "祈りなき遺体",
+          "腐臭"
+        ]
+      }
+    },
+    {
+      "id": "sanctuary_violation",
+      "label_ja": "聖域侵犯",
+      "layer": "religious",
+      "typical_forms": [
+        "神殿での殺傷",
+        "避難民の引きずり出し",
+        "聖域での拘束",
+        " sanctuary 内の略奪"
+      ],
+      "primary_motives": [
+        "報復",
+        "恐怖",
+        "権威誇示",
+        "追跡の継続"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "law_order低下",
+          "war_pressure",
+          "publicLegitimacy低下"
+        ],
+        "mitigators": [
+          "faith_density高",
+          "publicShame高",
+          "sanctuary_network"
+        ]
+      },
+      "role_slot_affinities": [
+        "停戦執行官",
+        "神官",
+        "傭兵頭",
+        "辺境見張り"
+      ],
+      "default_consequences": {
+        "institution": [
+          "religious support急落",
+          "holy_war pressure増"
+        ],
+        "world": [
+          "tabooPressure上昇",
+          "publicShame上昇"
+        ],
+        "narrative": [
+          "踏み荒らされた床",
+          "倒れた灯",
+          "沈黙した祈り"
+        ]
+      }
+    },
+    {
+      "id": "false_oracle",
+      "label_ja": "神託偽造・神名詐称",
+      "layer": "mythic",
+      "typical_forms": [
+        "偽の神託文",
+        "夢告の捏造",
+        "神名を使った統治",
+        "昇神宣言の偽装"
+      ],
+      "primary_motives": [
+        "支配",
+        "正統性獲得",
+        "戦争正当化",
+        "信徒動員"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "publicLegitimacy低下",
+          "social_hypocrisy",
+          "divineWarPressure",
+          "successionPressure"
+        ],
+        "mitigators": [
+          "theological review",
+          "ritual discipline",
+          "public trust"
+        ]
+      },
+      "role_slot_affinities": [
+        "祈鐘士",
+        "主神代行",
+        "書記官",
+        "神託解釈役"
+      ],
+      "default_consequences": {
+        "institution": [
+          "faith schism",
+          "calendar claim conflict"
+        ],
+        "world": [
+          "divineWarPressure上昇",
+          "ritualPollution上昇"
+        ],
+        "narrative": [
+          "偽の御告げ",
+          "食い違う神名",
+          "裂ける信徒"
+        ]
+      }
+    },
+    {
+      "id": "forbidden_blood_union",
+      "label_ja": "禁じられた血統結合",
+      "layer": "social_to_mythic",
+      "typical_forms": [
+        "血統禁忌破り",
+        "神官婚の破り",
+        "異種婚禁破り",
+        "祭祀継承の混線"
+      ],
+      "primary_motives": [
+        "愛情",
+        "政治結託",
+        "血統操作",
+        "禁忌への反抗"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "social_hypocrisy",
+          "successionPressure",
+          "desire",
+          "publicLegitimacy低下"
+        ],
+        "mitigators": [
+          "community_trust",
+          "clear succession norms",
+          "ritual settlement"
+        ]
+      },
+      "role_slot_affinities": [
+        "祈鐘士",
+        "貴族監督役",
+        "継承管理役"
+      ],
+      "default_consequences": {
+        "institution": [
+          "succession crisis",
+          "faith schism"
+        ],
+        "world": [
+          "publicShame上昇",
+          "tabooPressure上昇"
+        ],
+        "narrative": [
+          "血統疑惑",
+          "密会",
+          "継承名簿のねじれ"
+        ]
+      }
+    },
+    {
+      "id": "spirit_binding",
+      "label_ja": "霊縛・魂拘束",
+      "layer": "mythic",
+      "typical_forms": [
+        "亡魂の拘束",
+        "英霊の私用",
+        "魂片の保存",
+        "怨霊利用"
+      ],
+      "primary_motives": [
+        "力の獲得",
+        "死者の保持",
+        "戦力化",
+        "喪失拒否"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "soulPressure",
+          "grief",
+          "divineWarPressure",
+          "ritualPollution"
+        ],
+        "mitigators": [
+          "funerary ritual",
+          "acceptance of loss",
+          "collectiveEfficacy高"
+        ]
+      },
+      "role_slot_affinities": [
+        "祈鐘士",
+        "死霊師",
+        "主神代行",
+        "禁呪師"
+      ],
+      "default_consequences": {
+        "institution": [
+          "faith support低下",
+          "cycle distortion増幅"
+        ],
+        "world": [
+          "ritualPollution上昇",
+          "distortion上昇",
+          "memoryLeak上昇"
+        ],
+        "narrative": [
+          "囁く魂片",
+          "離れない気配",
+          "眠れない夜"
+        ]
+      }
+    },
+    {
+      "id": "name_erasure",
+      "label_ja": "真名消去・記録抹消",
+      "layer": "mythic_to_institutional",
+      "typical_forms": [
+        "名簿からの抹消",
+        "供養名の剥奪",
+        "役職記録の消去",
+        "神前記録の捏造"
+      ],
+      "primary_motives": [
+        "処罰",
+        "隠蔽",
+        "支配",
+        "復讐"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "corruption",
+          "publicLegitimacy低下",
+          "social_hypocrisy"
+        ],
+        "mitigators": [
+          "recordkeeping高",
+          "public archive",
+          "community witness"
+        ]
+      },
+      "role_slot_affinities": [
+        "目録官",
+        "停戦執行官",
+        "神殿書記",
+        "継承管理役"
+      ],
+      "default_consequences": {
+        "institution": [
+          "archive breach",
+          "trust崩壊"
+        ],
+        "world": [
+          "memoryLeak上昇",
+          "publicShame上昇"
+        ],
+        "narrative": [
+          "消えた名",
+          "削られた板",
+          "記憶の空白"
+        ]
+      }
+    },
+    {
+      "id": "sealed_text_usage",
+      "label_ja": "禁書・禁譜の使用",
+      "layer": "mythic",
+      "typical_forms": [
+        "禁譜唱和",
+        "封印文の私用",
+        "禁書売買",
+        "封鎖解呪の無断使用"
+      ],
+      "primary_motives": [
+        "切迫",
+        "知識欲",
+        "力の獲得",
+        "生還優先"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "desperation",
+          "dungeonThreat",
+          "sealIntegrity低下",
+          "ritualPressure"
+        ],
+        "mitigators": [
+          "ritual discipline",
+          "supervision",
+          "publicLegitimacy高"
+        ]
+      },
+      "role_slot_affinities": [
+        "祈鐘士",
+        "坑路案内",
+        "禁書庫番",
+        "学匠"
+      ],
+      "default_consequences": {
+        "institution": [
+          "faith schism",
+          "seal governance mistrust"
+        ],
+        "world": [
+          "tabooPressure上昇",
+          "ritualPollution上昇",
+          "distortion上昇"
+        ],
+        "narrative": [
+          "逆転した抑揚",
+          "焼け残りの譜",
+          "濁る祈り"
+        ]
+      }
+    },
+    {
+      "id": "ward_breaking",
+      "label_ja": "結界破り・封印破り",
+      "layer": "mythic_to_dungeon",
+      "typical_forms": [
+        "封印解除",
+        "結界の穴あけ",
+        "護符剥がし",
+        "安全柵の切断"
+      ],
+      "primary_motives": [
+        "近道",
+        "利得",
+        "救出",
+        "復讐",
+        "禁制への誘惑"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "dungeonThreat",
+          "sealIntegrity低下",
+          "scarcity",
+          "vicePressure"
+        ],
+        "mitigators": [
+          "ritual discipline",
+          "collectiveEfficacy高",
+          "guardian presence"
+        ]
+      },
+      "role_slot_affinities": [
+        "坑路案内",
+        "祈鐘士",
+        "盗掘師",
+        "辺境見張り"
+      ],
+      "default_consequences": {
+        "institution": [
+          "seal governance breach",
+          "holy war excuse"
+        ],
+        "world": [
+          "distortion上昇",
+          "dungeonThreat上昇",
+          "ritualPollution上昇"
+        ],
+        "narrative": [
+          "破れた札",
+          "冷たい風",
+          "鈍い鳴動"
+        ]
+      }
+    },
+    {
+      "id": "apotheosis_sacrifice",
+      "label_ja": "昇神のための犠牲儀礼",
+      "layer": "mythic",
+      "typical_forms": [
+        "候補者の選別殺し",
+        "祈りの強制収穫",
+        "魂の供出",
+        "神格汚染"
+      ],
+      "primary_motives": [
+        "神格獲得",
+        "主神交代介入",
+        "信徒操作",
+        "永続化欲望"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "apotheosisFlux",
+          "successionPressure",
+          "divineWarPressure",
+          "soulPressure"
+        ],
+        "mitigators": [
+          "public legitimacy",
+          "ritual oversight",
+          "cycle stability"
+        ]
+      },
+      "role_slot_affinities": [
+        "主神代行",
+        "祈鐘士",
+        "神託解釈役",
+        "戦場祭司"
+      ],
+      "default_consequences": {
+        "institution": [
+          "faith split",
+          "calendar conflict"
+        ],
+        "world": [
+          "distortion上昇",
+          "god_hunger上昇",
+          "divineWarPressure上昇"
+        ],
+        "narrative": [
+          "選別された祈り",
+          "沈黙した候補者",
+          "血の祭壇"
+        ]
+      }
+    },
+    {
+      "id": "reincarnation_interference",
+      "label_ja": "輪廻干渉",
+      "layer": "mythic",
+      "typical_forms": [
+        "魂の再配列",
+        "転生の停止",
+        "記憶の横流し",
+        "同一魂の引き留め"
+      ],
+      "primary_motives": [
+        "喪失否認",
+        "支配",
+        "世界改変",
+        "創造神機構への介入"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "distortion",
+          "soulPressure",
+          "memoryLeak",
+          "god_hunger"
+        ],
+        "mitigators": [
+          "cycle stability",
+          "funerary ritual",
+          "main god authority"
+        ]
+      },
+      "role_slot_affinities": [
+        "主神代行",
+        "祈鐘士",
+        "禁呪師",
+        "死霊研究者"
+      ],
+      "default_consequences": {
+        "institution": [
+          "cycle legitimacy collapse",
+          "heroic soul unrest"
+        ],
+        "world": [
+          "distortion上昇",
+          "rebirthDrift上昇",
+          "memoryLeak上昇"
+        ],
+        "narrative": [
+          "既視感",
+          "戻らない死者",
+          "他人の記憶"
+        ]
+      }
+    },
+    {
+      "id": "false_sanctification",
+      "label_ja": "偽の聖別・浄化詐称",
+      "layer": "religious_to_institutional",
+      "typical_forms": [
+        "浄化済み偽装",
+        "偽の贖罪",
+        "汚染隠し",
+        "冒涜の洗浄証明"
+      ],
+      "primary_motives": [
+        "体面",
+        "統治維持",
+        "損失回避",
+        "腐敗隠し"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "social_hypocrisy",
+          "publicShame恐怖",
+          "publicLegitimacy低下"
+        ],
+        "mitigators": [
+          "transparent ritual",
+          "witness system",
+          "recordkeeping高"
+        ]
+      },
+      "role_slot_affinities": [
+        "祈鐘士",
+        "目録官",
+        "神殿監査役"
+      ],
+      "default_consequences": {
+        "institution": [
+          "faith trust急落",
+          "ritual authority低下"
+        ],
+        "world": [
+          "ritualPollution上昇",
+          "moralCorrosion上昇"
+        ],
+        "narrative": [
+          "清められたはずの痕",
+          "消えない臭い",
+          "信用のひび"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,562 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pbw_free_action_structured_result_v1",
+  "title": "PBW Free Action Structured Result v1",
+  "description": "自由入力TRPG層の裁定結果を、backend正本として保存するための構造化スキーマ。自由文そのものは正本にしない。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "action_id",
+    "session",
+    "source",
+    "normalized_intent",
+    "adjudication",
+    "consequence",
+    "recording"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "action_id": {
+      "type": "string",
+      "pattern": "^fa_[A-Za-z0-9_\\-]+$"
+    },
+    "session": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "session_number",
+        "turn_counter",
+        "phase_label"
+      ],
+      "properties": {
+        "session_number": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "turn_counter": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "phase_label": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "description": "自由入力の原文は保持しない。必要なら要約とハッシュのみを保存する。",
+      "additionalProperties": false,
+      "required": [
+        "input_mode",
+        "player_summary",
+        "raw_text_hash",
+        "persist_raw_text"
+      ],
+      "properties": {
+        "input_mode": {
+          "const": "free_text"
+        },
+        "player_summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "raw_text_hash": {
+          "type": "string",
+          "minLength": 16,
+          "maxLength": 128
+        },
+        "persist_raw_text": {
+          "const": false
+        }
+      }
+    },
+    "normalized_intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action_family",
+        "intent_type",
+        "goal",
+        "means",
+        "target_role_slots",
+        "target_institutions",
+        "target_regions",
+        "secrecy_level",
+        "violence_level",
+        "taboo_level",
+        "vice_tags",
+        "taboo_tags",
+        "expected_gains",
+        "likely_costs",
+        "justification_frames"
+      ],
+      "properties": {
+        "action_family": {
+          "type": "string",
+          "enum": [
+            "theft",
+            "fraud",
+            "smuggling",
+            "coercion",
+            "violence",
+            "illicit_relationship",
+            "sacrilege",
+            "taboo_ritual",
+            "deception",
+            "sabotage",
+            "escape",
+            "concealment",
+            "social_manipulation",
+            "other"
+          ]
+        },
+        "intent_type": {
+          "type": "string",
+          "enum": [
+            "custom_action",
+            "observe",
+            "speak",
+            "inspect",
+            "intervene"
+          ]
+        },
+        "goal": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "means": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "maxItems": 8,
+          "uniqueItems": true
+        },
+        "target_role_slots": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^slot_[A-Za-z0-9_\\-]+$"
+          },
+          "maxItems": 6,
+          "uniqueItems": true
+        },
+        "target_institutions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^inst_[A-Za-z0-9_\\-]+$"
+          },
+          "maxItems": 6,
+          "uniqueItems": true
+        },
+        "target_regions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "maxItems": 6,
+          "uniqueItems": true
+        },
+        "secrecy_level": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "violence_level": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "taboo_level": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "vice_tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 8,
+          "uniqueItems": true
+        },
+        "taboo_tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 8,
+          "uniqueItems": true
+        },
+        "expected_gains": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "survival",
+              "wealth",
+              "status",
+              "secrecy",
+              "revenge",
+              "desire",
+              "power",
+              "faith",
+              "escape"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 5,
+          "uniqueItems": true
+        },
+        "likely_costs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "maxItems": 8
+        },
+        "justification_frames": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "survival",
+              "fear",
+              "revenge",
+              "greater_good",
+              "loyalty",
+              "desire",
+              "greed",
+              "humiliation",
+              "faith",
+              "coercion"
+            ]
+          },
+          "maxItems": 4,
+          "uniqueItems": true
+        }
+      }
+    },
+    "adjudication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "success_band",
+        "discovery_state",
+        "difficulty",
+        "capability",
+        "delta",
+        "vice_score",
+        "taboo_score",
+        "note"
+      ],
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "success",
+            "partial_success",
+            "failure",
+            "exposed",
+            "concealed_success",
+            "backlash"
+          ]
+        },
+        "success_band": {
+          "type": "string",
+          "enum": [
+            "clean",
+            "costly",
+            "mixed",
+            "disastrous"
+          ]
+        },
+        "discovery_state": {
+          "type": "string",
+          "enum": [
+            "unseen",
+            "suspected",
+            "exposed",
+            "contested"
+          ]
+        },
+        "difficulty": {
+          "type": "number"
+        },
+        "capability": {
+          "type": "number"
+        },
+        "delta": {
+          "type": "number"
+        },
+        "vice_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "taboo_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 220
+        }
+      }
+    },
+    "consequence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "node_patch",
+        "institution_patch",
+        "world_patch",
+        "campaign_patch",
+        "npc_patch",
+        "logs"
+      ],
+      "properties": {
+        "node_patch": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "severity_delta",
+            "urgency_delta",
+            "status_after"
+          ],
+          "properties": {
+            "severity_delta": {
+              "type": "number"
+            },
+            "urgency_delta": {
+              "type": "number"
+            },
+            "status_after": {
+              "type": "string"
+            }
+          }
+        },
+        "institution_patch": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "institution_id",
+              "breach_risk_delta",
+              "support_delta"
+            ],
+            "properties": {
+              "institution_id": {
+                "type": "string",
+                "pattern": "^inst_[A-Za-z0-9_\\-]+$"
+              },
+              "breach_risk_delta": {
+                "type": "number"
+              },
+              "support_delta": {
+                "type": "number"
+              },
+              "status_after": {
+                "type": "string"
+              }
+            }
+          },
+          "maxItems": 8
+        },
+        "world_patch": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "law_order_delta",
+            "vice_pressure_delta",
+            "taboo_pressure_delta",
+            "moral_corrosion_delta",
+            "public_infamy_delta",
+            "hidden_crimes_delta"
+          ],
+          "properties": {
+            "law_order_delta": {
+              "type": "number"
+            },
+            "vice_pressure_delta": {
+              "type": "number"
+            },
+            "taboo_pressure_delta": {
+              "type": "number"
+            },
+            "moral_corrosion_delta": {
+              "type": "number"
+            },
+            "public_infamy_delta": {
+              "type": "number"
+            },
+            "hidden_crimes_delta": {
+              "type": "number"
+            },
+            "ritual_pollution_delta": {
+              "type": "number"
+            },
+            "legitimacy_delta": {
+              "type": "number"
+            }
+          }
+        },
+        "campaign_patch": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "world_marks_append",
+            "vice_trace_append",
+            "taboo_trace_append"
+          ],
+          "properties": {
+            "world_marks_append": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 6
+            },
+            "vice_trace_append": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 6
+            },
+            "taboo_trace_append": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 6
+            },
+            "next_session_hook_append": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 6
+            }
+          }
+        },
+        "npc_patch": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "role_slot_id",
+              "trust_delta",
+              "stress_delta"
+            ],
+            "properties": {
+              "role_slot_id": {
+                "type": "string",
+                "pattern": "^slot_[A-Za-z0-9_\\-]+$"
+              },
+              "trust_delta": {
+                "type": "number"
+              },
+              "stress_delta": {
+                "type": "number"
+              },
+              "secret_state_after": {
+                "type": "string",
+                "enum": [
+                  "hidden",
+                  "hinted",
+                  "exposed"
+                ]
+              },
+              "weakness_revealed": {
+                "type": "boolean"
+              },
+              "occupant_status_after": {
+                "type": "string",
+                "enum": [
+                  "alive",
+                  "missing",
+                  "retired",
+                  "dead",
+                  "stripped",
+                  "suspended"
+                ]
+              }
+            }
+          },
+          "maxItems": 8
+        },
+        "logs": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "session_summary",
+            "afterglow",
+            "archive_note"
+          ],
+          "properties": {
+            "session_summary": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 220
+            },
+            "afterglow": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 220
+            },
+            "archive_note": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 220
+            }
+          }
+        }
+      }
+    },
+    "recording": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "persist_structured_result",
+        "persist_raw_text",
+        "replay_safe",
+        "privacy_tier"
+      ],
+      "properties": {
+        "persist_structured_result": {
+          "const": true
+        },
+        "persist_raw_text": {
+          "const": false
+        },
+        "replay_safe": {
+          "const": true
+        },
+        "privacy_tier": {
+          "type": "string",
+          "enum": [
+            "session_internal",
+            "campaign_internal"
+          ]
+        }
+      }
+    }
+  }
+}

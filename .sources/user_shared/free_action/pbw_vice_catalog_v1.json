@@ -1,0 +1,831 @@
+{
+  "schema_version": "1.0",
+  "project": "PBW_VICE_CATALOG",
+  "design_goal": "悪徳・犯罪・醜悪を『雰囲気』ではなく世界因果として扱うための基準辞書。",
+  "core_principles": [
+    "悪徳は個人属性ではなく、動機圧・機会圧・統制低下・正当化圧の組み合わせとして発生する。",
+    "悪徳は個人層・集団層・制度層で扱う。",
+    "創造神以外は有限存在であり、悪徳の担い手も交代・失踪・死亡・忘却しうる。",
+    "world state に保存するのは自由文ではなく構造化結果だけである。",
+    "悪徳行為は必ず誰かの利得と誰かの損失、そして制度・関係・風聞・痕跡の変化を残す。"
+  ],
+  "psychology_axes": {
+    "motive_pressure": [
+      "欠乏",
+      "屈辱",
+      "欲望",
+      "恐怖",
+      "出世欲",
+      "復讐",
+      "依存",
+      "嫉妬"
+    ],
+    "opportunity_pressure": [
+      "見張り不在",
+      "密輸路",
+      "監査不足",
+      "混乱",
+      "暗所",
+      "権限集中",
+      "封印弱化"
+    ],
+    "control_breakdown": [
+      "低い自己統制",
+      "共同体の弱体化",
+      "正統性低下",
+      "疲弊",
+      "酩酊",
+      "戦時例外"
+    ],
+    "justification_pressure": [
+      "皆やっている",
+      "より大きな目的のため",
+      "相手が悪い",
+      "必要悪",
+      "被害は小さい",
+      "信仰や大義の名による免罪"
+    ]
+  },
+  "entries": [
+    {
+      "id": "adultery",
+      "label_ja": "不倫・婚姻背信",
+      "layer": "personal",
+      "crime_status": "culture_dependent",
+      "vice_status": "high",
+      "typical_forms": [
+        "婚姻誓約破り",
+        "権力者と従属者の関係",
+        "政治婚の裏切り",
+        "宗教的禁欲破り"
+      ],
+      "primary_motives": [
+        "欲望",
+        "孤立",
+        "復讐",
+        "承認欲求",
+        "退屈",
+        "権力の誇示"
+      ],
+      "opportunity_requirements": [
+        "秘匿空間",
+        "監視の薄さ",
+        "共犯者",
+        "書簡や密会経路"
+      ],
+      "justification_templates": [
+        "愛だから",
+        "政治婚に正当性はない",
+        "互いに利用しているだけ",
+        "相手の方が先に裏切った"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "social_hypocrisy",
+          "vicePressure",
+          "publicLegitimacy低下",
+          "collectiveEfficacy低下"
+        ],
+        "mitigators": [
+          "community_trust",
+          "public_shame高",
+          "ritual_discipline高"
+        ]
+      },
+      "role_slot_affinities": [
+        "停戦執行官",
+        "神官",
+        "貴族監督官",
+        "記録官"
+      ],
+      "default_consequences": {
+        "npc": [
+          "trust低下",
+          "脅迫材料化",
+          "secretState進行"
+        ],
+        "institution": [
+          "婚姻制度不信",
+          "継承争いの火種"
+        ],
+        "world": [
+          "publicShame上昇",
+          "successionPressure上昇"
+        ],
+        "narrative": [
+          "書簡",
+          "目撃証言",
+          "寝所の痕跡",
+          "血統疑惑"
+        ]
+      }
+    },
+    {
+      "id": "fraud",
+      "label_ja": "詐欺・偽装",
+      "layer": "personal_to_institutional",
+      "crime_status": "high",
+      "vice_status": "medium",
+      "typical_forms": [
+        "偽許可証",
+        "補給詐欺",
+        "偽神託の前段",
+        "偽の恩赦",
+        "価格偽装"
+      ],
+      "primary_motives": [
+        "利得",
+        "保身",
+        "借金回避",
+        "制度悪用"
+      ],
+      "opportunity_requirements": [
+        "書類アクセス",
+        "印章",
+        "混乱",
+        "監査不足"
+      ],
+      "justification_templates": [
+        "皆が黙認している",
+        "必要な帳尻合わせ",
+        "本当に困る者を救うため"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "audit_weakness",
+          "law_order低下",
+          "publicLegitimacy低下",
+          "scarcity"
+        ],
+        "mitigators": [
+          "recordkeeping高",
+          "監査文化",
+          "collectiveEfficacy高"
+        ]
+      },
+      "role_slot_affinities": [
+        "目録官",
+        "停戦執行官",
+        "徴税官",
+        "使節補佐"
+      ],
+      "default_consequences": {
+        "npc": [
+          "secretState進行",
+          "stress上昇",
+          "relationship fracture"
+        ],
+        "institution": [
+          "breach_risk上昇",
+          "support低下"
+        ],
+        "world": [
+          "viceVisibility上昇",
+          "trade_routes低下",
+          "legitimacy低下"
+        ],
+        "narrative": [
+          "帳簿の欠け",
+          "印章の癖",
+          "数字の不整合"
+        ]
+      }
+    },
+    {
+      "id": "smuggling",
+      "label_ja": "密輸・横流し",
+      "layer": "group_to_institutional",
+      "crime_status": "high",
+      "vice_status": "medium",
+      "typical_forms": [
+        "禁制遺物搬送",
+        "配給横流し",
+        "亡命者搬送",
+        "坑路密輸",
+        "聖遺物売買"
+      ],
+      "primary_motives": [
+        "生存",
+        "利得",
+        "飢餓回避",
+        "制裁回避",
+        "禁制への欲望"
+      ],
+      "opportunity_requirements": [
+        "暗い搬送路",
+        "見張りの穴",
+        "共犯者",
+        "口止め"
+      ],
+      "justification_templates": [
+        "飢えるよりまし",
+        "封印より人命",
+        "制度の方が間違っている"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "scarcity",
+          "trade_routes混乱",
+          "law_order低下",
+          "dungeon_threat高"
+        ],
+        "mitigators": [
+          "border_guard高",
+          "collectiveEfficacy高",
+          "監査強化"
+        ]
+      },
+      "role_slot_affinities": [
+        "坑路案内",
+        "目録官",
+        "港湾役",
+        "巡礼案内"
+      ],
+      "default_consequences": {
+        "npc": [
+          "crimeTrace付与",
+          "trust二極化",
+          "stress上昇"
+        ],
+        "institution": [
+          "supplyは一時改善し得るが legitimacy低下"
+        ],
+        "world": [
+          "vicePressure上昇",
+          "law_order低下",
+          "publicShame上昇"
+        ],
+        "narrative": [
+          "抜け道",
+          "荷札消失",
+          "隠し荷",
+          "夜間搬送"
+        ]
+      }
+    },
+    {
+      "id": "bribery_corruption",
+      "label_ja": "収賄・腐敗",
+      "layer": "institutional",
+      "crime_status": "high",
+      "vice_status": "high",
+      "typical_forms": [
+        "見逃し",
+        "監査停止",
+        "役職売買",
+        "判決ねじ曲げ",
+        "封印管理の私物化"
+      ],
+      "primary_motives": [
+        "利得",
+        "出世",
+        "派閥維持",
+        "恐喝回避"
+      ],
+      "opportunity_requirements": [
+        "権限集中",
+        "監査不足",
+        "密室決裁"
+      ],
+      "justification_templates": [
+        "制度を回すため",
+        "皆が受け取っている",
+        "上が腐っているから"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "publicLegitimacy低下",
+          "audit_weakness",
+          "elite_impunity",
+          "war_exception"
+        ],
+        "mitigators": [
+          "recordkeeping高",
+          "publicShame高",
+          "external_review"
+        ]
+      },
+      "role_slot_affinities": [
+        "目録官",
+        "裁定官",
+        "徴税官",
+        "停戦執行官",
+        "神殿会計役"
+      ],
+      "default_consequences": {
+        "npc": [
+          "hiddenDepravity上昇",
+          "secretState進行",
+          "blackmail vulnerability"
+        ],
+        "institution": [
+          "breach_risk上昇",
+          "support低下",
+          "collectiveEfficacy低下"
+        ],
+        "world": [
+          "moralCorrosion上昇",
+          "legitimacy低下",
+          "viceVisibility上昇"
+        ],
+        "narrative": [
+          "金貨袋",
+          "裏帳面",
+          "口止め",
+          "消えた監査記録"
+        ]
+      }
+    },
+    {
+      "id": "blackmail",
+      "label_ja": "脅迫・弱み利用",
+      "layer": "personal_to_group",
+      "crime_status": "high",
+      "vice_status": "high",
+      "typical_forms": [
+        "秘密暴露の脅し",
+        "家族を盾に取る",
+        "禁忌知識を材料にする",
+        "不義の暴露"
+      ],
+      "primary_motives": [
+        "支配",
+        "保身",
+        "報復",
+        "交渉優位"
+      ],
+      "opportunity_requirements": [
+        "秘密把握",
+        "被害者の失うもの",
+        "証拠または偽証の筋"
+      ],
+      "justification_templates": [
+        "先に裏切ったのは相手",
+        "必要な取引だ",
+        "殺すよりまし"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "secrecy高",
+          "social_hypocrisy高",
+          "publicLegitimacy低下"
+        ],
+        "mitigators": [
+          "community_trust高",
+          "公開透明性",
+          "共同体介入"
+        ]
+      },
+      "role_slot_affinities": [
+        "目録官",
+        "停戦執行官",
+        "祈鐘士",
+        "裁定役"
+      ],
+      "default_consequences": {
+        "npc": [
+          "stress急増",
+          "trust急落",
+          "obedience歪化"
+        ],
+        "institution": [
+          "support低下",
+          "decision_quality低下"
+        ],
+        "world": [
+          "vicePressure上昇",
+          "publicShame上昇"
+        ],
+        "narrative": [
+          "密書",
+          "沈黙",
+          "視線回避",
+          "不自然な譲歩"
+        ]
+      }
+    },
+    {
+      "id": "theft",
+      "label_ja": "窃盗・掠奪",
+      "layer": "personal_to_group",
+      "crime_status": "high",
+      "vice_status": "medium",
+      "typical_forms": [
+        "配給盗み",
+        "遺物盗難",
+        "死体からの剥ぎ取り",
+        "坑路資材盗難"
+      ],
+      "primary_motives": [
+        "欠乏",
+        "利得",
+        "復讐",
+        "依存"
+      ],
+      "opportunity_requirements": [
+        "監視不足",
+        "暗所",
+        "所有の曖昧さ",
+        "混乱"
+      ],
+      "justification_templates": [
+        "余っているものだ",
+        "必要だった",
+        "あちらも奪っている"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "food低下",
+          "housing低下",
+          "law_order低下",
+          "guardianship低下"
+        ],
+        "mitigators": [
+          "collectiveEfficacy高",
+          "publicShame高",
+          "見張り強化"
+        ]
+      },
+      "role_slot_affinities": [
+        "配給役",
+        "坑路案内",
+        "下働き",
+        "避難民世話役"
+      ],
+      "default_consequences": {
+        "npc": [
+          "wanted化",
+          "trust低下",
+          "scar"
+        ],
+        "institution": [
+          "supply低下",
+          "order低下"
+        ],
+        "world": [
+          "crimeVisibility上昇",
+          "fear上昇"
+        ],
+        "narrative": [
+          "足跡",
+          "欠けた封",
+          "不足した帳尻",
+          "夜の噂"
+        ]
+      }
+    },
+    {
+      "id": "unlawful_killing",
+      "label_ja": "違法殺害・私刑",
+      "layer": "group_to_institutional",
+      "crime_status": "high",
+      "vice_status": "high",
+      "typical_forms": [
+        "報復殺人",
+        "見せしめ",
+        "黙らせるための殺害",
+        "私刑"
+      ],
+      "primary_motives": [
+        "復讐",
+        "怒り",
+        "黙秘維持",
+        "恐怖",
+        "秩序の私物化"
+      ],
+      "opportunity_requirements": [
+        "武器アクセス",
+        "法の空白",
+        "群集心理",
+        "夜間"
+      ],
+      "justification_templates": [
+        "裁きが遅いから",
+        "世界のため",
+        "見逃す方が悪い"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "humiliation",
+          "racial_tension",
+          "law_order低下",
+          "collectiveEfficacy低下"
+        ],
+        "mitigators": [
+          "publicLegitimacy高",
+          "迅速裁定",
+          "見張り",
+          "和解儀礼"
+        ]
+      },
+      "role_slot_affinities": [
+        "停戦執行官",
+        "辺境見張り",
+        "宗教裁定役",
+        "傭兵頭"
+      ],
+      "default_consequences": {
+        "npc": [
+          "bloodDebt付与",
+          "fear生成",
+          "nemesis化"
+        ],
+        "institution": [
+          "legitimacy低下",
+          "breach_risk上昇"
+        ],
+        "world": [
+          "violencePressure上昇",
+          "publicShame上昇",
+          "retaliation連鎖"
+        ],
+        "narrative": [
+          "血痕",
+          "沈黙",
+          "報復の誓い",
+          "役割空席化"
+        ]
+      }
+    },
+    {
+      "id": "exploitation_abuse",
+      "label_ja": "搾取・虐待",
+      "layer": "personal_to_structural",
+      "crime_status": "mixed",
+      "vice_status": "high",
+      "typical_forms": [
+        "弱者からの搾取",
+        "従属関係の濫用",
+        "口減らし圧力",
+        "奉仕名目の酷使"
+      ],
+      "primary_motives": [
+        "権力維持",
+        "利得",
+        "不安の転嫁",
+        "快楽",
+        "支配欲"
+      ],
+      "opportunity_requirements": [
+        "権力差",
+        "密室",
+        "告発困難",
+        "共同体崩壊"
+      ],
+      "justification_templates": [
+        "育てているのだから",
+        "役に立たないから",
+        "掟だから"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "inequality",
+          "scarcity",
+          "collectiveEfficacy低下",
+          "social_hypocrisy"
+        ],
+        "mitigators": [
+          "community_watch",
+          "publicShame",
+          "sanctuary_protection"
+        ]
+      },
+      "role_slot_affinities": [
+        "家長",
+        "神殿監督",
+        "工房頭",
+        "徴発役"
+      ],
+      "default_consequences": {
+        "npc": [
+          "trauma",
+          "fear",
+          "secret networks"
+        ],
+        "institution": [
+          "hiddenDepravity上昇",
+          "support低下"
+        ],
+        "world": [
+          "moralCorrosion上昇",
+          "viceVisibility低いまま蓄積"
+        ],
+        "narrative": [
+          "沈黙",
+          "傷痕",
+          "噂",
+          "目を逸らす共同体"
+        ]
+      }
+    },
+    {
+      "id": "trafficking",
+      "label_ja": "人身売買・奴隷化",
+      "layer": "group_to_institutional",
+      "crime_status": "high",
+      "vice_status": "high",
+      "typical_forms": [
+        "避難民売買",
+        "借金奴隷化",
+        "戦時捕虜の転売",
+        "密輸船団との結託"
+      ],
+      "primary_motives": [
+        "利得",
+        "戦時混乱",
+        "人間の道具化",
+        "供給不足の代替"
+      ],
+      "opportunity_requirements": [
+        "法の空白",
+        "監督不在",
+        "輸送経路",
+        "匿名化"
+      ],
+      "justification_templates": [
+        "他よりましな扱いだ",
+        "戦時だから",
+        "救うために売る"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "refugee_pressure",
+          "war_pressure",
+          "law_order低下",
+          "publicLegitimacy低下"
+        ],
+        "mitigators": [
+          "border_guard",
+          "sanctuary_network",
+          "publicShame高"
+        ]
+      },
+      "role_slot_affinities": [
+        "港湾役",
+        "停戦執行官",
+        "輸送商",
+        "傭兵頭"
+      ],
+      "default_consequences": {
+        "npc": [
+          "disappearance",
+          "fear",
+          "bloodDebt"
+        ],
+        "institution": [
+          "international breach",
+          "holy_war口実"
+        ],
+        "world": [
+          "vicePressure上昇",
+          "publicShame上昇",
+          "retaliation圧"
+        ],
+        "narrative": [
+          "行方不明",
+          "鎖",
+          "偽名簿",
+          "夜の輸送"
+        ]
+      }
+    },
+    {
+      "id": "oathbreaking",
+      "label_ja": "誓約破り・背信",
+      "layer": "personal_to_mythic",
+      "crime_status": "culture_dependent",
+      "vice_status": "high",
+      "typical_forms": [
+        "停戦破り",
+        "神前誓約破り",
+        "保護誓約破棄",
+        "人質保証破り"
+      ],
+      "primary_motives": [
+        "保身",
+        "より大きな利得",
+        "恐怖",
+        "派閥替え",
+        "絶望"
+      ],
+      "opportunity_requirements": [
+        "証拠の薄さ",
+        "混乱",
+        "監視の死角"
+      ],
+      "justification_templates": [
+        "相手が先に破った",
+        "誓いより命が重い",
+        "もうこの誓いは死んでいる"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "publicLegitimacy低下",
+          "war_pressure",
+          "social_hypocrisy"
+        ],
+        "mitigators": [
+          "ritual_reinforcement",
+          "collectiveEfficacy高",
+          "透明な裁定"
+        ]
+      },
+      "role_slot_affinities": [
+        "停戦執行官",
+        "祈鐘士",
+        "人質管理役",
+        "誓約監督官"
+      ],
+      "default_consequences": {
+        "npc": [
+          "trust崩壊",
+          "fear",
+          "nemesis生成"
+        ],
+        "institution": [
+          "support急落",
+          "breach_risk急上昇"
+        ],
+        "world": [
+          "publicLegitimacy低下",
+          "tabooPressure上昇"
+        ],
+        "narrative": [
+          "破れた印",
+          "破られた文言",
+          "神罰の噂"
+        ]
+      }
+    },
+    {
+      "id": "vice_market",
+      "label_ja": "悪徳市場・依存経済",
+      "layer": "group_to_structural",
+      "crime_status": "mixed",
+      "vice_status": "high",
+      "typical_forms": [
+        "禁制薬",
+        "呪具市場",
+        "賭博場",
+        "売春斡旋",
+        "遺物解体市"
+      ],
+      "primary_motives": [
+        "利得",
+        "逃避",
+        "依存",
+        "快楽"
+      ],
+      "opportunity_requirements": [
+        "地下市場",
+        "見逃し",
+        "夜間保護",
+        "密輸網"
+      ],
+      "justification_templates": [
+        "需要がある",
+        "誰もが少しは汚れている",
+        "これで食える"
+      ],
+      "world_status_links": {
+        "drivers": [
+          "scarcity",
+          "law_order低下",
+          "corruption",
+          "secrecy"
+        ],
+        "mitigators": [
+          "collectiveEfficacy高",
+          "publicShame高",
+          "代替供給"
+        ]
+      },
+      "role_slot_affinities": [
+        "目録官",
+        "港湾役",
+        "宿屋主人",
+        "坑路案内"
+      ],
+      "default_consequences": {
+        "npc": [
+          "dependency",
+          "blackmail vulnerability",
+          "wanted化"
+        ],
+        "institution": [
+          "corruption浸透",
+          "recordkeeping悪化"
+        ],
+        "world": [
+          "vicePressure上昇",
+          "moralCorrosion上昇"
+        ],
+        "narrative": [
+          "裏口",
+          "薄暗い取引",
+          "沈黙の利益共同体"
+        ]
+      }
+    }
+  ]
+}

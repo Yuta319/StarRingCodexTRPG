@@ -1,0 +1,833 @@
+{
+  "version": "gpt_read_model_v1",
+  "contracts": {
+    "truthMutation": "backend_only",
+    "rawFreeTextPersisted": false,
+    "roleSlotPrimary": true,
+    "gptResponsibilities": [
+      "narration",
+      "npc_dialogue_surface",
+      "free_action_narrative_surface"
+    ],
+    "gptMustNot": [
+      "mutate_world_state",
+      "override_resolution",
+      "persist_raw_free_text",
+      "edit_saves_directly"
+    ]
+  },
+  "source": {
+    "seed": 1729,
+    "worldJson": "samples\\campaigns\\seed1729_two_sessions_world.json",
+    "archetype": "balanced",
+    "seasons": 10,
+    "sessionNumber": 2,
+    "turnInSession": 4,
+    "phaseLabel": "圧力局面"
+  },
+  "scene": {
+    "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_44338_6",
+    "title": "非武装境界破り",
+    "location": "灰縁辺州",
+    "headline": "第1節「鐘音を抱えた夜営」から残る火種が、いまの場面にも影を落としている。 環鈴宿の目録欠損の余波が、灰縁辺州の「非武装境界破り」へ直結している。",
+    "openingLines": [
+      "灰縁辺州では、非武装境界破りをめぐるざわめきが、もう奥に隠れきっていない。",
+      "穀冠王国と灰縁侯族のあいだで責任の押し付け合いが始まり、見張りも通行人も視線を落ち着けられずにいる。",
+      "境界の軍事化により相互不可侵の根幹が崩れている。",
+      "固有事件「環鈴宿の目録欠損」では、荷受け目録の欠損が補給と噂を同時に揺らしている。前節の因果として、隠れた不正の痕として、目録官まわりの物証を抜き取ろうとしたの余波がまだ尾を引いている。目録官の座ではまず疑いから始まる。",
+      "街の安定が落ちると NPC の stress が増える。中盤二手で熱量を制御しないと終盤が重くなる。放置すると、隠した不正を洗い直す動きが入り、禁じ手の痕まで一緒に表へ出るおそれがある。ここで誤ると、疑いが次の判断を縛る。",
+      "環鈴宿《カンレイ》では拠点の足元が揺らいでいる。補給に余裕が少ない。場の空気はまだ荒れきっていない。"
+    ],
+    "dramaticLayers": {
+      "place": "灰縁辺州",
+      "focus": "非武装境界破り",
+      "discrepancy": "荷受け目録の欠損が補給と噂を同時に揺らしている。前節の因果として、隠れた不正の痕として、目録官まわりの物証を抜き取ろうとしたの余波がまだ尾を引いている。目録官の座ではまず疑いから始まる。",
+      "reaction": "環鈴宿《カンレイ》の荒れ方と白灰坑路の封印の揺れが、同じ局面を別方向から押している",
+      "aftermath": "街の安定が落ちると NPC の stress が増える。"
+    },
+    "choiceSurface": [
+      {
+        "choiceId": "observe",
+        "label": "周囲の様子を見る",
+        "recommended": true
+      },
+      {
+        "choiceId": "speak",
+        "label": "関係者に話を聞く",
+        "recommended": true
+      },
+      {
+        "choiceId": "inspect",
+        "label": "記録と条文を確かめる",
+        "recommended": true
+      },
+      {
+        "choiceId": "intervene",
+        "label": "危険を承知で踏み込む",
+        "recommended": false
+      }
+    ]
+  },
+  "guidance": {
+    "sessionOpeningGuide": {
+      "headline": "第2節の入り口",
+      "lines": [
+        "節の始まりに強く残っていたのは、第1節「鐘音を抱えた夜営」: 隠れた不正の痕として、目録官まわりの物証を抜き取ろうとしたの余波がまだ尾を引いている。 第1節「鐘音を抱えた夜営」の余波: 隠した不正を洗い直す動きが入り、禁じ手の痕まで一緒に表へ出るおそれがある。",
+        "第1節「鐘音を抱えた夜営」の余波: 隠した不正を洗い直す動きが入り、禁じ手の痕まで一緒に表へ出るおそれがある。",
+        "第1節「鐘音を抱えた夜営」: 表に出ていない不正が残り、検分が入れば露見へ傾く。"
+      ]
+    },
+    "storyGuide": {
+      "now": "第2節の圧力局面だ。いま前面に出ているのは「環鈴宿の目録欠損」で、場面の焦点は「非武装境界破り」にある。第1節「鐘音を抱えた夜営」の余波がまだこの場に残っている。目録官の座では疑いも解けていない。",
+      "stakes": "荷受け目録の欠損が補給と噂を同時に揺らしている。前節の因果として、隠れた不正の痕として、目録官まわりの物証を抜き取ろうとしたの余波がまだ尾を引いている。目録官の座ではまず疑いから始まる。街の安定が落ちると NPC の stress が増える。中盤二手で熱量を制御しないと終盤が重くなる。放置すると、隠した不正を洗い直す動きが入り、禁じ手の痕まで一緒に表へ出るおそれがある。ここで誤ると、疑いが次の判断を縛る。ここで見誤ると、隠した不正を洗い直す動きが入り、禁じ手の痕まで一緒に表へ出るおそれがある。疑いが続けば、些細な綻びでも再燃する。",
+      "worldState": "環鈴宿《カンレイ》では拠点の足元が揺らいでいる。補給に余裕が少ない。場の空気はまだ荒れきっていない。白灰坑路では封印はまだ働いている。坑路の危険が増している。奥へ踏み込んで道筋を確かめている。世界の綻びがかなり広がっている。神々の対立が強く噴き出している。継承争いが各地で表に出始めている。昇神をめぐる気配が濃くなっている。見えない傷として、表に出ていない不正が残り、検分が入れば露見へ傾く。目録官の座には疑いが残っている。",
+      "trace": "最近は「周囲を見る」を選ぶことが多い。身代わりにした倉が反発した。",
+      "forecast": "鐘路に猶予が残りそうだ。拠点と坑路の両方にまだ持ち直しの余地がある。",
+      "recommendedChoices": [
+        "inspect",
+        "speak",
+        "observe"
+      ],
+      "recommendedChoiceLabels": [
+        "手がかりを調べる",
+        "関係者に話す",
+        "周囲を見る"
+      ],
+      "objective": "欠損目録の出所を止め、環鈴宿の流通を立て直す。"
+    },
+    "actionGuide": {
+      "choiceMode": "まずは通常の選択で場面を進める。迷ったら「手がかりを調べる」から始めると流れをつかみやすい。",
+      "freeActionMode": "自由行動は、選択肢にない手を試したいときだけ使う。通っても露見や反動が残ることがある。",
+      "sessionFlow": "途中で区切るなら保存する。6手を終えたら次の節へ進み、持ち越しを見てから一手目を選ぶ。"
+    }
+  },
+  "world": {
+    "worldSpine": {
+      "worldName": "霧環連界",
+      "calendarName": "セディオン暦",
+      "year": 6,
+      "seasonIndex": 10,
+      "eraLabel": "昇神期",
+      "mainGodLabel": "セディオン",
+      "activeChainLabel": "境界軍事化連鎖",
+      "cycleDistortion": 76.9,
+      "divineWarPressure": 78.2,
+      "dominantBranch": "管理者の端",
+      "topNotes": [
+        "環鈴宿の目録欠損",
+        "環鈴宿《カンレイ》: 緊張が高まっている",
+        "白灰坑路: まだ封じられている"
+      ],
+      "syncState": "synced"
+    },
+    "worldPulse": {
+      "summary": "世界の綻びがかなり広がっている。神々の対立が強く噴き出している。継承争いが各地で表に出始めている。昇神をめぐる気配が濃くなっている。",
+      "focus": "いま特に強いのは「昇神のうねり」だ。局地の事件にもその圧が表へにじみやすい。",
+      "read": "数字が高い項目ほど、その節の判断や事件の空気に割り込んできやすい。"
+    },
+    "currentEvent": {
+      "label": "環鈴宿の目録欠損",
+      "statusLabel": "かなり切迫している",
+      "summaryText": "荷受け目録の欠損が補給と噂を同時に揺らしている。前節の因果として、隠れた不正の痕として、目録官まわりの物証を抜き取ろうとしたの余波がまだ尾を引いている。目録官の座ではまず疑いから始まる。",
+      "importanceText": "街の安定が落ちると NPC の stress が増える。中盤二手で熱量を制御しないと終盤が重くなる。放置すると、隠した不正を洗い直す動きが入り、禁じ手の痕まで一緒に表へ出るおそれがある。ここで誤ると、疑いが次の判断を縛る。",
+      "lastOutcomeText": "身代わりにした倉が反発し、宿の不信と補給難が同時に悪化した。",
+      "branchPreview": [
+        {
+          "branchId": "branch_missing_crates",
+          "label": "消えた荷札",
+          "summary": "消えた荷札の流れを繋ぎ直す。",
+          "preferredIntents": [
+            "inspect"
+          ],
+          "focusNpcIds": [
+            "slot_ledger_clerk",
+            "slot_truce_warden"
+          ],
+          "notes": {
+            "success": "荷札の流れを繋ぎ直し、補給線を立て直した。",
+            "partial_success": "流れは戻したが一部は借りとして消えたままだ。",
+            "failure": "欠損が噂となり宿全体の信用が剥がれた。"
+          },
+          "fx": {
+            "success": {
+              "pressure": -3.6,
+              "hub_stability": 2.0,
+              "hub_supply": 3.0,
+              "hub_heat": -1.8,
+              "trust": {
+                "slot_ledger_clerk": 3.0
+              },
+              "stress": {
+                "slot_ledger_clerk": -2.0
+              },
+              "marks": [
+                "消えた荷札を回収した"
+              ],
+              "hints": [],
+              "weaknesses": []
+            },
+            "partial_success": {
+              "pressure": -0.8,
+              "hub_supply": 1.6,
+              "hub_heat": 0.8,
+              "stress": {
+                "slot_truce_warden": 1.0
+              },
+              "marks": [
+                "補給は戻ったが借りが残った"
+              ],
+              "trust": {},
+              "hints": [],
+              "weaknesses": []
+            },
+            "failure": {
+              "pressure": 2.8,
+              "hub_stability": -1.2,
+              "hub_supply": -2.2,
+              "hub_heat": 2.4,
+              "stress": {
+                "slot_ledger_clerk": 2.0,
+                "slot_truce_warden": 1.0
+              },
+              "marks": [
+                "環鈴宿の荷札不信が広がった"
+              ],
+              "trust": {},
+              "hints": [],
+              "weaknesses": []
+            }
+          },
+          "selectors": {},
+          "summaryText": "消えた荷札の流れを繋ぎ直す。",
+          "resultText": "荷札の流れを繋ぎ直し、補給線を立て直した。",
+          "riskText": "この筋が崩れると、欠損が噂となり宿全体の信用が剥がれた。",
+          "preferredChoiceLabels": [
+            "手がかりを調べる"
+          ]
+        },
+        {
+          "branchId": "branch_ration_rumor",
+          "label": "配給切りの噂",
+          "summary": "配給削減の噂を止める。",
+          "preferredIntents": [
+            "speak",
+            "observe"
+          ],
+          "focusNpcIds": [
+            "slot_truce_warden",
+            "slot_cantor"
+          ],
+          "notes": {
+            "success": "噂の芯を潰し、人心の熱を下げた。",
+            "partial_success": "暴発は止めたが疑心は沈殿した。",
+            "failure": "不信が群衆の言葉になって広がった。"
+          },
+          "fx": {
+            "success": {
+              "pressure": -3.0,
+              "hub_stability": 2.2,
+              "hub_heat": -3.0,
+              "trust": {
+                "slot_truce_warden": 2.0,
+                "slot_cantor": 2.0
+              },
+              "stress": {
+                "slot_cantor": -1.0
+              },
+              "marks": [
+                "配給切りの噂を抑えた"
+              ],
+              "hints": [],
+              "weaknesses": []
+            },
+            "partial_success": {
+              "pressure": -0.4,
+              "hub_heat": 0.6,
+              "stress": {
+                "slot_cantor": 1.0
+              },
+              "marks": [
+                "疑心が沈殿した"
+              ],
+              "trust": {},
+              "hints": [],
+              "weaknesses": []
+            },
+            "failure": {
+              "pressure": 2.4,
+              "hub_stability": -1.0,
+              "hub_heat": 3.0,
+              "stress": {
+                "slot_truce_warden": 2.0,
+                "slot_cantor": 2.0
+              },
+              "weaknesses": [
+                {
+                  "npcId": "slot_cantor",
+                  "text": "聖遺物の話になると理屈より保全を優先する。"
+                }
+              ],
+              "marks": [
+                "群衆の不信が膨らんだ"
+              ],
+              "trust": {},
+              "hints": []
+            }
+          },
+          "selectors": {},
+          "summaryText": "配給削減の噂を止める。",
+          "resultText": "噂の芯を潰し、人心の熱を下げた。",
+          "riskText": "この筋が崩れると、不信が群衆の言葉になって広がった。",
+          "preferredChoiceLabels": [
+            "関係者に話す",
+            "周囲を見る"
+          ]
+        },
+        {
+          "branchId": "branch_quarantine_forgery",
+          "label": "封鎖票の偽造",
+          "summary": "偽の封鎖票が街と坑路を同時に詰まらせる。",
+          "preferredIntents": [
+            "intervene",
+            "observe"
+          ],
+          "focusNpcIds": [
+            "slot_cantor",
+            "slot_tunnel_guide"
+          ],
+          "notes": {
+            "success": "偽の封鎖票を剥がし、動線を細く開け直した。",
+            "partial_success": "片側だけは開いたが、もう片側には渋滞が残った。",
+            "failure": "街の停滞がそのまま坑路の圧へ繋がった。"
+          },
+          "fx": {
+            "success": {
+              "pressure": -3.2,
+              "hub_stability": 1.4,
+              "hub_heat": -1.2,
+              "dungeon_seal": 1.4,
+              "dungeon_threat": -2.0,
+              "trust": {
+                "slot_tunnel_guide": 2.0,
+                "slot_cantor": 1.0
+              },
+              "marks": [
+                "封鎖票の偽造を剥がした"
+              ],
+              "stress": {},
+              "hints": [],
+              "weaknesses": []
+            },
+            "partial_success": {
+              "pressure": -0.6,
+              "hub_heat": 1.0,
+              "dungeon_threat": -0.6,
+              "stress": {
+                "slot_tunnel_guide": 1.0
+              },
+              "marks": [
+                "動線は半分だけ戻った"
+              ],
+              "trust": {},
+              "hints": [],
+              "weaknesses": []
+            },
+            "failure": {
+              "pressure": 3.0,
+              "hub_stability": -1.0,
+              "hub_heat": 2.0,
+              "dungeon_seal": -1.4,
+              "dungeon_threat": 2.6,
+              "stress": {
+                "slot_tunnel_guide": 3.0
+              },
+              "marks": [
+                "封鎖票が街と坑路を同時に詰まらせた"
+              ],
+              "trust": {},
+              "hints": [],
+              "weaknesses": []
+            }
+          },
+          "selectors": {},
+          "summaryText": "偽の封鎖票が街と坑路を同時に詰まらせる。",
+          "resultText": "偽の封鎖票を剥がし、動線を細く開け直した。",
+          "riskText": "この筋が崩れると、街の停滞がそのまま坑路の圧へ繋がった。",
+          "preferredChoiceLabels": [
+            "踏み込んで動く",
+            "周囲を見る"
+          ]
+        },
+        {
+          "branchId": "branch_scapegoat_store",
+          "label": "横流し倉の身代わり",
+          "summary": "一つの倉を切り捨て、宿全体の流通だけを守る。",
+          "preferredIntents": [
+            "inspect",
+            "intervene"
+          ],
+          "focusNpcIds": [
+            "slot_ledger_clerk",
+            "slot_truce_warden"
+          ],
+          "selectors": {
+            "knownWeaknessNpcIds": [
+              "slot_ledger_clerk"
+            ],
+            "heatAbove": 44.0,
+            "turnAtLeast": 4
+          },
+          "notes": {
+            "success": "宿全体は守れたが、切り捨てられた倉の恨みが人間関係に残った。",
+            "partial_success": "流通は保ったが、誰を身代わりにしたかで後腐れが残った。",
+            "failure": "身代わりにした倉が反発し、宿の不信と補給難が同時に悪化した。"
+          },
+          "fx": {
+            "success": {
+              "pressure": -2.2,
+              "hub_stability": 2.0,
+              "hub_supply": 2.4,
+              "hub_heat": -0.6,
+              "stress": {
+                "slot_ledger_clerk": 2.0,
+                "slot_truce_warden": 1.6
+              },
+              "marks": [
+                "切り捨てた倉の恨みが残った"
+              ],
+              "trust": {},
+              "hints": [],
+              "weaknesses": []
+            },
+            "partial_success": {
+              "pressure": -0.4,
+              "hub_supply": 1.4,
+              "hub_heat": 0.8,
+              "stress": {
+                "slot_ledger_clerk": 1.6,
+                "slot_truce_warden": 1.2
+              },
+              "marks": [
+                "身代わりにした倉の後腐れが残った"
+              ],
+              "trust": {},
+              "hints": [],
+              "weaknesses": []
+            },
+            "failure": {
+              "pressure": 2.6,
+              "hub_stability": -1.4,
+              "hub_supply": -2.0,
+              "hub_heat": 2.6,
+              "stress": {
+                "slot_ledger_clerk": 2.8,
+                "slot_truce_warden": 2.0
+              },
+              "marks": [
+                "身代わりにした倉が反発した"
+              ],
+              "trust": {},
+              "hints": [],
+              "weaknesses": []
+            }
+          },
+          "summaryText": "一つの倉を切り捨て、宿全体の流通だけを守る。",
+          "resultText": "宿全体は守れたが、切り捨てられた倉の恨みが人間関係に残った。",
+          "riskText": "この筋が崩れると、身代わりにした倉が反発し、宿の不信と補給難が同時に悪化した。",
+          "preferredChoiceLabels": [
+            "手がかりを調べる",
+            "踏み込んで動く"
+          ]
+        },
+        {
+          "branchId": "branch_pilgrim_detour",
+          "label": "巡礼路の横抜け",
+          "summary": "巡礼路を迂回路に使って補給を通し、坑路側へ負担を逃がす。",
+          "preferredIntents": [
+            "speak",
+            "observe"
+          ],
+          "focusNpcIds": [
+            "slot_cantor",
+            "slot_tunnel_guide"
+          ],
+          "selectors": {
+            "secretStates": {
+              "slot_cantor": [
+                "hinted",
+                "exposed"
+              ]
+            },
+            "supplyBelow": 66.0,
+            "turnAtLeast": 4
+          },
+          "notes": {
+            "success": "宿の流通は立て直したが、巡礼路の負担が坑路側へ流れた。",
+            "partial_success": "補給は通ったが、儀礼路を使った借りが残った。",
+            "failure": "巡礼路も坑路も中途半端に傷み、祈鐘士と坑路案内の溝だけが深くなった。"
+          },
+          "fx": {
+            "success": {
+              "pressure": -2.4,
+              "hub_supply": 2.6,
+              "hub_heat": -1.0,
+              "dungeon_seal": -1.0,
+              "dungeon_threat": 1.8,
+              "stress": {
+                "slot_cantor": 1.6,
+                "slot_tunnel_guide": 1.0
+              },
+              "marks": [
+                "巡礼路の負担が坑路へ流れた"
+              ],
+              "trust": {},
+              "hints": [],
+              "weaknesses": []
+            },
+            "partial_success": {
+              "pressure": -0.4,
+              "hub_supply": 1.6,
+              "dungeon_threat": 1.0,
+              "stress": {
+                "slot_cantor": 1.6
+              },
+              "marks": [
+                "儀礼路を使った借りが残った"
+              ],
+              "trust": {},
+              "hints": [],
+              "weaknesses": []
+            },
+            "failure": {
+              "pressure": 2.8,
+              "hub_heat": 1.4,
+              "hub_supply": -1.2,
+              "dungeon_seal": -1.4,
+              "dungeon_threat": 2.2,
+              "stress": {
+                "slot_cantor": 2.8,
+                "slot_tunnel_guide": 2.4
+              },
+              "hints": [
+                {
+                  "npcId": "slot_cantor",
+                  "mode": "hint"
+                }
+              ],
+              "marks": [
+                "巡礼路の融通が裏目に出た"
+              ],
+              "trust": {},
+              "weaknesses": []
+            }
+          },
+          "summaryText": "巡礼路を迂回路に使って補給を通し、坑路側へ負担を逃がす。",
+          "resultText": "宿の流通は立て直したが、巡礼路の負担が坑路側へ流れた。",
+          "riskText": "この筋が崩れると、巡礼路も坑路も中途半端に傷み、祈鐘士と坑路案内の溝だけが深くなった。",
+          "preferredChoiceLabels": [
+            "関係者に話す",
+            "周囲を見る"
+          ]
+        }
+      ]
+    },
+    "activeNode": {
+      "nodeId": "node_inst_border_01_cl_demilitarized_border_44338_6",
+      "title": "非武装境界破り",
+      "chainLabel": "境界軍事化連鎖",
+      "institutionLabel": "穀冠王国＝灰縁侯族不可侵条約",
+      "questTitle": "欠損目録の出所を止め、環鈴宿の流通を立て直す。",
+      "severity": 100.0,
+      "urgency": 100.0,
+      "stage": 4,
+      "status": "active",
+      "recommendedVectors": [
+        "stewardship",
+        "diplomacy",
+        "stealth"
+      ],
+      "projectedLegacies": [
+        "建築",
+        "制度",
+        "伝承"
+      ],
+      "guide": {
+        "summary": "先送りしにくい局面だ。次の一手で被害や対立の広がり方が決まりやすい。",
+        "action": "向いているのは stewardship, diplomacy, stealth だ。",
+        "timing": "流れはかなり固まりつつある。大きくひっくり返すより、損を減らす判断が重くなる。"
+      }
+    },
+    "institutionAlert": {
+      "institutionId": "inst_border_01",
+      "label": "穀冠王国＝灰縁侯族不可侵条約",
+      "status": "broken",
+      "breachRisk": 100.0,
+      "guide": {
+        "summary": "「穀冠王国＝灰縁侯族不可侵条約」はかなり危うい。このまま崩れると、環鈴宿の目録欠損の収め方まで細くなる。",
+        "consequence": "取り決めが崩れると、次の交渉、補給、通行のどれかが止まりやすい。"
+      }
+    },
+    "hub": {
+      "hubId": "hub_kanrei",
+      "label": "環鈴宿《カンレイ》",
+      "regionId": "river_gate",
+      "regionLabel": "川門州",
+      "description": "街道・祈祷路・物資路が交差する臨時拠点。",
+      "pressureStyle": "流通と停戦の綱渡りが主題になる。",
+      "protectedAsset": "環鈴宿へ届く補給線",
+      "lostAsset": "環鈴宿の落ち着き",
+      "stability": 51.9,
+      "supply": 50.5,
+      "heat": 44.2,
+      "status": "tense",
+      "statusLabel": "緊張が高まっている",
+      "statusText": "いまにも荒れそうだ。",
+      "supportText": "環鈴宿《カンレイ》では拠点の足元が揺らいでいる。補給に余裕が少ない。場の空気はまだ荒れきっていない。"
+    },
+    "dungeon": {
+      "dungeonId": "dungeon_white_ash_tunnel",
+      "label": "白灰坑路",
+      "regionId": "deep_mouth",
+      "regionLabel": "深口盆地",
+      "description": "鐘室へ続く坑路。深部ほど世界圧の染み出しが強い。",
+      "pressureStyle": "退路と封印の両立が主題になる。",
+      "protectedAsset": "白灰坑路の封印",
+      "lostAsset": "白灰坑路の安全",
+      "depth": 1,
+      "maxDepth": 3,
+      "sealIntegrity": 66.2,
+      "threat": 52.4,
+      "status": "sealed",
+      "statusLabel": "まだ封じられている",
+      "statusText": "封印はまだ働いている。",
+      "supportText": "白灰坑路では封印はまだ働いている。坑路の危険が増している。奥へ踏み込んで道筋を確かめている。"
+    },
+    "endingForecast": {
+      "title": "鐘路に猶予が残りそうだ",
+      "tone": "steady",
+      "score": -4.1,
+      "dominantChoice": "observe",
+      "summary": "拠点と坑路の両方にまだ持ち直しの余地がある。"
+    }
+  },
+  "cast": [
+    {
+      "roleSlotId": "slot_truce_warden",
+      "roleLabel": "停戦回廊の執行",
+      "occupantLabel": "停戦執行官セルカ",
+      "trustText": "助けは欲していても、簡単には腹を割らない。",
+      "stressText": "かなり追い詰められている。",
+      "conflictText": "停戦執行官は街道を止めたくない。目録官は帳簿の穴を塞がないまま動かすことを許さない。",
+      "traceText": "「横流し倉の身代わり」での「手がかりを調べる」に、話の筋を乱される警戒を強めた。帳簿や印章へ手が伸びる相手には露骨に身構える。 今回の傷は簡単には忘れない。",
+      "secretText": "非常時に停戦印を一度だけ偽造した 露見のきっかけは 公開の場で責任の所在と印章の欠けを突き合わせられると、偽造を隠しきれない。",
+      "weaknessText": "負傷兵や子どもの名簿に弱い 火がつくのは 交換名簿や負傷兵の列を前にすると、停戦維持より情を優先しやすい。"
+    },
+    {
+      "roleSlotId": "slot_cantor",
+      "roleLabel": "祭祀と記憶の保全",
+      "occupantLabel": "祈鐘士リス",
+      "trustText": "助けは欲していても、簡単には腹を割らない。",
+      "stressText": "かなり追い詰められている。",
+      "conflictText": "祈鐘士は封印と儀礼を守りたい。坑路案内は生還のために退路と近道を優先する。",
+      "traceText": "あなたが「手がかりを調べる」を選んだことを、まだ好意的に見ている。鐘譜や遺物を調べる手つきには警戒しつつも、知識を試すような問いを返す。",
+      "secretText": "禁制の鐘譜を隠し持っている 露見のきっかけは 聖遺物か鐘譜の処分を迫られると、禁制の鐘譜を抱えている事実がこぼれる。",
+      "weaknessText": "聖遺物や鐘譜を前にすると見捨てられない 火がつくのは 封印より保全を迫られた場面で、捨てる判断が極端に遅くなる。"
+    },
+    {
+      "roleSlotId": "slot_ledger_clerk",
+      "roleLabel": "物資と条文の照合",
+      "occupantLabel": "目録官バシャ",
+      "trustText": "助けは欲していても、簡単には腹を割らない。",
+      "stressText": "かなり追い詰められている。",
+      "conflictText": "目録官は数字を公開して責任を固定したい。停戦執行官は街道維持のため帳簿の穴を伏せたい。",
+      "traceText": "第1節「鐘音を抱えた夜営」の禁じ手以来、出入りと判断をかなり厳しく見ている。「横流し倉の身代わり」の傷を自分の持ち場へ押し返されたと感じている。帳面を読む相手には協力するが、核心が近づくほど口数が減る。 今回の傷は簡単には忘れない。",
+      "secretText": "裏帳面に賄賂と紛失貨物の流れを写している 露見のきっかけは 公開の場で数字の差分を詰められると、裏帳面の存在が表へこぼれる。",
+      "weaknessText": "公前で計算を外すと嘘を継ぎ足す 火がつくのは 人数の前で数字を即答させられると、誤差を隠すために嘘を重ねやすい。"
+    },
+    {
+      "roleSlotId": "slot_tunnel_guide",
+      "roleLabel": "坑路の案内と退路確保",
+      "occupantLabel": "坑路案内フェルン",
+      "trustText": "助けは欲していても、簡単には腹を割らない。",
+      "stressText": "平静を装っているが余裕は薄い。",
+      "conflictText": "坑路案内は生還の路を確保したい。祈鐘士は禁制でも鐘譜と封印を守ろうとする。",
+      "traceText": "まだこちらの出方を測っている。図面を確かめる相手には黙って別紙を隠す。",
+      "secretText": "正規図の端だけ別の土色で覚えている さらに 抜け道の売り先を辿られると、前歴を隠しきれない。",
+      "weaknessText": "閉所で退路が見えないと判断が狭くなる 火がつくのは 退路が塞がるか崩落音が続くと、生還だけを優先しやすい。"
+    },
+    {
+      "roleSlotId": "slot_quartermaster",
+      "roleLabel": "寝床と配給の割当",
+      "occupantLabel": "宿場差配エドラ",
+      "trustText": "助けは欲していても、簡単には腹を割らない。",
+      "stressText": "かなり追い詰められている。",
+      "conflictText": "宿場差配は列を流したい。目録官は台帳が合わないまま寝床札と配給を増やしたくない。",
+      "traceText": "第1節「鐘音を抱えた夜営」以来、まだ疑いを解かず、細かな違和感から先に拾おうとしている。こちらが「手がかりを調べる」を重ねるたび、距離を取り直している。寝床札や釜場の控えを読まれる手つきには露骨に警戒する。",
+      "secretText": "夜だけ別札で寝床を横流ししていた 露見のきっかけは 寝床札の配り先を公に突き合わせられると、横流しを隠しきれない。",
+      "weaknessText": "泣き声と空腹を前にすると列を乱してでも配ってしまう 火がつくのは 子どもや負傷者の列を前にすると、優先順位を崩してでも寝床と粥を回したくなる。"
+    },
+    {
+      "roleSlotId": "slot_relic_keeper",
+      "roleLabel": "遺物封蔵と封箱管理",
+      "occupantLabel": "遺物番ヴァルダ",
+      "trustText": "助けは欲していても、簡単には腹を割らない。",
+      "stressText": "かなり追い詰められている。",
+      "conflictText": "遺物番は封箱を閉じて動かしたい。祈鐘士は儀礼上必要な品を手元に残したがる。",
+      "traceText": "あなたが「手がかりを調べる」を選んだことを、まだ好意的に見ている。箱札や鍵を確かめる手つきには乗るが、核心が近いほど箱を触らせたがらない。",
+      "secretText": "封箱の札を一度だけ入れ替え、危うい遺物を別箱へ移した 露見のきっかけは 封箱の札と中身を公に照合されると、入れ替えを隠しきれない。",
+      "weaknessText": "封箱が割れる気配を前にすると、理屈より抱え込みを優先する 火がつくのは 遺物の持ち出しか破棄を迫られると、閉じ込め続ける判断へ偏る。"
+    },
+    {
+      "roleSlotId": "slot_oath_scribe",
+      "roleLabel": "誓紙と通行印の検分",
+      "occupantLabel": "誓紙検分官イレル",
+      "trustText": "助けは欲していても、簡単には腹を割らない。",
+      "stressText": "平静を装っているが余裕は薄い。",
+      "conflictText": "誓紙検分官は誓紙と検疫印の筋を守りたい。停戦執行官は街道を止めないため、便法を残したまま列を動かしたい。",
+      "traceText": "あなたが「手がかりを調べる」を選んだことを、まだ好意的に見ている。誓紙や通行印を読む相手には協力するが、控えの差分までは渡したがらない。",
+      "secretText": "通行を通すため、一度だけ検疫印の順番を差し替えた 露見のきっかけは 通行印の控えと誓紙束を公開で突き合わせられると、差し替えを隠しきれない。",
+      "weaknessText": "病人と子どもの通行列を見ると、順番を崩してでも先に通したくなる 火がつくのは 検疫列の先頭に弱い者が固まると、検分より先に通行を通してしまいやすい。"
+    },
+    {
+      "roleSlotId": "slot_ferrymaster",
+      "roleLabel": "渡し舟と検疫路の運行",
+      "occupantLabel": "渡し守ジョラ",
+      "trustText": "助けは欲していても、簡単には腹を割らない。",
+      "stressText": "かなり追い詰められている。",
+      "conflictText": "渡し守は舟を切らさず流したい。宿場差配は寝床と配給の順を崩さず、渡しへ回す人数を絞りたい。",
+      "traceText": "第1節「鐘音を抱えた夜営」以来、まだ疑いを解かず、細かな違和感から先に拾おうとしている。こちらが「手がかりを調べる」を重ねるたび、距離を取り直している。舟印や杭控えを読む相手には露骨に間を置く。",
+      "secretText": "夜だけ別の舟印で荷舟を一本余計に通していた 露見のきっかけは 舟印と夜番控えの本数を公開で突き合わせられると、余舟を隠せない。",
+      "weaknessText": "溺死と置き去りを前にすると、検疫より先に舟を出してしまう 火がつくのは 足止めされた列に幼子やけが人がいると、規則より先に舟を出したくなる。"
+    },
+    {
+      "roleSlotId": "slot_ward_mason",
+      "roleLabel": "封泥と罅の継ぎ直し",
+      "occupantLabel": "封継師ヘルグ",
+      "trustText": "助けは欲していても、簡単には腹を割らない。",
+      "stressText": "かなり追い詰められている。",
+      "conflictText": "封継師は罅を閉じるため封泥と時間を欲しがる。遺物番は封箱を動かさず、継ぎ直しより保管の秩序を優先したい。",
+      "traceText": "あなたが「手がかりを調べる」を選んだことを、まだ好意的に見ている。封泥と罅図を読む相手には乗るが、配合の話になると急に口が重くなる。",
+      "secretText": "一度だけ古い封泥を混ぜ、罅をその場しのぎで塞いだ 露見のきっかけは 継ぎ目を剥がして配合を公に比べられると、その場しのぎを隠しきれない。",
+      "weaknessText": "罅鳴りが強まると、奥の被害を閉じ込めるため人を返したくなくなる 火がつくのは 封路の奥で罅鳴りが続くと、生還より封じ込めを優先しやすい。"
+    }
+  ],
+  "memory": {
+    "archiveSummary": {
+      "latestArchiveSummary": "第1節「鐘音を抱えた夜営」: 渡し守ジョラでも澱舟泊の検疫線は守り切れず、「逆唱の受け換え」で広がった傷と、「目録官まわりの物証を抜き取ろうとした」の痕をまだ隠していることが重く残った。逆塩祠洞から戻る細い退路だけを拾って夜を越えた。 そのうえ、「目録官まわりの物証を抜き取ろうとした」の痕をまだ隠し切れていない。",
+      "resurfacingSpark": "第1節「鐘音を抱えた夜営」の余波: 隠した不正を洗い直す動きが入り、禁じ手の痕まで一緒に表へ出るおそれがある。",
+      "hiddenWound": "第1節「鐘音を抱えた夜営」: 表に出ていない不正が残り、検分が入れば露見へ傾く。",
+      "entries": [
+        {
+          "sessionNumber": 1,
+          "title": "鐘音を抱えた夜営",
+          "tone": "grim",
+          "openingSummary": "最初の節だ。まだ前節から強く持ち越された因果はない。",
+          "keyRoleLabel": "渡し守",
+          "keyOccupantLabel": "渡し守ジョラ",
+          "protected": "逆塩祠洞から戻る細い退路",
+          "lost": "澱舟泊の検疫線",
+          "carriedForward": "渡し検札の食い違いの圧に加え、「逆唱の受け換え」の傷と渡し守ジョラと宿場差配エドラの溝が次節を重くする。 「目録官まわりの物証を抜き取ろうとした」の痕はまだ隠れており、帳簿合わせや検分ひとつで露見へ転ぶ。",
+          "archivedCauseEcho": "隠れた不正の痕として、目録官まわりの物証を抜き取ろうとしたの余波がまだ尾を引いている。",
+          "resurfacingRisk": "隠した不正を洗い直す動きが入り、禁じ手の痕まで一緒に表へ出るおそれがある。",
+          "viceSummary": "目録官まわりの物証を抜き取ろうとしたの余波で、悪徳の気配がまだ場に残っている。",
+          "tabooSummary": "禁じ手の濁りが残り、祈りと封印の後始末が要る。",
+          "hiddenCrimeSummary": "表に出ていない不正が残り、検分が入れば露見へ傾く。",
+          "ritualPollutionSummary": "儀礼の汚れが残り、次の祈りや封印に重さが返る。",
+          "hookConnections": [
+            "強く戻ってきている因果: 隠れた不正の痕として、目録官まわりの物証を抜き取ろうとしたの余波がまだ尾を引いている。",
+            "再燃している火種: 隠した不正を洗い直す動きが入り、禁じ手の痕まで一緒に表へ出るおそれがある。",
+            "残っている悪徳: 目録官まわりの物証を抜き取ろうとしたの余波で、悪徳の気配がまだ場に残っている。表に出ていない不正が残り、検分が入れば露見へ傾く。",
+            "残っている禁忌: 禁じ手の濁りが残り、祈りと封印の後始末が要る。儀礼の汚れが残り、次の祈りや封印に重さが返る。"
+          ]
+        }
+      ]
+    },
+    "nextSessionHook": {
+      "nextMainEventCandidates": [
+        "「目録官まわりの物証を抜き取ろうとした」の禁じ手の検分: 禁じ手の濁りが残り、祈りと封印の後始末が要る。儀礼の汚れが残り、次の祈りや封印に重さが返る。",
+        "「目録官まわりの物証を抜き取ろうとした」の痕の洗い出し: まだ表に出ていない不正が、検分ひとつで主事件へ育ちやすい。",
+        "「目録官まわりの物証を抜き取ろうとした」の悪評の拡散: 噂が別の座へ飛び火し、無関係だった役目まで巻き込みやすい。"
+      ],
+      "carriedPressures": [
+        "黒封使節の遅着の余波が続き、次の判断を急がせる。",
+        "環鈴宿《カンレイ》では不信と緊張が残り、場の空気がまだ落ち着いていない。",
+        "白灰坑路では封印の負担が残り、奥ほど危うい。"
+      ],
+      "npcCarryOvers": [
+        "渡し守: 渡し守ジョラの座は、第1節「鐘音を抱えた夜営」で残った禁じ手の後始末と不信を背負っている。",
+        "目録官: 目録官バシャの座では、まだ疑いを解いていない。",
+        "宿場差配: 宿場差配エドラの座では、まだ疑いを解いていない。"
+      ],
+      "scarsRemaining": [
+        "「逆唱の受け換え」で広がった傷と、「目録官まわりの物証を抜き取ろうとした」の痕をまだ隠していること",
+        "失ったもの: 澱舟泊の検疫線。",
+        "第1節「鐘音を抱えた夜営」: 表に出ていない不正が残り、検分が入れば露見へ傾く。"
+      ],
+      "protectedAssets": [
+        "逆塩祠洞から戻る細い退路",
+        "環鈴宿《カンレイ》へ届く補給はまだ途切れていない。",
+        "白灰坑路の封印はまだ持ちこたえている。"
+      ],
+      "archivedCauseEchoes": [
+        "第1節「鐘音を抱えた夜営」: 隠れた不正の痕として、目録官まわりの物証を抜き取ろうとしたの余波がまだ尾を引いている。"
+      ],
+      "resurfacingRisks": [
+        "第1節「鐘音を抱えた夜営」の余波: 隠した不正を洗い直す動きが入り、禁じ手の痕まで一緒に表へ出るおそれがある。"
+      ],
+      "unresolvedVice": [
+        "目録官まわりの物証を抜き取ろうとしたの余波で、悪徳の気配がまだ場に残っている。表に出ていない不正が残り、検分が入れば露見へ傾く。"
+      ],
+      "unresolvedTaboo": [
+        "禁じ手の濁りが残り、祈りと封印の後始末が要る。儀礼の汚れが残り、次の祈りや封印に重さが返る。"
+      ]
+    },
+    "sessionEnding": {
+      "sessionNumber": 1,
+      "title": "鐘音を抱えた夜営",
+      "tone": "grim",
+      "dominantChoice": "observe",
+      "keyNpcId": "slot_ferrymaster",
+      "keyRoleSlotId": "slot_ferrymaster",
+      "keyRoleLabel": "渡し守",
+      "keyNpcLabel": "渡し守ジョラ",
+      "summary": "渡し守ジョラでも澱舟泊の検疫線は守り切れず、「逆唱の受け換え」で広がった傷と、「目録官まわりの物証を抜き取ろうとした」の痕をまだ隠していることが重く残った。逆塩祠洞から戻る細い退路だけを拾って夜を越えた。 そのうえ、「目録官まわりの物証を抜き取ろうとした」の痕をまだ隠し切れていない。",
+      "legacyEffect": "澱舟泊の検疫線の傷は閉じず、拠点と坑路の両方に疲労が残る。 悪評が人づてに広がり、関わらなかった座まで警戒し始める。まだ表に出ていない行いが残り、検分が入れば露見へ傾く。",
+      "whatRemained": "「逆唱の受け換え」で広がった傷と、「目録官まわりの物証を抜き取ろうとした」の痕をまだ隠していること",
+      "protected": "逆塩祠洞から戻る細い退路",
+      "lost": "澱舟泊の検疫線",
+      "carriedForward": "渡し検札の食い違いの圧に加え、「逆唱の受け換え」の傷と渡し守ジョラと宿場差配エドラの溝が次節を重くする。 「目録官まわりの物証を抜き取ろうとした」の痕はまだ隠れており、帳簿合わせや検分ひとつで露見へ転ぶ。",
+      "keyNpcAftertaste": "渡し守ジョラは澱舟泊の検疫線を抱えたまま、まだこちらの出方を測っている。 目録官バシャは証拠を掴めないままでも、「目録官まわりの物証を抜き取ろうとした」の痕を埋めた誰かがいると見ている。",
+      "score": -12.5,
+      "recentBranches": [
+        "荷舟の優先差し替え",
+        "塩継ぎの継ぎ直し",
+        "逆唱の受け換え"
+      ]
+    }
+  },
+  "freeActionSurface": {
+    "latest": {
+      "summary": "目録官まわりの物証を抜き取ろうとした",
+      "outcome": "concealed_success",
+      "afterglow": "まだ誰も確信していないが、静かな違和感だけが残る。",
+      "residue": "隠れた不正の痕"
+    },
+    "narrativeSurfaceRules": [
+      "自由入力の原文は保存しない。語りは summary と structured result の outcome から作る。",
+      "結果の確定、世界状態の変更、保存は backend のみが行う。",
+      "語りでは成功・露見・反動の手触りを補うが、truth を言い換えて改変しない。"
+    ]
+  },
+  "narrationPolicy": {
+    "tone": "意味を先に、雰囲気はその後に置く。",
+    "openingTask": "scene.openingLines と guidance.sessionOpeningGuide を基に、場面の導入を 2〜4 文で語る。",
+    "npcTask": "cast を見て current occupant の反応を台詞や地の文で補う。",
+    "hookTask": "memory.nextSessionHook を使い、次に何が再燃するかを短く示す。"
+  },
+  "runtime": {
+    "readOnly": true,
+    "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_44338_6",
+    "sessionId": "sess_1729",
+    "archiveCount": 1
+  }
+}

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StarRingCodexTRPG 表示UI</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="toolbar">
+        <div class="toolbar__title">
+          <p class="eyebrow">表示と選択</p>
+          <h1>Star Ring Codex TRPG</h1>
+        </div>
+        <form id="seed-form" class="toolbar__form">
+          <label>
+            <span>seed</span>
+            <input id="seed-input" name="seed" type="number" value="1729">
+          </label>
+          <label>
+            <span>season数</span>
+            <input id="seasons-input" name="seasons" type="number" value="10">
+          </label>
+          <label>
+            <span>archetype</span>
+            <input id="archetype-input" name="archetype" type="text" value="balanced">
+          </label>
+          <button type="submit">seed を読む</button>
+        </form>
+        <form id="world-json-form" class="toolbar__form toolbar__form--path">
+          <label>
+            <span>world_json のパス</span>
+            <input id="world-json-input" name="world_json" type="text" placeholder="C:\path\to\world.json">
+          </label>
+          <button type="submit">ファイルを読む</button>
+        </form>
+        <div class="toolbar__actions">
+          <button id="save-session-button" type="button">この session を保存</button>
+          <button id="load-session-button" type="button">前回の続きから読む</button>
+          <button id="next-session-button" type="button">次の session へ進む</button>
+        </div>
+        <div class="toolbar__guide">
+          <p class="toolbar__guide-title">進め方</p>
+          <p>まずは通常の選択で場面の流れをつかみます。選択肢にない手を試したいときだけ自由行動を使います。</p>
+          <p>途中で区切るなら保存し、6手を終えたら次の session へ進みます。</p>
+        </div>
+        <form id="free-action-form" class="toolbar__form toolbar__form--free-action">
+          <label>
+            <span>自由行動</span>
+            <textarea id="free-action-input" name="action_text" rows="3" placeholder="例: 夜中に裏から入り、裏帳面を盗み出す"></textarea>
+          </label>
+          <button id="free-action-button" type="submit">自由行動を送る</button>
+        </form>
+      </header>
+
+      <section id="status-banner" class="status-banner">seed 1729 を読み込んでいます...</section>
+
+      <section id="actor-rail" class="actor-rail"></section>
+
+      <main class="main-grid">
+        <aside class="panel panel--world">
+          <div class="panel__header">
+            <p class="panel__eyebrow">世界</p>
+            <h2>世界の骨格</h2>
+          </div>
+          <div id="world-spine"></div>
+          <div class="panel__header panel__header--split">
+            <p class="panel__eyebrow">脈動</p>
+            <h2>世界の気配</h2>
+          </div>
+          <div id="world-pulse"></div>
+          <div class="panel__header panel__header--split">
+            <p class="panel__eyebrow">局面</p>
+            <h2>事件 / 拠点 / 坑路</h2>
+          </div>
+          <div id="campaign-world"></div>
+        </aside>
+
+        <section class="panel panel--scene">
+          <div class="panel__header">
+            <p class="panel__eyebrow">場面</p>
+            <h2 id="scene-title">場面表示</h2>
+          </div>
+          <div id="story-guide" class="story-guide"></div>
+          <div id="scene-packet"></div>
+          <div class="panel__header panel__header--split">
+            <p class="panel__eyebrow">人物</p>
+            <h2>関係者の反応</h2>
+          </div>
+          <div id="npc-beats" class="npc-beats"></div>
+        </section>
+
+        <aside class="panel panel--node">
+          <div class="panel__header">
+            <p class="panel__eyebrow">事件</p>
+            <h2>焦点ノード</h2>
+          </div>
+          <div id="active-node"></div>
+          <div class="panel__header panel__header--split">
+            <p class="panel__eyebrow">取り決め</p>
+            <h2>警戒中の約定</h2>
+          </div>
+          <div id="institution-alert"></div>
+        </aside>
+      </main>
+    </div>
+
+    <template id="list-item-template">
+      <div class="kv-row">
+        <span class="kv-row__key"></span>
+        <span class="kv-row__value"></span>
+      </div>
+    </template>
+
+    <script src="/app.js" defer></script>
+  </body>
+  </html>

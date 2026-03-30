@@ -1,0 +1,78 @@
+{
+  "project_root": "/mnt/data/_pbw_extract_runtime/StarRingCodexRPG",
+  "zip_path": "/mnt/data/StarRingCodexRPG.zip",
+  "governance_files": [
+    "/mnt/data/pbw_development_policy_v1.md",
+    "/mnt/data/pbw_npc発話辞書_v_1_0.md"
+  ],
+  "counts": {
+    "all_files": 53,
+    "python_files": 7,
+    "json_files": 23,
+    "markdown_files": 23
+  },
+  "world_layer_files": [
+    "pbw_generated_world_seed1729_v2_diplomacy_quests.json",
+    "pbw_generated_world_seed1729_v2_diplomacy_quests_summary.md",
+    "pbw_generated_world_seed1729_v3_resolution.json",
+    "pbw_generated_world_seed1729_v3_resolution_summary (1).md",
+    "pbw_generated_world_seed1729_v3_resolution_summary.md",
+    "pbw_generated_world_seed1729_v5_institutions.json",
+    "pbw_generated_world_seed1729_v5_institutions_summary (1).md",
+    "pbw_generated_world_seed1729_v5_institutions_summary.md",
+    "pbw_generated_world_seed1729_v6_treaty_clauses.json",
+    "pbw_generated_world_seed1729_v6_treaty_clauses_summary.md",
+    "pbw_generated_world_seed1729_v7_historical_nodes.json",
+    "pbw_generated_world_seed1729_v7_historical_nodes_summary.md",
+    "pbw_generated_world_seed1729_v8_historical_resolution.json",
+    "pbw_generated_world_seed1729_v8_historical_resolution_summary.md",
+    "pbw_generated_world_seed1729_v9_mythic_integration.json",
+    "pbw_generated_world_seed1729_v9_mythic_integration_summary.md",
+    "pbw_world_diplomacy_quests_v3.py",
+    "pbw_world_diplomacy_quests_v3_README.md",
+    "pbw_world_historical_nodes_v7.py",
+    "pbw_world_historical_nodes_v7_README.md",
+    "pbw_world_historical_resolution_v8.py",
+    "pbw_world_historical_resolution_v8_README.md",
+    "pbw_world_institutions_v5_README.md",
+    "pbw_world_mythic_integration_v9.py",
+    "pbw_world_mythic_integration_v9_README.md",
+    "pbw_world_resolution_v4.py",
+    "pbw_world_resolution_v4_README.md",
+    "pbw_world_simulator_schema_v3.json",
+    "pbw_world_simulator_schema_v3_README.md",
+    "pbw_world_treaty_clauses_v6.py",
+    "pbw_world_turn_algorithm_v1.md",
+    "pbw_world_turn_algorithm_v1.py"
+  ],
+  "ui_contract_files": [
+    "ScenePacketV1.schema.json",
+    "ShellSnapshotRM.schema.json",
+    "UiEventEnvelope.schema.json",
+    "pbw_ui_contracts_v1/README.md",
+    "pbw_ui_contracts_v1/ScenePacketV1.schema.json",
+    "pbw_ui_contracts_v1/ShellSnapshotRM.schema.json",
+    "pbw_ui_contracts_v1/UiEventEnvelope.schema.json",
+    "pbw_ui_contracts_v1/pbw_ui_contracts_examples.json"
+  ],
+  "content_bible_files": [
+    "TRPG_Race_Attribute_Culture_Motif_Design.json",
+    "equipment_name_lexicon_v1.json",
+    "event_display_template_checklist_codex.md",
+    "pbw_codex_handoff_notes.md",
+    "pbw_codex_worldbuilding_instruction_v_1.md",
+    "pbw_scene_output_schema_v1.json",
+    "pbw_style_engine_v1.json",
+    "pbw_ui_contracts_examples.json",
+    "race_background_bible_v3_1.json",
+    "trpg_magic_system_for_codex.json",
+    "trpg_naming_codex_pack.json"
+  ],
+  "highest_detected_version": 9,
+  "highest_version_files": [
+    "pbw_generated_world_seed1729_v9_mythic_integration.json",
+    "pbw_generated_world_seed1729_v9_mythic_integration_summary.md",
+    "pbw_world_mythic_integration_v9.py",
+    "pbw_world_mythic_integration_v9_README.md"
+  ]
+}

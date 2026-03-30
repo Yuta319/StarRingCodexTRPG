@@ -1,0 +1,1067 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/pbw/schemas/ShellSnapshotRM.schema.json",
+  "title": "ShellSnapshotRM",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sessionId",
+    "generatedAt",
+    "shellMode",
+    "worldSpine",
+    "actorRail",
+    "scenePacket",
+    "contextRail",
+    "hotbar",
+    "badges",
+    "overlays",
+    "lastSeq"
+  ],
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "shellMode": {
+      "type": "string",
+      "enum": [
+        "narrative",
+        "dialogue",
+        "combat",
+        "intervention",
+        "menu",
+        "cinematic",
+        "readonly"
+      ]
+    },
+    "worldSpine": {
+      "$ref": "#/$defs/WorldSpineRM"
+    },
+    "actorRail": {
+      "$ref": "#/$defs/ActorRailRM"
+    },
+    "scenePacket": {
+      "$ref": "#/$defs/ScenePacketV1"
+    },
+    "contextRail": {
+      "$ref": "#/$defs/ContextRailRM"
+    },
+    "hotbar": {
+      "$ref": "#/$defs/HotbarRM"
+    },
+    "badges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/BadgeRM"
+      }
+    },
+    "overlays": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/OverlayRM"
+      }
+    },
+    "lastSeq": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Latest applied UI event sequence number."
+    }
+  },
+  "$defs": {
+    "WorldSpineRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "worldName",
+        "calendarName",
+        "year",
+        "seasonIndex",
+        "eraLabel",
+        "mainGodLabel",
+        "syncState"
+      ],
+      "properties": {
+        "worldName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "calendarName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "year": {
+          "type": "integer"
+        },
+        "seasonIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "eraLabel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mainGodLabel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "activeChainLabel": {
+          "type": "string"
+        },
+        "cycleDistortion": {
+          "type": "number"
+        },
+        "divineWarPressure": {
+          "type": "number"
+        },
+        "dominantBranch": {
+          "type": "string"
+        },
+        "topNotes": {
+          "type": "array",
+          "maxItems": 3,
+          "items": {
+            "type": "string"
+          }
+        },
+        "syncState": {
+          "type": "string",
+          "enum": [
+            "synced",
+            "patching",
+            "degraded",
+            "readonly"
+          ]
+        }
+      }
+    },
+    "ActorRailRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actorId",
+        "label",
+        "vessel",
+        "existenceTitle",
+        "skills",
+        "statuses",
+        "blessings",
+        "quickSlots"
+      ],
+      "properties": {
+        "actorId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "portraitUrl": {
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "hp": {
+          "$ref": "#/$defs/ResourceBar"
+        },
+        "mp": {
+          "$ref": "#/$defs/ResourceBar"
+        },
+        "exp": {
+          "$ref": "#/$defs/ProgressBar"
+        },
+        "vessel": {
+          "type": "number",
+          "description": "Canonical PBW progression value."
+        },
+        "existenceTitle": {
+          "type": "string",
+          "minLength": 1
+        },
+        "skills": {
+          "$ref": "#/$defs/SkillVectors"
+        },
+        "tendencies": {
+          "$ref": "#/$defs/Tendencies"
+        },
+        "statuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/StatusBadgeRM"
+          }
+        },
+        "blessings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BlessingBadgeRM"
+          }
+        },
+        "quickSlots": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "$ref": "#/$defs/QuickSlotRM"
+          }
+        }
+      }
+    },
+    "ResourceBar": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "current",
+        "max"
+      ],
+      "properties": {
+        "current": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "ProgressBar": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "current"
+      ],
+      "properties": {
+        "current": {
+          "type": "number"
+        },
+        "next": {
+          "type": "number"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "SkillVectors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "combat",
+        "diplomacy",
+        "ritual",
+        "stealth",
+        "stewardship",
+        "authority"
+      ],
+      "properties": {
+        "combat": {
+          "type": "number"
+        },
+        "diplomacy": {
+          "type": "number"
+        },
+        "ritual": {
+          "type": "number"
+        },
+        "stealth": {
+          "type": "number"
+        },
+        "stewardship": {
+          "type": "number"
+        },
+        "authority": {
+          "type": "number"
+        }
+      }
+    },
+    "Tendencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mercy": {
+          "type": "number"
+        },
+        "zeal": {
+          "type": "number"
+        },
+        "ambition": {
+          "type": "number"
+        },
+        "prudence": {
+          "type": "number"
+        }
+      }
+    },
+    "StatusBadgeRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "statusId",
+        "label",
+        "tone"
+      ],
+      "properties": {
+        "statusId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tone": {
+          "type": "string",
+          "enum": [
+            "neutral",
+            "buff",
+            "debuff",
+            "warning"
+          ]
+        },
+        "stacks": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "durationLabel": {
+          "type": "string"
+        }
+      }
+    },
+    "BlessingBadgeRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blessingId",
+        "label",
+        "tier",
+        "tone"
+      ],
+      "properties": {
+        "blessingId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tier": {
+          "type": "string",
+          "enum": [
+            "minor",
+            "major",
+            "mythic"
+          ]
+        },
+        "tone": {
+          "type": "string",
+          "enum": [
+            "neutral",
+            "holy",
+            "shadow",
+            "seal",
+            "contract",
+            "custom"
+          ]
+        },
+        "iconKey": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    },
+    "QuickSlotRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slotIndex",
+        "slotType",
+        "label",
+        "actionRef"
+      ],
+      "properties": {
+        "slotIndex": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 7
+        },
+        "slotType": {
+          "type": "string",
+          "enum": [
+            "skill",
+            "relic",
+            "item",
+            "blessing",
+            "macro"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actionRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cooldownLabel": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "ScenePacketV1": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://example.invalid/pbw/schemas/ScenePacketV1.schema.json",
+      "title": "ScenePacketV1",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sceneId",
+        "playerFacing",
+        "dramaticLayers",
+        "npcBeats",
+        "linkedNodeIds"
+      ],
+      "properties": {
+        "sceneId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable scene packet identifier."
+        },
+        "locationLabel": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Player-facing current location label."
+        },
+        "focusLabel": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Short label for the immediate dramatic focus."
+        },
+        "playerFacing": {
+          "$ref": "#/$defs/PlayerFacingBlock"
+        },
+        "dramaticLayers": {
+          "$ref": "#/$defs/DramaticLayers"
+        },
+        "npcBeats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/NpcBeatRM"
+          },
+          "description": "Compact, renderer-friendly NPC beat packets for the current scene."
+        },
+        "linkedNodeIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "description": "Related historical node IDs or active node IDs."
+        },
+        "internalFoldCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "How many internal/debug-only items were folded away from the player-facing HUD."
+        },
+        "renderHints": {
+          "$ref": "#/$defs/RenderHints"
+        }
+      },
+      "$defs": {
+        "PlayerFacingBlock": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "headline",
+            "lines",
+            "choiceChips"
+          ],
+          "properties": {
+            "headline": {
+              "type": "string",
+              "minLength": 1,
+              "description": "One-line scene headline."
+            },
+            "lines": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 6,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": "3-6 player-facing lines, aligned to the PBW event display template."
+            },
+            "choiceChips": {
+              "type": "array",
+              "maxItems": 4,
+              "items": {
+                "$ref": "#/$defs/ChoiceChipRM"
+              },
+              "description": "Compact choice buttons shown under the event packet."
+            }
+          }
+        },
+        "ChoiceChipRM": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "choiceId",
+            "label",
+            "intentType"
+          ],
+          "properties": {
+            "choiceId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "label": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 24,
+              "description": "UI-safe action label, typically 12-20 JP characters."
+            },
+            "intentType": {
+              "type": "string",
+              "enum": [
+                "observe",
+                "speak",
+                "intervene",
+                "move",
+                "inspect",
+                "use",
+                "open",
+                "continue",
+                "custom"
+              ]
+            },
+            "emphasis": {
+              "type": "string",
+              "enum": [
+                "primary",
+                "default",
+                "risky",
+                "muted"
+              ],
+              "default": "default"
+            },
+            "disabled": {
+              "type": "boolean",
+              "default": false
+            },
+            "confirmRequired": {
+              "type": "boolean",
+              "default": false
+            },
+            "payload": {
+              "type": "object",
+              "description": "Optional structured intent payload forwarded to the GPT input adapter or command layer."
+            }
+          }
+        },
+        "DramaticLayers": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "place": {
+              "type": "string"
+            },
+            "focus": {
+              "type": "string"
+            },
+            "discrepancy": {
+              "type": "string"
+            },
+            "reaction": {
+              "type": "string"
+            },
+            "aftermath": {
+              "type": "string"
+            }
+          },
+          "description": "Renderer-side dramatic decomposition: place -> focus -> discrepancy -> reaction -> aftermath."
+        },
+        "NpcBeatRM": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "npcId",
+            "displayName",
+            "roleBeat",
+            "relationBeat",
+            "emotionBeat",
+            "ruptureState"
+          ],
+          "properties": {
+            "npcId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "displayName": {
+              "type": "string",
+              "minLength": 1
+            },
+            "portraitAssetId": {
+              "type": "string"
+            },
+            "roleBeat": {
+              "type": "string",
+              "description": "The NPC's first line or first visible beat driven by role."
+            },
+            "relationBeat": {
+              "type": "string",
+              "description": "Second beat driven by current relation."
+            },
+            "emotionBeat": {
+              "type": "string",
+              "description": "Third beat driven by current emotion."
+            },
+            "suppression": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "sealed"
+              ],
+              "description": "How strongly the NPC is suppressing what they really feel or know."
+            },
+            "ruptureState": {
+              "type": "string",
+              "enum": [
+                "stable",
+                "micro_leak",
+                "local_break",
+                "clear_break"
+              ]
+            }
+          }
+        },
+        "RenderHints": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "preferredMode": {
+              "type": "string",
+              "enum": [
+                "narrative",
+                "dialogue",
+                "combat",
+                "intervention",
+                "menu",
+                "cinematic"
+              ]
+            },
+            "showDiceTray": {
+              "type": "boolean",
+              "default": false
+            },
+            "openNpcDrawerOnLoad": {
+              "type": "boolean",
+              "default": false
+            },
+            "highlightNodeId": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ContextRailRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "companions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CompanionCardRM"
+          }
+        },
+        "npcFocus": {
+          "$ref": "#/$defs/NpcFocusRM"
+        },
+        "activeNode": {
+          "$ref": "#/$defs/ActiveNodeCardRM"
+        },
+        "institutionAlert": {
+          "$ref": "#/$defs/InstitutionAlertRM"
+        },
+        "worldPulse": {
+          "$ref": "#/$defs/WorldPulseMiniRM"
+        }
+      }
+    },
+    "CompanionCardRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "companionId",
+        "label"
+      ],
+      "properties": {
+        "companionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "portraitUrl": {
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "role": {
+          "type": "string"
+        },
+        "relationSummary": {
+          "type": "string"
+        }
+      }
+    },
+    "NpcFocusRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "npcId",
+        "displayName",
+        "role",
+        "relationSummary",
+        "emotionSummary",
+        "ruptureState"
+      ],
+      "properties": {
+        "npcId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "portraitUrl": {
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "relationSummary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "emotionSummary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "suppression": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "sealed"
+          ]
+        },
+        "ruptureState": {
+          "type": "string",
+          "enum": [
+            "stable",
+            "micro_leak",
+            "local_break",
+            "clear_break"
+          ]
+        },
+        "codexEntryId": {
+          "type": "string"
+        }
+      }
+    },
+    "ActiveNodeCardRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "nodeId",
+        "title",
+        "severity",
+        "urgency",
+        "stage",
+        "status",
+        "recommendedVectors"
+      ],
+      "properties": {
+        "nodeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "chainLabel": {
+          "type": "string"
+        },
+        "institutionLabel": {
+          "type": "string"
+        },
+        "questTitle": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "number"
+        },
+        "urgency": {
+          "type": "number"
+        },
+        "stage": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "resolved",
+            "archived",
+            "failed"
+          ]
+        },
+        "recommendedVectors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "combat",
+              "diplomacy",
+              "ritual",
+              "stealth",
+              "stewardship",
+              "authority"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "projectedLegacies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "InstitutionAlertRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "institutionId",
+        "label",
+        "status",
+        "breachRisk"
+      ],
+      "properties": {
+        "institutionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "strained",
+            "broken",
+            "collapsed"
+          ]
+        },
+        "breachRisk": {
+          "type": "number"
+        }
+      }
+    },
+    "WorldPulseMiniRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cycleDistortion",
+        "apotheosisFlux",
+        "successionPressure",
+        "divineWarPressure"
+      ],
+      "properties": {
+        "cycleDistortion": {
+          "type": "number"
+        },
+        "apotheosisFlux": {
+          "type": "number"
+        },
+        "successionPressure": {
+          "type": "number"
+        },
+        "divineWarPressure": {
+          "type": "number"
+        },
+        "topNote": {
+          "type": "string"
+        }
+      }
+    },
+    "HotbarRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "items"
+      ],
+      "properties": {
+        "items": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 12,
+          "items": {
+            "$ref": "#/$defs/HotbarItemRM"
+          }
+        }
+      }
+    },
+    "HotbarItemRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "itemId",
+        "label",
+        "target",
+        "iconKey"
+      ],
+      "properties": {
+        "itemId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "type": "string",
+          "enum": [
+            "character",
+            "relics",
+            "skills",
+            "node_board",
+            "codex",
+            "journal",
+            "world",
+            "dice",
+            "assets",
+            "settings"
+          ]
+        },
+        "iconKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "badgeCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "BadgeRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "badgeId",
+        "target",
+        "label",
+        "tone"
+      ],
+      "properties": {
+        "badgeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tone": {
+          "type": "string",
+          "enum": [
+            "info",
+            "success",
+            "warn",
+            "danger"
+          ]
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "OverlayRM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "overlayId",
+        "type",
+        "state"
+      ],
+      "properties": {
+        "overlayId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "intervention",
+            "confirm",
+            "asset_reveal",
+            "dice_fx",
+            "toast",
+            "drawer",
+            "modal",
+            "cinematic"
+          ]
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "hidden",
+            "queued",
+            "open",
+            "playing",
+            "closing"
+          ]
+        },
+        "refId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

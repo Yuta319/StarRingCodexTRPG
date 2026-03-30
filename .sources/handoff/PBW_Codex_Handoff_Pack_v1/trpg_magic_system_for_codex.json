@@ -1,0 +1,307 @@
+import json
+from pathlib import Path
+
+data = {
+  "metadata": {
+    "title": "TRPG Magic System for Codex",
+    "version": "1.0.0",
+    "language": "ja",
+    "purpose": "Codexやゲーム実装用に使える、固定の基本魔法データと生成魔法ルールをまとめたJSON"
+  },
+  "attributes": [
+    {
+      "id": "light_heal",
+      "name": "光／回復",
+      "keywords": ["光", "回復", "浄化", "防御", "支援"],
+      "allowed_effects": ["damage_light", "heal_hp", "cleanse", "barrier", "buff_defense", "regen"]
+    },
+    {
+      "id": "dark_mind",
+      "name": "闇／精神",
+      "keywords": ["闇", "精神", "恐怖", "呪い", "幻惑", "吸収"],
+      "allowed_effects": ["damage_dark", "fear", "sleep", "confuse", "curse", "drain", "blind", "bind"]
+    },
+    {
+      "id": "fire",
+      "name": "火",
+      "keywords": ["火", "爆発", "火傷", "灼熱"],
+      "allowed_effects": ["damage_fire", "burn", "explode", "wall_fire", "buff_attack_fire"]
+    },
+    {
+      "id": "water_ice",
+      "name": "水／氷",
+      "keywords": ["水", "氷", "冷気", "凍結", "霧"],
+      "allowed_effects": ["damage_water", "damage_ice", "slow", "freeze", "mist", "wall_ice", "heal_mist"]
+    },
+    {
+      "id": "wind_thunder",
+      "name": "風／雷",
+      "keywords": ["風", "雷", "感電", "加速", "吹き飛ばし"],
+      "allowed_effects": ["damage_wind", "damage_thunder", "push", "haste", "paralyze", "chain", "wall_air"]
+    },
+    {
+      "id": "earth_metal",
+      "name": "地／金",
+      "keywords": ["地", "岩", "金属", "防御", "拘束"],
+      "allowed_effects": ["damage_earth", "damage_metal", "wall_earth", "buff_defense", "bind", "magnet", "weapon_buff"]
+    }
+  ],
+  "forms": [
+    {"id": "self", "name": "Self", "description": "自分対象", "cost_modifier": 0},
+    {"id": "touch", "name": "Touch", "description": "接触対象", "cost_modifier": 0},
+    {"id": "shot", "name": "Shot", "description": "遠距離単体", "cost_modifier": 1},
+    {"id": "line", "name": "Line", "description": "直線攻撃", "cost_modifier": 1},
+    {"id": "blast", "name": "Blast", "description": "着弾範囲", "cost_modifier": 2},
+    {"id": "wall", "name": "Wall", "description": "壁生成", "cost_modifier": 2},
+    {"id": "field", "name": "Field", "description": "設置範囲", "cost_modifier": 2}
+  ],
+  "effect_catalog": [
+    {"id": "damage_light", "name": "光ダメージ", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "heal_hp", "name": "HP回復", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "cleanse", "name": "状態異常回復", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "barrier", "name": "障壁", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+    {"id": "buff_defense", "name": "防御上昇", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "regen", "name": "継続回復", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+
+    {"id": "damage_dark", "name": "闇ダメージ", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "fear", "name": "恐怖", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+    {"id": "sleep", "name": "睡眠", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+    {"id": "confuse", "name": "混乱", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+    {"id": "curse", "name": "呪い", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+    {"id": "drain", "name": "吸収", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+    {"id": "blind", "name": "盲目", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "bind", "name": "拘束", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+
+    {"id": "damage_fire", "name": "火ダメージ", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "burn", "name": "火傷", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "explode", "name": "爆発", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+    {"id": "wall_fire", "name": "炎の壁", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+    {"id": "buff_attack_fire", "name": "火属性攻撃強化", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+
+    {"id": "damage_water", "name": "水ダメージ", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "damage_ice", "name": "氷ダメージ", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "slow", "name": "鈍足", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "freeze", "name": "凍結", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+    {"id": "mist", "name": "霧", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "wall_ice", "name": "氷の壁", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+    {"id": "heal_mist", "name": "回復霧", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+
+    {"id": "damage_wind", "name": "風ダメージ", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "damage_thunder", "name": "雷ダメージ", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "push", "name": "吹き飛ばし", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "haste", "name": "速度上昇", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "paralyze", "name": "感電／麻痺", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+    {"id": "chain", "name": "連鎖", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+    {"id": "wall_air", "name": "風の壁", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+
+    {"id": "damage_earth", "name": "地ダメージ", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "damage_metal", "name": "金ダメージ", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "wall_earth", "name": "土の壁", "base_cost_small": 2, "base_cost_medium": 3, "base_cost_large": 4},
+    {"id": "magnet", "name": "磁力干渉", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3},
+    {"id": "weapon_buff", "name": "武器強化", "base_cost_small": 1, "base_cost_medium": 2, "base_cost_large": 3}
+  ],
+  "ranks": [
+    {"id": "novice", "name": "初級", "point_min": 1, "point_max": 2},
+    {"id": "adept", "name": "中級", "point_min": 3, "point_max": 4},
+    {"id": "expert", "name": "上級", "point_min": 5, "point_max": 6},
+    {"id": "master", "name": "大魔法", "point_min": 7, "point_max": 99}
+  ],
+  "generation_rules": {
+    "summary": "属性・効果・発動形式・威力・持続を選択してコストポイントを算出し、ランクと消費MPの目安を決定する。",
+    "constraints": [
+      "通常魔法は主効果1つ＋副効果1つまで",
+      "通常魔法は単一属性のみ。複合属性は合体魔法または特例扱い",
+      "高威力範囲ダメージと強力状態異常の同時付与は禁止推奨",
+      "持続3ラウンド以上の拘束や凍結は上級以上推奨",
+      "合体魔法は術者2名以上で作成可能"
+    ],
+    "point_formula": {
+      "effect_cost": "選択したeffectのbase_cost_*を採用",
+      "form_cost": "forms[].cost_modifierを加算",
+      "duration_cost": {
+        "instant": 0,
+        "2_rounds": 1,
+        "3_or_more_rounds": 2
+      },
+      "secondary_effect_cost_rule": "副効果を入れる場合はその効果コストを追加"
+    },
+    "mp_rule_example": "合計ポイントをそのまま消費MPの目安として使用してもよい。"
+  },
+  "preset_spells": [
+    {"id":"light_001","name":"ライト","attribute":"光／回復","form":"self","rank":"初級","effects":[{"id":"damage_light","scale":"small","note":"明かり。戦闘ダメージ用途ではなく照明用"}],"duration":"3_or_more_rounds","cost_points":3,"mp_cost":3,"description":"周囲を照らす光を生み出す。"},
+    {"id":"light_002","name":"ヒール","attribute":"光／回復","form":"shot","rank":"中級","effects":[{"id":"heal_hp","scale":"small"}],"duration":"instant","cost_points":2,"mp_cost":2,"description":"単体を小回復する基本回復魔法。"},
+    {"id":"light_003","name":"ハイヒール","attribute":"光／回復","form":"shot","rank":"中級","effects":[{"id":"heal_hp","scale":"medium"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"単体を大きく回復する。"},
+    {"id":"light_004","name":"リカバー","attribute":"光／回復","form":"shot","rank":"中級","effects":[{"id":"cleanse","scale":"small"}],"duration":"instant","cost_points":2,"mp_cost":2,"description":"軽い状態異常を治す。"},
+    {"id":"light_005","name":"プロテクト","attribute":"光／回復","form":"shot","rank":"中級","effects":[{"id":"buff_defense","scale":"small"}],"duration":"2_rounds","cost_points":3,"mp_cost":3,"description":"防御を上げる光の補助魔法。"},
+    {"id":"light_006","name":"バリア","attribute":"光／回復","form":"shot","rank":"上級","effects":[{"id":"barrier","scale":"small"}],"duration":"2_rounds","cost_points":4,"mp_cost":4,"description":"一時的に攻撃を防ぐ膜を張る。"},
+    {"id":"light_007","name":"シャイン","attribute":"光／回復","form":"shot","rank":"初級","effects":[{"id":"damage_light","scale":"small"}],"duration":"instant","cost_points":2,"mp_cost":2,"description":"光で敵を攻撃する基本魔法。"},
+    {"id":"light_008","name":"ホーリーボルト","attribute":"光／回復","form":"shot","rank":"中級","effects":[{"id":"damage_light","scale":"medium"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"聖なる光弾で単体を攻撃する。"},
+    {"id":"light_009","name":"ホーリーレイ","attribute":"光／回復","form":"line","rank":"中級","effects":[{"id":"damage_light","scale":"medium"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"光線で一直線を攻撃する。"},
+    {"id":"light_010","name":"リジェネ","attribute":"光／回復","form":"shot","rank":"上級","effects":[{"id":"regen","scale":"small"}],"duration":"3_or_more_rounds","cost_points":5,"mp_cost":5,"description":"継続回復を付与する。"},
+    {"id":"light_011","name":"クリア","attribute":"光／回復","form":"shot","rank":"中級","effects":[{"id":"cleanse","scale":"medium"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"呪いや弱体を解除する。"},
+    {"id":"light_012","name":"ブレス","attribute":"光／回復","form":"shot","rank":"中級","effects":[{"id":"buff_defense","scale":"small"}],"duration":"3_or_more_rounds","cost_points":4,"mp_cost":4,"description":"味方の抵抗や安定性を少し上げる。"},
+    
+    {"id":"dark_001","name":"ダーク","attribute":"闇／精神","form":"shot","rank":"初級","effects":[{"id":"damage_dark","scale":"small"}],"duration":"instant","cost_points":2,"mp_cost":2,"description":"闇の力で小ダメージを与える。"},
+    {"id":"dark_002","name":"シャドウボルト","attribute":"闇／精神","form":"shot","rank":"中級","effects":[{"id":"damage_dark","scale":"medium"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"闇弾で単体を攻撃する。"},
+    {"id":"dark_003","name":"フィア","attribute":"闇／精神","form":"shot","rank":"中級","effects":[{"id":"fear","scale":"small"}],"duration":"2_rounds","cost_points":4,"mp_cost":4,"description":"恐怖を与えて行動を鈍らせる。"},
+    {"id":"dark_004","name":"スリープ","attribute":"闇／精神","form":"shot","rank":"中級","effects":[{"id":"sleep","scale":"small"}],"duration":"2_rounds","cost_points":4,"mp_cost":4,"description":"対象を眠らせる。"},
+    {"id":"dark_005","name":"コンフューズ","attribute":"闇／精神","form":"shot","rank":"中級","effects":[{"id":"confuse","scale":"small"}],"duration":"2_rounds","cost_points":4,"mp_cost":4,"description":"混乱させる。"},
+    {"id":"dark_006","name":"サイレンス","attribute":"闇／精神","form":"shot","rank":"中級","effects":[{"id":"curse","scale":"small","note":"詠唱や発声の阻害として扱う"}],"duration":"2_rounds","cost_points":4,"mp_cost":4,"description":"詠唱や発声を妨げる。"},
+    {"id":"dark_007","name":"マインドブレイク","attribute":"闇／精神","form":"shot","rank":"上級","effects":[{"id":"curse","scale":"medium"}],"duration":"3_or_more_rounds","cost_points":5,"mp_cost":5,"description":"精神抵抗を下げる。"},
+    {"id":"dark_008","name":"カース","attribute":"闇／精神","form":"shot","rank":"中級","effects":[{"id":"curse","scale":"small"}],"duration":"3_or_more_rounds","cost_points":4,"mp_cost":4,"description":"攻撃や防御を下げる呪い。"},
+    {"id":"dark_009","name":"ドレイン","attribute":"闇／精神","form":"shot","rank":"中級","effects":[{"id":"drain","scale":"small"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"生命力や魔力を吸い取る。"},
+    {"id":"dark_010","name":"ダークミスト","attribute":"闇／精神","form":"field","rank":"上級","effects":[{"id":"blind","scale":"medium"}],"duration":"2_rounds","cost_points":5,"mp_cost":5,"description":"黒い霧で視界を奪う。"},
+    {"id":"dark_011","name":"バインド","attribute":"闇／精神","form":"shot","rank":"上級","effects":[{"id":"bind","scale":"small"}],"duration":"2_rounds","cost_points":4,"mp_cost":4,"description":"影や精神圧で動きを止める。"},
+    {"id":"dark_012","name":"ナイトメア","attribute":"闇／精神","form":"shot","rank":"上級","effects":[{"id":"confuse","scale":"medium"},{"id":"fear","scale":"small"}],"duration":"2_rounds","cost_points":7,"mp_cost":7,"description":"幻覚や悪夢で行動を乱す。"},
+    
+    {"id":"fire_001","name":"ファイア","attribute":"火","form":"shot","rank":"初級","effects":[{"id":"damage_fire","scale":"small"}],"duration":"instant","cost_points":2,"mp_cost":2,"description":"小さな火弾を飛ばす基本魔法。"},
+    {"id":"fire_002","name":"ファイアボール","attribute":"火","form":"blast","rank":"中級","effects":[{"id":"damage_fire","scale":"medium"}],"duration":"instant","cost_points":4,"mp_cost":4,"description":"火球を放つ基本中級魔法。"},
+    {"id":"fire_003","name":"フレイム","attribute":"火","form":"shot","rank":"中級","effects":[{"id":"damage_fire","scale":"medium"},{"id":"burn","scale":"small"}],"duration":"2_rounds","cost_points":6,"mp_cost":6,"description":"対象を炎で包む。"},
+    {"id":"fire_004","name":"フレイムランス","attribute":"火","form":"line","rank":"中級","effects":[{"id":"damage_fire","scale":"medium"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"炎の槍で貫く。"},
+    {"id":"fire_005","name":"バーン","attribute":"火","form":"shot","rank":"中級","effects":[{"id":"burn","scale":"small"}],"duration":"3_or_more_rounds","cost_points":4,"mp_cost":4,"description":"継続する火傷を与える。"},
+    {"id":"fire_006","name":"ファイアウォール","attribute":"火","form":"wall","rank":"上級","effects":[{"id":"wall_fire","scale":"medium"}],"duration":"3_or_more_rounds","cost_points":5,"mp_cost":5,"description":"炎の壁を作る。"},
+    {"id":"fire_007","name":"エクスプロード","attribute":"火","form":"blast","rank":"上級","effects":[{"id":"explode","scale":"medium"}],"duration":"instant","cost_points":5,"mp_cost":5,"description":"指定地点で爆発を起こす。"},
+    {"id":"fire_008","name":"ブレイズ","attribute":"火","form":"field","rank":"上級","effects":[{"id":"damage_fire","scale":"medium"},{"id":"burn","scale":"small"}],"duration":"2_rounds","cost_points":7,"mp_cost":7,"description":"周囲を焼く範囲炎。"},
+    {"id":"fire_009","name":"ヒート","attribute":"火","form":"self","rank":"初級","effects":[{"id":"buff_attack_fire","scale":"small"}],"duration":"2_rounds","cost_points":2,"mp_cost":2,"description":"武器や肉体に熱をまとわせる。"},
+    {"id":"fire_010","name":"メテオファイア","attribute":"火","form":"blast","rank":"大魔法","effects":[{"id":"explode","scale":"large"}],"duration":"instant","cost_points":6,"mp_cost":6,"description":"上から大きな火球を落とす上位魔法。"},
+    {"id":"fire_011","name":"インフェルノ","attribute":"火","form":"field","rank":"大魔法","effects":[{"id":"damage_fire","scale":"large"},{"id":"burn","scale":"medium"}],"duration":"3_or_more_rounds","cost_points":9,"mp_cost":9,"description":"広範囲を焼き払う大魔法。"},
+    
+    {"id":"water_001","name":"ウォーター","attribute":"水／氷","form":"shot","rank":"初級","effects":[{"id":"damage_water","scale":"small"}],"duration":"instant","cost_points":2,"mp_cost":2,"description":"水弾を放つ基本魔法。"},
+    {"id":"water_002","name":"ウォーターボール","attribute":"水／氷","form":"shot","rank":"中級","effects":[{"id":"damage_water","scale":"medium"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"まとまった水塊をぶつける。"},
+    {"id":"water_003","name":"アクアカッター","attribute":"水／氷","form":"line","rank":"中級","effects":[{"id":"damage_water","scale":"medium"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"水の刃で斬る。"},
+    {"id":"water_004","name":"アイス","attribute":"水／氷","form":"shot","rank":"初級","effects":[{"id":"slow","scale":"small"}],"duration":"2_rounds","cost_points":3,"mp_cost":3,"description":"冷気で動きを鈍らせる。"},
+    {"id":"water_005","name":"アイスボルト","attribute":"水／氷","form":"shot","rank":"中級","effects":[{"id":"damage_ice","scale":"medium"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"氷弾で攻撃する。"},
+    {"id":"water_006","name":"アイスランス","attribute":"水／氷","form":"line","rank":"中級","effects":[{"id":"damage_ice","scale":"medium"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"氷の槍で貫く。"},
+    {"id":"water_007","name":"フリーズ","attribute":"水／氷","form":"shot","rank":"上級","effects":[{"id":"freeze","scale":"small"}],"duration":"2_rounds","cost_points":4,"mp_cost":4,"description":"凍結させて動きを止める。"},
+    {"id":"water_008","name":"ミスト","attribute":"水／氷","form":"field","rank":"中級","effects":[{"id":"mist","scale":"medium"}],"duration":"2_rounds","cost_points":5,"mp_cost":5,"description":"霧を出して視界を悪くする。"},
+    {"id":"water_009","name":"ヒールミスト","attribute":"水／氷","form":"field","rank":"上級","effects":[{"id":"heal_mist","scale":"small"}],"duration":"3_or_more_rounds","cost_points":6,"mp_cost":6,"description":"回復効果のある霧を発生させる。"},
+    {"id":"water_010","name":"アイスウォール","attribute":"水／氷","form":"wall","rank":"上級","effects":[{"id":"wall_ice","scale":"medium"}],"duration":"3_or_more_rounds","cost_points":5,"mp_cost":5,"description":"氷の壁を作る。"},
+    {"id":"water_011","name":"ブリザード","attribute":"水／氷","form":"field","rank":"大魔法","effects":[{"id":"damage_ice","scale":"large"},{"id":"slow","scale":"medium"}],"duration":"2_rounds","cost_points":8,"mp_cost":8,"description":"冷気と雪で範囲攻撃する。"},
+    {"id":"water_012","name":"アクアシールド","attribute":"水／氷","form":"shot","rank":"中級","effects":[{"id":"buff_defense","scale":"small"}],"duration":"2_rounds","cost_points":3,"mp_cost":3,"description":"水で衝撃を和らげる防御魔法。"},
+    
+    {"id":"wind_001","name":"ウィンド","attribute":"風／雷","form":"shot","rank":"初級","effects":[{"id":"damage_wind","scale":"small"}],"duration":"instant","cost_points":2,"mp_cost":2,"description":"風で押したり切ったりする基本魔法。"},
+    {"id":"wind_002","name":"ウィンドカッター","attribute":"風／雷","form":"line","rank":"中級","effects":[{"id":"damage_wind","scale":"medium"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"真空刃で攻撃する。"},
+    {"id":"wind_003","name":"エアプッシュ","attribute":"風／雷","form":"shot","rank":"初級","effects":[{"id":"push","scale":"small"}],"duration":"instant","cost_points":2,"mp_cost":2,"description":"風圧で押し返す。"},
+    {"id":"wind_004","name":"ゲイル","attribute":"風／雷","form":"field","rank":"上級","effects":[{"id":"push","scale":"medium"}],"duration":"2_rounds","cost_points":5,"mp_cost":5,"description":"強風で範囲を乱す。"},
+    {"id":"wind_005","name":"サンダー","attribute":"風／雷","form":"shot","rank":"初級","effects":[{"id":"damage_thunder","scale":"small"}],"duration":"instant","cost_points":2,"mp_cost":2,"description":"小さな電撃を走らせる。"},
+    {"id":"wind_006","name":"サンダーボルト","attribute":"風／雷","form":"shot","rank":"中級","effects":[{"id":"damage_thunder","scale":"medium"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"雷撃で単体を攻撃する。"},
+    {"id":"wind_007","name":"チェインサンダー","attribute":"風／雷","form":"blast","rank":"上級","effects":[{"id":"damage_thunder","scale":"medium"},{"id":"chain","scale":"small"}],"duration":"instant","cost_points":6,"mp_cost":6,"description":"電撃が複数へ連鎖する。"},
+    {"id":"wind_008","name":"スパーク","attribute":"風／雷","form":"shot","rank":"中級","effects":[{"id":"paralyze","scale":"small"}],"duration":"2_rounds","cost_points":4,"mp_cost":4,"description":"軽い感電で行動を乱す。"},
+    {"id":"wind_009","name":"ストーム","attribute":"風／雷","form":"field","rank":"大魔法","effects":[{"id":"damage_thunder","scale":"large"},{"id":"push","scale":"medium"}],"duration":"2_rounds","cost_points":8,"mp_cost":8,"description":"風と雷を混ぜた広域魔法。"},
+    {"id":"wind_010","name":"ヘイスト","attribute":"風／雷","form":"shot","rank":"中級","effects":[{"id":"haste","scale":"small"}],"duration":"3_or_more_rounds","cost_points":4,"mp_cost":4,"description":"行動速度を上げる。"},
+    {"id":"wind_011","name":"サンダーランス","attribute":"風／雷","form":"line","rank":"中級","effects":[{"id":"damage_thunder","scale":"medium"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"収束した雷の槍を放つ。"},
+    {"id":"wind_012","name":"トルネード","attribute":"風／雷","form":"field","rank":"大魔法","effects":[{"id":"damage_wind","scale":"large"},{"id":"push","scale":"medium"}],"duration":"2_rounds","cost_points":8,"mp_cost":8,"description":"竜巻で範囲を巻き上げる。"},
+    
+    {"id":"earth_001","name":"アース","attribute":"地／金","form":"shot","rank":"初級","effects":[{"id":"damage_earth","scale":"small"}],"duration":"instant","cost_points":2,"mp_cost":2,"description":"小石や土塊を飛ばす基本魔法。"},
+    {"id":"earth_002","name":"ストーンショット","attribute":"地／金","form":"shot","rank":"中級","effects":[{"id":"damage_earth","scale":"medium"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"石弾を放つ。"},
+    {"id":"earth_003","name":"アースウォール","attribute":"地／金","form":"wall","rank":"上級","effects":[{"id":"wall_earth","scale":"medium"}],"duration":"3_or_more_rounds","cost_points":5,"mp_cost":5,"description":"土壁を作る。"},
+    {"id":"earth_004","name":"クエイク","attribute":"地／金","form":"field","rank":"上級","effects":[{"id":"damage_earth","scale":"medium"},{"id":"push","scale":"small","note":"転倒やよろめき処理に流用可"}],"duration":"instant","cost_points":5,"mp_cost":5,"description":"地面を揺らして転倒させる。"},
+    {"id":"earth_005","name":"バインドルート","attribute":"地／金","form":"shot","rank":"上級","effects":[{"id":"bind","scale":"small"}],"duration":"2_rounds","cost_points":4,"mp_cost":4,"description":"土や根で足を止める。"},
+    {"id":"earth_006","name":"メタル","attribute":"地／金","form":"self","rank":"初級","effects":[{"id":"weapon_buff","scale":"small"}],"duration":"2_rounds","cost_points":2,"mp_cost":2,"description":"金属の力で体や武器を補強する。"},
+    {"id":"earth_007","name":"アイアンスキン","attribute":"地／金","form":"self","rank":"中級","effects":[{"id":"buff_defense","scale":"medium"}],"duration":"2_rounds","cost_points":3,"mp_cost":3,"description":"防御力を上げる。"},
+    {"id":"earth_008","name":"メタルエッジ","attribute":"地／金","form":"shot","rank":"中級","effects":[{"id":"weapon_buff","scale":"medium"}],"duration":"2_rounds","cost_points":4,"mp_cost":4,"description":"武器の切れ味や貫通力を強化する。"},
+    {"id":"earth_009","name":"スチールランス","attribute":"地／金","form":"line","rank":"中級","effects":[{"id":"damage_metal","scale":"medium"}],"duration":"instant","cost_points":3,"mp_cost":3,"description":"金属槍を飛ばす。"},
+    {"id":"earth_010","name":"ロッククラッシュ","attribute":"地／金","form":"blast","rank":"上級","effects":[{"id":"damage_earth","scale":"large"}],"duration":"instant","cost_points":5,"mp_cost":5,"description":"岩塊で押し潰す。"},
+    {"id":"earth_011","name":"マグネット","attribute":"地／金","form":"field","rank":"中級","effects":[{"id":"magnet","scale":"medium"}],"duration":"2_rounds","cost_points":5,"mp_cost":5,"description":"金属装備の動きを乱す。"},
+    {"id":"earth_012","name":"ゴールドシールド","attribute":"地／金","form":"shot","rank":"上級","effects":[{"id":"barrier","scale":"small"}],"duration":"2_rounds","cost_points":4,"mp_cost":4,"description":"金属の障壁を作る。"}
+  ],
+  "combined_spell_samples": [
+    {"name":"ホーリーフレイム","attributes":["光／回復","火"],"description":"聖なる炎で敵を焼く。闇系や不死に強い。"},
+    {"name":"ピュアミスト","attributes":["光／回復","水／氷"],"description":"回復と浄化を行う霧。"},
+    {"name":"シャインボルト","attributes":["光／回復","風／雷"],"description":"光を帯びた高速雷撃。"},
+    {"name":"セイクリッドウォール","attributes":["光／回復","地／金"],"description":"聖なる土壁・金属壁を作る。"},
+    {"name":"ブラックフレイム","attributes":["闇／精神","火"],"description":"闇を帯びた炎で攻撃し、恐怖も与える。"},
+    {"name":"ナイトフリーズ","attributes":["闇／精神","水／氷"],"description":"冷気で凍らせつつ精神を鈍らせる。"},
+    {"name":"シャドウサンダー","attributes":["闇／精神","風／雷"],"description":"闇を帯びた雷で感電と混乱を与える。"},
+    {"name":"グレイブケージ","attributes":["闇／精神","地／金"],"description":"墓のような檻で閉じ込める。"},
+    {"name":"スチーム","attributes":["火","水／氷"],"description":"高熱蒸気で視界を奪い火傷させる。"},
+    {"name":"ファイアストーム","attributes":["火","風／雷"],"description":"炎を風で広げる広域魔法。"},
+    {"name":"マグマ","attributes":["火","地／金"],"description":"溶岩のような高熱土流を生む。"},
+    {"name":"ブリザード","attributes":["水／氷","風／雷"],"description":"吹雪で広範囲を凍らせる。"},
+    {"name":"マッドロック","attributes":["水／氷","地／金"],"description":"泥と岩で動きを封じる。"},
+    {"name":"マグネットストーム","attributes":["風／雷","地／金"],"description":"金属装備を乱す磁気嵐。"}
+  ],
+  "generated_spell_templates": {
+    "empty_template": {
+      "name": "",
+      "attribute": "",
+      "secondary_attribute": None,
+      "form": "",
+      "rank": "",
+      "effects": [
+        {
+          "id": "",
+          "scale": "small",
+          "note": ""
+        }
+      ],
+      "duration": "instant",
+      "cost_points": 0,
+      "mp_cost": 0,
+      "description": ""
+    },
+    "examples": [
+      {
+        "name": "ファイアボール",
+        "attribute": "火",
+        "secondary_attribute": None,
+        "form": "blast",
+        "rank": "中級",
+        "effects": [
+          {"id": "damage_fire", "scale": "medium", "note": ""}
+        ],
+        "duration": "instant",
+        "cost_points": 4,
+        "mp_cost": 4,
+        "description": "火球を放つ基本中級魔法。"
+      },
+      {
+        "name": "フィア",
+        "attribute": "闇／精神",
+        "secondary_attribute": None,
+        "form": "shot",
+        "rank": "中級",
+        "effects": [
+          {"id": "fear", "scale": "small", "note": ""}
+        ],
+        "duration": "2_rounds",
+        "cost_points": 4,
+        "mp_cost": 4,
+        "description": "恐怖を与えて行動を鈍らせる。"
+      },
+      {
+        "name": "アイスウォール",
+        "attribute": "水／氷",
+        "secondary_attribute": None,
+        "form": "wall",
+        "rank": "上級",
+        "effects": [
+          {"id": "wall_ice", "scale": "medium", "note": ""}
+        ],
+        "duration": "3_or_more_rounds",
+        "cost_points": 5,
+        "mp_cost": 5,
+        "description": "氷の壁を作る。"
+      },
+      {
+        "name": "ホーリーフレイム",
+        "attribute": "光／回復",
+        "secondary_attribute": "火",
+        "form": "blast",
+        "rank": "大魔法",
+        "effects": [
+          {"id": "damage_light", "scale": "medium", "note": "浄化ダメージ"},
+          {"id": "damage_fire", "scale": "medium", "note": "炎ダメージ"}
+        ],
+        "duration": "instant",
+        "cost_points": 6,
+        "mp_cost": 6,
+        "description": "聖なる炎で敵を焼く複合属性魔法。"
+      }
+    ]
+  }
+}
+
+out = Path("/mnt/data/trpg_magic_system_for_codex.json")
+out.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+print(f"Saved to {out}")

@@ -1,0 +1,130 @@
+# 霧環連界 世界史事件ノード要約
+
+- seed: **1729**
+- 暦: **ラレイナ暦 174年**
+- 現在Era: **瘴潮期**
+- active institutions: **6**
+- active event nodes: **19**
+- event chains: **11**
+
+## 破綻が強い制度
+
+- **白祠宗務会＝瘴冠魔域聖戦布告** / breach_risk=89.0 / status=broken
+  - 捕虜交換: tension=100.0 / status=violated
+  - 聖遺物保管: tension=100.0 / status=violated
+- **灰縁侯族＝瘴冠魔域属国化盟約** / breach_risk=89.0 / status=broken
+  - 人質交換: tension=100.0 / status=violated
+  - 朝貢納付: tension=100.0 / status=violated
+- **穀冠王国＝灰縁侯族不可侵条約** / breach_risk=86.5 / status=broken
+  - 婚姻同盟: tension=100.0 / status=violated
+  - 非武装境界: tension=90.6 / status=violated
+  - 人質交換: tension=71.4 / status=violated
+- **白祠宗務会＝封泥環宗教同盟** / breach_risk=86.3 / status=broken
+  - 聖遺物保管: tension=93.4 / status=violated
+  - 共同封印義務: tension=84.5 / status=violated
+  - 巡礼路保護: tension=83.4 / status=violated
+- **白祠宗務会＝瘴冠魔域封鎖令** / breach_risk=86.2 / status=broken
+  - 難民回廊: tension=100.0 / status=violated
+  - 戦後賠償: tension=92.5 / status=violated
+- **穀冠王国＝黒鎚採鉱盟通商盟約** / breach_risk=62.5 / status=strained
+  - 共同深層回収: tension=95.4 / status=violated
+  - 穀物関税軽減: tension=89.6 / status=violated
+  - 河川通行権: tension=40.3 / status=active
+
+## 昇格した世界史事件ノード
+
+- **人質交換破綻** (人質外交破綻連鎖)
+  - severity=100.0, urgency=100.0, stage=1, status=active
+  - source: inst_tributary_01 / hostage_exchange
+  - factions: demon_domain, march_clans
+  - regions: ash_frontier, seal_marsh
+  - quest: 人質交換破綻への介入 / vectors=stealth, diplomacy, combat
+- **婚姻条約継承危機** (継承連鎖)
+  - severity=100.0, urgency=100.0, stage=1, status=active
+  - source: inst_border_01 / dynastic_marriage
+  - factions: kingdom, march_clans
+  - regions: ash_frontier, north_granary, river_gate
+  - quest: 婚姻条約継承危機への介入 / vectors=authority, diplomacy, stealth
+- **捕虜交換破綻** (制度崩落連鎖)
+  - severity=100.0, urgency=100.0, stage=3, status=active
+  - source: inst_holywar_01 / prisoner_exchange
+  - factions: demon_domain, shrine_synod
+  - regions: ash_frontier, seal_marsh, white_shrine
+  - quest: 捕虜交換破綻への介入 / vectors=diplomacy, stewardship, authority
+- **朝貢納付拒絶** (属国反乱連鎖)
+  - severity=100.0, urgency=100.0, stage=1, status=active
+  - source: inst_tributary_01 / tribute_delivery
+  - factions: demon_domain, march_clans
+  - regions: ash_frontier, seal_marsh
+  - quest: 朝貢納付拒絶への介入 / vectors=combat, diplomacy, stewardship
+- **聖遺物保管争奪** (聖遺物争奪連鎖)
+  - severity=100.0, urgency=100.0, stage=1, status=active
+  - source: inst_holywar_01 / sacred_relic_custody
+  - factions: demon_domain, shrine_synod
+  - regions: ash_frontier, seal_marsh, white_shrine
+  - quest: 聖遺物保管争奪への介入 / vectors=ritual, stealth, combat
+- **難民回廊封鎖** (食糧危機連鎖)
+  - severity=100.0, urgency=100.0, stage=1, status=active
+  - source: inst_blockade_01 / refugee_corridor
+  - factions: demon_domain, shrine_synod
+  - regions: ash_frontier, seal_marsh, white_shrine
+  - quest: 難民回廊封鎖への介入 / vectors=stewardship, diplomacy, combat
+- **賠償履行争議** (制度崩落連鎖)
+  - severity=100.0, urgency=99.8, stage=2, status=active
+  - source: inst_blockade_01 / war_reparation
+  - factions: demon_domain, shrine_synod
+  - regions: ash_frontier, seal_marsh, white_shrine
+  - quest: 賠償履行争議への介入 / vectors=diplomacy, stewardship, authority
+- **聖遺物保管争奪** (聖遺物争奪連鎖)
+  - severity=100.0, urgency=97.1, stage=2, status=active
+  - source: inst_pilgrim_01 / sacred_relic_custody
+  - factions: mire_circle, shrine_synod
+  - regions: seal_marsh, white_shrine
+  - quest: 聖遺物保管争奪への介入 / vectors=ritual, stealth, combat
+- **非武装境界破り** (境界軍事化連鎖)
+  - severity=100.0, urgency=96.3, stage=1, status=active
+  - source: inst_border_01 / demilitarized_border
+  - factions: kingdom, march_clans
+  - regions: ash_frontier, north_granary, river_gate
+  - quest: 非武装境界破りへの介入 / vectors=combat, authority, diplomacy
+- **共同深層回収破綻** (深層利権紛争)
+  - severity=100.0, urgency=90.8, stage=1, status=active
+  - source: inst_trade_01 / joint_delving_recovery
+  - factions: kingdom, miners_compact
+  - regions: deep_mouth, north_granary, river_gate
+  - quest: 共同深層回収破綻への介入 / vectors=combat, ritual, stealth
+
+## 事件連鎖
+
+- **制度崩落連鎖** / stage=4 / cumulative=442.2
+  - factions: demon_domain, kingdom, march_clans, mire_circle, shrine_synod
+  - regions: ash_frontier, north_granary, river_gate, seal_marsh, white_shrine
+  - nodes: collapse_inst_tributary_01_3, node_inst_blockade_01_cl_war_reparation_23026_4, collapse_inst_blockade_01_4, node_inst_holywar_01_cl_prisoner_exchange_14018_4
+- **人質外交破綻連鎖** / stage=2 / cumulative=155.3
+  - factions: demon_domain, kingdom, march_clans
+  - regions: ash_frontier, north_granary, river_gate, seal_marsh
+  - nodes: node_inst_tributary_01_cl_hostage_exchange_03295_3, node_inst_border_01_cl_hostage_exchange_02364_6
+- **聖遺物争奪連鎖** / stage=2 / cumulative=143.4
+  - factions: demon_domain, mire_circle, shrine_synod
+  - regions: ash_frontier, seal_marsh, white_shrine
+  - nodes: node_inst_holywar_01_cl_sacred_relic_custody_36221_2, node_inst_pilgrim_01_cl_sacred_relic_custody_06820_4
+- **属国反乱連鎖** / stage=1 / cumulative=94.9
+  - factions: march_clans, demon_domain
+  - regions: ash_frontier, seal_marsh
+  - nodes: node_inst_tributary_01_cl_tribute_delivery_65688_1
+- **宗教分裂連鎖** / stage=1 / cumulative=90.8
+  - factions: shrine_synod, mire_circle
+  - regions: white_shrine, seal_marsh
+  - nodes: node_inst_pilgrim_01_cl_joint_sealing_duty_23063_5
+- **巡礼路紛争連鎖** / stage=1 / cumulative=88.3
+  - factions: shrine_synod, mire_circle
+  - regions: white_shrine, seal_marsh
+  - nodes: node_inst_pilgrim_01_cl_pilgrimage_route_protection_19059_5
+- **食糧危機連鎖** / stage=1 / cumulative=83.3
+  - factions: shrine_synod, demon_domain
+  - regions: white_shrine, ash_frontier, seal_marsh
+  - nodes: node_inst_blockade_01_cl_refugee_corridor_50121_1
+- **境界軍事化連鎖** / stage=1 / cumulative=82.6
+  - factions: kingdom, march_clans
+  - regions: north_granary, river_gate, ash_frontier
+  - nodes: node_inst_border_01_cl_demilitarized_border_91742_4

@@ -1,0 +1,147 @@
+# 霧環連界 世界史事件解決層要約
+
+- seed: **1729**
+- 暦: **ラレイナ暦 174年**
+- 現在Era: **断契期**
+- 主神: **ラレイナ**
+- 主人公: **均衡者の旅人** / archetype=balanced / race=human
+- 存在級位: **時代の継ぎ手**
+- vessel points: **712.0**
+- 残存active nodes: **10**
+- resolved nodes: **10**
+
+## 最近の解決
+
+- **朝貢納付拒絶** / partial_success / approach=reconcile / vessel+26.6
+  - capability=67.2 / difficulty=60.6 / delta=3.0
+  - notes: 一時鎮静化したが、火種は残っている
+  - media: 制度, 正史
+- **聖遺物保管争奪** / success / approach=divine_judgement / vessel+48.5
+  - capability=68.8 / difficulty=57.0 / delta=19.7
+  - notes: 事件は決着し、残滓として固定化された
+  - media: 信仰, 正史
+- **人質交換破綻** / partial_success / approach=reconcile / vessel+28.5
+  - capability=68.3 / difficulty=63.9 / delta=3.5
+  - notes: 一時鎮静化したが、火種は残っている
+  - media: 正史, 伝承
+- **聖遺物保管争奪** / partial_success / approach=divine_judgement / vessel+32.9
+  - capability=68.8 / difficulty=68.5 / delta=-1.0
+  - notes: 一時鎮静化したが、火種は残っている
+  - media: 信仰, 正史
+- **捕虜交換破綻** / partial_success / approach=restructure / vessel+33.0
+  - capability=70.5 / difficulty=70.0 / delta=0.4
+  - notes: 一時鎮静化したが、火種は残っている
+  - media: 制度, 正史
+- **穀価盟約違反** / success / approach=restructure / vessel+54.8
+  - capability=74.2 / difficulty=60.9 / delta=21.3
+  - notes: 再編条項を追加 / 事件は決着し、残滓として固定化された
+  - media: 制度, 伝承
+- **朝貢納付拒絶** / partial_success / approach=reconcile / vessel+29.6
+  - capability=67.2 / difficulty=65.9 / delta=-7.5
+  - notes: 一時鎮静化したが、火種は残っている
+  - media: 制度, 正史
+- **共同深層回収破綻** / success / approach=restructure / vessel+53.8
+  - capability=70.1 / difficulty=59.5 / delta=10.5
+  - notes: 事件は決着し、残滓として固定化された
+  - media: 魂, 伝承
+
+## まだ危険なactive nodes
+
+- **聖遺物保管争奪** (聖遺物争奪連鎖)
+  - severity=100.0, urgency=87.4, stage=2
+  - factions: mire_circle, shrine_synod
+  - regions: seal_marsh, white_shrine
+  - vectors: ritual, stealth, combat
+- **婚姻条約継承危機** (継承連鎖)
+  - severity=100.0, urgency=86.3, stage=1
+  - factions: kingdom, march_clans
+  - regions: ash_frontier, north_granary, river_gate
+  - vectors: authority, diplomacy, stealth
+- **聖遺物保管争奪** (聖遺物争奪連鎖)
+  - severity=100.0, urgency=85.7, stage=2
+  - factions: demon_domain, shrine_synod
+  - regions: ash_frontier, seal_marsh, white_shrine
+  - vectors: ritual, stealth, combat
+- **人質交換破綻** (人質外交破綻連鎖)
+  - severity=100.0, urgency=85.0, stage=1
+  - factions: demon_domain, march_clans
+  - regions: ash_frontier, seal_marsh
+  - vectors: stealth, diplomacy, combat
+- **捕虜交換破綻** (制度崩落連鎖)
+  - severity=100.0, urgency=84.6, stage=2
+  - factions: demon_domain, shrine_synod
+  - regions: ash_frontier, seal_marsh, white_shrine
+  - vectors: diplomacy, stewardship, authority
+- **難民回廊封鎖** (食糧危機連鎖)
+  - severity=100.0, urgency=81.4, stage=1
+  - factions: demon_domain, shrine_synod
+  - regions: ash_frontier, seal_marsh, white_shrine
+  - vectors: stewardship, diplomacy, combat
+- **灰縁侯族＝瘴冠魔域属国化盟約崩壊** (制度崩落連鎖)
+  - severity=100.0, urgency=71.8, stage=1
+  - factions: demon_domain, march_clans
+  - regions: ash_frontier, seal_marsh
+  - vectors: diplomacy, stewardship, authority
+- **非武装境界破り** (境界軍事化連鎖)
+  - severity=99.0, urgency=82.1, stage=1
+  - factions: kingdom, march_clans
+  - regions: ash_frontier, north_granary, river_gate
+  - vectors: combat, authority, diplomacy
+- **賠償履行争議** (制度崩落連鎖)
+  - severity=98.7, urgency=78.8, stage=2
+  - factions: demon_domain, shrine_synod
+  - regions: ash_frontier, seal_marsh, white_shrine
+  - vectors: diplomacy, stewardship, authority
+- **白祠宗務会＝瘴冠魔域聖戦布告崩壊** (制度崩落連鎖)
+  - severity=89.2, urgency=71.0, stage=3
+  - factions: demon_domain, shrine_synod
+  - regions: ash_frontier, seal_marsh, white_shrine
+  - vectors: diplomacy, stewardship, authority
+
+## 壊れかけの制度
+
+- **白祠宗務会＝瘴冠魔域聖戦布告** / status=broken / breach_risk=80.7 / support=2.5
+  - 聖遺物保管: tension=90.9, status=violated, support=5.0, strain=79.0
+  - 捕虜交換: tension=87.0, status=violated, support=0.0, strain=90.0
+- **灰縁侯族＝瘴冠魔域属国化盟約** / status=broken / breach_risk=75.1 / support=18.0
+  - 人質交換: tension=88.2, status=violated, support=8.0, strain=81.0
+  - 朝貢納付: tension=86.3, status=strained, support=27.0, strain=61.0
+- **白祠宗務会＝瘴冠魔域封鎖令** / status=broken / breach_risk=69.8 / support=22.0
+  - 難民回廊: tension=85.0, status=violated, support=16.0, strain=73.0
+  - 戦後賠償: tension=78.3, status=violated, support=0.0, strain=68.0
+  - 主食供給割当: tension=60.0, status=strained, support=50.0, strain=27.0
+- **穀冠王国＝灰縁侯族不可侵条約** / status=strained / breach_risk=67.9 / support=25.0
+  - 婚姻同盟: tension=91.3, status=violated, support=2.0, strain=82.0
+  - 非武装境界: tension=86.5, status=violated, support=4.0, strain=89.0
+  - 人質交換: tension=37.7, status=active, support=69.0, strain=0.0
+- **白祠宗務会＝封泥環宗教同盟** / status=strained / breach_risk=55.8 / support=40.0
+  - 聖遺物保管: tension=93.4, status=violated, support=13.0, strain=78.0
+  - 巡礼路保護: tension=69.3, status=strained, support=38.0, strain=61.0
+  - 共同封印義務: tension=32.5, status=active, support=69.0, strain=0.0
+- **穀冠王国＝黒鎚採鉱盟通商盟約** / status=active / breach_risk=37.3 / support=55.8
+  - 穀物関税軽減: tension=85.0, status=strained, support=26.0, strain=67.0
+  - 共同深層回収: tension=78.4, status=strained, support=22.0, strain=70.0
+  - 共同採掘権: tension=37.9, status=active, support=67.0, strain=0.0
+
+## 実現した残滓
+
+- **聖遺物保管争奪** → 信仰 / tone=暫定 / magnitude=24.1
+  - regions: ash_frontier, seal_marsh, white_shrine
+- **聖遺物保管争奪** → 正史 / tone=暫定 / magnitude=24.1
+  - regions: ash_frontier, seal_marsh, white_shrine
+- **捕虜交換破綻** → 制度 / tone=暫定 / magnitude=24.1
+  - regions: ash_frontier, seal_marsh, white_shrine
+- **捕虜交換破綻** → 正史 / tone=暫定 / magnitude=24.1
+  - regions: ash_frontier, seal_marsh, white_shrine
+- **穀価盟約違反** → 制度 / tone=再編 / magnitude=40.7
+  - regions: deep_mouth, north_granary, river_gate
+- **穀価盟約違反** → 伝承 / tone=再編 / magnitude=40.7
+  - regions: deep_mouth, north_granary, river_gate
+- **朝貢納付拒絶** → 制度 / tone=暫定 / magnitude=24.1
+  - regions: ash_frontier, seal_marsh
+- **朝貢納付拒絶** → 正史 / tone=暫定 / magnitude=24.1
+  - regions: ash_frontier, seal_marsh
+- **共同深層回収破綻** → 魂 / tone=再編 / magnitude=40.7
+  - regions: deep_mouth, north_granary, river_gate
+- **共同深層回収破綻** → 伝承 / tone=再編 / magnitude=40.7
+  - regions: deep_mouth, north_granary, river_gate

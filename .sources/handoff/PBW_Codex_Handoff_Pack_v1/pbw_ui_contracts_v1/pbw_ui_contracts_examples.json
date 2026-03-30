@@ -1,0 +1,310 @@
+{
+  "shellSnapshotExample": {
+    "sessionId": "sess_current",
+    "generatedAt": "2026-03-26T18:30:00+09:00",
+    "shellMode": "narrative",
+    "worldSpine": {
+      "worldName": "霧環連界",
+      "calendarName": "オルシェル暦",
+      "year": 7,
+      "seasonIndex": 10,
+      "eraLabel": "昇神期",
+      "mainGodLabel": "オルシェル",
+      "activeChainLabel": "属国反乱連鎖",
+      "cycleDistortion": 58.2,
+      "divineWarPressure": 67.0,
+      "dominantBranch": "管理者の端",
+      "topNotes": [
+        "新たな神格が立ち上がる条件が熟している"
+      ],
+      "syncState": "synced"
+    },
+    "actorRail": {
+      "actorId": "protagonist_main",
+      "label": "均衡者の旅人",
+      "hp": {
+        "current": 128,
+        "max": 140
+      },
+      "mp": {
+        "current": 54,
+        "max": 80
+      },
+      "exp": {
+        "current": 712,
+        "next": 1035.7,
+        "label": "Vessel換算"
+      },
+      "vessel": 1035.7,
+      "existenceTitle": "神話に触れる者",
+      "skills": {
+        "combat": 55.2,
+        "diplomacy": 59.5,
+        "ritual": 62.9,
+        "stealth": 59.4,
+        "stewardship": 62.7,
+        "authority": 55.4
+      },
+      "tendencies": {
+        "mercy": 57.6,
+        "zeal": 46.2,
+        "ambition": 54.8,
+        "prudence": 61.3
+      },
+      "statuses": [
+        {
+          "statusId": "fatigue",
+          "label": "疲労",
+          "tone": "warning"
+        }
+      ],
+      "blessings": [
+        {
+          "blessingId": "seal_mark",
+          "label": "封印の徴",
+          "tier": "major",
+          "tone": "seal"
+        }
+      ],
+      "quickSlots": [
+        {
+          "slotIndex": 0,
+          "slotType": "skill",
+          "label": "観察",
+          "actionRef": "skill.observe"
+        }
+      ]
+    },
+    "scenePacket": {
+      "sceneId": "scene_ash_frontier_gate_01",
+      "locationLabel": "地下聖堂前室",
+      "focusLabel": "門前の拒絶",
+      "playerFacing": {
+        "headline": "門前にざわめきが集まり始める",
+        "lines": [
+          "石の門の前に、いつもより長い列ができていた。",
+          "荷を抱えた者たちは順番を譲らず、見張りは苛立った声で列を押し戻している。",
+          "妙なのは、奥にいるはずの徴税役が姿を見せないことだった。",
+          "聞き流すには、視線の集まり方が不自然すぎる。"
+        ],
+        "choiceChips": [
+          {
+            "choiceId": "observe_gate",
+            "label": "列を観察する",
+            "intentType": "observe",
+            "emphasis": "primary"
+          },
+          {
+            "choiceId": "talk_guard",
+            "label": "見張りに話しかける",
+            "intentType": "speak"
+          },
+          {
+            "choiceId": "inspect_tax",
+            "label": "徴税役を探る",
+            "intentType": "inspect",
+            "emphasis": "risky"
+          }
+        ]
+      },
+      "dramaticLayers": {
+        "place": "門前の列",
+        "focus": "徴税役の不在",
+        "discrepancy": "列の動きが止まっている",
+        "reaction": "見張りが苛立っている",
+        "aftermath": "拒絶が事件へ発展しそうだ"
+      },
+      "npcBeats": [
+        {
+          "npcId": "npc_lena",
+          "displayName": "レナ",
+          "roleBeat": "列の端で、荷を持つ手をわずかに引いた。",
+          "relationBeat": "こちらに気づくと、ためらうように一歩だけ近づく。",
+          "emotionBeat": "声をかける前に、目だけで門を確かめている。",
+          "suppression": "high",
+          "ruptureState": "micro_leak"
+        }
+      ],
+      "linkedNodeIds": [
+        "node_inst_tributary_01_cl_tribute_delivery_39106_9"
+      ],
+      "internalFoldCount": 3,
+      "renderHints": {
+        "preferredMode": "intervention",
+        "showDiceTray": true
+      }
+    },
+    "contextRail": {
+      "companions": [
+        {
+          "companionId": "cmp_01",
+          "label": "同行者A",
+          "role": "護衛"
+        }
+      ],
+      "npcFocus": {
+        "npcId": "npc_lena",
+        "displayName": "レナ",
+        "role": "観測者",
+        "relationSummary": "信頼はあるが警戒も残る",
+        "emotionSummary": "不安を押し隠している",
+        "suppression": "high",
+        "ruptureState": "micro_leak"
+      },
+      "activeNode": {
+        "nodeId": "node_inst_tributary_01_cl_tribute_delivery_39106_9",
+        "title": "朝貢納付拒絶",
+        "chainLabel": "属国反乱連鎖",
+        "institutionLabel": "灰縁侯族＝瘴冠魔域属国化盟約",
+        "questTitle": "朝貢納付拒絶への介入",
+        "severity": 100.0,
+        "urgency": 100.0,
+        "stage": 1,
+        "status": "active",
+        "recommendedVectors": [
+          "combat",
+          "diplomacy",
+          "stewardship"
+        ],
+        "projectedLegacies": [
+          "制度",
+          "正史",
+          "伝承"
+        ]
+      },
+      "institutionAlert": {
+        "institutionId": "inst_tributary_01",
+        "label": "灰縁侯族＝瘴冠魔域属国化盟約",
+        "status": "broken",
+        "breachRisk": 89.0
+      },
+      "worldPulse": {
+        "cycleDistortion": 58.2,
+        "apotheosisFlux": 97.1,
+        "successionPressure": 58.3,
+        "divineWarPressure": 67.0,
+        "topNote": "新たな神格が立ち上がる条件が熟している"
+      }
+    },
+    "hotbar": {
+      "items": [
+        {
+          "itemId": "tab_character",
+          "label": "Character",
+          "target": "character",
+          "iconKey": "char"
+        },
+        {
+          "itemId": "tab_relics",
+          "label": "Relics",
+          "target": "relics",
+          "iconKey": "relic"
+        },
+        {
+          "itemId": "tab_skills",
+          "label": "Skills",
+          "target": "skills",
+          "iconKey": "skill"
+        },
+        {
+          "itemId": "tab_node_board",
+          "label": "Node Board",
+          "target": "node_board",
+          "iconKey": "node",
+          "badgeCount": 1
+        },
+        {
+          "itemId": "tab_codex",
+          "label": "Codex",
+          "target": "codex",
+          "iconKey": "book"
+        },
+        {
+          "itemId": "tab_journal",
+          "label": "Journal",
+          "target": "journal",
+          "iconKey": "journal"
+        },
+        {
+          "itemId": "tab_world",
+          "label": "World",
+          "target": "world",
+          "iconKey": "world"
+        },
+        {
+          "itemId": "tab_dice",
+          "label": "Dice",
+          "target": "dice",
+          "iconKey": "dice"
+        },
+        {
+          "itemId": "tab_assets",
+          "label": "Assets",
+          "target": "assets",
+          "iconKey": "image"
+        },
+        {
+          "itemId": "tab_settings",
+          "label": "Settings",
+          "target": "settings",
+          "iconKey": "gear"
+        }
+      ]
+    },
+    "badges": [
+      {
+        "badgeId": "quest_badge",
+        "target": "node_board",
+        "label": "介入候補あり",
+        "tone": "warn",
+        "count": 1
+      }
+    ],
+    "overlays": [
+      {
+        "overlayId": "olv_intervention",
+        "type": "intervention",
+        "state": "hidden"
+      }
+    ],
+    "lastSeq": 1915
+  },
+  "uiEventExample": {
+    "seq": 1915,
+    "eventId": "evt_node_resolution_1915",
+    "sessionId": "sess_current",
+    "type": "node.resolution.committed",
+    "occurredAt": "2026-03-26T18:31:10+09:00",
+    "payload": {
+      "nodeId": "node_inst_tributary_01_cl_tribute_delivery_39106_9",
+      "approach": "reconcile",
+      "outcome": "partial_success",
+      "vesselDelta": 26.6,
+      "realizedMedia": [
+        "制度",
+        "正史"
+      ]
+    },
+    "invalidate": [
+      "actorRail",
+      "contextRail",
+      "worldSpine",
+      "journal"
+    ],
+    "uiHints": [
+      {
+        "type": "toast",
+        "key": "node-updated",
+        "level": "success"
+      },
+      {
+        "type": "fx.vessel_gain",
+        "amount": 26.6
+      },
+      {
+        "type": "highlight.hotbar",
+        "target": "journal"
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+.runtime/
+.tmp_custom_gpt_actions_bundle/
+generated/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.venv/
+env/
