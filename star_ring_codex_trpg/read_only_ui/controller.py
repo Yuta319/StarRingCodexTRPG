@@ -9,6 +9,7 @@ import json
 from ..errors import UiRequestError
 from ..gameplay_experience import build_campaign_display
 from ..gpt_read_model import build_gpt_read_model_from_bundle
+from ..front_hubs import build_player_front_hubs
 from ..paths import RUNTIME_ROOT
 from ..playable_loop import play_choice, play_free_action
 from ..runner import build_bundle
@@ -139,6 +140,7 @@ def _display_from_bundle(bundle: Dict[str, Any]) -> Dict[str, Any]:
     display["worldPulsePanel"] = compose_world_pulse_panel_copy(display["worldPulse"], display["worldPulseGuide"])
     display["activeNodeGuide"] = compose_active_node_panel_copy(display["activeNode"])
     display["institutionAlertGuide"] = compose_institution_alert_panel_copy(display["institutionAlert"], display.get("currentEvent", {}))
+    display.update(build_player_front_hubs(bundle["world_state"], display))
     return display
 
 

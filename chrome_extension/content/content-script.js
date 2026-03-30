@@ -11,8 +11,7 @@
     settings: null,
     playSource: { seed: 1729, world_json: null },
     saveRef: { saveId: null, savePath: null },
-    drawer: "quest",
-    freeActionDraft: "",
+    drawer: null,
     status: { tone: "idle", text: "シェルは待機中です。" }
   };
 
@@ -160,36 +159,6 @@
     }
   }
 
-  async function postFreeAction() {
-    const text = STATE.freeActionDraft.trim();
-    if (!text) {
-      setStatus("自由行動の内容を入力してください。", "error");
-      return;
-    }
-    STATE.pending = true;
-    render();
-    setStatus("自由行動を送っています。", "loading");
-    try {
-      const payload = await apiRequest("/api/front/free-action", {
-        method: "POST",
-        body: {
-          actionText: text,
-          ...currentSourcePayload()
-        }
-      });
-      if (!payload.ok) {
-        throw new Error(payload.data?.error || "自由行動の送信に失敗しました。");
-      }
-      STATE.freeActionDraft = "";
-      applyDisplayPayload(payload.data, "自由行動を反映しました。");
-    } catch (error) {
-      setStatus(error.message, "error");
-    } finally {
-      STATE.pending = false;
-      render();
-    }
-  }
-
   async function saveSession() {
     if (!STATE.playSource.world_json) {
       setStatus("保存対象の world_json がまだありません。", "error");
@@ -270,64 +239,137 @@
     }
   }
 
-  function readConversationPreview() {
-    const nodes = Array.from(document.querySelectorAll("[data-message-author-role]"));
-    return nodes.slice(-4).map((node) => {
-      const role = node.getAttribute("data-message-author-role") || "message";
-      const text = (node.textContent || "")
-        .replace(/\s+/g, " ")
-        .trim()
-        .slice(0, 320);
-      return {
-        role,
-        text: text || "まだ読み取れる本文がありません。"
-      };
-    });
-  }
-
   function renderTags(values, tone = "neutral") {
     const rows = (values || []).map((value) => `<span class="src-tag src-tag--${tone}">${escapeHtml(value)}</span>`);
     return rows.length ? rows.join("") : `<span class="src-empty">まだ項目がありません。</span>`;
   }
 
-  function renderConversation() {
-    const items = readConversationPreview();
-    if (!items.length) {
-      return `<div class="src-conversation__empty">ChatGPT の会話はまだ取得できていません。背面の会話はそのまま進められます。</div>`;
+  function focusChatInput() {
+    const candidates = [
+      "#prompt-textarea",
+      "textarea[data-testid='prompt-textarea']",
+      "textarea",
+      "[contenteditable='true'][data-testid='prompt-textarea']",
+      "[contenteditable='true'][role='textbox']"
+    ];
+    for (const selector of candidates) {
+      const node = document.querySelector(selector);
+      if (node instanceof HTMLElement) {
+        node.focus();
+        node.scrollIntoView({ behavior: "smooth", block: "center" });
+        setStatus("ChatGPT の入力欄へ移動しました。自由入力はそちらで続けられます。", "ok");
+        return true;
+      }
     }
-    return items
-      .map(
-        (item) => `
-          <article class="src-conversation__item">
-            <p class="src-conversation__role">${escapeHtml(item.role === "assistant" ? "GPT" : item.role === "user" ? "あなた" : item.role)}</p>
-            <p>${escapeHtml(item.text)}</p>
-          </article>
-        `
-      )
-      .join("");
+    setStatus("ChatGPT の入力欄を見つけられませんでした。背面の composer を直接選んでください。", "error");
+    return false;
   }
 
   function drawerContent(display) {
     const actor = display?.actorRail || {};
+    const equipment = display?.equipmentHub || {};
+    const inventory = display?.inventoryHub || {};
+    const assetPromptPack = display?.assetPromptPack || {};
     switch (STATE.drawer) {
       case "character":
+        const featured = equipment.featuredItem || {};
         return `
-          <div class="src-drawer-grid">
+          <div class="src-drawer-grid src-drawer-grid--character">
             <section class="src-card">
-              <p class="src-card__eyebrow">Status</p>
-              <h4>身体性</h4>
+              <p class="src-card__eyebrow">Equipment Screen</p>
+              <h4>${escapeHtml(equipment.loadoutName || "旅装")}</h4>
+              <div class="src-equip-load">
+                <span>装備負荷</span>
+                <strong>${escapeHtml(equipment.equipLoad?.current)}/${escapeHtml(equipment.equipLoad?.max)}</strong>
+                <em>${escapeHtml(equipment.equipLoad?.state || "medium")}</em>
+              </div>
+              <div class="src-equip-grid">
+                ${(equipment.slots || [])
+                  .map(
+                    (item) => `
+                      <article class="src-equip-slot ${featured.itemId === item.itemId ? "is-featured" : ""}">
+                        <div class="src-icon-tile">${escapeHtml((item.slotLabel || "?").slice(0, 1))}</div>
+                        <div class="src-equip-slot__body">
+                          <p class="src-equip-slot__label">${escapeHtml(item.slotLabel)}</p>
+                          <strong>${escapeHtml(item.name)}</strong>
+                          <p>${escapeHtml(item.subtitle)}</p>
+                          <div class="src-item-meta">
+                            <span>${escapeHtml(item.rarityLabel || item.rarity || "")}</span>
+                            <span>${escapeHtml(item.assetState || "queued")}</span>
+                          </div>
+                        </div>
+                      </article>
+                    `
+                  )
+                  .join("")}
+              </div>
+            </section>
+            <section class="src-card">
+              <p class="src-card__eyebrow">Featured</p>
+              <h4>${escapeHtml(featured.name || "装備詳細")}</h4>
+              <p class="src-item-subtitle">${escapeHtml(featured.subtitle || "")}</p>
+              <div class="src-item-meta">
+                <span>${escapeHtml(featured.rarityLabel || featured.rarity || "")}</span>
+                <span>${escapeHtml(featured.assetState || "queued")}</span>
+              </div>
+              <div class="src-tag-list">${renderTags(featured.stats || [], "slot")}</div>
+              <p class="src-item-flavor">${escapeHtml(featured.flavorText || "装備の記録はまだありません。")}</p>
               <div class="src-kv">
                 <div><span>体力</span><strong>${escapeHtml(actor.hp?.current)}/${escapeHtml(actor.hp?.max)}</strong></div>
                 <div><span>霊力</span><strong>${escapeHtml(actor.mp?.current)}/${escapeHtml(actor.mp?.max)}</strong></div>
                 <div><span>Vessel</span><strong>${escapeHtml(actor.vessel)}</strong></div>
                 <div><span>存在級位</span><strong>${escapeHtml(actor.existenceTitle)}</strong></div>
               </div>
+              <div class="src-text-list">
+                ${(equipment.flavorNotes || []).map((line) => `<p>${escapeHtml(line)}</p>`).join("")}
+              </div>
             </section>
             <section class="src-card">
-              <p class="src-card__eyebrow">Blessings</p>
-              <h4>状態と加護</h4>
-              <div class="src-tag-list">${renderTags((actor.statuses || []).map((item) => item.label), "warning")}</div>
-              <div class="src-tag-list">${renderTags((actor.blessings || []).map((item) => item.label), "accent")}</div>
+              <p class="src-card__eyebrow">Relics</p>
+              <h4>遺物スロット</h4>
+              <div class="src-mini-card-list">
+                ${(equipment.relics || [])
+                  .map(
+                    (item) => `
+                      <article class="src-mini-card">
+                        <div class="src-icon-tile src-icon-tile--small">R</div>
+                        <div>
+                          <strong>${escapeHtml(item.name)}</strong>
+                          <div class="src-item-meta">
+                            <span>${escapeHtml(item.rarityLabel || item.rarity || "")}</span>
+                            <span>${escapeHtml(item.assetState || "queued")}</span>
+                          </div>
+                          <p>${escapeHtml(item.flavorText)}</p>
+                        </div>
+                      </article>
+                    `
+                  )
+                  .join("") || "<p class='src-empty'>まだ遺物がありません。</p>"}
+              </div>
+            </section>
+            <section class="src-card">
+              <p class="src-card__eyebrow">Attuned Magic</p>
+              <h4>記憶魔法</h4>
+              <div class="src-mini-card-list">
+                ${(equipment.attunedSpells || [])
+                  .map(
+                    (spell) => `
+                      <article class="src-mini-card">
+                        <div class="src-icon-tile src-icon-tile--small">M</div>
+                        <div>
+                          <strong>${escapeHtml(spell.name)}</strong>
+                          <div class="src-item-meta">
+                            <span>${escapeHtml(spell.attribute)}</span>
+                            <span>${escapeHtml(spell.assetState || "queued")}</span>
+                          </div>
+                          <p>${escapeHtml(spell.attribute)} / ${escapeHtml(spell.rank)} / MP ${escapeHtml(spell.mpCost)}</p>
+                          <p>${escapeHtml(spell.description)}</p>
+                        </div>
+                      </article>
+                    `
+                  )
+                  .join("") || "<p class='src-empty'>まだ記憶魔法がありません。</p>"}
+              </div>
             </section>
           </div>
         `;
@@ -337,7 +379,38 @@
             <section class="src-card">
               <p class="src-card__eyebrow">Inventory</p>
               <h4>所持品</h4>
-              <p>InventoryRM はまだ未接続です。ここは次段で item / resource / quest item を受ける前提の器です。</p>
+              <div class="src-kv">
+                <div><span>携行数</span><strong>${escapeHtml(inventory.capacity?.used)}/${escapeHtml(inventory.capacity?.max)}</strong></div>
+                <div><span>Quick Use</span><strong>${escapeHtml((inventory.quickUse || []).length)}</strong></div>
+              </div>
+              <div class="src-inventory-groups">
+                ${(inventory.groups || [])
+                  .map(
+                    (group) => `
+                      <section class="src-inventory-group">
+                        <h5>${escapeHtml(group.label)}</h5>
+                        ${(group.items || [])
+                          .map(
+                            (item) => `
+                              <article class="src-mini-card">
+                                <div class="src-icon-tile src-icon-tile--small">${escapeHtml((item.category || "?").slice(0, 1).toUpperCase())}</div>
+                                <div>
+                                  <strong>${escapeHtml(item.name)} ×${escapeHtml(item.quantity)}</strong>
+                                  <div class="src-item-meta">
+                                    <span>${escapeHtml(item.category)}</span>
+                                    <span>${escapeHtml(item.assetState || "queued")}</span>
+                                  </div>
+                                  <p>${escapeHtml(item.description)}</p>
+                                </div>
+                              </article>
+                            `
+                          )
+                          .join("")}
+                      </section>
+                    `
+                  )
+                  .join("") || "<p class='src-empty'>まだ所持品がありません。</p>"}
+              </div>
             </section>
             <section class="src-card">
               <p class="src-card__eyebrow">Protected</p>
@@ -455,14 +528,39 @@
           <div class="src-drawer-grid">
             <section class="src-card">
               <p class="src-card__eyebrow">Assets</p>
-              <h4>クライマックス画像生成</h4>
-              <p>Quest クライマックス時の生成結果はここに集約します。現在は shell 側の器だけ先に用意しています。</p>
-              <div class="src-tag-list">${renderTags(["none", "queued", "rendering", "revealed", "canonical"], "note")}</div>
+              <h4>量産用 prompt pack</h4>
+              <p>${escapeHtml(assetPromptPack.visualDirection || "dark fantasy inventory art")}</p>
+              <div class="src-kv">
+                <div><span>entries</span><strong>${escapeHtml(assetPromptPack.entryCount || 0)}</strong></div>
+                <div><span>batch</span><strong>${escapeHtml(assetPromptPack.batchTitle || "asset-pack")}</strong></div>
+              </div>
+              <p class="src-item-flavor">${escapeHtml(assetPromptPack.exportCommand || "")}</p>
+              <div class="src-tag-list">${renderTags(["queued", "rendering", "revealed", "canonical"], "note")}</div>
             </section>
             <section class="src-card">
-              <p class="src-card__eyebrow">Gallery</p>
-              <h4>最新状態</h4>
-              <p>${escapeHtml(display?.sessionEnding ? "クライマックス画像生成の条件に近づいています。" : "まだクライマックス条件には届いていません。")}</p>
+              <p class="src-card__eyebrow">Prompt Entries</p>
+              <h4>アイコンと装備 art の種</h4>
+              <div class="src-mini-card-list">
+                ${(assetPromptPack.entries || [])
+                  .slice(0, 8)
+                  .map(
+                    (entry) => `
+                      <article class="src-mini-card">
+                        <div class="src-icon-tile src-icon-tile--small">A</div>
+                        <div>
+                          <strong>${escapeHtml(entry.label)}</strong>
+                          <div class="src-item-meta">
+                            <span>${escapeHtml(entry.kind || "asset")}</span>
+                            <span>${escapeHtml(entry.assetState || "queued")}</span>
+                          </div>
+                          <p>${escapeHtml(entry.suggestedFilename)}</p>
+                          <p>${escapeHtml((entry.prompt || "").slice(0, 140))}...</p>
+                        </div>
+                      </article>
+                    `
+                  )
+                  .join("") || "<p class='src-empty'>まだ prompt pack がありません。</p>"}
+              </div>
             </section>
           </div>
         `;
@@ -496,8 +594,15 @@
     const playerFacingLines = display?.scenePacket?.playerFacing?.lines || [];
     const focusBeat = display?.npcBeats?.[0] || {};
     const focusCast = (display?.namedCast || []).find((item) => item.npcId === focusBeat.npcId) || {};
+    const drawerMarkup = STATE.drawer
+      ? `
+          <section class="src-drawer">
+            ${drawerContent(display)}
+          </section>
+        `
+      : "";
     const hotbarItems = [
-      ["character", "Character"],
+      ["character", "Equipment"],
       ["inventory", "Inventory"],
       ["skills", "Skills"],
       ["quest", "Quest"],
@@ -572,12 +677,6 @@
               </div>
 
               <div class="src-panel">
-                <p class="src-eyebrow">Conversation Lens</p>
-                <h3>ChatGPT 会話の現在地</h3>
-                <div class="src-conversation">${renderConversation()}</div>
-              </div>
-
-              <div class="src-panel">
                 <p class="src-eyebrow">Choice Chips</p>
                 <div class="src-choice-list">
                   ${(display?.scenePacket?.playerFacing?.choiceChips || [])
@@ -593,10 +692,11 @@
               </div>
 
               <div class="src-panel">
-                <p class="src-eyebrow">Free Action</p>
-                <textarea class="src-free-action" data-free-action-input="true" placeholder="例: 夜中に裏から入り、裏帳面を盗み見たい">${escapeHtml(STATE.freeActionDraft)}</textarea>
+                <p class="src-eyebrow">Input Route</p>
+                <h3>入力は ChatGPT 側</h3>
+                <p>自由行動、相談、長文入力は背面の ChatGPT composer に一本化します。この shell は状態確認と choice 実行を優先します。</p>
                 <div class="src-inline-actions">
-                  <button data-free-action-submit="true" ${STATE.pending ? "disabled" : ""}>自由行動を送る</button>
+                  <button data-focus-chat-input="true">ChatGPT 入力欄へ</button>
                 </div>
               </div>
             </section>
@@ -639,9 +739,7 @@
               .join("")}
           </footer>
 
-          <section class="src-drawer">
-            ${drawerContent(display)}
-          </section>
+          ${drawerMarkup}
         </section>
       </div>
     `;
@@ -663,14 +761,12 @@
     });
     mount.querySelectorAll("[data-drawer]").forEach((button) => {
       button.addEventListener("click", () => {
-        STATE.drawer = button.getAttribute("data-drawer");
+        const nextDrawer = button.getAttribute("data-drawer");
+        STATE.drawer = STATE.drawer === nextDrawer ? null : nextDrawer;
         render();
       });
     });
-    mount.querySelector("[data-free-action-input='true']")?.addEventListener("input", (event) => {
-      STATE.freeActionDraft = event.target.value;
-    });
-    mount.querySelector("[data-free-action-submit='true']")?.addEventListener("click", () => postFreeAction());
+    mount.querySelector("[data-focus-chat-input='true']")?.addEventListener("click", () => focusChatInput());
     mount.querySelector("[data-refresh='true']")?.addEventListener("click", () => loadSnapshot());
     mount.querySelector("[data-save='true']")?.addEventListener("click", () => saveSession());
     mount.querySelector("[data-load-save='true']")?.addEventListener("click", () => loadSavedSession());

@@ -65,8 +65,13 @@ class ReadOnlyUiTests(unittest.TestCase):
         self.assertIn("institutionAlertGuide", payload["display"])
         self.assertIn("currentEvent", payload["display"])
         self.assertIn("archiveInspector", payload["display"])
+        self.assertIn("equipmentHub", payload["display"])
+        self.assertIn("inventoryHub", payload["display"])
+        self.assertIn("assetPromptPack", payload["display"])
         self.assertTrue(payload["display"]["npcBeats"])
         self.assertTrue(payload["playSource"]["world_json"])
+        self.assertTrue(payload["display"]["equipmentHub"]["slots"])
+        self.assertGreater(payload["display"]["assetPromptPack"]["entryCount"], 8)
 
     def test_build_front_snapshot_payload_contains_display_without_bundle(self) -> None:
         payload = build_front_snapshot_payload(viewer_request_from_query({"seed": ["1729"]}))
