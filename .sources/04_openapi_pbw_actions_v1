@@ -1,0 +1,286 @@
+openapi: 3.1.0
+info:
+  title: Star Ring Codex TRPG Actions API
+  version: 1.0.0
+  description: |
+    Actions API for the Star Ring Codex TRPG custom GPT.
+    The GPT reads state via gpt-read-model and advances play only through backend actions.
+servers:
+  - url: https://starringcodextrpg.onrender.com
+    description: Current verified public API host.
+paths:
+  /api/gpt-read-model:
+    get:
+      operationId: getGptReadModel
+      summary: Get the narrator-facing read model for the current world state.
+      parameters:
+        - name: seed
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: world_json
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Path or identifier understood by the backend for an existing world state.
+      responses:
+        '200':
+          description: Read model response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GptReadModelResponse'
+  /api/play:
+    post:
+      operationId: playChoice
+      summary: Advance the game using a standard choice.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlayRequest'
+      responses:
+        '200':
+          description: Updated bundle after a standard choice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayResponse'
+  /api/free-action:
+    post:
+      operationId: playFreeAction
+      summary: Advance the game using a free-form player action.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FreeActionRequest'
+      responses:
+        '200':
+          description: Updated bundle after a free-form action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FreeActionResponse'
+  /api/save-session:
+    post:
+      operationId: saveSession
+      summary: Save the current session/world state.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveSessionRequest'
+      responses:
+        '200':
+          description: Save metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaveSessionResponse'
+  /api/load-session:
+    post:
+      operationId: loadSession
+      summary: Load a previously saved session/world state.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoadSessionRequest'
+      responses:
+        '200':
+          description: Loaded bundle and display payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoadSessionResponse'
+  /api/next-session:
+    post:
+      operationId: nextSession
+      summary: Finalize the current session and begin the next one.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NextSessionRequest'
+      responses:
+        '200':
+          description: Updated bundle after moving to the next session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NextSessionResponse'
+components:
+  schemas:
+    PlayRequest:
+      type: object
+      required: [choiceId]
+      properties:
+        choiceId:
+          type: string
+          description: Standard choice id such as observe, speak, inspect, intervene.
+        seed:
+          type: integer
+          nullable: true
+        world_json:
+          type: string
+          nullable: true
+      additionalProperties: false
+    FreeActionRequest:
+      type: object
+      required: [actionText]
+      properties:
+        actionText:
+          type: string
+        seed:
+          type: integer
+          nullable: true
+        world_json:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SaveSessionRequest:
+      type: object
+      properties:
+        world_json:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SaveSessionResponse:
+      type: object
+      properties:
+        saveId:
+          type: string
+        savePath:
+          type: string
+        savedAt:
+          type: string
+        sessionSummary:
+          type: object
+          additionalProperties: true
+      required: [saveId, savePath, savedAt]
+    LoadSessionRequest:
+      type: object
+      properties:
+        saveId:
+          type: string
+          nullable: true
+        savePath:
+          type: string
+          nullable: true
+      additionalProperties: false
+    NextSessionRequest:
+      type: object
+      required: [world_json]
+      properties:
+        world_json:
+          type: string
+      additionalProperties: false
+    BundleLike:
+      type: object
+      additionalProperties: true
+    DisplayLike:
+      type: object
+      additionalProperties: true
+    TransitionLike:
+      type: object
+      additionalProperties: true
+    StructuredResultLike:
+      type: object
+      additionalProperties: true
+    PlayResponse:
+      type: object
+      properties:
+        playSource:
+          type: object
+          additionalProperties: true
+        bundle:
+          $ref: '#/components/schemas/BundleLike'
+        display:
+          $ref: '#/components/schemas/DisplayLike'
+        transition:
+          $ref: '#/components/schemas/TransitionLike'
+      required: [playSource, bundle, display, transition]
+    FreeActionResponse:
+      type: object
+      properties:
+        playSource:
+          type: object
+          additionalProperties: true
+        bundle:
+          $ref: '#/components/schemas/BundleLike'
+        display:
+          $ref: '#/components/schemas/DisplayLike'
+        transition:
+          $ref: '#/components/schemas/TransitionLike'
+        structuredResult:
+          $ref: '#/components/schemas/StructuredResultLike'
+      required: [playSource, bundle, display, transition, structuredResult]
+    LoadSessionResponse:
+      type: object
+      properties:
+        request:
+          type: object
+          additionalProperties: true
+        saveMeta:
+          type: object
+          additionalProperties: true
+        playSource:
+          type: object
+          additionalProperties: true
+        bundle:
+          $ref: '#/components/schemas/BundleLike'
+        display:
+          $ref: '#/components/schemas/DisplayLike'
+      required: [playSource, bundle, display]
+    NextSessionResponse:
+      type: object
+      properties:
+        request:
+          type: object
+          additionalProperties: true
+        playSource:
+          type: object
+          additionalProperties: true
+        bundle:
+          $ref: '#/components/schemas/BundleLike'
+        display:
+          $ref: '#/components/schemas/DisplayLike'
+        nextSessionHook:
+          type: object
+          additionalProperties: true
+        sessionArchiveSize:
+          type: integer
+      required: [playSource, bundle, display]
+    GptReadModelResponse:
+      type: object
+      properties:
+        contracts:
+          type: object
+          additionalProperties: true
+        scene:
+          type: object
+          additionalProperties: true
+        guidance:
+          type: object
+          additionalProperties: true
+        world:
+          type: object
+          additionalProperties: true
+        cast:
+          type: object
+          additionalProperties: true
+        memory:
+          type: object
+          additionalProperties: true
+        freeActionSurface:
+          type: object
+          additionalProperties: true
+      required: [scene, guidance, world, cast, memory]
