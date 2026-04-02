@@ -68,6 +68,7 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             self.assertIn("Action Examples", dashboard)
             self.assertIn("Release Snapshot", dashboard)
             self.assertIn("Readiness Checks", dashboard)
+            self.assertIn("Smoke Drilldown", dashboard)
             self.assertIn("Editor Troubleshooting", dashboard)
             self.assertIn("Quick Commands", dashboard)
             self.assertIn("getGptReadModel", dashboard)
@@ -111,6 +112,7 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             self.assertIn("git_commit", manifest_text)
             self.assertIn("Release Snapshot", dashboard_text)
             self.assertIn("Readiness Checks", dashboard_text)
+            self.assertIn("Smoke Drilldown", dashboard_text)
             self.assertIn("Generated (UTC)", dashboard_text)
             self.assertIn("Git Commit", dashboard_text)
 

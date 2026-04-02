@@ -490,6 +490,26 @@ def export_custom_gpt_publish_dashboard(
         """
         for check in smoke_checks
     ) or "<p class='field__meta'>live smoke の記録はまだありません。</p>"
+    smoke_detail_html = "".join(
+        f"""
+          <article class="smoke-detail-card">
+            <div class="field__head">
+              <div>
+                <h3>{escape(str(check.get("name") or ""))}</h3>
+                <p class="field__meta">status: {escape(str(check.get("status") if check.get("status") is not None else "none"))}</p>
+              </div>
+              <div class="checklist-step__actions">
+                <span class="smoke-detail-card__status {'is-ok' if check.get('ok') else 'is-bad'}">{'OK' if check.get('ok') else 'NG'}</span>
+                <button type="button" data-copy-target="smoke-url-{index}">Copy URL</button>
+                <button type="button" data-open-url="{escape(str(check.get('url') or ''))}">Open</button>
+              </div>
+            </div>
+            <pre id="smoke-url-{index}">{escape(str(check.get("url") or ""))}</pre>
+            <pre>{escape(str(check.get("detail") or ""))}</pre>
+          </article>
+        """
+        for index, check in enumerate(smoke_checks, start=1)
+    ) or "<p class='field__meta'>live smoke の詳細はまだありません。</p>"
     actions_operations = fragments_manifest.get("operations_found") or []
     actions_operations_html = "".join(
         f"<span class=\"chip chip--operation\">{escape(str(item))}</span>" for item in actions_operations
@@ -1079,6 +1099,37 @@ def export_custom_gpt_publish_dashboard(
     .smoke-row__status.is-bad {{
       color: #d98272;
     }}
+    .smoke-detail-list {{
+      display: grid;
+      gap: 10px;
+    }}
+    .smoke-detail-card {{
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }}
+    .smoke-detail-card__status {{
+      min-width: 70px;
+      text-align: center;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }}
+    .smoke-detail-card__status.is-ok {{
+      color: var(--accent-2);
+      border-color: rgba(139, 179, 154, 0.32);
+      background: rgba(139, 179, 154, 0.08);
+    }}
+    .smoke-detail-card__status.is-bad {{
+      color: #d98272;
+      border-color: rgba(217, 130, 114, 0.32);
+      background: rgba(217, 130, 114, 0.08);
+    }}
     .snapshot-list {{
       display: grid;
       gap: 8px;
@@ -1316,6 +1367,19 @@ def export_custom_gpt_publish_dashboard(
             </div>
             <div class="readiness-list">
               {readiness_html}
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Smoke Drilldown</h2>
+                <p class="field__meta">URL / status / detail を確認する</p>
+              </div>
+            </div>
+            <div class="smoke-detail-list">
+              {smoke_detail_html}
             </div>
           </div>
         </section>

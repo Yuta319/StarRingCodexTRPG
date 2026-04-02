@@ -199,6 +199,37 @@
     .smoke-row__status.is-bad {
       color: #d98272;
     }
+    .smoke-detail-list {
+      display: grid;
+      gap: 10px;
+    }
+    .smoke-detail-card {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+    .smoke-detail-card__status {
+      min-width: 70px;
+      text-align: center;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .smoke-detail-card__status.is-ok {
+      color: var(--accent-2);
+      border-color: rgba(139, 179, 154, 0.32);
+      background: rgba(139, 179, 154, 0.08);
+    }
+    .smoke-detail-card__status.is-bad {
+      color: #d98272;
+      border-color: rgba(217, 130, 114, 0.32);
+      background: rgba(217, 130, 114, 0.08);
+    }
     .snapshot-list {
       display: grid;
       gap: 8px;
@@ -570,12 +601,12 @@
               
           <div class="snapshot-row">
             <span>Generated (UTC)</span>
-            <strong>2026-04-02T19:24:48Z</strong>
+            <strong>2026-04-02T19:28:31Z</strong>
           </div>
         
           <div class="snapshot-row">
             <span>Git Commit</span>
-            <strong>77972293d773f56eeb69aaf8ebe9356c61463c0b-dirty</strong>
+            <strong>f153b1dd696f62efb6e66128fd2e8283258805a9-dirty</strong>
           </div>
         
           <div class="snapshot-row">
@@ -614,8 +645,8 @@
   &quot;builder_website&quot;: &quot;https://starringcodextrpg.onrender.com/builder-profile.html&quot;,
   &quot;privacy_policy_url&quot;: &quot;https://starringcodextrpg.onrender.com/privacy.html&quot;,
   &quot;actions_server_url&quot;: &quot;https://starringcodextrpg.onrender.com&quot;,
-  &quot;generated_at_utc&quot;: &quot;2026-04-02T19:24:48Z&quot;,
-  &quot;git_commit&quot;: &quot;77972293d773f56eeb69aaf8ebe9356c61463c0b-dirty&quot;,
+  &quot;generated_at_utc&quot;: &quot;2026-04-02T19:28:31Z&quot;,
+  &quot;git_commit&quot;: &quot;f153b1dd696f62efb6e66128fd2e8283258805a9-dirty&quot;,
   &quot;seed&quot;: 1729,
   &quot;smoke_retries&quot;: 2,
   &quot;smoke_retry_delay_seconds&quot;: 1.0,
@@ -725,8 +756,117 @@
             <span class="readiness-row__status is-warn">CHECK</span>
             <div class="readiness-row__body">
               <strong>Git State</strong>
-              <p>77972293d773f56eeb69aaf8ebe9356c61463c0b-dirty</p>
+              <p>f153b1dd696f62efb6e66128fd2e8283258805a9-dirty</p>
             </div>
+          </article>
+        
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Smoke Drilldown</h2>
+                <p class="field__meta">URL / status / detail を確認する</p>
+              </div>
+            </div>
+            <div class="smoke-detail-list">
+              
+          <article class="smoke-detail-card">
+            <div class="field__head">
+              <div>
+                <h3>builder_website</h3>
+                <p class="field__meta">status: 200</p>
+              </div>
+              <div class="checklist-step__actions">
+                <span class="smoke-detail-card__status is-ok">OK</span>
+                <button type="button" data-copy-target="smoke-url-1">Copy URL</button>
+                <button type="button" data-open-url="https://starringcodextrpg.onrender.com/builder-profile.html">Open</button>
+              </div>
+            </div>
+            <pre id="smoke-url-1">https://starringcodextrpg.onrender.com/builder-profile.html</pre>
+            <pre>html ok</pre>
+          </article>
+        
+          <article class="smoke-detail-card">
+            <div class="field__head">
+              <div>
+                <h3>privacy_policy</h3>
+                <p class="field__meta">status: 200</p>
+              </div>
+              <div class="checklist-step__actions">
+                <span class="smoke-detail-card__status is-ok">OK</span>
+                <button type="button" data-copy-target="smoke-url-2">Copy URL</button>
+                <button type="button" data-open-url="https://starringcodextrpg.onrender.com/privacy.html">Open</button>
+              </div>
+            </div>
+            <pre id="smoke-url-2">https://starringcodextrpg.onrender.com/privacy.html</pre>
+            <pre>html ok</pre>
+          </article>
+        
+          <article class="smoke-detail-card">
+            <div class="field__head">
+              <div>
+                <h3>api_health</h3>
+                <p class="field__meta">status: 200</p>
+              </div>
+              <div class="checklist-step__actions">
+                <span class="smoke-detail-card__status is-ok">OK</span>
+                <button type="button" data-copy-target="smoke-url-3">Copy URL</button>
+                <button type="button" data-open-url="https://starringcodextrpg.onrender.com/health">Open</button>
+              </div>
+            </div>
+            <pre id="smoke-url-3">https://starringcodextrpg.onrender.com/health</pre>
+            <pre>True</pre>
+          </article>
+        
+          <article class="smoke-detail-card">
+            <div class="field__head">
+              <div>
+                <h3>front_snapshot</h3>
+                <p class="field__meta">status: 200</p>
+              </div>
+              <div class="checklist-step__actions">
+                <span class="smoke-detail-card__status is-ok">OK</span>
+                <button type="button" data-copy-target="smoke-url-4">Copy URL</button>
+                <button type="button" data-open-url="https://starringcodextrpg.onrender.com/api/front/snapshot?seed=1729">Open</button>
+              </div>
+            </div>
+            <pre id="smoke-url-4">https://starringcodextrpg.onrender.com/api/front/snapshot?seed=1729</pre>
+            <pre>world_json returned</pre>
+          </article>
+        
+          <article class="smoke-detail-card">
+            <div class="field__head">
+              <div>
+                <h3>gpt_read_model</h3>
+                <p class="field__meta">status: 200</p>
+              </div>
+              <div class="checklist-step__actions">
+                <span class="smoke-detail-card__status is-ok">OK</span>
+                <button type="button" data-copy-target="smoke-url-5">Copy URL</button>
+                <button type="button" data-open-url="https://starringcodextrpg.onrender.com/api/gpt-read-model?seed=1729">Open</button>
+              </div>
+            </div>
+            <pre id="smoke-url-5">https://starringcodextrpg.onrender.com/api/gpt-read-model?seed=1729</pre>
+            <pre>openingPackage.promptHint present</pre>
+          </article>
+        
+          <article class="smoke-detail-card">
+            <div class="field__head">
+              <div>
+                <h3>gpt_finalize_character</h3>
+                <p class="field__meta">status: 200</p>
+              </div>
+              <div class="checklist-step__actions">
+                <span class="smoke-detail-card__status is-ok">OK</span>
+                <button type="button" data-copy-target="smoke-url-6">Copy URL</button>
+                <button type="button" data-open-url="https://starringcodextrpg.onrender.com/api/gpt/finalize-character">Open</button>
+              </div>
+            </div>
+            <pre id="smoke-url-6">https://starringcodextrpg.onrender.com/api/gpt/finalize-character</pre>
+            <pre>readModel updated</pre>
           </article>
         
             </div>
