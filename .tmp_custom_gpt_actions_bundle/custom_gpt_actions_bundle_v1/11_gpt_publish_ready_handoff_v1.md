@@ -73,6 +73,7 @@ dashboard には `Registration Checklist` があり、貼り込み進捗をブ�
 また `Actions Setup` パネルで import path / server URL / expected operations / latest smoke を同じ画面で確認できます。
 さらに `Preview Test Pack` パネルで、新規開始・通常進行・保存再開の確認文をそのままコピーできます。
 詰まったときは `Editor Troubleshooting` パネルを見ると、import / privacy / finalize の失敗点をすぐ確認できます。
+terminal 側で使う `prepare / open / smoke / copy` コマンドは `Quick Commands` パネルからそのまま拾えます。
 加えて `Action Examples` パネルで、主要 action の fixture 要約と元 JSON へのリンクも確認できます。
 
 欄ごとのテキストをそのままクリップボードへ送る場合:

@@ -663,6 +663,42 @@ def export_custom_gpt_publish_dashboard(
         """
         for item in troubleshooting_items
     )
+    quick_commands = [
+        {
+            "title": "publish packet を再生成",
+            "command": "py -3 scripts\\prepare_gpt_publish_release.py --retries 2 --retry-delay-seconds 1.0",
+        },
+        {
+            "title": "workspace を開く",
+            "command": "py -3 scripts\\open_gpt_publish_workspace.py --open",
+        },
+        {
+            "title": "live smoke だけ再実行",
+            "command": "py -3 scripts\\run_custom_gpt_publish_smoke.py --retries 2 --retry-delay-seconds 1.0",
+        },
+        {
+            "title": "Instructions を clipboard へ送る",
+            "command": "py -3 scripts\\open_gpt_publish_workspace.py --copy instructions",
+        },
+        {
+            "title": "Actions import path を clipboard へ送る",
+            "command": "py -3 scripts\\open_gpt_publish_workspace.py --copy actions_import_path",
+        },
+    ]
+    quick_commands_html = "".join(
+        f"""
+          <article class="command-card">
+            <div class="field__head">
+              <div>
+                <h3>{escape(item["title"])}</h3>
+              </div>
+              <button type="button" data-copy-target="quick-command-{index}">Copy</button>
+            </div>
+            <pre id="quick-command-{index}">{escape(item["command"])}</pre>
+          </article>
+        """
+        for index, item in enumerate(quick_commands, start=1)
+    )
 
     html = f"""<!DOCTYPE html>
 <html lang="ja">
@@ -926,6 +962,22 @@ def export_custom_gpt_publish_dashboard(
       font-size: 13px;
       line-height: 1.5;
     }}
+    .command-stack {{
+      display: grid;
+      gap: 10px;
+    }}
+    .command-card {{
+      display: grid;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }}
+    .command-card pre {{
+      margin: 0;
+      max-height: none;
+    }}
     @media (max-width: 980px) {{
       .grid {{ grid-template-columns: 1fr; }}
     }}
@@ -1089,6 +1141,19 @@ def export_custom_gpt_publish_dashboard(
             </div>
             <div class="trouble-list">
               {troubleshooting_html}
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Quick Commands</h2>
+                <p class="field__meta">terminal 側でよく使うコマンド</p>
+              </div>
+            </div>
+            <div class="command-stack">
+              {quick_commands_html}
             </div>
           </div>
         </section>

@@ -260,6 +260,22 @@
       font-size: 13px;
       line-height: 1.5;
     }
+    .command-stack {
+      display: grid;
+      gap: 10px;
+    }
+    .command-card {
+      display: grid;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+    .command-card pre {
+      margin: 0;
+      max-height: none;
+    }
     @media (max-width: 980px) {
       .grid { grid-template-columns: 1fr; }
     }
@@ -910,6 +926,69 @@
           <article class="trouble-card">
             <strong>finalizeCharacter が失敗する</strong>
             <p>request に `world_json` が入っているかを確認し、Preview Test Pack の新規開始フローから再試行する。</p>
+          </article>
+        
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Quick Commands</h2>
+                <p class="field__meta">terminal 側でよく使うコマンド</p>
+              </div>
+            </div>
+            <div class="command-stack">
+              
+          <article class="command-card">
+            <div class="field__head">
+              <div>
+                <h3>publish packet を再生成</h3>
+              </div>
+              <button type="button" data-copy-target="quick-command-1">Copy</button>
+            </div>
+            <pre id="quick-command-1">py -3 scripts\prepare_gpt_publish_release.py --retries 2 --retry-delay-seconds 1.0</pre>
+          </article>
+        
+          <article class="command-card">
+            <div class="field__head">
+              <div>
+                <h3>workspace を開く</h3>
+              </div>
+              <button type="button" data-copy-target="quick-command-2">Copy</button>
+            </div>
+            <pre id="quick-command-2">py -3 scripts\open_gpt_publish_workspace.py --open</pre>
+          </article>
+        
+          <article class="command-card">
+            <div class="field__head">
+              <div>
+                <h3>live smoke だけ再実行</h3>
+              </div>
+              <button type="button" data-copy-target="quick-command-3">Copy</button>
+            </div>
+            <pre id="quick-command-3">py -3 scripts\run_custom_gpt_publish_smoke.py --retries 2 --retry-delay-seconds 1.0</pre>
+          </article>
+        
+          <article class="command-card">
+            <div class="field__head">
+              <div>
+                <h3>Instructions を clipboard へ送る</h3>
+              </div>
+              <button type="button" data-copy-target="quick-command-4">Copy</button>
+            </div>
+            <pre id="quick-command-4">py -3 scripts\open_gpt_publish_workspace.py --copy instructions</pre>
+          </article>
+        
+          <article class="command-card">
+            <div class="field__head">
+              <div>
+                <h3>Actions import path を clipboard へ送る</h3>
+              </div>
+              <button type="button" data-copy-target="quick-command-5">Copy</button>
+            </div>
+            <pre id="quick-command-5">py -3 scripts\open_gpt_publish_workspace.py --copy actions_import_path</pre>
           </article>
         
             </div>

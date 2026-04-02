@@ -66,6 +66,7 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             self.assertIn("Actions Setup", dashboard)
             self.assertIn("Action Examples", dashboard)
             self.assertIn("Editor Troubleshooting", dashboard)
+            self.assertIn("Quick Commands", dashboard)
             self.assertIn("getGptReadModel", dashboard)
             self.assertIsNone(packet.smoke_ok)
 
