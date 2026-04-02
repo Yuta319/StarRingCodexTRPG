@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "name": "External_Naming_Lexicon",
+  "entries": [
+    {
+      "surface_name": "ベルファスト",
+      "display_text": "ベルファスト〈平和の壁の街〉",
+      "category": "city",
+      "race": "human",
+      "ui_only": false,
+      "source_terms": ["環鈴宿", "環鈴宿（カンレイ）"],
+      "semantic_tags": ["王権", "誓約"],
+      "annotation": "《平和の壁の街》",
+      "priority": 100,
+      "source_label": "user_city_dictionary"
+    },
+    {
+      "surface_name": "セルカ",
+      "category": "person",
+      "race": "human",
+      "source_terms": ["停戦執行官セルカ"],
+      "semantic_tags": ["誓約", "騎士"],
+      "annotation": "《停戦守》",
+      "priority": 100,
+      "source_label": "user_person_dictionary"
+    },
+    {
+      "surface_name": "ルナフェル",
+      "category": "item",
+      "race": "elf",
+      "item_type": "bow",
+      "source_terms": ["月枝の歌弓"],
+      "semantic_tags": ["月", "森"],
+      "annotation": "《月枝の歌》",
+      "priority": 100,
+      "source_label": "user_item_dictionary"
+    }
+  ]
+}

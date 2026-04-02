@@ -1,0 +1,724 @@
+{
+  "schema_version": "1.0",
+  "name": "Fantasy_City_Naming_Dictionary",
+  "purpose": "街名・集落名・地形名の自動生成用外部辞典",
+  "display_policy": {
+    "default_surface": "カタカナ名を主表示",
+    "annotation_format": "《意味注釈》",
+    "recommended_display": "{surface_name}《{annotation}》",
+    "ui_short": "{surface_name}"
+  },
+  "generation_order": [
+    "race",
+    "settlement_tier",
+    "semantic_theme",
+    "phoneme_root",
+    "city_suffix",
+    "annotation"
+  ],
+  "settlement_tiers": {
+    "hamlet": "小集落・営地・小村",
+    "village": "村落・農村・庭村",
+    "town": "町・交易町・工房町",
+    "city": "都市・港湾都市・王都",
+    "fortress": "城塞・砦・関門",
+    "sacred": "聖域・神殿都市・修道都"
+  },
+  "theme_map": {
+    "human": [
+      "王権",
+      "城門",
+      "聖堂",
+      "河港",
+      "辺境防衛"
+    ],
+    "elf": [
+      "月",
+      "湖",
+      "森",
+      "霧",
+      "歌と記憶"
+    ],
+    "dwarf": [
+      "炉",
+      "坑道",
+      "石城",
+      "鉱脈",
+      "鍛冶"
+    ],
+    "werebeast": [
+      "狩場",
+      "風谷",
+      "焚火輪",
+      "群れ",
+      "追跡路"
+    ],
+    "birdfolk": [
+      "高巣",
+      "峰",
+      "鐘",
+      "空路",
+      "巡礼"
+    ],
+    "fishfolk": [
+      "潮門",
+      "岬",
+      "湾",
+      "礁",
+      "航路"
+    ],
+    "dragonewt": [
+      "炎殿",
+      "玉座",
+      "王都",
+      "竜門",
+      "高台"
+    ],
+    "fey": [
+      "夢庭",
+      "花園",
+      "月庭",
+      "鈴森",
+      "露路"
+    ],
+    "demonian": [
+      "深庫",
+      "封鍵楼",
+      "影廊",
+      "法廷",
+      "裏書院"
+    ],
+    "fallen": [
+      "灰礼堂",
+      "断門",
+      "巡礼宿",
+      "裂翼塔",
+      "修道都"
+    ],
+    "plantfolk": [
+      "根庭",
+      "春壇",
+      "花輪",
+      "種庵",
+      "境界庭"
+    ],
+    "gemfolk": [
+      "晶廊",
+      "核殿",
+      "研磨堂",
+      "白鉱門",
+      "共鳴座"
+    ]
+  },
+  "races": {
+    "human": {
+      "label": "人類種≪ヒューマン≫",
+      "roots": [
+        "val",
+        "leon",
+        "ser",
+        "kil",
+        "ard",
+        "bel"
+      ],
+      "suffixes": {
+        "hamlet": [
+          "wick",
+          "field"
+        ],
+        "village": [
+          "ford",
+          "vale"
+        ],
+        "town": [
+          "crest",
+          "ford",
+          "bridge"
+        ],
+        "city": [
+          "gard",
+          "mere",
+          "crest"
+        ],
+        "fortress": [
+          "gard",
+          "keep",
+          "wall"
+        ],
+        "sacred": [
+          "minster",
+          "hall",
+          "chapel"
+        ]
+      },
+      "annotation_pool": [
+        "白獅子の城塞",
+        "銀鍵の河門市",
+        "王旗の辺境砦",
+        "百合冠の聖堂町"
+      ],
+      "samples": [
+        "ヴァルガルド",
+        "キルフォード",
+        "レオンクレスト"
+      ]
+    },
+    "elf": {
+      "label": "長命種≪エルフ≫",
+      "roots": [
+        "syl",
+        "lune",
+        "riel",
+        "thiel",
+        "sera",
+        "ael"
+      ],
+      "suffixes": {
+        "hamlet": [
+          "grove",
+          "wen"
+        ],
+        "village": [
+          "riel",
+          "wen"
+        ],
+        "town": [
+          "thiel",
+          "riel"
+        ],
+        "city": [
+          "wein",
+          "thiel",
+          "loria"
+        ],
+        "fortress": [
+          "gate",
+          "veil"
+        ],
+        "sacred": [
+          "selene",
+          "ria",
+          "wein"
+        ]
+      },
+      "annotation_pool": [
+        "月枝の湖都",
+        "白森の環都",
+        "霧泉の歌都",
+        "水鏡の聖域"
+      ],
+      "samples": [
+        "シルウェイン",
+        "ルネリエル",
+        "ティエルロリア"
+      ]
+    },
+    "dwarf": {
+      "label": "小人種≪ドワーフ≫",
+      "roots": [
+        "kar",
+        "dor",
+        "grim",
+        "bar",
+        "drum",
+        "brok"
+      ],
+      "suffixes": {
+        "hamlet": [
+          "del",
+          "rok"
+        ],
+        "village": [
+          "bar",
+          "rok"
+        ],
+        "town": [
+          "dorn",
+          "bar"
+        ],
+        "city": [
+          "drum",
+          "dorn",
+          "gar"
+        ],
+        "fortress": [
+          "hold",
+          "drum",
+          "wall"
+        ],
+        "sacred": [
+          "forge",
+          "hearth",
+          "vault"
+        ]
+      },
+      "annotation_pool": [
+        "鉄床の坑道門",
+        "炉心の石城",
+        "赤火床の工房町",
+        "祖槌の碑廊都"
+      ],
+      "samples": [
+        "カルドラム",
+        "ドルンバル",
+        "グリムホールド"
+      ]
+    },
+    "werebeast": {
+      "label": "獣人種≪ワービースト≫",
+      "roots": [
+        "fen",
+        "rask",
+        "skar",
+        "gar",
+        "ul",
+        "mok"
+      ],
+      "suffixes": {
+        "hamlet": [
+          "camp",
+          "run"
+        ],
+        "village": [
+          "gal",
+          "run"
+        ],
+        "town": [
+          "knar",
+          "ska"
+        ],
+        "city": [
+          "skar",
+          "gal"
+        ],
+        "fortress": [
+          "watch",
+          "scar"
+        ],
+        "sacred": [
+          "fire",
+          "moon",
+          "den"
+        ]
+      },
+      "annotation_pool": [
+        "月狩の営地",
+        "風追いの谷営",
+        "群れの焚火輪",
+        "長足の見張り丘"
+      ],
+      "samples": [
+        "フェンガル",
+        "ラスクナー",
+        "スカルラン"
+      ]
+    },
+    "birdfolk": {
+      "label": "翼人種≪バードフォーク≫",
+      "roots": [
+        "ael",
+        "zeph",
+        "tiar",
+        "orin",
+        "cael",
+        "syl"
+      ],
+      "suffixes": {
+        "hamlet": [
+          "nest",
+          "perch"
+        ],
+        "village": [
+          "ael",
+          "orin"
+        ],
+        "town": [
+          "spire",
+          "orin"
+        ],
+        "city": [
+          "spire",
+          "aeria",
+          "orin"
+        ],
+        "fortress": [
+          "gate",
+          "spire",
+          "watch"
+        ],
+        "sacred": [
+          "choir",
+          "peak",
+          "chapel"
+        ]
+      },
+      "annotation_pool": [
+        "白翼の高巣塔",
+        "追風の巡礼峰",
+        "朝風の祈鐘都",
+        "雲上の伝令城"
+      ],
+      "samples": [
+        "アエルスパイア",
+        "ゼファオリン",
+        "ティアエリア"
+      ]
+    },
+    "fishfolk": {
+      "label": "魚人種≪フィッシュフォーク≫",
+      "roots": [
+        "nere",
+        "kai",
+        "moa",
+        "rua",
+        "tala",
+        "nui"
+      ],
+      "suffixes": {
+        "hamlet": [
+          "cove",
+          "reef"
+        ],
+        "village": [
+          "lua",
+          "nui"
+        ],
+        "town": [
+          "mora",
+          "kai"
+        ],
+        "city": [
+          "kai",
+          "mora",
+          "lua"
+        ],
+        "fortress": [
+          "gate",
+          "shoal",
+          "wall"
+        ],
+        "sacred": [
+          "tide",
+          "song",
+          "isle"
+        ]
+      },
+      "annotation_pool": [
+        "月潮の港都",
+        "珊瑚の潮門",
+        "深湾の航路市",
+        "外洋歌の岬都"
+      ],
+      "samples": [
+        "ネレカイ",
+        "モアルア",
+        "タラモラ"
+      ]
+    },
+    "dragonewt": {
+      "label": "竜鱗種≪ドラゴニュート≫",
+      "roots": [
+        "zhar",
+        "rak",
+        "vash",
+        "kesh",
+        "azar",
+        "uram"
+      ],
+      "suffixes": {
+        "hamlet": [
+          "ash",
+          "zar"
+        ],
+        "village": [
+          "esh",
+          "var"
+        ],
+        "town": [
+          "zaal",
+          "kesh"
+        ],
+        "city": [
+          "uram",
+          "kaan",
+          "kesh"
+        ],
+        "fortress": [
+          "gate",
+          "keep",
+          "kaar"
+        ],
+        "sacred": [
+          "tem",
+          "sol",
+          "thron"
+        ]
+      },
+      "annotation_pool": [
+        "王火の炎殿",
+        "紅鱗の玉都",
+        "熾冠の高台都",
+        "守護獣の竜門城"
+      ],
+      "samples": [
+        "ザルケシュ",
+        "ラクウラム",
+        "アザルカーン"
+      ]
+    },
+    "fey": {
+      "label": "妖精種≪フェイ≫",
+      "roots": [
+        "mir",
+        "eira",
+        "fia",
+        "vela",
+        "lune",
+        "syl"
+      ],
+      "suffixes": {
+        "hamlet": [
+          "glen",
+          "veil"
+        ],
+        "village": [
+          "miel",
+          "fia"
+        ],
+        "town": [
+          "reine",
+          "miel"
+        ],
+        "city": [
+          "fiara",
+          "reine",
+          "miel"
+        ],
+        "fortress": [
+          "veil",
+          "maze"
+        ],
+        "sacred": [
+          "garden",
+          "court",
+          "moon"
+        ]
+      },
+      "annotation_pool": [
+        "夢花の庭都",
+        "露鈴の月庭",
+        "囁きの花園市",
+        "蝶幕の夢宮"
+      ],
+      "samples": [
+        "ミレフィア",
+        "ヴェラレイン",
+        "エイラミエル"
+      ]
+    },
+    "demonian": {
+      "label": "魔生種≪デモニアン≫",
+      "roots": [
+        "vex",
+        "zel",
+        "keth",
+        "mor",
+        "zeth",
+        "nox"
+      ],
+      "suffixes": {
+        "hamlet": [
+          "cell",
+          "ward"
+        ],
+        "village": [
+          "zet",
+          "mor"
+        ],
+        "town": [
+          "keth",
+          "mora"
+        ],
+        "city": [
+          "zel",
+          "mora",
+          "keth"
+        ],
+        "fortress": [
+          "lock",
+          "ward",
+          "seal"
+        ],
+        "sacred": [
+          "archive",
+          "court",
+          "vault"
+        ]
+      },
+      "annotation_pool": [
+        "封鍵の書庫都",
+        "夜矩の法廷市",
+        "深印の契都",
+        "黒署の封印楼"
+      ],
+      "samples": [
+        "ヴェクゼル",
+        "ケトモラ",
+        "ゼスモラ"
+      ]
+    },
+    "fallen": {
+      "label": "堕性種≪フォールン≫",
+      "roots": [
+        "ash",
+        "ser",
+        "vael",
+        "kain",
+        "sel",
+        "mour"
+      ],
+      "suffixes": {
+        "hamlet": [
+          "rest",
+          "gray"
+        ],
+        "village": [
+          "ael",
+          "kain"
+        ],
+        "town": [
+          "vael",
+          "kain"
+        ],
+        "city": [
+          "vael",
+          "mour",
+          "ael"
+        ],
+        "fortress": [
+          "gate",
+          "wall",
+          "spire"
+        ],
+        "sacred": [
+          "abbey",
+          "basil",
+          "sanct"
+        ]
+      },
+      "annotation_pool": [
+        "灰礼の修道都",
+        "断門の巡礼町",
+        "裂翼の見張塔都",
+        "燃え残りの聖域"
+      ],
+      "samples": [
+        "アシュヴェイル",
+        "セルカイン",
+        "モールヴェイル"
+      ]
+    },
+    "plantfolk": {
+      "label": "樹生種≪プラントフォーク≫",
+      "roots": [
+        "ver",
+        "rowe",
+        "briar",
+        "thorn",
+        "lora",
+        "wyn"
+      ],
+      "suffixes": {
+        "hamlet": [
+          "patch",
+          "grove"
+        ],
+        "village": [
+          "wen",
+          "rowe"
+        ],
+        "town": [
+          "vera",
+          "briar"
+        ],
+        "city": [
+          "rowe",
+          "vera",
+          "briar"
+        ],
+        "fortress": [
+          "hedge",
+          "gate",
+          "thorn"
+        ],
+        "sacred": [
+          "garden",
+          "bloom",
+          "spring"
+        ]
+      },
+      "annotation_pool": [
+        "芽吹きの根庭",
+        "棘環の庭村",
+        "白樹の花壇都",
+        "種守りの境界庭"
+      ],
+      "samples": [
+        "ヴェルロウェ",
+        "ブライアウェン",
+        "ロラヴェラ"
+      ]
+    },
+    "gemfolk": {
+      "label": "石人種≪ジェムフォーク≫",
+      "roots": [
+        "orix",
+        "lex",
+        "drium",
+        "cor",
+        "vol",
+        "sarn"
+      ],
+      "suffixes": {
+        "hamlet": [
+          "pit",
+          "ledge"
+        ],
+        "village": [
+          "vol",
+          "lex"
+        ],
+        "town": [
+          "drium",
+          "orix"
+        ],
+        "city": [
+          "orix",
+          "drium",
+          "vol"
+        ],
+        "fortress": [
+          "vault",
+          "gate",
+          "wall"
+        ],
+        "sacred": [
+          "hall",
+          "spire",
+          "core"
+        ]
+      },
+      "annotation_pool": [
+        "晶核の研磨都",
+        "断面の白鉱門",
+        "共鳴の核殿",
+        "光井戸の階都"
+      ],
+      "samples": [
+        "オリクサス",
+        "レクスドリム",
+        "コルヴォル"
+      ]
+    }
+  }
+}

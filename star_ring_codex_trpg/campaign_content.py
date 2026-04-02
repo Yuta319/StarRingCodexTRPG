@@ -13,7 +13,7 @@ DUNGEON_REGION_PREFERENCE = ["deep_mouth", "seal_marsh", "ash_frontier", "white_
 HUB_BLUEPRINTS = [
     {
         "hubId": "hub_kanrei",
-        "label": "環鈴宿《カンレイ》",
+        "label": "環鈴宿（カンレイ）",
         "description": "街道・祈祷路・物資路が交差する臨時拠点。",
         "regionPreference": ["river_gate", "white_shrine", "north_granary", "ash_frontier", "seal_marsh", "deep_mouth"],
         "baseStability": 58.0,
@@ -25,7 +25,7 @@ HUB_BLUEPRINTS = [
     },
     {
         "hubId": "hub_ember_checkpoint",
-        "label": "灰杭関所《エンショウ》",
+        "label": "灰杭関所（エンショウ）",
         "description": "検問列と避難列が交差し、誓紙と寝床札で夜をしのぐ関所宿。",
         "regionPreference": ["ash_frontier", "north_granary", "river_gate", "white_shrine", "seal_marsh", "deep_mouth"],
         "baseStability": 54.0,
@@ -37,7 +37,7 @@ HUB_BLUEPRINTS = [
     },
     {
         "hubId": "hub_tide_wharf",
-        "label": "澱舟泊《テイシュウ》",
+        "label": "澱舟泊（テイシュウ）",
         "description": "渡し舟、検疫札、船荷札が一か所で絡む湿地の船着き拠点。",
         "regionPreference": ["seal_marsh", "river_gate", "white_shrine", "ash_frontier", "north_granary", "deep_mouth"],
         "baseStability": 51.0,
@@ -145,7 +145,7 @@ ROLE_SLOT_BLUEPRINTS = [
             },
         ],
         "conflictTargetSlotId": "slot_ledger_clerk",
-        "conflictDetail": "停戦執行官は街道を止めたくない。目録官は帳簿の穴を塞がないまま動かすことを許さない。",
+        "conflictDetail": "停戦執行官は街道を止めずに回したいが、目録官は帳簿の穴を塞がないまま列を動かすことを認めない。",
         "favoredApproach": "speak",
         "resentedApproach": "inspect",
         "secretHintApproaches": ["observe", "inspect"],
@@ -209,7 +209,7 @@ ROLE_SLOT_BLUEPRINTS = [
             },
         ],
         "conflictTargetSlotId": "slot_tunnel_guide",
-        "conflictDetail": "祈鐘士は封印と儀礼を守りたい。坑路案内は生還のために退路と近道を優先する。",
+        "conflictDetail": "祈鐘士は封印と儀礼を守りたいが、坑路案内は生還のために退路と近道を優先する。",
         "favoredApproach": "inspect",
         "resentedApproach": "intervene",
         "secretHintApproaches": ["inspect", "speak"],
@@ -273,7 +273,7 @@ ROLE_SLOT_BLUEPRINTS = [
             },
         ],
         "conflictTargetSlotId": "slot_truce_warden",
-        "conflictDetail": "目録官は数字を公開して責任を固定したい。停戦執行官は街道維持のため帳簿の穴を伏せたい。",
+        "conflictDetail": "目録官は数字を公開して責任をはっきりさせたいが、停戦執行官は街道を保つために帳簿の穴を伏せたい。",
         "favoredApproach": "inspect",
         "resentedApproach": "speak",
         "secretHintApproaches": ["inspect", "observe"],
@@ -337,7 +337,7 @@ ROLE_SLOT_BLUEPRINTS = [
             },
         ],
         "conflictTargetSlotId": "slot_cantor",
-        "conflictDetail": "坑路案内は生還の路を確保したい。祈鐘士は禁制でも鐘譜と封印を守ろうとする。",
+        "conflictDetail": "坑路案内は生還の道を確保したいが、祈鐘士は禁制を犯してでも鐘譜と封印を守ろうとする。",
         "favoredApproach": "observe",
         "resentedApproach": "intervene",
         "secretHintApproaches": ["observe", "inspect"],
@@ -401,7 +401,7 @@ ROLE_SLOT_BLUEPRINTS = [
             },
         ],
         "conflictTargetSlotId": "slot_ledger_clerk",
-        "conflictDetail": "宿場差配は列を流したい。目録官は台帳が合わないまま寝床札と配給を増やしたくない。",
+        "conflictDetail": "宿場差配は列を先へ流したいが、目録官は台帳が合わないまま寝床札と配給を増やしたくない。",
         "favoredApproach": "speak",
         "resentedApproach": "inspect",
         "secretHintApproaches": ["observe", "speak"],
@@ -465,7 +465,7 @@ ROLE_SLOT_BLUEPRINTS = [
             },
         ],
         "conflictTargetSlotId": "slot_cantor",
-        "conflictDetail": "遺物番は封箱を閉じて動かしたい。祈鐘士は儀礼上必要な品を手元に残したがる。",
+        "conflictDetail": "遺物番は封箱を閉じたまま運びたいが、祈鐘士は儀礼に要る品を手元へ残したがる。",
         "favoredApproach": "inspect",
         "resentedApproach": "speak",
         "secretHintApproaches": ["inspect", "observe"],
@@ -529,7 +529,7 @@ ROLE_SLOT_BLUEPRINTS = [
             },
         ],
         "conflictTargetSlotId": "slot_truce_warden",
-        "conflictDetail": "誓紙検分官は誓紙と検疫印の筋を守りたい。停戦執行官は街道を止めないため、便法を残したまま列を動かしたい。",
+        "conflictDetail": "誓紙検分官は誓紙と検疫印の筋を守りたいが、停戦執行官は街道を止めないために便法を残したまま列を動かしたい。",
         "favoredApproach": "inspect",
         "resentedApproach": "intervene",
         "secretHintApproaches": ["inspect", "observe"],
@@ -595,7 +595,7 @@ ROLE_SLOT_BLUEPRINTS = [
             },
         ],
         "conflictTargetSlotId": "slot_quartermaster",
-        "conflictDetail": "渡し守は舟を切らさず流したい。宿場差配は寝床と配給の順を崩さず、渡しへ回す人数を絞りたい。",
+        "conflictDetail": "渡し守は舟を切らさず流したいが、宿場差配は寝床と配給の順を守るために渡しへ回す人数を絞りたい。",
         "favoredApproach": "observe",
         "resentedApproach": "inspect",
         "secretHintApproaches": ["observe", "speak"],
@@ -661,7 +661,7 @@ ROLE_SLOT_BLUEPRINTS = [
             },
         ],
         "conflictTargetSlotId": "slot_relic_keeper",
-        "conflictDetail": "封継師は罅を閉じるため封泥と時間を欲しがる。遺物番は封箱を動かさず、継ぎ直しより保管の秩序を優先したい。",
+        "conflictDetail": "封継師は罅を閉じるために封泥と時間を欲しがるが、遺物番は封箱を動かさず、継ぎ直しより保管の秩序を優先したい。",
         "favoredApproach": "inspect",
         "resentedApproach": "speak",
         "secretHintApproaches": ["inspect", "observe"],
@@ -709,7 +709,7 @@ EVENT_BLUEPRINTS_RAW = [
         "branches": [
             {
                 "branchId": "branch_forged_seal_route",
-                "label": "偽印の迂回路",
+                "label": "偽印の抜け道",
                 "summary": "停戦印の複写経路を追う。",
                 "preferredIntents": ["observe", "intervene"],
                 "focusNpcIds": ["npc_warden_serka", "npc_clerk_basha"],
@@ -749,7 +749,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_hostage_grievance",
-                "label": "人質名簿の怨み",
+                "label": "人質名簿の恨み",
                 "summary": "交換から漏れた名の私怨を扱う。",
                 "preferredIntents": ["speak"],
                 "focusNpcIds": ["npc_warden_serka", "npc_cantor_lys"],
@@ -785,7 +785,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_blackmail_ledger",
-                "label": "裏帳面の脅し",
+                "label": "裏帳面で脅す",
                 "summary": "裏帳面を脅しではなく証拠に変える。",
                 "preferredIntents": ["inspect"],
                 "focusNpcIds": ["npc_clerk_basha", "npc_warden_serka"],
@@ -825,7 +825,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_blame_transfer",
-                "label": "責任の押し付け先",
+                "label": "責任の押し付け",
                 "summary": "責任を第三勢力へ押しつけ、その場だけ停戦をつなぐ。",
                 "preferredIntents": ["speak", "observe"],
                 "focusNpcIds": ["npc_warden_serka", "npc_clerk_basha", "npc_cantor_lys"],
@@ -867,7 +867,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_corridor_pledge",
-                "label": "通行印の立て替え",
+                "label": "通行印を立て替える",
                 "summary": "暫定の通行保証で交換だけを先に回し、現場を保たせる。",
                 "preferredIntents": ["intervene", "speak"],
                 "focusNpcIds": ["npc_warden_serka", "npc_cantor_lys"],
@@ -967,7 +967,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_ration_rumor",
-                "label": "配給切りの噂",
+                "label": "配給削減の噂",
                 "summary": "配給削減の噂を止める。",
                 "preferredIntents": ["speak", "observe"],
                 "focusNpcIds": ["npc_warden_serka", "npc_cantor_lys"],
@@ -1042,7 +1042,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_scapegoat_store",
-                "label": "横流し倉の身代わり",
+                "label": "横流し倉を身代わりにする",
                 "summary": "一つの倉を切り捨て、宿全体の流通だけを守る。",
                 "preferredIntents": ["inspect", "intervene"],
                 "focusNpcIds": ["npc_clerk_basha", "npc_warden_serka"],
@@ -1084,7 +1084,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_pilgrim_detour",
-                "label": "巡礼路の横抜け",
+                "label": "巡礼路を抜け道にする",
                 "summary": "巡礼路を迂回路に使って補給を通し、坑路側へ負担を逃がす。",
                 "preferredIntents": ["speak", "observe"],
                 "focusNpcIds": ["npc_cantor_lys", "npc_guide_norv"],
@@ -1145,7 +1145,7 @@ EVENT_BLUEPRINTS_RAW = [
         "branches": [
             {
                 "branchId": "branch_bell_map",
-                "label": "鐘脈の地図",
+                "label": "鐘脈の見取り図",
                 "summary": "鳴動の筋を読み、奥へ進む路を描く。",
                 "preferredIntents": ["observe", "inspect"],
                 "focusNpcIds": ["npc_guide_norv", "npc_cantor_lys"],
@@ -1184,7 +1184,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_collapse_detour",
-                "label": "崩落迂回の賭け",
+                "label": "崩落を迂回する",
                 "summary": "危うい迂回路に賭けて封印の芯へ急ぐ。",
                 "preferredIntents": ["intervene"],
                 "focusNpcIds": ["npc_guide_norv", "npc_warden_serka"],
@@ -1263,7 +1263,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_surface_decoy",
-                "label": "地上鐘の陽動",
+                "label": "地上鐘で陽動",
                 "summary": "地上で鐘を鳴らして再鳴動の圧を逸らし、坑路側の破裂を遅らせる。",
                 "preferredIntents": ["observe", "intervene"],
                 "focusNpcIds": ["npc_guide_norv", "npc_warden_serka"],
@@ -1306,7 +1306,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_votive_proxy",
-                "label": "身代わり封書",
+                "label": "身代わりの封書",
                 "summary": "誰かの名を身代わりにして封印を繋ぎ、今夜だけ坑路を沈める。",
                 "preferredIntents": ["speak", "inspect"],
                 "focusNpcIds": ["npc_cantor_lys", "npc_guide_norv"],
@@ -1358,8 +1358,8 @@ EVENT_BLUEPRINTS_RAW = [
         "dungeonAffinityIds": ["dungeon_mirror_mire_vault"],
         "summary": "灰杭関所で継ぎ足しの誓紙が見つかり、誰が通行を許したかで責任が割れている。",
         "stakes": "誓紙の信用が落ちると、検問も補給も同時に鈍る。",
-        "whyImportant": "序盤二手で通行の筋を読めないと、次の移動と交渉が両方遅れる。",
-        "objective": "継ぎ足された誓紙の出所を見切り、通行権の軸を定める。",
+        "whyImportant": "序盤二手で通行の流れを読めないと、次の移動と交渉が両方遅れる。",
+        "objective": "継ぎ足された誓紙の出所を見切り、誰を通すかの基準を定める。",
         "recommendedChoices": ["observe", "inspect", "speak"],
         "basePressure": 60.0,
         "branches": [
@@ -1439,7 +1439,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_borrowed_gate_stamp",
-                "label": "関印の貸し越し",
+                "label": "関印の貸し出し",
                 "summary": "通行の穴を埋めるため、別管理の関印が貸し出されていないかを追う。",
                 "preferredIntents": ["inspect", "speak"],
                 "focusNpcIds": ["slot_truce_warden", "slot_ledger_clerk"],
@@ -1475,7 +1475,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_watchword_cover",
-                "label": "夜番の口裏",
+                "label": "夜番の口裏合わせ",
                 "summary": "夜番の証言を揃え、誓紙の裂け目をその場だけ密室へ押し戻す。",
                 "preferredIntents": ["speak", "observe"],
                 "focusNpcIds": ["slot_quartermaster", "slot_truce_warden"],
@@ -1569,7 +1569,7 @@ EVENT_BLUEPRINTS_RAW = [
         "branches": [
             {
                 "branchId": "branch_kettle_reorder",
-                "label": "釜場の割り直し",
+                "label": "釜場の配り直し",
                 "summary": "釜場と配給札の順番を組み替え、飢えた列から先に回す。",
                 "preferredIntents": ["inspect", "speak"],
                 "focusNpcIds": ["slot_quartermaster", "slot_ledger_clerk"],
@@ -1639,7 +1639,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_sick_line_cloth",
-                "label": "病列の隔て布",
+                "label": "病列を隔てる",
                 "summary": "病列と通常列の間に隔て布を張り、恐れと噂を切り離す。",
                 "preferredIntents": ["intervene", "speak"],
                 "focusNpcIds": ["slot_quartermaster", "slot_cantor"],
@@ -1713,7 +1713,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_night_freight",
-                "label": "積荷列の夜送り",
+                "label": "積荷列を夜に送る",
                 "summary": "夜のうちに積荷列だけ先へ流し、朝の関所を軽くする。",
                 "preferredIntents": ["observe", "intervene"],
                 "focusNpcIds": ["slot_quartermaster", "slot_tunnel_guide"],
@@ -1770,7 +1770,7 @@ EVENT_BLUEPRINTS_RAW = [
         "branches": [
             {
                 "branchId": "branch_shade_cloth_reset",
-                "label": "遮り布の張り直し",
+                "label": "遮り布を張り直す",
                 "summary": "泥鏡へ遮り布を張り直し、照り返しを鈍らせる。",
                 "preferredIntents": ["inspect", "observe"],
                 "focusNpcIds": ["slot_relic_keeper", "slot_cantor"],
@@ -1841,7 +1841,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_cover_bell",
-                "label": "泥鏡の覆い鐘",
+                "label": "泥鏡を覆う鐘",
                 "summary": "泥鏡の前へ覆い鐘を下ろし、反照を封印側へ押し返す。",
                 "preferredIntents": ["observe", "speak"],
                 "focusNpcIds": ["slot_cantor", "slot_relic_keeper"],
@@ -1876,7 +1876,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_retreat_lamp",
-                "label": "退路灯の吊り替え",
+                "label": "退路灯を吊り替える",
                 "summary": "退路灯を吊り替え、封庫内で迷う時間を減らす。",
                 "preferredIntents": ["observe", "intervene"],
                 "focusNpcIds": ["slot_tunnel_guide", "slot_relic_keeper"],
@@ -1916,7 +1916,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_reflection_loan",
-                "label": "反照遺物の借り出し",
+                "label": "反照遺物を借りる",
                 "summary": "反照を吸う遺物を一時だけ借り出し、封庫の芯へ当てる。",
                 "preferredIntents": ["inspect", "speak"],
                 "focusNpcIds": ["slot_relic_keeper", "slot_truce_warden"],
@@ -1966,21 +1966,21 @@ EVENT_BLUEPRINTS_RAW = [
         "hubAffinityIds": ["hub_tide_wharf"],
         "dungeonAffinityIds": ["dungeon_salt_oracle_crypt"],
         "summary": "渡し札と検疫札の順が食い違い、誰を先に舟へ乗せるかで場が割れている。",
-        "stakes": "検疫の筋が崩れると、水運も避難も同時に止まりやすい。",
-        "whyImportant": "序盤二手で渡し筋を読めないと、以後の補給と封路対応が両方遅れる。",
-        "objective": "渡し札と検疫札のどちらを先に立てるか筋を定める。",
+        "stakes": "検疫の手順が崩れると、水運も避難も同時に止まりやすい。",
+        "whyImportant": "序盤二手で渡し場の流れを読めないと、以後の補給と封路対応が両方遅れる。",
+        "objective": "渡し札と検疫札のどちらを先に通すか決める。",
         "recommendedChoices": ["observe", "inspect", "speak"],
         "basePressure": 61.0,
         "branches": [
             {
                 "branchId": "branch_brine_pass_compare",
-                "label": "塩札の照合",
+                "label": "札の照合",
                 "summary": "渡し札と検疫札の欠番を照らし、誰の列が止まっているかを見切る。",
                 "preferredIntents": ["inspect", "observe"],
                 "focusNpcIds": ["slot_oath_scribe", "slot_ferrymaster"],
                 "notes": {
-                    "success": "欠番の筋が見え、渡しと検疫の順を立て直せた。",
-                    "partial_success": "筋は見えたが、誰かの便宜をまだ帳尻へ載せられていない。",
+                    "success": "欠番の流れが見え、渡しと検疫の順を立て直せた。",
+                    "partial_success": "流れは見えたが、誰かへの便宜がまだ帳面に載っていない。",
                     "failure": "欠番だけが増え、渡し札と検疫札の両方への不信が強まった。",
                 },
                 "fx": {
@@ -2042,12 +2042,12 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_oath_salt_reading",
-                "label": "誓塩の読み直し",
-                "summary": "誓紙に染みた塩筋を読み、どの札が正式な筋で残ったのかを確かめる。",
+                "label": "塩の跡を読む",
+                "summary": "誓紙に残った塩の跡を読み、どの札が正しい手順で残ったのかを確かめる。",
                 "preferredIntents": ["inspect", "speak"],
                 "focusNpcIds": ["slot_oath_scribe", "slot_cantor"],
                 "notes": {
-                    "success": "誓塩の筋が見え、どの札を先に立てるべきかが定まった。",
+                    "success": "塩の跡が読めて、どの札を先に通すべきかが定まった。",
                     "partial_success": "筋は読めたが、祈り場へ借りを残して順番を通した。",
                     "failure": "誓塩の読みが割れ、検疫そのものが争点になった。",
                 },
@@ -2076,7 +2076,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_rope_lane_release",
-                "label": "舟綱列の解放",
+                "label": "舟綱列をほどく",
                 "summary": "絡んだ舟綱列をほどき、先に渡す列と残す列を明確にする。",
                 "preferredIntents": ["observe", "intervene"],
                 "focusNpcIds": ["slot_ferrymaster", "slot_truce_warden"],
@@ -2114,7 +2114,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_mud_seal_patch",
-                "label": "泥封の継ぎ足し",
+                "label": "泥封の補修",
                 "summary": "渡し札の泥封と祠洞側の封泥をつなぎ直し、札の効きそのものを保たせる。",
                 "preferredIntents": ["inspect", "intervene"],
                 "focusNpcIds": ["slot_oath_scribe", "slot_ward_mason"],
@@ -2162,7 +2162,7 @@ EVENT_BLUEPRINTS_RAW = [
         "hubAffinityIds": ["hub_tide_wharf"],
         "dungeonAffinityIds": ["dungeon_salt_oracle_crypt"],
         "summary": "船荷札が湿りで滲み、誰の荷が検疫待ちで、誰の荷が裏から抜けたか見えなくなっている。",
-        "stakes": "荷札の筋が消えると、補給も責任も一緒に流れやすい。",
+        "stakes": "荷札の流れが見えなくなると、補給も責任も一緒に曖昧になる。",
         "whyImportant": "中盤二手で荷札と舟印のズレを読めないと、裏流しと不足が同時に広がる。",
         "objective": "滲んだ荷札と舟印をつなぎ直し、どの荷を先に残すか決める。",
         "recommendedChoices": ["inspect", "observe", "intervene"],
@@ -2170,14 +2170,14 @@ EVENT_BLUEPRINTS_RAW = [
         "branches": [
             {
                 "branchId": "branch_manifest_drying_rack",
-                "label": "荷札干し棚",
+                "label": "荷札を干す",
                 "summary": "滲んだ荷札を干し棚へ並べ、読めるものと読めないものを分け直す。",
                 "preferredIntents": ["inspect", "observe"],
                 "focusNpcIds": ["slot_ledger_clerk", "slot_oath_scribe"],
                 "notes": {
-                    "success": "荷札の筋が戻り、誰の荷を止めるか決め直せた。",
+                    "success": "荷札の流れが見え、誰の荷を止めるか決め直せた。",
                     "partial_success": "干し棚で読めた分だけ救えたが、残りは曖昧なままだ。",
-                    "failure": "干し棚でも筋が戻らず、帳場と渡し場の両方が荒れた。",
+                    "failure": "干し棚でも流れが戻らず、帳場と渡し場の両方が荒れた。",
                 },
                 "fx": {
                     "success": {
@@ -2198,13 +2198,13 @@ EVENT_BLUEPRINTS_RAW = [
                         "hub_supply": -1.2,
                         "hub_heat": 1.8,
                         "stress": {"slot_ledger_clerk": 1.8, "slot_oath_scribe": 1.4},
-                        "marks": ["荷札の筋が戻らなかった"],
+                        "marks": ["荷札の流れが戻らなかった"],
                     },
                 },
             },
             {
                 "branchId": "branch_barge_priority_swap",
-                "label": "荷舟の優先差し替え",
+                "label": "荷舟の優先変更",
                 "summary": "急ぐ荷だけ舟順を差し替え、停滞を一度だけほどく。",
                 "preferredIntents": ["speak", "intervene"],
                 "focusNpcIds": ["slot_ferrymaster", "slot_quartermaster"],
@@ -2239,11 +2239,11 @@ EVENT_BLUEPRINTS_RAW = [
             {
                 "branchId": "branch_quarantine_salt_mark",
                 "label": "検疫塩印の塗り直し",
-                "summary": "滲んだ荷札へ検疫塩印を塗り直し、通してよい荷の筋だけ先に立てる。",
+                "summary": "滲んだ荷札へ検疫塩印を塗り直し、先に通してよい荷だけを見分ける。",
                 "preferredIntents": ["inspect", "speak"],
                 "focusNpcIds": ["slot_oath_scribe", "slot_ward_mason"],
                 "notes": {
-                    "success": "通してよい荷の筋が戻り、検疫の足も少し軽くなった。",
+                    "success": "先に通してよい荷が見え、検疫の滞りも少し軽くなった。",
                     "partial_success": "筋は戻ったが、塗り直しの跡が次の疑いになった。",
                     "failure": "塩印が割れ、荷札と検疫札の両方が頼りなくなった。",
                 },
@@ -2310,7 +2310,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_hidden_hold_tally",
-                "label": "隠し舟腹の勘定",
+                "label": "隠し舟腹を洗い出す",
                 "summary": "舟腹の隠し区画まで数え直し、どの荷が帳場をすり抜けたかを見切る。",
                 "preferredIntents": ["inspect", "intervene"],
                 "focusNpcIds": ["slot_ledger_clerk", "slot_ferrymaster"],
@@ -2364,7 +2364,7 @@ EVENT_BLUEPRINTS_RAW = [
         "branches": [
             {
                 "branchId": "branch_brine_joint_reseal",
-                "label": "塩継ぎの継ぎ直し",
+                "label": "塩継ぎのやり直し",
                 "summary": "塩継ぎの継ぎ目を洗い直し、逆唱が漏れる罅だけを先に塞ぐ。",
                 "preferredIntents": ["inspect", "observe"],
                 "focusNpcIds": ["slot_ward_mason", "slot_cantor"],
@@ -2398,7 +2398,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_oracle_path_rotation",
-                "label": "神託路の回し替え",
+                "label": "神託路の切り替え",
                 "summary": "逆唱の当たる神託路を一段ずらし、人が通る路を先に守る。",
                 "preferredIntents": ["observe", "intervene"],
                 "focusNpcIds": ["slot_tunnel_guide", "slot_ward_mason"],
@@ -2432,7 +2432,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_relic_salt_sleeve",
-                "label": "封箱への塩袖",
+                "label": "封箱に塩袖を巻く",
                 "summary": "逆唱を吸う塩袖を封箱へ巻き、持ち出すか閉じるかの猶予を稼ぐ。",
                 "preferredIntents": ["inspect", "speak"],
                 "focusNpcIds": ["slot_relic_keeper", "slot_ward_mason"],
@@ -2466,7 +2466,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_echo_chant_exchange",
-                "label": "逆唱の受け換え",
+                "label": "逆唱を受け流す",
                 "summary": "祈りの拍を一度だけずらし、逆唱の当たり先を祭壇側へ受け換える。",
                 "preferredIntents": ["speak", "intervene"],
                 "focusNpcIds": ["slot_cantor", "slot_oath_scribe"],
@@ -2504,7 +2504,7 @@ EVENT_BLUEPRINTS_RAW = [
             },
             {
                 "branchId": "branch_sealed_ferry_vow",
-                "label": "封渡しの誓い直し",
+                "label": "封渡しの誓いを結び直す",
                 "summary": "渡し場と祠洞の双方で通る誓いを立て直し、持ち出しと封路の線引きを一度だけ揃える。",
                 "preferredIntents": ["inspect", "intervene"],
                 "focusNpcIds": ["slot_ferrymaster", "slot_truce_warden"],

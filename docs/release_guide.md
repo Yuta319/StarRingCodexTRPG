@@ -69,8 +69,9 @@ py -3 scripts/cleanup_runtime.py --apply
 - GPT は narration / dialogue / free action surface だけを担当する
 - 接続先は `GET /api/gpt-read-model`
 
-Chrome 拡張はこの時点では採用しない。  
-理由は、現状のローカル web UI と read-only API で truth / narration 分離がすでに成立しており、配布コストと複雑性を増やす利益が小さいため。
+現時点で含まれている front は、開発中の全体表示画面である。  
+完成版プレイヤー UI、HUD、装備画面、所持品画面はまだこの release に含まれていない。  
+次フェーズでは Chrome 拡張を配布 front として追加し、現行 web UI とは役割を分ける。
 
 ## release checklist
 

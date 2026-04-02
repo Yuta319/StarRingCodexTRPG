@@ -23,10 +23,21 @@ class GptReadModelTests(unittest.TestCase):
         self.assertIn("cast", read_model)
         self.assertIn("memory", read_model)
         self.assertIn("freeActionSurface", read_model)
+        self.assertIn("characterGenesis", read_model["guidance"])
+        self.assertIn("newGameGenesis", read_model["guidance"])
+        self.assertIn("openingPackage", read_model["guidance"])
         self.assertTrue(read_model["scene"]["openingLines"])
         self.assertTrue(read_model["guidance"]["storyGuide"]["now"])
         self.assertTrue(read_model["world"]["currentEvent"]["summaryText"])
         self.assertTrue(read_model["cast"])
+        self.assertTrue(read_model["cast"][0]["summaryText"])
+        self.assertTrue(read_model["cast"][0]["attitudeText"])
+        self.assertIn("gptTasks", read_model["guidance"]["characterGenesis"])
+        self.assertIn("constraints", read_model["guidance"]["characterGenesis"])
+        self.assertTrue(read_model["guidance"]["newGameGenesis"]["openingSummary"])
+        self.assertTrue(read_model["guidance"]["newGameGenesis"]["phaseEventLabels"])
+        self.assertTrue(read_model["guidance"]["openingPackage"]["promptHint"])
+        self.assertIn("outputRules", read_model["guidance"]["openingPackage"])
 
     def test_gpt_read_model_does_not_store_raw_free_action_text(self) -> None:
         raw_text = "夜中に宿の裏から入り、裏帳面を盗み出す"

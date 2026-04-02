@@ -29,6 +29,7 @@
         "https://chat.openai.com/*"
       ],
       "js": [
+        "content/shared.js",
         "content/content-script.js"
       ],
       "run_at": "document_idle"
@@ -37,7 +38,8 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "content/overlay.css"
+        "content/overlay.css",
+        "assets/icons/*.png"
       ],
       "matches": [
         "https://chatgpt.com/*",

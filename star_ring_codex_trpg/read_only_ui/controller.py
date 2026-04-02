@@ -6,13 +6,16 @@ from pathlib import Path
 from typing import Any, Dict, Mapping, Optional
 import json
 
+from ..character_creation import CharacterProfile, parse_character_profile_payload
+from ..character_genesis import apply_character_genesis
 from ..errors import UiRequestError
+from ..display_naming import apply_fantasy_display_naming
 from ..gameplay_experience import build_campaign_display
 from ..gpt_read_model import build_gpt_read_model_from_bundle
 from ..front_hubs import build_player_front_hubs
 from ..paths import RUNTIME_ROOT
 from ..playable_loop import play_choice, play_free_action
-from ..runner import build_bundle
+from ..runner import build_bundle, build_bundle_from_world_state
 from ..session_persistence import (
     build_next_session_state,
     resolve_saved_session_path,
@@ -34,6 +37,7 @@ class ViewerRequest:
     seasons: int
     archetype: str
     world_json: Optional[Path]
+    character_profile: Optional[CharacterProfile]
 
 
 @dataclass(frozen=True)
@@ -67,6 +71,12 @@ class NextSessionRequest:
     world_json: Path
 
 
+@dataclass(frozen=True)
+class FinalizeCharacterRequest:
+    world_json: Path
+    proposal: Dict[str, Any]
+
+
 UI_SESSION_ROOT = RUNTIME_ROOT / "ui_sessions"
 
 
@@ -92,7 +102,23 @@ def viewer_request_from_query(query: Mapping[str, list[str]]) -> ViewerRequest:
             raise UiRequestError("`seasons` must be an integer.") from exc
 
     if world_json_raw:
-        return ViewerRequest(seed=None, seasons=seasons, archetype=archetype, world_json=Path(world_json_raw))
+        return ViewerRequest(seed=None, seasons=seasons, archetype=archetype, world_json=Path(world_json_raw), character_profile=None)
+
+    character_profile = parse_character_profile_payload(
+        {
+            "character_name": _first(query, "character_name"),
+            "character_race": _first(query, "character_race"),
+            "character_style": _first(query, "character_style"),
+            "character_temperament": _first(query, "character_temperament"),
+            "character_origin": _first(query, "character_origin"),
+            "character_loadout": _first(query, "character_loadout"),
+            "character_source_mode": _first(query, "character_source_mode"),
+            "character_source_title": _first(query, "character_source_title"),
+            "character_source_name": _first(query, "character_source_name"),
+            "character_appearance_notes": _first(query, "character_appearance_notes"),
+            "character_reinterpretation_notes": _first(query, "character_reinterpretation_notes"),
+        }
+    )
 
     seed = 1729
     if seed_raw:
@@ -100,7 +126,25 @@ def viewer_request_from_query(query: Mapping[str, list[str]]) -> ViewerRequest:
             seed = int(seed_raw)
         except ValueError as exc:
             raise UiRequestError("`seed` must be an integer.") from exc
-    return ViewerRequest(seed=seed, seasons=seasons, archetype=archetype, world_json=None)
+    return ViewerRequest(seed=seed, seasons=seasons, archetype=archetype, world_json=None, character_profile=character_profile)
+
+
+def _character_profile_request_payload(profile: Optional[CharacterProfile]) -> Optional[Dict[str, str]]:
+    if profile is None:
+        return None
+    return {
+        "name": profile.name,
+        "race": profile.race,
+        "style": profile.style,
+        "temperament": profile.temperament,
+        "origin": profile.origin,
+        "loadout": profile.loadout,
+        "source_mode": profile.source_mode,
+        "source_title": profile.source_title,
+        "source_name": profile.source_name,
+        "appearance_notes": profile.appearance_notes,
+        "reinterpretation_notes": profile.reinterpretation_notes,
+    }
 
 
 def _persist_world_state(world_state: Dict[str, Any]) -> str:
@@ -113,7 +157,7 @@ def _persist_world_state(world_state: Dict[str, Any]) -> str:
     return str(target)
 
 
-def _display_from_bundle(bundle: Dict[str, Any]) -> Dict[str, Any]:
+def _raw_display_from_bundle(bundle: Dict[str, Any]) -> Dict[str, Any]:
     shell_snapshot = bundle["shell_snapshot"]
     scene_packet = shell_snapshot["scenePacket"]
     context_rail = shell_snapshot["contextRail"]
@@ -130,18 +174,34 @@ def _display_from_bundle(bundle: Dict[str, Any]) -> Dict[str, Any]:
     session = display.get("playCycle", {})
     archive_review = display.get("archiveReview") or {}
     next_session_hook = display.get("nextSessionHook") or {}
+    character_profile = bundle["world_state"].get("resolved_world", {}).get("protagonist", {}).get("character_profile") or {}
+    display["characterProfile"] = character_profile
     display["sessionOpeningGuide"] = compose_session_opening_guide(
         session,
         bundle["world_state"].get("campaign_state", {}).get("sessionOpeningHooks", {}).get(str(session.get("sessionNumber", 1))),
         archive_review,
         next_session_hook,
     )
+    if character_profile:
+        custom_opening_lines = list(character_profile.get("customOpeningLines") or [])
+        opening_lines = list(character_profile.get("openingLines") or [])
+        existing_lines = list(display["sessionOpeningGuide"].get("lines") or [])
+        if custom_opening_lines:
+            display["sessionOpeningGuide"]["lines"] = custom_opening_lines[:4]
+        else:
+            display["sessionOpeningGuide"]["lines"] = opening_lines[:2] + existing_lines[:2]
+        display["sessionOpeningGuide"]["headline"] = character_profile.get("customOpeningHeadline") or f"{character_profile.get('name', '主人公')}の導入"
     display["actionGuide"] = compose_action_mode_guide(display.get("currentEvent", {}), display.get("storyGuide", {}))
     display["worldPulsePanel"] = compose_world_pulse_panel_copy(display["worldPulse"], display["worldPulseGuide"])
     display["activeNodeGuide"] = compose_active_node_panel_copy(display["activeNode"])
     display["institutionAlertGuide"] = compose_institution_alert_panel_copy(display["institutionAlert"], display.get("currentEvent", {}))
     display.update(build_player_front_hubs(bundle["world_state"], display))
     return display
+
+
+def _display_from_bundle(bundle: Dict[str, Any]) -> Dict[str, Any]:
+    display = _raw_display_from_bundle(bundle)
+    return apply_fantasy_display_naming(display)
 
 
 def _bundle_payload(bundle: Dict[str, Any]) -> Dict[str, Any]:
@@ -212,6 +272,7 @@ def build_ui_payload(request: ViewerRequest) -> Dict[str, Any]:
         seasons=request.seasons,
         archetype=request.archetype,
         world_json=request.world_json,
+        character_profile=request.character_profile,
     )
     return {
         "request": {
@@ -219,6 +280,7 @@ def build_ui_payload(request: ViewerRequest) -> Dict[str, Any]:
             "seasons": request.seasons,
             "archetype": request.archetype,
             "world_json": str(request.world_json) if request.world_json else None,
+            "character_profile": _character_profile_request_payload(request.character_profile),
         },
         "playSource": _play_source_from_bundle(bundle),
         "bundle": _bundle_payload(bundle),
@@ -232,6 +294,7 @@ def build_front_snapshot_payload(request: ViewerRequest) -> Dict[str, Any]:
         seasons=request.seasons,
         archetype=request.archetype,
         world_json=request.world_json,
+        character_profile=request.character_profile,
     )
     return {
         "request": {
@@ -239,6 +302,7 @@ def build_front_snapshot_payload(request: ViewerRequest) -> Dict[str, Any]:
             "seasons": request.seasons,
             "archetype": request.archetype,
             "world_json": str(request.world_json) if request.world_json else None,
+            "character_profile": _character_profile_request_payload(request.character_profile),
         },
         **_front_snapshot_from_bundle(bundle),
     }
@@ -250,6 +314,7 @@ def build_gpt_read_model_payload(request: ViewerRequest) -> Dict[str, Any]:
         seasons=request.seasons,
         archetype=request.archetype,
         world_json=request.world_json,
+        character_profile=request.character_profile,
     )
     return {
         "request": {
@@ -257,6 +322,7 @@ def build_gpt_read_model_payload(request: ViewerRequest) -> Dict[str, Any]:
             "seasons": request.seasons,
             "archetype": request.archetype,
             "world_json": str(request.world_json) if request.world_json else None,
+            "character_profile": _character_profile_request_payload(request.character_profile),
         },
         "playSource": _play_source_from_bundle(bundle),
         "readModel": build_gpt_read_model_from_bundle(
@@ -369,6 +435,25 @@ def next_session_request_from_body(body: Dict[str, Any]) -> NextSessionRequest:
     if not isinstance(world_json_raw, str) or not world_json_raw.strip():
         raise UiRequestError("`world_json` is required for /api/next-session.")
     return NextSessionRequest(world_json=Path(world_json_raw.strip()))
+
+
+def finalize_character_request_from_body(body: Dict[str, Any]) -> FinalizeCharacterRequest:
+    world_json_raw = body.get("world_json")
+    if not isinstance(world_json_raw, str) or not world_json_raw.strip():
+        raise UiRequestError("`world_json` is required for /api/finalize-character.")
+    proposal_raw = body.get("proposal")
+    if proposal_raw is None:
+        proposal_raw = {
+            key: value
+            for key, value in body.items()
+            if key
+            not in {
+                "world_json",
+            }
+        }
+    if not isinstance(proposal_raw, dict):
+        raise UiRequestError("`proposal` must be an object when provided.")
+    return FinalizeCharacterRequest(world_json=Path(world_json_raw.strip()), proposal=proposal_raw)
 
 
 def build_play_payload(request: PlayRequest) -> Dict[str, Any]:
@@ -606,6 +691,54 @@ def build_front_load_session_payload(request: LoadSessionRequest) -> Dict[str, A
         },
         "saveMeta": save_meta,
         **_front_snapshot_from_bundle(bundle),
+    }
+
+
+def _finalize_character_bundle(request: FinalizeCharacterRequest) -> tuple[Dict[str, Any], Dict[str, Any]]:
+    before_bundle = build_bundle(world_json=request.world_json, include_runtime_context=True)
+    display = _raw_display_from_bundle(before_bundle)
+    updated_world, applied = apply_character_genesis(
+        before_bundle["world_state"],
+        equipment_hub=display.get("equipmentHub") or {},
+        proposal=request.proposal,
+    )
+    after_bundle = build_bundle_from_world_state(updated_world, before_bundle["assets"])
+    return after_bundle, applied
+
+
+def build_front_finalize_character_payload(request: FinalizeCharacterRequest) -> Dict[str, Any]:
+    bundle, applied = _finalize_character_bundle(request)
+    return {
+        "request": {
+            "world_json": str(request.world_json),
+        },
+        **_front_snapshot_from_bundle(bundle),
+        "appliedGenesis": applied,
+        "transition": {
+            "choiceId": "character_finalize",
+            "intentType": "character_genesis",
+            "outcome": "applied" if applied else "no_change",
+            "message": "主人公の開始装備・恩恵・導入案を反映しました。" if applied else "反映できる開始案はありませんでした。",
+        },
+    }
+
+
+def build_gpt_finalize_character_payload(request: FinalizeCharacterRequest) -> Dict[str, Any]:
+    bundle, applied = _finalize_character_bundle(request)
+    play_source, read_model = _read_model_from_after_bundle(bundle)
+    return {
+        "request": {
+            "world_json": str(request.world_json),
+        },
+        "playSource": play_source,
+        "readModel": read_model,
+        "appliedGenesis": applied,
+        "transition": {
+            "choiceId": "character_finalize",
+            "intentType": "character_genesis",
+            "outcome": "applied" if applied else "no_change",
+            "message": "主人公の開始装備・恩恵・導入案を反映しました。" if applied else "反映できる開始案はありませんでした。",
+        },
     }
 
 

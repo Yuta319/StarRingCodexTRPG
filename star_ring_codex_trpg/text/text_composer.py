@@ -12,15 +12,38 @@ def _text(value: object, fallback: str = "") -> str:
     return text or fallback
 
 
+def _polish_readability(text: object) -> str:
+    normalized = _text(text)
+    replacements = [
+        ("前面に出ている", "問題になっている"),
+        ("表ににじんでいる", "表に出始めている"),
+        ("表へにじみやすい", "表に出やすい"),
+        ("事件側の筋を読む", "事件の流れを読む"),
+        ("収め方まで細くなる", "収め方の選択肢まで狭くなる"),
+        ("文言や手順のほころびも見たい", "文言や手順のほころびも確かめたい"),
+        ("渡し筋", "渡し場の流れ"),
+        ("通行の筋", "通行の流れ"),
+        ("検疫の筋", "検疫の手順"),
+        ("荷札の筋", "荷札の流れ"),
+        ("正式な筋", "正式な手順"),
+        ("鳴動の筋", "鳴動の流れ"),
+        ("塩筋", "塩の跡"),
+        ("通してよい荷の筋", "先に通してよい荷の印"),
+    ]
+    for before, after in replacements:
+        normalized = normalized.replace(before, after)
+    return normalized
+
+
 def _sentence(text: object, fallback: str) -> str:
-    normalized = _text(text, fallback)
+    normalized = _polish_readability(_text(text, fallback))
     if normalized[-1] not in "。！？":
         normalized = f"{normalized}。"
     return normalized
 
 
 def _trim_terminal(text: object, fallback: str = "") -> str:
-    normalized = _text(text, fallback)
+    normalized = _polish_readability(_text(text, fallback))
     return normalized.rstrip("。！？").strip()
 
 
@@ -102,8 +125,8 @@ def compose_event_copy(event: Mapping[str, Any]) -> dict[str, Any]:
         result_text = ensure_copy_quality(_sentence(branch.get("notes", {}).get("success"), "うまく収められそうだ。"), "afterglow")
         risk_text = ensure_copy_quality(
             _sentence(
-                f"この筋が崩れると、{_trim_terminal(branch.get('notes', {}).get('failure'), '事態が悪い方向へ転ぶ')}",
-                "この筋が崩れると事態が悪化する。",
+                f"ここで失敗すると、{_trim_terminal(branch.get('notes', {}).get('failure'), '事態が悪い方向へ転ぶ')}",
+                "ここで失敗すると事態が悪化する。",
             ),
             "explanation",
         )
@@ -255,7 +278,7 @@ def compose_world_pulse_panel_copy(world_pulse: Mapping[str, Any], world_pulse_g
     ]
     label, score = max(metrics, key=lambda item: item[1])
     if score >= 70:
-        focus = f"いま特に強いのは「{label}」だ。局地の事件にもその圧が表へにじみやすい"
+        focus = f"いま特に強いのは「{label}」だ。局地の事件にもその圧が表に出やすい"
     elif score >= 55:
         focus = f"いま目立ってきているのは「{label}」だ。場面の裏でじわじわ効いている"
     else:
@@ -307,13 +330,13 @@ def compose_institution_alert_panel_copy(
     status = _text(institution_alert.get("status"), "none")
     breach_risk = _value(institution_alert.get("breachRisk"))
     if not label or status == "none":
-        summary = "この場面で前面に出ている取り決めはまだ少ない。まずは事件側の筋を読む"
+        summary = "この場面で問題になっている取り決めはまだ少ない。まずは事件の流れを読む"
         consequence = "ただし、裏で支えている約定が崩れると、交渉や配分が急に止まりやすい"
     else:
         if breach_risk >= 72 or status == "broken":
-            summary = f"「{label}」はかなり危うい。このまま崩れると、{current_event.get('label', '事件')}の収め方まで細くなる"
+            summary = f"「{label}」はかなり危うい。このまま崩れると、{current_event.get('label', '事件')}の収め方の選択肢まで狭くなる"
         elif breach_risk >= 52 or status == "strained":
-            summary = f"「{label}」には綻びが出ている。事件だけでなく、文言や手順のほころびも見たい"
+            summary = f"「{label}」には綻びが出ている。事件だけでなく、文言や手順のほころびも確かめたい"
         else:
             summary = f"「{label}」はまだ保っているが、油断すると事件の圧で崩れやすい"
         consequence = "取り決めが崩れると、次の交渉、補給、通行のどれかが止まりやすい"
@@ -391,7 +414,7 @@ def compose_story_guide_copy(
 ) -> dict[str, Any]:
     now = ensure_copy_quality(
         _sentence(
-            f"第{session['sessionNumber']}セッションの{session['phaseLabel']}だ。いま前面に出ているのは「{event['label']}」で、場面の焦点は「{scene_title}」にある",
+            f"第{session['sessionNumber']}セッションの{session['phaseLabel']}だ。いま問題になっているのは「{event['label']}」で、場面の焦点は「{scene_title}」にある",
             "いまの局面を整理している。",
         ),
         "explanation",
@@ -439,6 +462,8 @@ def compose_story_guide_copy(
 def compose_npc_copy(npc: Mapping[str, Any]) -> dict[str, Any]:
     trust = _value(npc.get("trust"))
     stress = _value(npc.get("stress"))
+    role_label = _trim_terminal(npc.get("roleLabel") or npc.get("role"), "関係者")
+    agenda_text = _trim_terminal(npc.get("agenda"), "まだ動きを定めきっていない")
     if trust >= 62:
         trust_text = "まだこちらに賭ける余地がある。"
     elif trust >= 48:
@@ -456,23 +481,25 @@ def compose_npc_copy(npc: Mapping[str, Any]) -> dict[str, Any]:
     secret_state = _text(npc.get("secretState"), "hidden")
     if secret_state == "exposed":
         secret_text = _sentence(
-            f"{_trim_terminal(npc.get('secret'), '秘密が表に出ている')} 露見のきっかけは {_trim_terminal(npc.get('lastSecretTrigger') or npc.get('exposeTrigger'), '責任の所在を公に問われたことだ')}",
+            f"隠していたことはもう表に出ている。{_trim_terminal(npc.get('secret'), '秘密が表に出ている')}。"
+            f"きっかけは{_trim_terminal(npc.get('lastSecretTrigger') or npc.get('exposeTrigger'), '責任の所在を公に問われたことだ')}",
             "秘密が表に出ている。",
         )
     elif secret_state == "hinted":
         secret_text = _sentence(
-            f"{_trim_terminal(npc.get('secretHint'), '秘密の気配が見えている')} さらに {_trim_terminal(npc.get('exposeTrigger'), 'もう一押しで露見する')}",
+            f"隠し事の気配がある。{_trim_terminal(npc.get('secretHint'), '秘密の気配が見えている')}。"
+            f"さらに{_trim_terminal(npc.get('exposeTrigger'), 'もう一押しで露見する')}",
             "秘密の気配が見えている。",
         )
     else:
         secret_text = _sentence(
-            f"まだ腹の底は見せていない。糸口は {_trim_terminal(npc.get('hintTrigger'), 'まだ表に出ていない')}",
+            f"まだ隠していることがある。{_trim_terminal(npc.get('hintTrigger'), 'まだ表に出ていない')}",
             "まだ腹の底は見せていない。",
         )
 
     weakness_text = _sentence(
-        f"{_soften_weakness_copy(npc.get('knownWeakness') or npc.get('weakness'), '弱みはまだ見えていない')} "
-        f"起きやすいのは {_trim_terminal(npc.get('lastWeaknessTrigger') or npc.get('weaknessTrigger'), '追い込まれたときだ')}",
+        f"{_trim_terminal(_soften_weakness_copy(npc.get('knownWeakness') or npc.get('weakness'), '弱みはまだ見えていない'))}。"
+        f"{_trim_terminal(npc.get('lastWeaknessTrigger') or npc.get('weaknessTrigger'), '追い込まれたときだ')}",
         "弱みはまだ見えていない。",
     )
     conflict_text = _sentence(npc.get("conflictDetail") or f"{npc['conflictsWithLabel']}と利害がぶつかっている", "利害の衝突を抱えている。")
@@ -480,8 +507,18 @@ def compose_npc_copy(npc: Mapping[str, Any]) -> dict[str, Any]:
         [npc.get("archiveReactionText"), npc.get("lastReaction")],
         "まだこちらの出方を測っている。",
     )
+    summary_text = _sentence(
+        f"{role_label}として、{agenda_text}",
+        "まだ立場と役目が定まりきっていない。",
+    )
+    attitude_text = _join_sentences(
+        [trust_text, stress_text],
+        "まだこちらの出方を測っている。",
+    )
     return {
         **npc,
+        "summaryText": ensure_copy_quality(summary_text, "explanation"),
+        "attitudeText": ensure_copy_quality(attitude_text, "afterglow"),
         "trustText": ensure_copy_quality(trust_text, "afterglow"),
         "stressText": ensure_copy_quality(stress_text, "afterglow"),
         "secretText": ensure_copy_quality(secret_text, "afterglow"),
@@ -492,10 +529,13 @@ def compose_npc_copy(npc: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def compose_npc_role_line(npc: Mapping[str, Any], event: Mapping[str, Any]) -> str:
+    copy = compose_npc_copy(npc)
     return ensure_copy_quality(
         _join_sentences(
             [
-                f"{npc['role']}として「{event['label']}」の火元を見張っている。{npc['conflictsWithLabel']}とは利害が噛み合っていない",
+                copy["summaryText"],
+                f"いまは「{event['label']}」に直接関わっている",
+                copy["conflictText"],
                 npc.get("archiveRoleText"),
             ],
             "この人物は現場を見張っている。",
@@ -505,10 +545,11 @@ def compose_npc_role_line(npc: Mapping[str, Any], event: Mapping[str, Any]) -> s
 
 
 def compose_npc_relation_line(npc: Mapping[str, Any]) -> str:
+    copy = compose_npc_copy(npc)
     return ensure_copy_quality(
         _join_sentences(
             [
-                compose_npc_copy(npc)["trustText"],
+                copy["attitudeText"],
                 npc.get("archiveRelationText"),
                 npc.get("lastReaction"),
             ],
@@ -523,7 +564,7 @@ def compose_npc_emotion_line(npc: Mapping[str, Any]) -> str:
     return ensure_copy_quality(
         _join_sentences(
             [
-                copy["stressText"],
+                copy["attitudeText"],
                 npc.get("archiveEmotionText"),
                 copy["weaknessText"],
             ],

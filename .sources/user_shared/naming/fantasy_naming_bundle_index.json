@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "name": "Fantasy_Naming_System_Bundle_Index",
+  "files": [
+    "fantasy_naming_external_dictionary.json",
+    "fantasy_city_naming_dictionary.json",
+    "fantasy_personal_name_dictionary.json",
+    "fantasy_equipment_naming_dictionary.json",
+    "fantasy_naming_codex_reference.json"
+  ],
+  "description": "命名システム一式のインデックス。各辞書ファイルの役割と参照順をまとめたバンドル。",
+  "recommended_load_order": [
+    "fantasy_naming_external_dictionary.json",
+    "fantasy_city_naming_dictionary.json",
+    "fantasy_personal_name_dictionary.json",
+    "fantasy_equipment_naming_dictionary.json",
+    "fantasy_naming_codex_reference.json"
+  ]
+}

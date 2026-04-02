@@ -1,0 +1,2416 @@
+{
+  "schema_version": "1.0",
+  "name": "Initial_UI_Naming_Lexicon",
+  "seed": 1729,
+  "seasons": 10,
+  "archetype": "balanced",
+  "entry_count": 155,
+  "entries": [
+    {
+      "surface_name": "北穀州",
+      "display_text": "北穀州",
+      "category": "place",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "北穀州"
+      ],
+      "semantic_tags": [],
+      "annotation": "《地方》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "北穀州",
+      "notes": "地方・辺境・州などの広域地名。"
+    },
+    {
+      "surface_name": "封泥湿域",
+      "display_text": "封泥湿域",
+      "category": "place",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "封泥湿域"
+      ],
+      "semantic_tags": [],
+      "annotation": "《地方》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "封泥湿域",
+      "notes": "地方・辺境・州などの広域地名。"
+    },
+    {
+      "surface_name": "川門州",
+      "display_text": "川門州",
+      "category": "place",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "川門州"
+      ],
+      "semantic_tags": [],
+      "annotation": "《地方》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "川門州",
+      "notes": "地方・辺境・州などの広域地名。"
+    },
+    {
+      "surface_name": "深口盆地",
+      "display_text": "深口盆地",
+      "category": "place",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "深口盆地"
+      ],
+      "semantic_tags": [],
+      "annotation": "《地方》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "深口盆地",
+      "notes": "地方・辺境・州などの広域地名。"
+    },
+    {
+      "surface_name": "ルアカイの渡し場",
+      "display_text": "ルアカイの渡し場",
+      "category": "place",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "澱舟泊（テイシュウ）"
+      ],
+      "semantic_tags": [],
+      "annotation": "《湿地の渡し場》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "澱舟泊（テイシュウ）",
+      "notes": "渡し舟、検疫札、船荷札が一か所で絡む湿地の船着き拠点。"
+    },
+    {
+      "surface_name": "カルドルンの関所",
+      "display_text": "カルドルンの関所",
+      "category": "place",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "灰杭関所（エンショウ）"
+      ],
+      "semantic_tags": [],
+      "annotation": "《灰杭の関所》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "灰杭関所（エンショウ）",
+      "notes": "検問列と避難列が交差し、誓紙と寝床札で夜をしのぐ関所宿。"
+    },
+    {
+      "surface_name": "灰の辺境州",
+      "display_text": "灰の辺境州",
+      "category": "place",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "灰縁辺州"
+      ],
+      "semantic_tags": [],
+      "annotation": "《地方》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "灰縁辺州",
+      "notes": "現在の局面で表示されている地域名。"
+    },
+    {
+      "surface_name": "セルミアの宿場",
+      "display_text": "セルミアの宿場",
+      "category": "place",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "環鈴宿（カンレイ）"
+      ],
+      "semantic_tags": [],
+      "annotation": "《街道の宿場》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "環鈴宿（カンレイ）",
+      "notes": "街道・祈祷路・物資路が交差する臨時拠点。"
+    },
+    {
+      "surface_name": "白灰坑道",
+      "display_text": "白灰坑道",
+      "category": "place",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "白灰坑路"
+      ],
+      "semantic_tags": [],
+      "annotation": "《白灰の坑道》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "白灰坑路",
+      "notes": "鐘室へ続く坑路。深部ほど世界圧の染み出しが強い。"
+    },
+    {
+      "surface_name": "白祠圏",
+      "display_text": "白祠圏",
+      "category": "place",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "白祠圏"
+      ],
+      "semantic_tags": [],
+      "annotation": "《地方》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "白祠圏",
+      "notes": "地方・辺境・州などの広域地名。"
+    },
+    {
+      "surface_name": "塩鏡の祠洞",
+      "display_text": "塩鏡の祠洞",
+      "category": "place",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "逆塩祠洞"
+      ],
+      "semantic_tags": [],
+      "annotation": "《塩鏡の祠洞》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "逆塩祠洞",
+      "notes": "塩の結晶で神託を封じる祠洞。罅が入ると、祈りと予兆が同時に逆流する。"
+    },
+    {
+      "surface_name": "泥鏡の封庫",
+      "display_text": "泥鏡の封庫",
+      "category": "place",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "鏡泥封庫"
+      ],
+      "semantic_tags": [],
+      "annotation": "《泥鏡の封庫》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "鏡泥封庫",
+      "notes": "泥鏡に封じた遺物を沈める封庫。浅いが、反照が始まると正気を削る。"
+    },
+    {
+      "surface_name": "セルカ",
+      "display_text": "セルカ〈停戦執行官〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "停戦執行官セルカ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《停戦執行官》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "停戦執行官セルカ",
+      "notes": "停戦執行官は街道を止めずに回したいが、目録官は帳簿の穴を塞がないまま列を動かすことを認めない。"
+    },
+    {
+      "surface_name": "ドヴァン",
+      "display_text": "ドヴァン〈停戦執行官〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "停戦執行官ドヴァン"
+      ],
+      "semantic_tags": [],
+      "annotation": "《停戦執行官》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "停戦執行官ドヴァン",
+      "notes": "停戦執行官は街道を止めずに回したいが、目録官は帳簿の穴を塞がないまま列を動かすことを認めない。"
+    },
+    {
+      "surface_name": "マイラ",
+      "display_text": "マイラ〈停戦執行官〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "停戦執行官マイラ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《停戦執行官》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "停戦執行官マイラ",
+      "notes": "停戦執行官は街道を止めずに回したいが、目録官は帳簿の穴を塞がないまま列を動かすことを認めない。"
+    },
+    {
+      "surface_name": "ガルド",
+      "display_text": "ガルド〈坑路案内〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "坑路案内ガルド"
+      ],
+      "semantic_tags": [],
+      "annotation": "《坑路案内》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "坑路案内ガルド",
+      "notes": "坑路案内は生還の道を確保したいが、祈鐘士は禁制を犯してでも鐘譜と封印を守ろうとする。"
+    },
+    {
+      "surface_name": "ノルヴ",
+      "display_text": "ノルヴ〈坑路案内〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "坑路案内ノルヴ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《坑路案内》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "坑路案内ノルヴ",
+      "notes": "坑路案内は生還の道を確保したいが、祈鐘士は禁制を犯してでも鐘譜と封印を守ろうとする。"
+    },
+    {
+      "surface_name": "フェルン",
+      "display_text": "フェルン〈坑路案内〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "坑路案内フェルン"
+      ],
+      "semantic_tags": [],
+      "annotation": "《坑路案内》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "坑路案内フェルン",
+      "notes": "坑路案内は生還の道を確保したいが、祈鐘士は禁制を犯してでも鐘譜と封印を守ろうとする。"
+    },
+    {
+      "surface_name": "エドラ",
+      "display_text": "エドラ〈宿場差配〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "宿場差配エドラ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《宿場差配》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "宿場差配エドラ",
+      "notes": "宿場差配は列を先へ流したいが、目録官は台帳が合わないまま寝床札と配給を増やしたくない。"
+    },
+    {
+      "surface_name": "コダ",
+      "display_text": "コダ〈宿場差配〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "宿場差配コダ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《宿場差配》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "宿場差配コダ",
+      "notes": "宿場差配は列を先へ流したいが、目録官は台帳が合わないまま寝床札と配給を増やしたくない。"
+    },
+    {
+      "surface_name": "ナミル",
+      "display_text": "ナミル〈宿場差配〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "宿場差配ナミル"
+      ],
+      "semantic_tags": [],
+      "annotation": "《宿場差配》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "宿場差配ナミル",
+      "notes": "宿場差配は列を先へ流したいが、目録官は台帳が合わないまま寝床札と配給を増やしたくない。"
+    },
+    {
+      "surface_name": "エリス",
+      "display_text": "エリス〈封継師〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "封継師エリス"
+      ],
+      "semantic_tags": [],
+      "annotation": "《封継師》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "封継師エリス",
+      "notes": "封継師は罅を閉じるために封泥と時間を欲しがるが、遺物番は封箱を動かさず、継ぎ直しより保管の秩序を優先したい。"
+    },
+    {
+      "surface_name": "ヘルグ",
+      "display_text": "ヘルグ〈封継師〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "封継師ヘルグ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《封継師》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "封継師ヘルグ",
+      "notes": "封継師は罅を閉じるために封泥と時間を欲しがるが、遺物番は封箱を動かさず、継ぎ直しより保管の秩序を優先したい。"
+    },
+    {
+      "surface_name": "ボレク",
+      "display_text": "ボレク〈封継師〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "封継師ボレク"
+      ],
+      "semantic_tags": [],
+      "annotation": "《封継師》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "封継師ボレク",
+      "notes": "封継師は罅を閉じるために封泥と時間を欲しがるが、遺物番は封箱を動かさず、継ぎ直しより保管の秩序を優先したい。"
+    },
+    {
+      "surface_name": "サヴ",
+      "display_text": "サヴ〈渡し守〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "渡し守サヴ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《渡し守》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "渡し守サヴ",
+      "notes": "渡し守は舟を切らさず流したいが、宿場差配は寝床と配給の順を守るために渡しへ回す人数を絞りたい。"
+    },
+    {
+      "surface_name": "ジョラ",
+      "display_text": "ジョラ〈渡し守〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "渡し守ジョラ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《渡し守》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "渡し守ジョラ",
+      "notes": "渡し守は舟を切らさず流したいが、宿場差配は寝床と配給の順を守るために渡しへ回す人数を絞りたい。"
+    },
+    {
+      "surface_name": "レンフ",
+      "display_text": "レンフ〈渡し守〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "渡し守レンフ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《渡し守》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "渡し守レンフ",
+      "notes": "渡し守は舟を切らさず流したいが、宿場差配は寝床と配給の順を守るために渡しへ回す人数を絞りたい。"
+    },
+    {
+      "surface_name": "オルド",
+      "display_text": "オルド〈目録官〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "目録官オルド"
+      ],
+      "semantic_tags": [],
+      "annotation": "《目録官》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "目録官オルド",
+      "notes": "目録官は数字を公開して責任をはっきりさせたいが、停戦執行官は街道を保つために帳簿の穴を伏せたい。"
+    },
+    {
+      "surface_name": "バシャ",
+      "display_text": "バシャ〈目録官〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "目録官バシャ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《目録官》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "目録官バシャ",
+      "notes": "目録官は数字を公開して責任をはっきりさせたいが、停戦執行官は街道を保つために帳簿の穴を伏せたい。"
+    },
+    {
+      "surface_name": "ユノ",
+      "display_text": "ユノ〈目録官〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "目録官ユノ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《目録官》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "目録官ユノ",
+      "notes": "目録官は数字を公開して責任をはっきりさせたいが、停戦執行官は街道を保つために帳簿の穴を伏せたい。"
+    },
+    {
+      "surface_name": "シア",
+      "display_text": "シア〈祈鐘士〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "祈鐘士シア"
+      ],
+      "semantic_tags": [],
+      "annotation": "《祈鐘士》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "祈鐘士シア",
+      "notes": "祈鐘士は封印と儀礼を守りたいが、坑路案内は生還のために退路と近道を優先する。"
+    },
+    {
+      "surface_name": "ヘズ",
+      "display_text": "ヘズ〈祈鐘士〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "祈鐘士ヘズ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《祈鐘士》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "祈鐘士ヘズ",
+      "notes": "祈鐘士は封印と儀礼を守りたいが、坑路案内は生還のために退路と近道を優先する。"
+    },
+    {
+      "surface_name": "リス",
+      "display_text": "リス〈祈鐘士〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "祈鐘士リス"
+      ],
+      "semantic_tags": [],
+      "annotation": "《祈鐘士》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "祈鐘士リス",
+      "notes": "祈鐘士は封印と儀礼を守りたいが、坑路案内は生還のために退路と近道を優先する。"
+    },
+    {
+      "surface_name": "イレル",
+      "display_text": "イレル〈誓紙検分官〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "誓紙検分官イレル"
+      ],
+      "semantic_tags": [],
+      "annotation": "《誓紙検分官》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "誓紙検分官イレル",
+      "notes": "誓紙検分官は誓紙と検疫印の筋を守りたいが、停戦執行官は街道を止めないために便法を残したまま列を動かしたい。"
+    },
+    {
+      "surface_name": "タヴィス",
+      "display_text": "タヴィス〈誓紙検分官〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "誓紙検分官タヴィス"
+      ],
+      "semantic_tags": [],
+      "annotation": "《誓紙検分官》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "誓紙検分官タヴィス",
+      "notes": "誓紙検分官は誓紙と検疫印の筋を守りたいが、停戦執行官は街道を止めないために便法を残したまま列を動かしたい。"
+    },
+    {
+      "surface_name": "ナレル",
+      "display_text": "ナレル〈誓紙検分官〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "誓紙検分官ナレル"
+      ],
+      "semantic_tags": [],
+      "annotation": "《誓紙検分官》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "誓紙検分官ナレル",
+      "notes": "誓紙検分官は誓紙と検疫印の筋を守りたいが、停戦執行官は街道を止めないために便法を残したまま列を動かしたい。"
+    },
+    {
+      "surface_name": "トア",
+      "display_text": "トア〈遺物番〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "遺物番トア"
+      ],
+      "semantic_tags": [],
+      "annotation": "《遺物番》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "遺物番トア",
+      "notes": "遺物番は封箱を閉じたまま運びたいが、祈鐘士は儀礼に要る品を手元へ残したがる。"
+    },
+    {
+      "surface_name": "メレク",
+      "display_text": "メレク〈遺物番〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "遺物番メレク"
+      ],
+      "semantic_tags": [],
+      "annotation": "《遺物番》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "遺物番メレク",
+      "notes": "遺物番は封箱を閉じたまま運びたいが、祈鐘士は儀礼に要る品を手元へ残したがる。"
+    },
+    {
+      "surface_name": "ヴァルダ",
+      "display_text": "ヴァルダ〈遺物番〉",
+      "category": "person",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "遺物番ヴァルダ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《遺物番》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "遺物番ヴァルダ",
+      "notes": "遺物番は封箱を閉じたまま運びたいが、祈鐘士は儀礼に要る品を手元へ残したがる。"
+    },
+    {
+      "surface_name": "人質交換の決裂",
+      "display_text": "人質交換の決裂",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "人質交換破綻"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "人質交換破綻",
+      "notes": "人質外交の破断が報復と疑心を急速に広げている。"
+    },
+    {
+      "surface_name": "人質交換の決裂への対処",
+      "display_text": "人質交換の決裂への対処",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "人質交換破綻への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "人質交換破綻への介入"
+    },
+    {
+      "surface_name": "人質名簿の恨み",
+      "display_text": "人質名簿の恨み",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "人質名簿の恨み"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "人質名簿の恨み"
+    },
+    {
+      "surface_name": "配給割当の崩れ",
+      "display_text": "配給割当の崩れ",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "供給割当破綻"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "供給割当破綻",
+      "notes": "主食割当が守られず、配給と徴発が衝突している。"
+    },
+    {
+      "surface_name": "配給割当の崩れへの対処",
+      "display_text": "配給割当の崩れへの対処",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "供給割当破綻への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "供給割当破綻への介入"
+    },
+    {
+      "surface_name": "偽印の抜け道",
+      "display_text": "偽印の抜け道",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "偽印の抜け道"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "偽印の抜け道"
+    },
+    {
+      "surface_name": "共同封印の取り決め破り",
+      "display_text": "共同封印の取り決め破り",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "共同封印義務逸脱"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "共同封印義務逸脱",
+      "notes": "封印義務の不履行が神官団と境界守の対立を激化させている。"
+    },
+    {
+      "surface_name": "共同封印の取り決め破りへの対処",
+      "display_text": "共同封印の取り決め破りへの対処",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "共同封印義務逸脱への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "共同封印義務逸脱への介入"
+    },
+    {
+      "surface_name": "共同深層回収の決裂",
+      "display_text": "共同深層回収の決裂",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "共同深層回収破綻"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "共同深層回収破綻",
+      "notes": "深層回収の取り分と死者処理をめぐり提携が崩れ始めている。"
+    },
+    {
+      "surface_name": "共同深層回収の決裂への対処",
+      "display_text": "共同深層回収の決裂への対処",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "共同深層回収破綻への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "共同深層回収破綻への介入"
+    },
+    {
+      "surface_name": "反照遺物を借りる",
+      "display_text": "反照遺物を借りる",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "反照遺物を借りる"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "反照遺物を借りる"
+    },
+    {
+      "surface_name": "地上鐘で陽動",
+      "display_text": "地上鐘で陽動",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "地上鐘で陽動"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "地上鐘で陽動"
+    },
+    {
+      "surface_name": "塩の跡を読む",
+      "display_text": "塩の跡を読む",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "塩の跡を読む"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "塩の跡を読む"
+    },
+    {
+      "surface_name": "塩継ぎのやり直し",
+      "display_text": "塩継ぎのやり直し",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "塩継ぎのやり直し"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "塩継ぎのやり直し"
+    },
+    {
+      "surface_name": "夜番の口裏合わせ",
+      "display_text": "夜番の口裏合わせ",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "夜番の口裏合わせ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "夜番の口裏合わせ"
+    },
+    {
+      "surface_name": "寝床札の先渡し",
+      "display_text": "寝床札の先渡し",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "寝床札の先渡し"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "寝床札の先渡し"
+    },
+    {
+      "surface_name": "寝床札の繰り上げ",
+      "display_text": "寝床札の繰り上げ",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "寝床札の繰り上げ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "寝床札の繰り上げ"
+    },
+    {
+      "surface_name": "封渡しの誓いを結び直す",
+      "display_text": "封渡しの誓いを結び直す",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "封渡しの誓いを結び直す"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "封渡しの誓いを結び直す"
+    },
+    {
+      "surface_name": "封箱に塩袖を巻く",
+      "display_text": "封箱に塩袖を巻く",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "封箱に塩袖を巻く"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "封箱に塩袖を巻く"
+    },
+    {
+      "surface_name": "封箱の移し替え",
+      "display_text": "封箱の移し替え",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "封箱の移し替え"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "封箱の移し替え"
+    },
+    {
+      "surface_name": "封鎖票の偽造",
+      "display_text": "封鎖票の偽造",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "封鎖票の偽造"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "封鎖票の偽造"
+    },
+    {
+      "surface_name": "崩落を迂回する",
+      "display_text": "崩落を迂回する",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "崩落を迂回する"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "崩落を迂回する"
+    },
+    {
+      "surface_name": "巡礼路を抜け道にする",
+      "display_text": "巡礼路を抜け道にする",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "巡礼路を抜け道にする"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "巡礼路を抜け道にする"
+    },
+    {
+      "surface_name": "巡礼路襲撃",
+      "display_text": "巡礼路襲撃",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "巡礼路襲撃事件"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "巡礼路襲撃事件",
+      "notes": "巡礼路保護条項が破れ、信徒と武装勢力が対立している。"
+    },
+    {
+      "surface_name": "巡礼路襲撃への対処",
+      "display_text": "巡礼路襲撃への対処",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "巡礼路襲撃事件への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "巡礼路襲撃事件への介入"
+    },
+    {
+      "surface_name": "捕虜交換の決裂",
+      "display_text": "捕虜交換の決裂",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "捕虜交換破綻"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "捕虜交換破綻",
+      "notes": "捕虜交換の停滞が停戦や聖戦の再燃を招いている。"
+    },
+    {
+      "surface_name": "捕虜交換の決裂への対処",
+      "display_text": "捕虜交換の決裂への対処",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "捕虜交換破綻への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "捕虜交換破綻への介入"
+    },
+    {
+      "surface_name": "朝貢の拒否",
+      "display_text": "朝貢の拒否",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "朝貢納付拒絶"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "朝貢納付拒絶",
+      "notes": "朝貢停止が属国反乱と討伐動員の口実になりつつある。"
+    },
+    {
+      "surface_name": "朝貢の拒否への対処",
+      "display_text": "朝貢の拒否への対処",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "朝貢納付拒絶への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "朝貢納付拒絶への介入"
+    },
+    {
+      "surface_name": "札の照合",
+      "display_text": "札の照合",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "札の照合"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "札の照合"
+    },
+    {
+      "surface_name": "検問列の切り分け",
+      "display_text": "検問列の切り分け",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "検問列の切り分け"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "検問列の切り分け"
+    },
+    {
+      "surface_name": "検疫塩印の塗り直し",
+      "display_text": "検疫塩印の塗り直し",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "検疫塩印の塗り直し"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "検疫塩印の塗り直し"
+    },
+    {
+      "surface_name": "横流し倉を身代わりにする",
+      "display_text": "横流し倉を身代わりにする",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "横流し倉を身代わりにする"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "横流し倉を身代わりにする"
+    },
+    {
+      "surface_name": "泥封の補修",
+      "display_text": "泥封の補修",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "泥封の補修"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "泥封の補修"
+    },
+    {
+      "surface_name": "泥鏡を覆う鐘",
+      "display_text": "泥鏡を覆う鐘",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "泥鏡を覆う鐘"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "泥鏡を覆う鐘"
+    },
+    {
+      "surface_name": "流木樽の回収",
+      "display_text": "流木樽の回収",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "流木樽の回収"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "流木樽の回収"
+    },
+    {
+      "surface_name": "消えた荷札",
+      "display_text": "消えた荷札",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "消えた荷札"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "消えた荷札"
+    },
+    {
+      "surface_name": "渡し場の検札違い",
+      "display_text": "渡し場の検札違い",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "渡し検札の食い違い"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "渡し検札の食い違い",
+      "notes": "検疫の手順が崩れると、水運も避難も同時に止まりやすい。"
+    },
+    {
+      "surface_name": "荷札の滲み",
+      "display_text": "荷札の滲み",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "渡し荷札の滲み"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "渡し荷札の滲み",
+      "notes": "荷札の流れが見えなくなると、補給も責任も一緒に曖昧になる。"
+    },
+    {
+      "surface_name": "誓紙の裂け目",
+      "display_text": "誓紙の裂け目",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "灰杭誓紙の裂け目"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "灰杭誓紙の裂け目",
+      "notes": "誓紙の信用が落ちると、検問も補給も同時に鈍る。"
+    },
+    {
+      "surface_name": "関所前の滞り",
+      "display_text": "関所前の滞り",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "灰杭関所の滞列"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "灰杭関所の滞列",
+      "notes": "列が凍ると、関所の不信が広がり次の移動も補給も鈍る。"
+    },
+    {
+      "surface_name": "灰縁侯族＝瘴冠魔域属国化盟約崩壊",
+      "display_text": "灰縁侯族＝瘴冠魔域属国化盟約崩壊",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "灰縁侯族＝瘴冠魔域属国化盟約崩壊"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "灰縁侯族＝瘴冠魔域属国化盟約崩壊",
+      "notes": "条項違反が累積し、制度そのものが歴史事件として崩壊局面に入った。"
+    },
+    {
+      "surface_name": "灰縁侯族＝瘴冠魔域属国化盟約崩壊への介入",
+      "display_text": "灰縁侯族＝瘴冠魔域属国化盟約崩壊への介入",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "灰縁侯族＝瘴冠魔域属国化盟約崩壊への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "灰縁侯族＝瘴冠魔域属国化盟約崩壊への介入"
+    },
+    {
+      "surface_name": "宿場目録の欠け",
+      "display_text": "宿場目録の欠け",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "環鈴宿の目録欠損"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "環鈴宿の目録欠損",
+      "notes": "街の安定が落ちると NPC の stress が増える。"
+    },
+    {
+      "surface_name": "病列と荷舟の切り分け",
+      "display_text": "病列と荷舟の切り分け",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "病列と荷舟の切り分け"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "病列と荷舟の切り分け"
+    },
+    {
+      "surface_name": "病列を隔てる",
+      "display_text": "病列を隔てる",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "病列を隔てる"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "病列を隔てる"
+    },
+    {
+      "surface_name": "坑道の再鳴動",
+      "display_text": "坑道の再鳴動",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "白灰坑路の再鳴動"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "白灰坑路の再鳴動",
+      "notes": "封印が崩れると世界のゆらぎと坑路の危険が一気に増す。"
+    },
+    {
+      "surface_name": "白祠宗務会＝封泥環宗教同盟崩壊",
+      "display_text": "白祠宗務会＝封泥環宗教同盟崩壊",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "白祠宗務会＝封泥環宗教同盟崩壊"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "白祠宗務会＝封泥環宗教同盟崩壊",
+      "notes": "条項違反が累積し、制度そのものが歴史事件として崩壊局面に入った。"
+    },
+    {
+      "surface_name": "白祠宗務会＝封泥環宗教同盟崩壊への介入",
+      "display_text": "白祠宗務会＝封泥環宗教同盟崩壊への介入",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "白祠宗務会＝封泥環宗教同盟崩壊への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "白祠宗務会＝封泥環宗教同盟崩壊への介入"
+    },
+    {
+      "surface_name": "白祠宗務会＝瘴冠魔域封鎖令崩壊",
+      "display_text": "白祠宗務会＝瘴冠魔域封鎖令崩壊",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "白祠宗務会＝瘴冠魔域封鎖令崩壊"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "白祠宗務会＝瘴冠魔域封鎖令崩壊",
+      "notes": "条項違反が累積し、制度そのものが歴史事件として崩壊局面に入った。"
+    },
+    {
+      "surface_name": "白祠宗務会＝瘴冠魔域封鎖令崩壊への介入",
+      "display_text": "白祠宗務会＝瘴冠魔域封鎖令崩壊への介入",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "白祠宗務会＝瘴冠魔域封鎖令崩壊への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "白祠宗務会＝瘴冠魔域封鎖令崩壊への介入"
+    },
+    {
+      "surface_name": "白祠宗務会＝瘴冠魔域聖戦布告崩壊",
+      "display_text": "白祠宗務会＝瘴冠魔域聖戦布告崩壊",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "白祠宗務会＝瘴冠魔域聖戦布告崩壊"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "白祠宗務会＝瘴冠魔域聖戦布告崩壊",
+      "notes": "条項違反が累積し、制度そのものが歴史事件として崩壊局面に入った。"
+    },
+    {
+      "surface_name": "白祠宗務会＝瘴冠魔域聖戦布告崩壊への介入",
+      "display_text": "白祠宗務会＝瘴冠魔域聖戦布告崩壊への介入",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "白祠宗務会＝瘴冠魔域聖戦布告崩壊への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "白祠宗務会＝瘴冠魔域聖戦布告崩壊への介入"
+    },
+    {
+      "surface_name": "神託路の切り替え",
+      "display_text": "神託路の切り替え",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "神託路の切り替え"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "神託路の切り替え"
+    },
+    {
+      "surface_name": "穀価盟約違反",
+      "display_text": "穀価盟約違反",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "穀価盟約違反"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "穀価盟約違反",
+      "notes": "穀物流通の約定違反が市場と配給を揺らしている。"
+    },
+    {
+      "surface_name": "穀価盟約違反への介入",
+      "display_text": "穀価盟約違反への介入",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "穀価盟約違反への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "穀価盟約違反への介入"
+    },
+    {
+      "surface_name": "穀冠王国＝灰縁侯族不可侵条約崩壊",
+      "display_text": "穀冠王国＝灰縁侯族不可侵条約崩壊",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "穀冠王国＝灰縁侯族不可侵条約崩壊"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "穀冠王国＝灰縁侯族不可侵条約崩壊",
+      "notes": "条項違反が累積し、制度そのものが歴史事件として崩壊局面に入った。"
+    },
+    {
+      "surface_name": "穀冠王国＝灰縁侯族不可侵条約崩壊への介入",
+      "display_text": "穀冠王国＝灰縁侯族不可侵条約崩壊への介入",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "穀冠王国＝灰縁侯族不可侵条約崩壊への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "穀冠王国＝灰縁侯族不可侵条約崩壊への介入"
+    },
+    {
+      "surface_name": "積荷列を夜に送る",
+      "display_text": "積荷列を夜に送る",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "積荷列を夜に送る"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "積荷列を夜に送る"
+    },
+    {
+      "surface_name": "継ぎ札の照合",
+      "display_text": "継ぎ札の照合",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "継ぎ札の照合"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "継ぎ札の照合"
+    },
+    {
+      "surface_name": "聖遺物との取引",
+      "display_text": "聖遺物との取引",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "聖遺物との取引"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "聖遺物との取引"
+    },
+    {
+      "surface_name": "聖遺物保管争奪",
+      "display_text": "聖遺物保管争奪",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "聖遺物保管争奪"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "聖遺物保管争奪",
+      "notes": "聖遺物の保管権が信仰圏の境界そのものを揺らしている。"
+    },
+    {
+      "surface_name": "聖遺物保管争奪への介入",
+      "display_text": "聖遺物保管争奪への介入",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "聖遺物保管争奪への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "聖遺物保管争奪への介入"
+    },
+    {
+      "surface_name": "舟綱列をほどく",
+      "display_text": "舟綱列をほどく",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "舟綱列をほどく"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "舟綱列をほどく"
+    },
+    {
+      "surface_name": "荷札を干す",
+      "display_text": "荷札を干す",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "荷札を干す"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "荷札を干す"
+    },
+    {
+      "surface_name": "荷舟の優先変更",
+      "display_text": "荷舟の優先変更",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "荷舟の優先変更"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "荷舟の優先変更"
+    },
+    {
+      "surface_name": "裏帳面で脅す",
+      "display_text": "裏帳面で脅す",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "裏帳面で脅す"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "裏帳面で脅す"
+    },
+    {
+      "surface_name": "責任の押し付け",
+      "display_text": "責任の押し付け",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "責任の押し付け"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "責任の押し付け"
+    },
+    {
+      "surface_name": "賠償争議",
+      "display_text": "賠償争議",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "賠償履行争議"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "賠償履行争議",
+      "notes": "渡し札と検疫札の順が食い違い、誰を先に舟へ乗せるかで場が割れている。"
+    },
+    {
+      "surface_name": "賠償履行争議への介入",
+      "display_text": "賠償履行争議への介入",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "賠償履行争議への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "賠償履行争議への介入"
+    },
+    {
+      "surface_name": "身代わりの封書",
+      "display_text": "身代わりの封書",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "身代わりの封書"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "身代わりの封書"
+    },
+    {
+      "surface_name": "退路灯を吊り替える",
+      "display_text": "退路灯を吊り替える",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "退路灯を吊り替える"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "退路灯を吊り替える"
+    },
+    {
+      "surface_name": "逆唱を受け流す",
+      "display_text": "逆唱を受け流す",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "逆唱を受け流す"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "逆唱を受け流す"
+    },
+    {
+      "surface_name": "祠洞の逆さ祈り",
+      "display_text": "祠洞の逆さ祈り",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "逆塩祠洞の逆唱"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "逆塩祠洞の逆唱",
+      "notes": "逆唱が深まると、祈りと封路の両方が汚れ、次節の判断まで濁りやすい。"
+    },
+    {
+      "surface_name": "通行印を立て替える",
+      "display_text": "通行印を立て替える",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "通行印を立て替える"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "通行印を立て替える"
+    },
+    {
+      "surface_name": "通行銭の立て替え",
+      "display_text": "通行銭の立て替え",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "通行銭の立て替え"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "通行銭の立て替え"
+    },
+    {
+      "surface_name": "遮り布を張り直す",
+      "display_text": "遮り布を張り直す",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "遮り布を張り直す"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "遮り布を張り直す"
+    },
+    {
+      "surface_name": "配給削減の噂",
+      "display_text": "配給削減の噂",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "配給削減の噂"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "配給削減の噂"
+    },
+    {
+      "surface_name": "釜場の配り直し",
+      "display_text": "釜場の配り直し",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "釜場の配り直し"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "釜場の配り直し"
+    },
+    {
+      "surface_name": "封庫の照り返し",
+      "display_text": "封庫の照り返し",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "鏡泥封庫の逆照"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "鏡泥封庫の逆照",
+      "notes": "反照が強まると、封庫の封と周辺の正気が同時に削られる。"
+    },
+    {
+      "surface_name": "鐘脈の見取り図",
+      "display_text": "鐘脈の見取り図",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "鐘脈の見取り図"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "鐘脈の見取り図"
+    },
+    {
+      "surface_name": "関印の貸し出し",
+      "display_text": "関印の貸し出し",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "関印の貸し出し"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "関印の貸し出し"
+    },
+    {
+      "surface_name": "隠し舟腹を洗い出す",
+      "display_text": "隠し舟腹を洗い出す",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "隠し舟腹を洗い出す"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "隠し舟腹を洗い出す"
+    },
+    {
+      "surface_name": "難民回廊封鎖",
+      "display_text": "難民回廊封鎖",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "難民回廊封鎖"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "難民回廊封鎖",
+      "notes": "難民回廊が襲撃と配給破綻で崩れかけている。"
+    },
+    {
+      "surface_name": "難民回廊封鎖への介入",
+      "display_text": "難民回廊封鎖への介入",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "難民回廊封鎖への介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "難民回廊封鎖への介入"
+    },
+    {
+      "surface_name": "非武装境界破り",
+      "display_text": "非武装境界破り",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "非武装境界破り"
+      ],
+      "semantic_tags": [],
+      "annotation": "《局面》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "非武装境界破り",
+      "notes": "境界の軍事化により相互不可侵の根幹が崩れている。"
+    },
+    {
+      "surface_name": "非武装境界破りへの介入",
+      "display_text": "非武装境界破りへの介入",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "非武装境界破りへの介入"
+      ],
+      "semantic_tags": [],
+      "annotation": "《依頼》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "非武装境界破りへの介入"
+    },
+    {
+      "surface_name": "使節の到着遅れ",
+      "display_text": "使節の到着遅れ",
+      "category": "event",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "黒封使節の遅着"
+      ],
+      "semantic_tags": [],
+      "annotation": "《事件》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "黒封使節の遅着",
+      "notes": "制度の信用が落ちると、次の交渉が進みにくくなる。"
+    },
+    {
+      "surface_name": "封泥環",
+      "display_text": "封泥環",
+      "category": "faction",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "封泥環"
+      ],
+      "semantic_tags": [],
+      "annotation": "《勢力》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "封泥環"
+    },
+    {
+      "surface_name": "灰縁侯",
+      "display_text": "灰縁侯",
+      "category": "faction",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "灰縁侯族"
+      ],
+      "semantic_tags": [],
+      "annotation": "《勢力》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "灰縁侯族"
+    },
+    {
+      "surface_name": "瘴冠領",
+      "display_text": "瘴冠領",
+      "category": "faction",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "瘴冠魔域"
+      ],
+      "semantic_tags": [],
+      "annotation": "《勢力》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "瘴冠魔域"
+    },
+    {
+      "surface_name": "白祠教会",
+      "display_text": "白祠教会",
+      "category": "faction",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "白祠宗務会"
+      ],
+      "semantic_tags": [],
+      "annotation": "《勢力》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "白祠宗務会"
+    },
+    {
+      "surface_name": "穀冠王国",
+      "display_text": "穀冠王国",
+      "category": "faction",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "穀冠王国"
+      ],
+      "semantic_tags": [],
+      "annotation": "《勢力》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "穀冠王国"
+    },
+    {
+      "surface_name": "黒鎚採鉱盟",
+      "display_text": "黒鎚採鉱盟",
+      "category": "faction",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "黒鎚採鉱盟"
+      ],
+      "semantic_tags": [],
+      "annotation": "《勢力》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "黒鎚採鉱盟"
+    },
+    {
+      "surface_name": "灰縁侯と瘴冠領の属国盟約",
+      "display_text": "灰縁侯と瘴冠領の属国盟約",
+      "category": "institution",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "灰縁侯族＝瘴冠魔域属国化盟約"
+      ],
+      "semantic_tags": [],
+      "annotation": "《制度》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "灰縁侯族＝瘴冠魔域属国化盟約"
+    },
+    {
+      "surface_name": "白祠教会と封泥環の宗教同盟",
+      "display_text": "白祠教会と封泥環の宗教同盟",
+      "category": "institution",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "白祠宗務会＝封泥環宗教同盟"
+      ],
+      "semantic_tags": [],
+      "annotation": "《制度》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "白祠宗務会＝封泥環宗教同盟"
+    },
+    {
+      "surface_name": "白祠教会による瘴冠領封鎖令",
+      "display_text": "白祠教会による瘴冠領封鎖令",
+      "category": "institution",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "白祠宗務会＝瘴冠魔域封鎖令"
+      ],
+      "semantic_tags": [],
+      "annotation": "《制度》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "白祠宗務会＝瘴冠魔域封鎖令"
+    },
+    {
+      "surface_name": "白祠教会による瘴冠領聖戦布告",
+      "display_text": "白祠教会による瘴冠領聖戦布告",
+      "category": "institution",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "白祠宗務会＝瘴冠魔域聖戦布告"
+      ],
+      "semantic_tags": [],
+      "annotation": "《制度》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "白祠宗務会＝瘴冠魔域聖戦布告"
+    },
+    {
+      "surface_name": "穀冠王国と灰縁侯の不可侵条約",
+      "display_text": "穀冠王国と灰縁侯の不可侵条約",
+      "category": "institution",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "穀冠王国＝灰縁侯族不可侵条約"
+      ],
+      "semantic_tags": [],
+      "annotation": "《制度》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "穀冠王国＝灰縁侯族不可侵条約"
+    },
+    {
+      "surface_name": "穀冠王国と黒鎚採鉱盟の通商盟約",
+      "display_text": "穀冠王国と黒鎚採鉱盟の通商盟約",
+      "category": "institution",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "穀冠王国＝黒鎚採鉱盟通商盟約"
+      ],
+      "semantic_tags": [],
+      "annotation": "《制度》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "穀冠王国＝黒鎚採鉱盟通商盟約"
+    },
+    {
+      "surface_name": "旅人の冠",
+      "display_text": "旅人の冠",
+      "category": "equipment",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "旅人の冠"
+      ],
+      "semantic_tags": [],
+      "annotation": "《頭防具》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "旅人の冠",
+      "notes": "頭防具 / 冠"
+    },
+    {
+      "surface_name": "検札の外套",
+      "display_text": "検札の外套",
+      "category": "equipment",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "検札の外套"
+      ],
+      "semantic_tags": [],
+      "annotation": "《胴防具》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "検札の外套",
+      "notes": "胴防具 / 外套"
+    },
+    {
+      "surface_name": "検札の灯",
+      "display_text": "検札の灯",
+      "category": "equipment",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "検札の灯"
+      ],
+      "semantic_tags": [],
+      "annotation": "《聖具》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "検札の灯",
+      "notes": "聖具 / 灯"
+    },
+    {
+      "surface_name": "検札の直剣",
+      "display_text": "検札の直剣",
+      "category": "equipment",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "検札の直剣"
+      ],
+      "semantic_tags": [],
+      "annotation": "《直剣》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "検札の直剣",
+      "notes": "直剣 / 光"
+    },
+    {
+      "surface_name": "渡し場の鍵印",
+      "display_text": "渡し場の鍵印",
+      "category": "equipment",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "渡し場の鍵印"
+      ],
+      "semantic_tags": [],
+      "annotation": "《遺物》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "渡し場の鍵印",
+      "notes": "遺物 / 通行印"
+    },
+    {
+      "surface_name": "湿地の長靴",
+      "display_text": "湿地の長靴",
+      "category": "equipment",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "湿地の長靴"
+      ],
+      "semantic_tags": [],
+      "annotation": "《脚防具》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "湿地の長靴",
+      "notes": "脚防具 / 長靴"
+    },
+    {
+      "surface_name": "白誓の指輪",
+      "display_text": "白誓の指輪",
+      "category": "equipment",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "白誓の指輪"
+      ],
+      "semantic_tags": [],
+      "annotation": "《遺物》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "白誓の指輪",
+      "notes": "遺物 / 誓約"
+    },
+    {
+      "surface_name": "誓いの手甲",
+      "display_text": "誓いの手甲",
+      "category": "equipment",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "誓いの手甲"
+      ],
+      "semantic_tags": [],
+      "annotation": "《腕防具》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "誓いの手甲",
+      "notes": "腕防具 / 手甲"
+    },
+    {
+      "surface_name": "アース",
+      "display_text": "アース",
+      "category": "item",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "アース"
+      ],
+      "semantic_tags": [],
+      "annotation": "《魔法》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "アース",
+      "notes": "小石や土塊を飛ばす基本魔法。"
+    },
+    {
+      "surface_name": "ストーンショット",
+      "display_text": "ストーンショット",
+      "category": "item",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "ストーンショット"
+      ],
+      "semantic_tags": [],
+      "annotation": "《魔法》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "ストーンショット",
+      "notes": "石弾を放つ。"
+    },
+    {
+      "surface_name": "ヒール",
+      "display_text": "ヒール",
+      "category": "item",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "ヒール"
+      ],
+      "semantic_tags": [],
+      "annotation": "《魔法》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "ヒール",
+      "notes": "単体を小回復する基本回復魔法。"
+    },
+    {
+      "surface_name": "ライト",
+      "display_text": "ライト",
+      "category": "item",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "ライト"
+      ],
+      "semantic_tags": [],
+      "annotation": "《魔法》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "ライト",
+      "notes": "周囲を照らす光を生み出す。"
+    },
+    {
+      "surface_name": "回復湯",
+      "display_text": "回復湯",
+      "category": "item",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "回復湯"
+      ],
+      "semantic_tags": [],
+      "annotation": "《消耗品》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "回復湯",
+      "notes": "負傷者列に配るための薄い回復湯。戦場より避難列で価値がある。"
+    },
+    {
+      "surface_name": "塩見の小瓶",
+      "display_text": "塩見の小瓶",
+      "category": "item",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "塩見の小瓶"
+      ],
+      "semantic_tags": [],
+      "annotation": "《消耗品》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "塩見の小瓶",
+      "notes": "札と印泥の筋を見分けるための塩液。光にかざすと偽装の継ぎ目が浮く。"
+    },
+    {
+      "surface_name": "帳面レンズ",
+      "display_text": "帳面レンズ",
+      "category": "item",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "帳面レンズ"
+      ],
+      "semantic_tags": [],
+      "annotation": "《道具》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "帳面レンズ",
+      "notes": "上書きされた帳面の筆圧差を見るためのレンズ。急いで消した数字ほどよく見える。"
+    },
+    {
+      "surface_name": "通行札の写し",
+      "display_text": "通行札の写し",
+      "category": "item",
+      "race": "",
+      "ui_only": true,
+      "source_terms": [
+        "通行札の写し"
+      ],
+      "semantic_tags": [],
+      "annotation": "《重要品》",
+      "priority": 50,
+      "source_label": "initial_ui_naming_lexicon",
+      "current_label": "通行札の写し",
+      "notes": "今回の局面そのものに紐づく記録片。次の判断を誤ると、ただの証拠ではなく火種になる。"
+    }
+  ]
+}

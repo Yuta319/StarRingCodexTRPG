@@ -1,0 +1,307 @@
+openapi: 3.1.0
+info:
+  title: Star Ring Codex TRPG Actions API
+  version: 1.0.0
+  description: |
+    Actions API for the Star Ring Codex TRPG custom GPT.
+    The GPT reads state via gpt-read-model and advances play only through backend actions.
+servers:
+  - url: https://starringcodextrpg.onrender.com
+    description: Current verified public API host.
+paths:
+  /api/gpt-read-model:
+    get:
+      operationId: getGptReadModel
+      summary: Get the narrator-facing read model for the current world state.
+      parameters:
+        - name: seed
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Use only for the very first read when no world_json is available yet.
+        - name: world_json
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Preferred for all follow-up reads after the backend has returned playSource.world_json.
+      responses:
+        '200':
+          description: Read model response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GptReadModelResponse'
+  /api/gpt/play:
+    post:
+      operationId: playChoice
+      summary: Advance the game using a standard choice and return a compact GPT-facing state.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlayRequest'
+      responses:
+        '200':
+          description: Updated bundle after a standard choice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayResponse'
+  /api/gpt/free-action:
+    post:
+      operationId: playFreeAction
+      summary: Advance the game using a free-form player action and return a compact GPT-facing state.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FreeActionRequest'
+      responses:
+        '200':
+          description: Updated bundle after a free-form action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FreeActionResponse'
+  /api/save-session:
+    post:
+      operationId: saveSession
+      summary: Save the current session/world state.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveSessionRequest'
+      responses:
+        '200':
+          description: Save metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaveSessionResponse'
+  /api/gpt/load-session:
+    post:
+      operationId: loadSession
+      summary: Load a previously saved session/world state and return a compact GPT-facing state.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoadSessionRequest'
+      responses:
+        '200':
+          description: Loaded bundle and display payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoadSessionResponse'
+  /api/gpt/next-session:
+    post:
+      operationId: nextSession
+      summary: Finalize the current session and begin the next one, then return a compact GPT-facing state.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NextSessionRequest'
+      responses:
+        '200':
+          description: Updated bundle after moving to the next session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NextSessionResponse'
+  /api/gpt/finalize-character:
+    post:
+      operationId: finalizeCharacter
+      summary: Apply a constrained character genesis proposal for the protagonist's introduction, starter loadout, and starter boon surfaces.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinalizeCharacterRequest'
+      responses:
+        '200':
+          description: Updated GPT-facing state after applying the character genesis proposal.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinalizeCharacterResponse'
+components:
+  schemas:
+    PlayRequest:
+      type: object
+      required: [choiceId]
+      properties:
+        choiceId:
+          type: string
+          description: Standard choice id such as observe, speak, inspect, intervene.
+        seed:
+          type: integer
+          nullable: true
+          description: Use only for the first move when no world_json is available yet.
+        world_json:
+          type: string
+          nullable: true
+          description: Preferred for follow-up moves. If both are sent, world_json takes priority.
+      additionalProperties: false
+    FreeActionRequest:
+      type: object
+      required: [actionText]
+      properties:
+        actionText:
+          type: string
+        seed:
+          type: integer
+          nullable: true
+          description: Use only for the first move when no world_json is available yet.
+        world_json:
+          type: string
+          nullable: true
+          description: Preferred for follow-up moves. If both are sent, world_json takes priority.
+      additionalProperties: false
+    SaveSessionRequest:
+      type: object
+      properties:
+        world_json:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SaveSessionResponse:
+      type: object
+      properties:
+        saveId:
+          type: string
+        savePath:
+          type: string
+        savedAt:
+          type: string
+        sessionSummary:
+          $ref: '#/components/schemas/AnyObject'
+      required: [saveId, savePath, savedAt]
+    LoadSessionRequest:
+      type: object
+      properties:
+        saveId:
+          type: string
+          nullable: true
+        savePath:
+          type: string
+          nullable: true
+      additionalProperties: false
+    NextSessionRequest:
+      type: object
+      required: [world_json]
+      properties:
+        world_json:
+          type: string
+      additionalProperties: false
+    FinalizeCharacterRequest:
+      type: object
+      required: [world_json, proposal]
+      properties:
+        world_json:
+          type: string
+        proposal:
+          $ref: '#/components/schemas/AnyObject'
+      additionalProperties: false
+    AnyObject:
+      type: object
+      properties: {}
+      additionalProperties: true
+    BundleLike:
+      $ref: '#/components/schemas/AnyObject'
+    DisplayLike:
+      $ref: '#/components/schemas/AnyObject'
+    TransitionLike:
+      $ref: '#/components/schemas/AnyObject'
+    StructuredResultLike:
+      $ref: '#/components/schemas/AnyObject'
+    PlayResponse:
+      type: object
+      properties:
+        playSource:
+          $ref: '#/components/schemas/AnyObject'
+        transition:
+          $ref: '#/components/schemas/TransitionLike'
+        readModel:
+          $ref: '#/components/schemas/GptReadModelResponse'
+      required: [playSource, transition, readModel]
+    FreeActionResponse:
+      type: object
+      properties:
+        playSource:
+          $ref: '#/components/schemas/AnyObject'
+        transition:
+          $ref: '#/components/schemas/TransitionLike'
+        structuredResult:
+          $ref: '#/components/schemas/StructuredResultLike'
+        readModel:
+          $ref: '#/components/schemas/GptReadModelResponse'
+      required: [playSource, transition, structuredResult, readModel]
+    LoadSessionResponse:
+      type: object
+      properties:
+        request:
+          $ref: '#/components/schemas/AnyObject'
+        saveMeta:
+          $ref: '#/components/schemas/AnyObject'
+        playSource:
+          $ref: '#/components/schemas/AnyObject'
+        readModel:
+          $ref: '#/components/schemas/GptReadModelResponse'
+      required: [playSource, readModel]
+    NextSessionResponse:
+      type: object
+      properties:
+        request:
+          $ref: '#/components/schemas/AnyObject'
+        playSource:
+          $ref: '#/components/schemas/AnyObject'
+        readModel:
+          $ref: '#/components/schemas/GptReadModelResponse'
+        nextSessionHook:
+          $ref: '#/components/schemas/AnyObject'
+        sessionArchiveSize:
+          type: integer
+      required: [playSource, readModel]
+    FinalizeCharacterResponse:
+      type: object
+      properties:
+        request:
+          $ref: '#/components/schemas/AnyObject'
+        playSource:
+          $ref: '#/components/schemas/AnyObject'
+        readModel:
+          $ref: '#/components/schemas/GptReadModelResponse'
+        appliedGenesis:
+          $ref: '#/components/schemas/AnyObject'
+        transition:
+          $ref: '#/components/schemas/TransitionLike'
+      required: [playSource, readModel]
+    GptReadModelResponse:
+      type: object
+      properties:
+        contracts:
+          $ref: '#/components/schemas/AnyObject'
+        scene:
+          $ref: '#/components/schemas/AnyObject'
+        guidance:
+          $ref: '#/components/schemas/AnyObject'
+        world:
+          $ref: '#/components/schemas/AnyObject'
+        cast:
+          $ref: '#/components/schemas/AnyObject'
+        memory:
+          $ref: '#/components/schemas/AnyObject'
+        freeActionSurface:
+          $ref: '#/components/schemas/AnyObject'
+      required: [scene, guidance, world, cast, memory]

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "name": "Default_Fantasy_Name_Batch_Plan",
+  "seed": 1729,
+  "batches": [
+    {
+      "label": "human_cities",
+      "race": "human",
+      "category": "city",
+      "count": 30,
+      "semantic_tags": ["王権", "誓約"]
+    },
+    {
+      "label": "human_people",
+      "race": "human",
+      "category": "person",
+      "count": 50,
+      "semantic_tags": ["騎士", "誓約"]
+    },
+    {
+      "label": "elf_bows",
+      "race": "elf",
+      "category": "item",
+      "item_type": "bow",
+      "count": 50,
+      "semantic_tags": ["月", "森"]
+    }
+  ]
+}

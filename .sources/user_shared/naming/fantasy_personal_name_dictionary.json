@@ -1,0 +1,562 @@
+{
+  "schema_version": "1.0",
+  "name": "Fantasy_Personal_Name_Dictionary",
+  "purpose": "人物名・家名・称号・別名生成用外部辞典",
+  "display_policy": {
+    "default_surface": "カタカナ名を主表示",
+    "annotation_format": "《意味注釈》",
+    "name_layers": [
+      "given_name",
+      "house_name",
+      "title_name",
+      "epithet"
+    ]
+  },
+  "generation_order": [
+    "race",
+    "gender_tone_optional",
+    "social_class_optional",
+    "phoneme_root",
+    "person_suffix",
+    "house_or_lineage_optional",
+    "title_optional"
+  ],
+  "social_layers": {
+    "commoner": "平民・一般市民",
+    "noble": "貴族・家格持ち",
+    "cleric": "宗教職・修道職",
+    "warrior": "軍人・騎士・戦士",
+    "scholar": "学者・書記・記録者",
+    "wanderer": "旅人・巡礼・漂泊者"
+  },
+  "races": {
+    "human": {
+      "label": "人類種≪ヒューマン≫",
+      "given_roots": [
+        "al",
+        "ser",
+        "leon",
+        "kil",
+        "ber",
+        "ed"
+      ],
+      "given_suffixes": [
+        "ric",
+        "ion",
+        "ard",
+        "ena",
+        "is"
+      ],
+      "house_roots": [
+        "Val",
+        "Leon",
+        "Kil",
+        "Ward",
+        "Crest"
+      ],
+      "house_suffixes": [
+        "ford",
+        "crest",
+        "mere",
+        "hall"
+      ],
+      "titles": [
+        "辺境騎士",
+        "聖堂書記",
+        "白盾卿",
+        "門衛長"
+      ],
+      "samples": [
+        "セルリック",
+        "レオニア",
+        "キルアード",
+        "レオンフォード家",
+        "白盾卿セルリック"
+      ]
+    },
+    "elf": {
+      "label": "長命種≪エルフ≫",
+      "given_roots": [
+        "ele",
+        "lira",
+        "syl",
+        "thiel",
+        "sera",
+        "lune"
+      ],
+      "given_suffixes": [
+        "sia",
+        "riel",
+        "wen",
+        "iel",
+        "is"
+      ],
+      "house_roots": [
+        "Sil",
+        "Lune",
+        "Riel",
+        "Thiel",
+        "Ael"
+      ],
+      "house_suffixes": [
+        "wen",
+        "riel",
+        "thiel",
+        "loria"
+      ],
+      "titles": [
+        "月歌守",
+        "枝継ぎ手",
+        "湖畔詩人",
+        "記憶庭園の司"
+      ],
+      "samples": [
+        "エルシア",
+        "リラリエル",
+        "ティエルウェン",
+        "シルリエル家",
+        "月歌守エルシア"
+      ]
+    },
+    "dwarf": {
+      "label": "小人種≪ドワーフ≫",
+      "given_roots": [
+        "grim",
+        "dor",
+        "bar",
+        "kar",
+        "brok",
+        "hald"
+      ],
+      "given_suffixes": [
+        "dol",
+        "rik",
+        "ka",
+        "grim",
+        "dan"
+      ],
+      "house_roots": [
+        "Iron",
+        "Stone",
+        "Forge",
+        "Deep",
+        "Brok"
+      ],
+      "house_suffixes": [
+        "drum",
+        "hold",
+        "bar",
+        "dorn"
+      ],
+      "titles": [
+        "祖槌継ぎ",
+        "炉前監督",
+        "坑道守",
+        "銘刻み師"
+      ],
+      "samples": [
+        "グリムドル",
+        "バルリク",
+        "カルダン",
+        "フォージドラム氏族",
+        "坑道守グリムドル"
+      ]
+    },
+    "werebeast": {
+      "label": "獣人種≪ワービースト≫",
+      "given_roots": [
+        "ras",
+        "fen",
+        "gar",
+        "skar",
+        "mok",
+        "ul"
+      ],
+      "given_suffixes": [
+        "ka",
+        "run",
+        "ga",
+        "zar",
+        "ok"
+      ],
+      "house_roots": [
+        "Moon",
+        "Fire",
+        "Long",
+        "Red",
+        "Swift"
+      ],
+      "house_suffixes": [
+        "claw",
+        "fang",
+        "trail",
+        "mane"
+      ],
+      "titles": [
+        "群れ走り",
+        "月狩り",
+        "火輪の語り手",
+        "先導爪"
+      ],
+      "samples": [
+        "ラスカ",
+        "フェンガ",
+        "ガルザル",
+        "スウィフトファング族",
+        "月狩りラスカ"
+      ]
+    },
+    "birdfolk": {
+      "label": "翼人種≪バードフォーク≫",
+      "given_roots": [
+        "ae",
+        "tia",
+        "ori",
+        "zeph",
+        "cae",
+        "iel"
+      ],
+      "given_suffixes": [
+        "ris",
+        "iel",
+        "aron",
+        "a",
+        "is"
+      ],
+      "house_roots": [
+        "High",
+        "Sky",
+        "Wind",
+        "Bell",
+        "Cloud"
+      ],
+      "house_suffixes": [
+        "spire",
+        "wing",
+        "song",
+        "crest"
+      ],
+      "titles": [
+        "巡礼使",
+        "風読み",
+        "高巣の歌僧",
+        "空路案内人"
+      ],
+      "samples": [
+        "アエリス",
+        "ティアロン",
+        "オリエル",
+        "スカイスパイア巣",
+        "風読みアエリス"
+      ]
+    },
+    "fishfolk": {
+      "label": "魚人種≪フィッシュフォーク≫",
+      "given_roots": [
+        "kai",
+        "nere",
+        "moa",
+        "rua",
+        "tala",
+        "nalu"
+      ],
+      "given_suffixes": [
+        "loa",
+        "lua",
+        "nari",
+        "roa",
+        "mi"
+      ],
+      "house_roots": [
+        "Tide",
+        "Coral",
+        "Deep",
+        "Moon",
+        "Reef"
+      ],
+      "house_suffixes": [
+        "song",
+        "route",
+        "cove",
+        "shoal"
+      ],
+      "titles": [
+        "航路歌い",
+        "潮読み",
+        "外洋案内",
+        "礁守り"
+      ],
+      "samples": [
+        "カイルア",
+        "ネレナリ",
+        "タラロア",
+        "コーラルルート家",
+        "潮読みカイルア"
+      ]
+    },
+    "dragonewt": {
+      "label": "竜鱗種≪ドラゴニュート≫",
+      "given_roots": [
+        "vash",
+        "rak",
+        "azh",
+        "kesh",
+        "zhar",
+        "ur"
+      ],
+      "given_suffixes": [
+        "kar",
+        "esh",
+        "var",
+        "a",
+        "an"
+      ],
+      "house_roots": [
+        "Ash",
+        "Zhar",
+        "Rak",
+        "Vash",
+        "Khan"
+      ],
+      "house_suffixes": [
+        "kaan",
+        "esh",
+        "zar",
+        "uram"
+      ],
+      "titles": [
+        "王火の継嗣",
+        "炎殿近衛",
+        "紅鱗将",
+        "家印司"
+      ],
+      "samples": [
+        "ヴァシュカル",
+        "ラケシュ",
+        "アズヴァル",
+        "ザールカーン家",
+        "紅鱗将ヴァシュカル"
+      ]
+    },
+    "fey": {
+      "label": "妖精種≪フェイ≫",
+      "given_roots": [
+        "mi",
+        "eira",
+        "vela",
+        "fia",
+        "lune",
+        "syl"
+      ],
+      "given_suffixes": [
+        "ene",
+        "iel",
+        "fia",
+        "miel",
+        "a"
+      ],
+      "house_roots": [
+        "Moon",
+        "Flower",
+        "Whisper",
+        "Dew",
+        "Veil"
+      ],
+      "house_suffixes": [
+        "court",
+        "garden",
+        "reine",
+        "miel"
+      ],
+      "titles": [
+        "夢渡り",
+        "花宴の主",
+        "月庭の客人",
+        "露鈴の案内人"
+      ],
+      "samples": [
+        "ミレーヌ",
+        "エイラミエル",
+        "ヴェラフィア",
+        "デューガーデン宮廷",
+        "夢渡りミレーヌ"
+      ]
+    },
+    "demonian": {
+      "label": "魔生種≪デモニアン≫",
+      "given_roots": [
+        "zev",
+        "vex",
+        "ket",
+        "mor",
+        "nox",
+        "zel"
+      ],
+      "given_suffixes": [
+        "var",
+        "xil",
+        "et",
+        "as",
+        "or"
+      ],
+      "house_roots": [
+        "Seal",
+        "Void",
+        "Noct",
+        "Vex",
+        "Mora"
+      ],
+      "house_suffixes": [
+        "ward",
+        "vault",
+        "script",
+        "ket"
+      ],
+      "titles": [
+        "契約院書記",
+        "封印監査官",
+        "代価計算士",
+        "深庫司書"
+      ],
+      "samples": [
+        "ゼスヴァル",
+        "ヴェクシル",
+        "ケトエト",
+        "ノクトヴォルト家",
+        "封印監査官ゼスヴァル"
+      ]
+    },
+    "fallen": {
+      "label": "堕性種≪フォールン≫",
+      "given_roots": [
+        "sera",
+        "ash",
+        "vael",
+        "kain",
+        "mour",
+        "sel"
+      ],
+      "given_suffixes": [
+        "vel",
+        "kain",
+        "sel",
+        "fel",
+        "a"
+      ],
+      "house_roots": [
+        "Ash",
+        "Broken",
+        "Gray",
+        "Fallen",
+        "Wing"
+      ],
+      "house_suffixes": [
+        "veil",
+        "abbey",
+        "rest",
+        "sanct"
+      ],
+      "titles": [
+        "巡礼剣士",
+        "灰礼修道者",
+        "断罪の誓士",
+        "救護記録官"
+      ],
+      "samples": [
+        "セラヴェル",
+        "アシュカイン",
+        "ヴェイルセル",
+        "グレイヴェイル共同体",
+        "灰礼修道者セラヴェル"
+      ]
+    },
+    "plantfolk": {
+      "label": "樹生種≪プラントフォーク≫",
+      "given_roots": [
+        "ro",
+        "ver",
+        "bri",
+        "lora",
+        "wyn",
+        "thorn"
+      ],
+      "given_suffixes": [
+        "wen",
+        "ria",
+        "thorn",
+        "elle",
+        "a"
+      ],
+      "house_roots": [
+        "Root",
+        "Bloom",
+        "Briar",
+        "White",
+        "Seed"
+      ],
+      "house_suffixes": [
+        "garden",
+        "grove",
+        "briar",
+        "rowe"
+      ],
+      "titles": [
+        "庭守り",
+        "芽吹き手",
+        "種守り",
+        "境界の編み手"
+      ],
+      "samples": [
+        "ロウェン",
+        "ヴェリア",
+        "ブライアソーン",
+        "シードロウ庭系",
+        "庭守りロウェン"
+      ]
+    },
+    "gemfolk": {
+      "label": "石人種≪ジェムフォーク≫",
+      "given_roots": [
+        "ori",
+        "cor",
+        "lex",
+        "sarn",
+        "dri",
+        "vol"
+      ],
+      "given_suffixes": [
+        "im",
+        "vol",
+        "ar",
+        "on",
+        "is"
+      ],
+      "house_roots": [
+        "Core",
+        "Facet",
+        "Reson",
+        "White",
+        "Deep"
+      ],
+      "house_suffixes": [
+        "hall",
+        "vault",
+        "lex",
+        "drium"
+      ],
+      "titles": [
+        "研磨師",
+        "核守り",
+        "共鳴測士",
+        "記録層司"
+      ],
+      "samples": [
+        "オリム",
+        "コルヴォル",
+        "レクサル",
+        "ファセットドリウム系譜",
+        "研磨師オリム"
+      ]
+    }
+  }
+}

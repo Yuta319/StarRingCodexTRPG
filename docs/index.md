@@ -11,6 +11,9 @@
 - [design_lock_alignment.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/docs/design_lock_alignment.md)
 - [chrome_extension_ui_blueprint.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/docs/chrome_extension_ui_blueprint.md)
 - [japanese_output_policy.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/docs/japanese_output_policy.md)
+- [fantasy_naming_guide.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/docs/fantasy_naming_guide.md)
+- [codex_knowledge_ui_spec.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/docs/codex_knowledge_ui_spec.md)
+- [relation_graph_template.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/docs/relation_graph_template.md)
 - [second_part_integration_map.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/docs/second_part_integration_map.md)
 
 ## 実行と体験

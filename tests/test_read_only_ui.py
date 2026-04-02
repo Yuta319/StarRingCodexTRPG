@@ -12,17 +12,20 @@ from star_ring_codex_trpg.errors import UiRequestError
 from star_ring_codex_trpg.playable_loop import play_choice
 from star_ring_codex_trpg.read_only_ui.controller import (
     build_front_free_action_payload,
+    build_front_finalize_character_payload,
     build_front_load_session_payload,
     build_front_next_session_payload,
     build_front_play_payload,
     build_front_snapshot_payload,
     build_gpt_free_action_payload,
+    build_gpt_finalize_character_payload,
     build_gpt_load_session_payload,
     build_gpt_next_session_payload,
     build_gpt_play_payload,
     build_play_payload,
     build_save_session_payload,
     build_ui_payload,
+    finalize_character_request_from_body,
     free_action_request_from_body,
     load_session_request_from_body,
     next_session_request_from_body,
@@ -40,12 +43,41 @@ class ReadOnlyUiTests(unittest.TestCase):
         self.assertEqual(request.seed, 1729)
         self.assertIsNone(request.world_json)
         self.assertEqual(request.seasons, 10)
+        self.assertIsNone(request.character_profile)
 
     def test_viewer_request_accepts_world_json(self) -> None:
         world_json = Path(".sources/handoff/PBW_Codex_Handoff_Pack_v1/pbw_generated_world_seed1729_v9_mythic_integration.json")
         request = viewer_request_from_query({"world_json": [str(world_json)], "seasons": ["10"]})
         self.assertIsNone(request.seed)
         self.assertEqual(request.world_json, world_json)
+        self.assertIsNone(request.character_profile)
+
+    def test_viewer_request_accepts_character_profile(self) -> None:
+        request = viewer_request_from_query(
+            {
+                "seed": ["1729"],
+                "character_name": ["セリル"],
+                "character_race": ["elf"],
+                "character_style": ["seeker"],
+                "character_temperament": ["prudence"],
+                "character_origin": ["shrine"],
+                "character_loadout": ["ritescribe"],
+                "character_source_mode": ["reincarnated"],
+                "character_source_title": ["黒い砂漠"],
+                "character_source_name": ["セリル"],
+                "character_appearance_notes": ["長い銀髪、眠そうな目"],
+                "character_reinterpretation_notes": ["弓使いではなく杖使いに置き換える"],
+            }
+        )
+        self.assertEqual(request.character_profile.name, "セリル")
+        self.assertEqual(request.character_profile.race, "elf")
+        self.assertEqual(request.character_profile.style, "seeker")
+        self.assertEqual(request.character_profile.temperament, "prudence")
+        self.assertEqual(request.character_profile.origin, "shrine")
+        self.assertEqual(request.character_profile.loadout, "ritescribe")
+        self.assertEqual(request.character_profile.source_mode, "reincarnated")
+        self.assertEqual(request.character_profile.source_title, "黒い砂漠")
+        self.assertEqual(request.character_profile.appearance_notes, "長い銀髪、眠そうな目")
 
     def test_viewer_request_rejects_seed_and_world_json(self) -> None:
         with self.assertRaises(UiRequestError):
@@ -64,14 +96,25 @@ class ReadOnlyUiTests(unittest.TestCase):
         self.assertIn("activeNodeGuide", payload["display"])
         self.assertIn("institutionAlertGuide", payload["display"])
         self.assertIn("currentEvent", payload["display"])
+        self.assertIn("newGameGenesis", payload["display"])
         self.assertIn("archiveInspector", payload["display"])
         self.assertIn("equipmentHub", payload["display"])
         self.assertIn("inventoryHub", payload["display"])
         self.assertIn("assetPromptPack", payload["display"])
         self.assertTrue(payload["display"]["npcBeats"])
+        self.assertTrue(payload["display"]["namedCast"][0]["summaryText"])
+        self.assertTrue(payload["display"]["namedCast"][0]["attitudeText"])
+        self.assertTrue(payload["display"]["newGameGenesis"]["openingSummary"])
         self.assertTrue(payload["playSource"]["world_json"])
         self.assertTrue(payload["display"]["equipmentHub"]["slots"])
         self.assertGreater(payload["display"]["assetPromptPack"]["entryCount"], 8)
+        self.assertIn("portraitGuide", payload["display"]["assetPromptPack"])
+        self.assertTrue(
+            any(
+                entry["kind"] in {"portrait_icon", "portrait_plate"}
+                for entry in payload["display"]["assetPromptPack"]["entries"]
+            )
+        )
 
     def test_build_front_snapshot_payload_contains_display_without_bundle(self) -> None:
         payload = build_front_snapshot_payload(viewer_request_from_query({"seed": ["1729"]}))
@@ -81,12 +124,134 @@ class ReadOnlyUiTests(unittest.TestCase):
         self.assertIn("worldSpine", payload["display"])
         self.assertIn("scenePacket", payload["display"])
 
+    def test_front_snapshot_applies_character_creation_profile(self) -> None:
+        payload = build_front_snapshot_payload(
+            viewer_request_from_query(
+                {
+                    "seed": ["1729"],
+                    "character_name": ["ルナ"],
+                    "character_race": ["elf"],
+                    "character_style": ["seeker"],
+                    "character_temperament": ["prudence"],
+                    "character_origin": ["shrine"],
+                    "character_loadout": ["ritescribe"],
+                    "character_source_mode": ["reincarnated"],
+                    "character_source_title": ["MMOの自キャラ"],
+                    "character_source_name": ["ルナ"],
+                    "character_appearance_notes": ["長い銀髪、細身、濃紺と金の配色"],
+                    "character_reinterpretation_notes": ["落ち着いた顔つきと前髪の影は残したい"],
+                }
+            )
+        )
+        actor = payload["display"]["actorRail"]
+        profile = payload["display"]["characterProfile"]
+        self.assertEqual(actor["label"], "ルナ")
+        self.assertEqual(profile["race"], "elf")
+        self.assertEqual(profile["style"], "seeker")
+        self.assertEqual(profile["loadout"], "ritescribe")
+        self.assertEqual(profile["sourceMode"], "reincarnated")
+        self.assertTrue(profile["openingVariants"])
+        self.assertIn("visibleBoon", profile["starterBoonSeed"])
+        self.assertEqual(actor["quickSlots"][0]["label"], "調べる")
+        self.assertIn("ルナ", payload["display"]["sessionOpeningGuide"]["headline"])
+        self.assertIn("ルナ", "".join(payload["display"]["sessionOpeningGuide"]["lines"]))
+        self.assertIn("MMOの自キャラ", payload["display"]["assetPromptPack"]["entries"][0]["prompt"])
+
     def test_front_snapshot_is_smaller_than_full_ui_payload(self) -> None:
         full_payload = build_ui_payload(viewer_request_from_query({"seed": ["1729"]}))
         front_payload = build_front_snapshot_payload(viewer_request_from_query({"seed": ["1729"]}))
         full_size = len(json.dumps(full_payload, ensure_ascii=False))
         front_size = len(json.dumps(front_payload, ensure_ascii=False))
         self.assertLess(front_size, full_size)
+
+    def test_finalize_character_request_accepts_world_json_and_proposal(self) -> None:
+        request = finalize_character_request_from_body(
+            {
+                "world_json": "runtime/world.json",
+                "proposal": {
+                    "openingHeadline": "導入案",
+                    "starterLoadout": [{"slotId": "main_hand", "name": "境界の弓"}],
+                },
+            }
+        )
+        self.assertEqual(str(request.world_json), "runtime\\world.json")
+        self.assertEqual(request.proposal["openingHeadline"], "導入案")
+
+    def test_front_finalize_character_payload_applies_safe_overrides(self) -> None:
+        initial = build_front_snapshot_payload(
+            viewer_request_from_query(
+                {
+                    "seed": ["1729"],
+                    "character_name": ["アリア"],
+                    "character_race": ["fallen"],
+                    "character_style": ["shadow"],
+                    "character_temperament": ["rebellious"],
+                    "character_origin": ["harbor"],
+                    "character_loadout": ["tailored"],
+                    "character_source_mode": ["reincarnated"],
+                    "character_source_title": ["MMO自キャラ"],
+                    "character_source_name": ["Aria"],
+                    "character_appearance_notes": ["長い黒髪、片目を隠す前髪、細身、弓使い"],
+                    "character_reinterpretation_notes": ["暗い海色と銀の差し色、静かな目つき"],
+                }
+            )
+        )
+        request = finalize_character_request_from_body(
+            {
+                "world_json": initial["playSource"]["world_json"],
+                "proposal": {
+                    "openingHeadline": "アリアの始まり",
+                    "openingLines": ["港の風がまだ前世の癖を覚えている。", "今回は弓と索具で入る。"],
+                    "openingVariants": [{"label": "静かな導入", "summary": "港の風の中で、アリアはまだ前世の気配を引いている。"}],
+                    "selectedOpeningVariantLabel": "静かな導入",
+                    "openingPromptHint": "アリアの導入を2〜4文で語る。港の風と前世の名残を核にする。",
+                    "loadoutName": "影織りの旅装",
+                    "starterLoadout": [
+                        {
+                            "slotId": "main_hand",
+                            "name": "夜潮の弓",
+                            "subtitle": "弓 / 影",
+                            "stats": ["攻撃 220", "静歩 80"],
+                            "flavorText": "港の夜気を吸ったような反りの長い弓。",
+                        }
+                    ],
+                    "starterBoonSeed": {
+                        "visibleBoon": {"label": "影潮の勘", "summary": "見えない水際の流れを読む。"},
+                        "dormantGrace": {"label": "異界の返り火", "summary": "前の世界の勘が、時々だけ答えを先に示す。"},
+                    },
+                },
+            }
+        )
+        payload = build_front_finalize_character_payload(request)
+        profile = payload["display"]["characterProfile"]
+        main_hand = payload["display"]["equipmentHub"]["slots"][0]
+        self.assertEqual(payload["transition"]["outcome"], "applied")
+        self.assertEqual(profile["customOpeningHeadline"], "アリアの始まり")
+        self.assertEqual(profile["selectedOpeningVariantLabel"], "静かな導入")
+        self.assertIn("港の風", profile["openingPromptHint"])
+        self.assertEqual(profile["starterBoonSeed"]["visibleBoon"]["label"], "影潮の勘")
+        self.assertEqual(payload["display"]["equipmentHub"]["loadoutName"], "影織りの旅装")
+        self.assertEqual(main_hand["name"], "夜潮の弓")
+        self.assertIn("攻撃 165", main_hand["stats"])
+        self.assertIn("静歩 48", main_hand["stats"])
+
+    def test_gpt_finalize_character_payload_returns_updated_read_model(self) -> None:
+        initial = build_front_snapshot_payload(viewer_request_from_query({"seed": ["1729"]}))
+        request = finalize_character_request_from_body(
+            {
+                "world_json": initial["playSource"]["world_json"],
+                "proposal": {
+                    "openingHeadline": "新しい導入",
+                    "openingLines": ["静かな朝に局面が始まる。"],
+                },
+            }
+        )
+        payload = build_gpt_finalize_character_payload(request)
+        self.assertEqual(payload["transition"]["outcome"], "applied")
+        self.assertEqual(payload["readModel"]["guidance"]["sessionOpeningGuide"]["headline"], "新しい導入")
+        self.assertIn("openingPromptHint", payload["readModel"]["guidance"]["characterGenesis"])
+        self.assertIn("openingPackage", payload["readModel"]["guidance"])
+        self.assertTrue(payload["readModel"]["guidance"]["openingPackage"]["promptHint"])
 
     def test_build_play_payload_returns_after_bundle(self) -> None:
         payload = build_play_payload(play_request_from_body({"choiceId": "observe", "seed": 1729, "world_json": None}))

@@ -1,0 +1,526 @@
+{
+  "schema_version": "1.0",
+  "name": "Fantasy_Naming_System_Core",
+  "file_role": "external_dictionary",
+  "design_policy": {
+    "surface_rule": "表記はカタカナ主体、意味は《》内に補助表示",
+    "structure": [
+      "surface_name",
+      "type",
+      "race",
+      "semantic_tags",
+      "annotation"
+    ],
+    "usage_notes": [
+      "表向きの表示名はカタカナ名を優先する",
+      "漢字語は意味辞書・注釈・内部タグとして利用する",
+      "種族名の表示は 日本語分類≪呼称≫ を基本とする",
+      "都市・人物・装備で語尾ルールを分ける"
+    ]
+  },
+  "races": {
+    "human": {
+      "label": "人類種≪ヒューマン≫",
+      "phonemes": [
+        "val",
+        "leon",
+        "ser",
+        "kil",
+        "ard",
+        "ion"
+      ],
+      "city_suffix": [
+        "gard",
+        "ford",
+        "crest",
+        "mere"
+      ],
+      "person_suffix": [
+        "ric",
+        "ion",
+        "ard"
+      ],
+      "item_suffix": [
+        "trion",
+        "vein"
+      ],
+      "semantic_links": [
+        "王権",
+        "誓約",
+        "紋章",
+        "騎士"
+      ],
+      "sample": {
+        "city": "ヴァルガルド",
+        "person": "セルリック",
+        "item": "アルトリオン",
+        "annotation": "《冠下の誓い》"
+      }
+    },
+    "elf": {
+      "label": "長命種≪エルフ≫",
+      "phonemes": [
+        "syl",
+        "lune",
+        "riel",
+        "thiel",
+        "sera"
+      ],
+      "city_suffix": [
+        "wein",
+        "riel",
+        "thiel"
+      ],
+      "person_suffix": [
+        "sia",
+        "riel",
+        "wen"
+      ],
+      "item_suffix": [
+        "fel",
+        "seris"
+      ],
+      "semantic_links": [
+        "月",
+        "水",
+        "森",
+        "循環"
+      ],
+      "sample": {
+        "city": "シルウェイン",
+        "person": "エルシア",
+        "item": "ルナフェル",
+        "annotation": "《月枝の歌》"
+      }
+    },
+    "dwarf": {
+      "label": "小人種≪ドワーフ≫",
+      "phonemes": [
+        "kar",
+        "dor",
+        "grim",
+        "bar"
+      ],
+      "city_suffix": [
+        "drum",
+        "dorn",
+        "bar"
+      ],
+      "person_suffix": [
+        "dol",
+        "rik",
+        "ka"
+      ],
+      "item_suffix": [
+        "gram",
+        "brok"
+      ],
+      "semantic_links": [
+        "炉",
+        "鍛造",
+        "石",
+        "誓印"
+      ],
+      "sample": {
+        "city": "カルドラム",
+        "person": "グリムドル",
+        "item": "ドルグラム",
+        "annotation": "《礎打ち》"
+      }
+    },
+    "werebeast": {
+      "label": "獣人種≪ワービースト≫",
+      "phonemes": [
+        "fen",
+        "rask",
+        "skar",
+        "gar"
+      ],
+      "city_suffix": [
+        "gal",
+        "knar",
+        "ska"
+      ],
+      "person_suffix": [
+        "ka",
+        "run",
+        "ga"
+      ],
+      "item_suffix": [
+        "zal",
+        "kar"
+      ],
+      "semantic_links": [
+        "狩猟",
+        "群れ",
+        "牙",
+        "追跡"
+      ],
+      "sample": {
+        "city": "フェンガル",
+        "person": "ラスカ",
+        "item": "ラズカル",
+        "annotation": "《夜駆け》"
+      }
+    },
+    "birdfolk": {
+      "label": "翼人種≪バードフォーク≫",
+      "phonemes": [
+        "ael",
+        "zeph",
+        "tiar",
+        "orin"
+      ],
+      "city_suffix": [
+        "ael",
+        "orin",
+        "spire"
+      ],
+      "person_suffix": [
+        "ris",
+        "iel",
+        "aron"
+      ],
+      "item_suffix": [
+        "ael",
+        "siel"
+      ],
+      "semantic_links": [
+        "風",
+        "空",
+        "祈り",
+        "伝令"
+      ],
+      "sample": {
+        "city": "アエルスパイア",
+        "person": "アエリス",
+        "item": "ゼファエル",
+        "annotation": "《空鳴り》"
+      }
+    },
+    "fishfolk": {
+      "label": "魚人種≪フィッシュフォーク≫",
+      "phonemes": [
+        "nere",
+        "kai",
+        "moa",
+        "rua"
+      ],
+      "city_suffix": [
+        "kai",
+        "lua",
+        "mora",
+        "nui"
+      ],
+      "person_suffix": [
+        "loa",
+        "lua",
+        "nari"
+      ],
+      "item_suffix": [
+        "roa",
+        "mar"
+      ],
+      "semantic_links": [
+        "潮",
+        "航路",
+        "海",
+        "記憶歌"
+      ],
+      "sample": {
+        "city": "ネレカイ",
+        "person": "カイルア",
+        "item": "カイロア",
+        "annotation": "《凍潮》"
+      }
+    },
+    "dragonewt": {
+      "label": "竜鱗種≪ドラゴニュート≫",
+      "phonemes": [
+        "zhar",
+        "rak",
+        "vash",
+        "kesh"
+      ],
+      "city_suffix": [
+        "kesh",
+        "zaal",
+        "uram",
+        "kaan"
+      ],
+      "person_suffix": [
+        "kar",
+        "esh",
+        "var"
+      ],
+      "item_suffix": [
+        "gar",
+        "vash"
+      ],
+      "semantic_links": [
+        "王権",
+        "火",
+        "血統",
+        "威光"
+      ],
+      "sample": {
+        "city": "ザルケシュ",
+        "person": "ヴァシュカル",
+        "item": "アシュガル",
+        "annotation": "《王火》"
+      }
+    },
+    "fey": {
+      "label": "妖精種≪フェイ≫",
+      "phonemes": [
+        "mir",
+        "eira",
+        "fia",
+        "vela"
+      ],
+      "city_suffix": [
+        "fia",
+        "reine",
+        "miel"
+      ],
+      "person_suffix": [
+        "ene",
+        "iel",
+        "fia"
+      ],
+      "item_suffix": [
+        "lune",
+        "miel"
+      ],
+      "semantic_links": [
+        "夢",
+        "花",
+        "魅了",
+        "贈与"
+      ],
+      "sample": {
+        "city": "ミレフィア",
+        "person": "ミレーヌ",
+        "item": "ミレルーン",
+        "annotation": "《囁きの庭》"
+      }
+    },
+    "demonian": {
+      "label": "魔生種≪デモニアン≫",
+      "phonemes": [
+        "vex",
+        "zel",
+        "keth",
+        "mor"
+      ],
+      "city_suffix": [
+        "zel",
+        "mora",
+        "keth"
+      ],
+      "person_suffix": [
+        "var",
+        "xil",
+        "et"
+      ],
+      "item_suffix": [
+        "xil",
+        "ket"
+      ],
+      "semantic_links": [
+        "契約",
+        "封印",
+        "真名",
+        "対価"
+      ],
+      "sample": {
+        "city": "ヴェクゼル",
+        "person": "ゼスヴァル",
+        "item": "ヴェクシル",
+        "annotation": "《冥鍵》"
+      }
+    },
+    "fallen": {
+      "label": "堕性種≪フォールン≫",
+      "phonemes": [
+        "ash",
+        "ser",
+        "vael",
+        "kain"
+      ],
+      "city_suffix": [
+        "vael",
+        "kain",
+        "ael"
+      ],
+      "person_suffix": [
+        "vel",
+        "kain",
+        "sel"
+      ],
+      "item_suffix": [
+        "fel",
+        "vain"
+      ],
+      "semantic_links": [
+        "断罪",
+        "贖罪",
+        "欠損",
+        "灰"
+      ],
+      "sample": {
+        "city": "アシュヴェイル",
+        "person": "セラヴェル",
+        "item": "セラフェル",
+        "annotation": "《断翼》"
+      }
+    },
+    "plantfolk": {
+      "label": "樹生種≪プラントフォーク≫",
+      "phonemes": [
+        "ver",
+        "rowe",
+        "briar",
+        "thorn"
+      ],
+      "city_suffix": [
+        "vera",
+        "rowe",
+        "briar",
+        "wen"
+      ],
+      "person_suffix": [
+        "wen",
+        "ria",
+        "thorn"
+      ],
+      "item_suffix": [
+        "verna",
+        "briar"
+      ],
+      "semantic_links": [
+        "成長",
+        "根",
+        "境界",
+        "再生"
+      ],
+      "sample": {
+        "city": "ヴェルロウェ",
+        "person": "ロウェン",
+        "item": "ヴェルナ",
+        "annotation": "《春の掌》"
+      }
+    },
+    "gemfolk": {
+      "label": "石人種≪ジェムフォーク≫",
+      "phonemes": [
+        "orix",
+        "lex",
+        "drium",
+        "cor"
+      ],
+      "city_suffix": [
+        "orix",
+        "drium",
+        "vol",
+        "lex"
+      ],
+      "person_suffix": [
+        "im",
+        "vol",
+        "ar"
+      ],
+      "item_suffix": [
+        "dim",
+        "lexar"
+      ],
+      "semantic_links": [
+        "結晶",
+        "共鳴",
+        "断面",
+        "記憶"
+      ],
+      "sample": {
+        "city": "オリクサス",
+        "person": "オリム",
+        "item": "オルディム",
+        "annotation": "《断面の歌》"
+      }
+    }
+  },
+  "generation_rules": {
+    "city": "{phoneme}+{city_suffix}",
+    "person": "{phoneme}+{person_suffix}",
+    "item": "{phoneme}+{item_suffix}",
+    "annotation": "《意味辞書から生成》"
+  },
+  "display_rules": {
+    "race_format": "{jp_class}≪{call_name}≫",
+    "city_format": "{surface_name}《{annotation}》",
+    "item_format": "{surface_name}《{annotation}》",
+    "ui_short_city": "{surface_name}",
+    "ui_short_item": "{surface_name}",
+    "encyclopedia_item": "{surface_name}（{type}）《{annotation}》"
+  },
+  "examples": {
+    "cities": [
+      {
+        "name": "ヴァルガルド",
+        "race": "human",
+        "annotation": "白獅子の城塞"
+      },
+      {
+        "name": "シルウェイン",
+        "race": "elf",
+        "annotation": "月枝の湖都"
+      },
+      {
+        "name": "カルドラム",
+        "race": "dwarf",
+        "annotation": "鉄床の坑道門"
+      },
+      {
+        "name": "アシュヴェイル",
+        "race": "fallen",
+        "annotation": "灰礼の修道都"
+      },
+      {
+        "name": "オリクサス",
+        "race": "gemfolk",
+        "annotation": "晶核の研磨都"
+      }
+    ],
+    "items": [
+      {
+        "name": "アルトリオン",
+        "type": "直剣",
+        "race": "human",
+        "annotation": "冠下の誓い"
+      },
+      {
+        "name": "ルナフェル",
+        "type": "長弓",
+        "race": "elf",
+        "annotation": "月枝の歌"
+      },
+      {
+        "name": "ドルグラム",
+        "type": "戦槌",
+        "race": "dwarf",
+        "annotation": "礎打ち"
+      },
+      {
+        "name": "ヴェクシル",
+        "type": "魔導書",
+        "race": "demonian",
+        "annotation": "冥鍵"
+      },
+      {
+        "name": "セラフェル",
+        "type": "刀",
+        "race": "fallen",
+        "annotation": "断翼"
+      }
+    ]
+  }
+}

@@ -1,6 +1,7 @@
 .runtime/
-.tmp_custom_gpt_actions_bundle/
 generated/
+output/
+tmp/
 __pycache__/
 *.pyc
 *.pyo

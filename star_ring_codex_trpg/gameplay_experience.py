@@ -20,6 +20,7 @@ from .campaign_content import (
     canonical_role_slot_id,
 )
 from .errors import WorldStateError
+from .new_game_genesis import build_new_game_genesis
 from .text.copy_checks import ensure_copy_quality
 from .text.text_composer import (
     choice_label,
@@ -68,6 +69,19 @@ def _choose_affiliation(factions: Dict[str, Any], preferred: Iterable[str], used
             used.add(faction_id)
             return faction_id
     return sorted(factions)[0]
+
+
+def _merge_preferred_order(primary: Iterable[str], secondary: Iterable[str]) -> List[str]:
+    ordered: List[str] = []
+    seen: set[str] = set()
+    for source in (primary, secondary):
+        for raw_value in source:
+            value = str(raw_value or "").strip()
+            if not value or value in seen:
+                continue
+            seen.add(value)
+            ordered.append(value)
+    return ordered
 
 
 def _choose_region(regions: Dict[str, Any], preferred: Iterable[str], used: set[str]) -> str:
@@ -290,6 +304,12 @@ def _event_blueprint_map() -> Dict[str, Dict[str, Any]]:
 
 
 def _choose_session_loadout(world_state: Dict[str, Any], campaign_state: Dict[str, Any], session_number: int) -> Dict[str, Any]:
+    if session_number == 1:
+        genesis = campaign_state.get("newGameGenesis")
+        if isinstance(genesis, dict):
+            loadout = genesis.get("sessionOneLoadout")
+            if isinstance(loadout, dict) and loadout.get("hubId") and loadout.get("dungeonId"):
+                return copy.deepcopy(loadout)
     resolved_world = world_state["resolved_world"]
     seed = int(resolved_world["world"]["seed"])
     dominant_choice = _dominant_choice(campaign_state.get("choiceStats", {}))
@@ -344,7 +364,13 @@ def _apply_session_loadout(world_state: Dict[str, Any], campaign_state: Dict[str
     campaign_state["currentEventId"] = current_event_id
 
 
-def _build_role_slots(world_state: Dict[str, Any], hub_region_id: str, dungeon_region_id: str) -> Dict[str, Dict[str, Any]]:
+def _build_role_slots(
+    world_state: Dict[str, Any],
+    hub_region_id: str,
+    dungeon_region_id: str,
+    *,
+    genesis: Dict[str, Any] | None = None,
+) -> Dict[str, Dict[str, Any]]:
     resolved_world = world_state["resolved_world"]
     factions = resolved_world["factions"]
     used: set[str] = set()
@@ -357,10 +383,23 @@ def _build_role_slots(world_state: Dict[str, Any], hub_region_id: str, dungeon_r
     npcs: Dict[str, Dict[str, Any]] = {}
     for index, blueprint in enumerate(ROLE_SLOT_BLUEPRINTS):
         slot_id = blueprint["roleSlotId"]
-        occupant_index = 0
+        occupant_templates = list(blueprint.get("occupantTemplates", []))
+        template_count = max(1, len(occupant_templates))
+        occupant_index = int(
+            (
+                (genesis or {}).get("npcOccupantIndices", {}).get(slot_id)
+                if isinstance(genesis, dict)
+                else (seed + (index + 1) * 13)
+            )
+            or 0
+        ) % template_count
         occupant_serial = 0
         occupant = _occupant_template(blueprint, occupant_index)
-        faction_id = _choose_affiliation(factions, blueprint["factionAffinity"], used)
+        preferred_affinity = _merge_preferred_order(
+            blueprint["factionAffinity"],
+            (genesis or {}).get("preferredFactions", []) if isinstance(genesis, dict) else [],
+        )
+        faction_id = _choose_affiliation(factions, preferred_affinity, used)
         faction = factions[faction_id]
         trust, stress = _slot_metric_baseline(blueprint, index, occupant_serial, seed, trust_offset, stress_offset)
         location_label = (
@@ -601,6 +640,16 @@ def _build_campaign_state(world_state: Dict[str, Any]) -> Dict[str, Any]:
     session = _session_state(1)
     hub_catalog = _build_hub_catalog(world_state)
     dungeon_catalog = _build_dungeon_catalog(world_state)
+    event_catalog = _event_catalog(world_state)
+    new_game_genesis = build_new_game_genesis(
+        world_state,
+        hub_catalog=hub_catalog,
+        dungeon_catalog=dungeon_catalog,
+        event_catalog=event_catalog,
+    )
+    session_loadout = copy.deepcopy(new_game_genesis["sessionOneLoadout"])
+    initial_hub = hub_catalog[session_loadout["hubId"]]
+    initial_dungeon = dungeon_catalog[session_loadout["dungeonId"]]
     campaign = {
         "version": CAMPAIGN_STATE_VERSION,
         "session": session,
@@ -608,15 +657,17 @@ def _build_campaign_state(world_state: Dict[str, Any]) -> Dict[str, Any]:
         "dungeonCatalog": copy.deepcopy(dungeon_catalog),
         "currentHubId": None,
         "currentDungeonId": None,
-        "sessionLoadout": None,
+        "sessionLoadout": session_loadout,
+        "newGameGenesis": copy.deepcopy(new_game_genesis),
         "hub": {},
         "dungeon": {},
         "npcs": _build_role_slots(
             world_state,
-            next(iter(hub_catalog.values()))["regionId"],
-            next(iter(dungeon_catalog.values()))["regionId"],
+            initial_hub["regionId"],
+            initial_dungeon["regionId"],
+            genesis=new_game_genesis,
         ),
-        "events": {"order": list(EVENT_ORDER), "catalog": _event_catalog(world_state), "history": []},
+        "events": {"order": list(EVENT_ORDER), "catalog": event_catalog, "history": []},
         "currentEventId": None,
         "choiceHistory": [],
         "choiceStats": {choice_id: 0 for choice_id in CHOICE_ORDER},
@@ -651,7 +702,7 @@ def _build_campaign_state(world_state: Dict[str, Any]) -> Dict[str, Any]:
             "newestSessionNumber": None,
             "latestSummary": "",
         },
-        "sessionOpeningHooks": {"1": _initial_session_opening_summary()},
+        "sessionOpeningHooks": {"1": new_game_genesis.get("openingSummary") or _initial_session_opening_summary()},
         "saveMeta": {
             "saveId": None,
             "savePath": None,
@@ -749,6 +800,16 @@ def _refresh_campaign_state(world_state: Dict[str, Any], campaign_state: Dict[st
     campaign = copy.deepcopy(campaign_state)
     hub_catalog = copy.deepcopy(campaign.get("hubCatalog") or _build_hub_catalog(world_state))
     dungeon_catalog = copy.deepcopy(campaign.get("dungeonCatalog") or _build_dungeon_catalog(world_state))
+    canonical_event_catalog = _event_catalog(world_state)
+    new_game_genesis = campaign.get("newGameGenesis")
+    if not isinstance(new_game_genesis, dict):
+        new_game_genesis = build_new_game_genesis(
+            world_state,
+            hub_catalog=hub_catalog,
+            dungeon_catalog=dungeon_catalog,
+            event_catalog=canonical_event_catalog,
+        )
+    campaign["newGameGenesis"] = copy.deepcopy(new_game_genesis)
     if isinstance(campaign.get("hub"), dict) and campaign["hub"]:
         legacy_hub_id = str(campaign.get("currentHubId") or campaign["hub"].get("hubId") or next(iter(hub_catalog)))
         if legacy_hub_id in hub_catalog:
@@ -775,6 +836,7 @@ def _refresh_campaign_state(world_state: Dict[str, Any], campaign_state: Dict[st
             world_state,
             hub_catalog[active_hub_id]["regionId"],
             dungeon_catalog[active_dungeon_id]["regionId"],
+            genesis=new_game_genesis,
         )
     elif len(campaign["npcs"]) < len(NPC_ORDER):
         active_hub_id = str(campaign.get("currentHubId") or next(iter(hub_catalog)))
@@ -783,6 +845,7 @@ def _refresh_campaign_state(world_state: Dict[str, Any], campaign_state: Dict[st
             world_state,
             hub_catalog[active_hub_id]["regionId"],
             dungeon_catalog[active_dungeon_id]["regionId"],
+            genesis=new_game_genesis,
         )
         for slot_id in NPC_ORDER:
             campaign["npcs"].setdefault(slot_id, defaults[slot_id])
@@ -814,7 +877,7 @@ def _refresh_campaign_state(world_state: Dict[str, Any], campaign_state: Dict[st
     campaign.setdefault("sessionArchive", [])
     _archive_compression_defaults(campaign)
     session_opening_hooks = campaign.setdefault("sessionOpeningHooks", {})
-    session_opening_hooks.setdefault("1", _initial_session_opening_summary())
+    session_opening_hooks.setdefault("1", new_game_genesis.get("openingSummary") or _initial_session_opening_summary())
     campaign.setdefault("nextSessionHook", None)
     save_meta = campaign.setdefault("saveMeta", {})
     save_meta.setdefault("saveId", None)
@@ -2566,6 +2629,57 @@ def _archive_entry(campaign_state: Dict[str, Any], ending: Dict[str, Any]) -> Di
     }
 
 
+def _new_game_genesis_surface(campaign_state: Dict[str, Any]) -> Dict[str, Any]:
+    genesis = copy.deepcopy(campaign_state.get("newGameGenesis") or {})
+    if not genesis:
+        return {}
+    loadout = genesis.get("sessionOneLoadout") or {}
+    hub_catalog = campaign_state.get("hubCatalog") or {}
+    dungeon_catalog = campaign_state.get("dungeonCatalog") or {}
+    event_catalog = (campaign_state.get("events") or {}).get("catalog") or {}
+    hub = copy.deepcopy(hub_catalog.get(loadout.get("hubId")) or {})
+    dungeon = copy.deepcopy(dungeon_catalog.get(loadout.get("dungeonId")) or {})
+    phase_event_labels = [
+        str(event_catalog.get(event_id, {}).get("label") or event_id)
+        for event_id in list(loadout.get("phaseEventIds") or [])
+    ]
+    cast_seed = []
+    for slot_id in NPC_ORDER[:4]:
+        npc = campaign_state.get("npcs", {}).get(slot_id)
+        if not npc:
+            continue
+        cast_seed.append(
+            {
+                "roleSlotId": slot_id,
+                "roleLabel": npc.get("roleLabel"),
+                "displayName": npc.get("displayName"),
+                "affiliationLabel": npc.get("affiliationLabel"),
+                "agenda": npc.get("agenda"),
+            }
+        )
+    return {
+        "profileSurface": copy.deepcopy(genesis.get("profileSurface") or {}),
+        "openingSummary": str(genesis.get("openingSummary") or ""),
+        "phaseEventLabels": phase_event_labels,
+        "hub": {
+            "hubId": hub.get("hubId"),
+            "label": hub.get("label"),
+            "regionLabel": hub.get("regionLabel"),
+            "pressureStyle": hub.get("pressureStyle"),
+        },
+        "dungeon": {
+            "dungeonId": dungeon.get("dungeonId"),
+            "label": dungeon.get("label"),
+            "regionLabel": dungeon.get("regionLabel"),
+            "pressureStyle": dungeon.get("pressureStyle"),
+        },
+        "incitingIncident": copy.deepcopy(genesis.get("incitingIncident") or {}),
+        "storyAxes": [value for value in list(genesis.get("storyAxes") or []) if str(value).strip()],
+        "preferredFactions": list(genesis.get("preferredFactions") or []),
+        "castSeed": cast_seed,
+    }
+
+
 def _archived_entries(campaign_state: Dict[str, Any], limit: int = 3) -> List[Dict[str, Any]]:
     entries = [entry for entry in campaign_state.get("sessionArchive", []) if isinstance(entry, dict)]
     return entries[-limit:]
@@ -3252,7 +3366,7 @@ def build_next_session_hook(world_state: Dict[str, Any]) -> Dict[str, Any]:
     campaign = state["campaign_state"]
     ending = campaign.get("lastEnding")
     if not isinstance(ending, dict):
-        raise WorldStateError("Current session has not finished yet. `next-session` is available after the 6th turn.")
+        raise WorldStateError("今のセッションはまだ終了していません。次のセッションへ進めるのは 6 手目の後です。")
     hook = {
         "nextMainEventCandidates": _next_main_event_candidates(campaign),
         "carriedPressures": _carried_pressures(campaign),
@@ -3274,7 +3388,7 @@ def prepare_next_session(world_state: Dict[str, Any]) -> Dict[str, Any]:
     campaign = copy.deepcopy(state["campaign_state"])
     ending = campaign.get("lastEnding")
     if not isinstance(ending, dict):
-        raise WorldStateError("Current session has not finished yet. `next-session` is available after the 6th turn.")
+        raise WorldStateError("今のセッションはまだ終了していません。次のセッションへ進めるのは 6 手目の後です。")
 
     archive = list(campaign.get("sessionArchive", []))
     session_number = int(ending["sessionNumber"])
@@ -3311,6 +3425,7 @@ def build_campaign_display(world_state: Dict[str, Any], scene_title: str) -> Dic
         "namedCast": [compose_npc_copy(_annotate_npc_with_archive_overlay(campaign, copy.deepcopy(campaign["npcs"][npc_id]))) for npc_id in NPC_ORDER],
         "playerTrace": trace,
         "endingForecast": _ending_forecast(campaign),
+        "newGameGenesis": _new_game_genesis_surface(campaign),
         "sessionEnding": copy.deepcopy(campaign.get("lastEnding")),
         "lastTransition": copy.deepcopy(campaign.get("lastTransition")),
         "nextSessionHook": hook,

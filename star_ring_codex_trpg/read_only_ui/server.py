@@ -11,11 +11,13 @@ import mimetypes
 from ..errors import StarRingCodexError, UiRequestError
 from .controller import (
     build_front_free_action_payload,
+    build_front_finalize_character_payload,
     build_front_load_session_payload,
     build_front_next_session_payload,
     build_front_play_payload,
     build_front_snapshot_payload,
     build_free_action_payload,
+    build_gpt_finalize_character_payload,
     build_gpt_free_action_payload,
     build_gpt_load_session_payload,
     build_gpt_next_session_payload,
@@ -26,6 +28,7 @@ from .controller import (
     build_play_payload,
     build_save_session_payload,
     build_ui_payload,
+    finalize_character_request_from_body,
     free_action_request_from_body,
     load_session_request_from_body,
     next_session_request_from_body,
@@ -85,6 +88,12 @@ class ReadOnlyUiHandler(BaseHTTPRequestHandler):
             return
         if parsed.path == "/api/gpt/free-action":
             self._serve_gpt_free_action_api()
+            return
+        if parsed.path == "/api/front/finalize-character":
+            self._serve_front_finalize_character_api()
+            return
+        if parsed.path == "/api/gpt/finalize-character":
+            self._serve_gpt_finalize_character_api()
             return
         if parsed.path == "/api/save-session":
             self._serve_save_session_api()
@@ -199,6 +208,24 @@ class ReadOnlyUiHandler(BaseHTTPRequestHandler):
             payload = self._read_json_body()
             request = free_action_request_from_body(payload, prefer_world_json_when_both=True)
             response = build_gpt_free_action_payload(request)
+            self._write_json(200, response)
+        except StarRingCodexError as exc:
+            self._write_json(400, {"error": str(exc)})
+
+    def _serve_front_finalize_character_api(self) -> None:
+        try:
+            payload = self._read_json_body()
+            request = finalize_character_request_from_body(payload)
+            response = build_front_finalize_character_payload(request)
+            self._write_json(200, response)
+        except StarRingCodexError as exc:
+            self._write_json(400, {"error": str(exc)})
+
+    def _serve_gpt_finalize_character_api(self) -> None:
+        try:
+            payload = self._read_json_body()
+            request = finalize_character_request_from_body(payload)
+            response = build_gpt_finalize_character_payload(request)
             self._write_json(200, response)
         except StarRingCodexError as exc:
             self._write_json(400, {"error": str(exc)})

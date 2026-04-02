@@ -1,0 +1,457 @@
+{
+  "schema_version": "1.0",
+  "name": "Fantasy_Equipment_Naming_Dictionary",
+  "purpose": "装備名・名品名・伝説武具名生成用外部辞典",
+  "display_policy": {
+    "default_surface": "固有名を主表示",
+    "recommended_ui": "{surface_name}",
+    "recommended_codex": "{surface_name}（{weapon_type}）《{annotation}》",
+    "annotation_format": "《意味注釈》"
+  },
+  "generation_order": [
+    "race",
+    "weapon_type",
+    "rarity_tier",
+    "semantic_theme",
+    "phoneme_root",
+    "item_suffix",
+    "annotation"
+  ],
+  "rarity_tiers": {
+    "common": "一般装備・量産品",
+    "named": "名品・工房銘あり",
+    "relic": "遺物・祭具・家宝",
+    "legendary": "伝説級・神話級"
+  },
+  "weapon_types": [
+    "直剣",
+    "大剣",
+    "刀",
+    "槍",
+    "斧",
+    "戦槌",
+    "弓",
+    "短剣",
+    "杖",
+    "魔導書",
+    "拳甲",
+    "鎖鎌"
+  ],
+  "rules": {
+    "common_pattern": "{culture_label}式{weapon_type}",
+    "named_pattern": "{surface_name}",
+    "relic_pattern": "{surface_name}《{annotation}》",
+    "legendary_pattern": "{surface_name}《{annotation}》",
+    "recommended_style": "武器種はUI補足に回し、名前本体から外す"
+  },
+  "races": {
+    "human": {
+      "label": "人類種≪ヒューマン≫",
+      "roots": [
+        "al",
+        "ser",
+        "val",
+        "kil",
+        "leon"
+      ],
+      "suffixes": [
+        "trion",
+        "vein",
+        "gard",
+        "lance"
+      ],
+      "themes": [
+        "誓い",
+        "守護",
+        "王威",
+        "城門",
+        "白盾"
+      ],
+      "annotations": [
+        "冠下の誓い",
+        "銀鍵の護り",
+        "白獅子の進軍",
+        "黎明の盾"
+      ],
+      "samples": [
+        "アルトリオン",
+        "キルヴェイン",
+        "レオンガルド"
+      ]
+    },
+    "elf": {
+      "label": "長命種≪エルフ≫",
+      "roots": [
+        "lune",
+        "syl",
+        "thiel",
+        "sera",
+        "riel"
+      ],
+      "suffixes": [
+        "fel",
+        "seris",
+        "riel",
+        "ael"
+      ],
+      "themes": [
+        "月枝",
+        "静波",
+        "水鏡",
+        "白樹",
+        "螺旋"
+      ],
+      "annotations": [
+        "月枝の歌",
+        "白樹の静波",
+        "水鏡",
+        "巡る葉"
+      ],
+      "samples": [
+        "ルナフェル",
+        "シルセリス",
+        "リエルアエル"
+      ]
+    },
+    "dwarf": {
+      "label": "小人種≪ドワーフ≫",
+      "roots": [
+        "dor",
+        "grim",
+        "kar",
+        "brok",
+        "hald"
+      ],
+      "suffixes": [
+        "gram",
+        "brok",
+        "dan",
+        "hold"
+      ],
+      "themes": [
+        "礎",
+        "炉前",
+        "祖槌",
+        "鉱脈",
+        "重圧"
+      ],
+      "annotations": [
+        "礎打ち",
+        "炉前の誓い",
+        "山の拳",
+        "黒坑の銘"
+      ],
+      "samples": [
+        "ドルグラム",
+        "カルブロク",
+        "グリムダン"
+      ]
+    },
+    "werebeast": {
+      "label": "獣人種≪ワービースト≫",
+      "roots": [
+        "ras",
+        "fen",
+        "skar",
+        "gar",
+        "mok"
+      ],
+      "suffixes": [
+        "kar",
+        "zal",
+        "fang",
+        "run"
+      ],
+      "themes": [
+        "夜駆け",
+        "群れ",
+        "追跡",
+        "火輪",
+        "牙狩り"
+      ],
+      "annotations": [
+        "夜駆け",
+        "群れの爪",
+        "長足の息",
+        "月狩りの印"
+      ],
+      "samples": [
+        "ラズカル",
+        "フェンザル",
+        "スカルラン"
+      ]
+    },
+    "birdfolk": {
+      "label": "翼人種≪バードフォーク≫",
+      "roots": [
+        "zeph",
+        "ael",
+        "tiar",
+        "orin",
+        "cael"
+      ],
+      "suffixes": [
+        "ael",
+        "siel",
+        "aris",
+        "orn"
+      ],
+      "themes": [
+        "空鳴り",
+        "追風",
+        "白翼",
+        "高巣",
+        "巡礼歌"
+      ],
+      "annotations": [
+        "空鳴り",
+        "追風の祈り",
+        "白翼の針",
+        "雲の穂先"
+      ],
+      "samples": [
+        "ゼファエル",
+        "ティアシエル",
+        "オリナリス"
+      ]
+    },
+    "fishfolk": {
+      "label": "魚人種≪フィッシュフォーク≫",
+      "roots": [
+        "kai",
+        "nere",
+        "moa",
+        "rua",
+        "tala"
+      ],
+      "suffixes": [
+        "roa",
+        "mar",
+        "lua",
+        "tide"
+      ],
+      "themes": [
+        "凍潮",
+        "海歌",
+        "深湾",
+        "珊瑚",
+        "航路"
+      ],
+      "annotations": [
+        "凍潮",
+        "海歌の標",
+        "白潮の歯",
+        "渦の記憶"
+      ],
+      "samples": [
+        "カイロア",
+        "ネレマル",
+        "モアルア"
+      ]
+    },
+    "dragonewt": {
+      "label": "竜鱗種≪ドラゴニュート≫",
+      "roots": [
+        "azh",
+        "rak",
+        "vash",
+        "zhar",
+        "kesh"
+      ],
+      "suffixes": [
+        "gar",
+        "vash",
+        "kaan",
+        "esh"
+      ],
+      "themes": [
+        "王火",
+        "熾冠",
+        "威光",
+        "紅鱗",
+        "古竜"
+      ],
+      "annotations": [
+        "王火",
+        "熾冠の牙",
+        "古竜の座",
+        "紅鱗王の命"
+      ],
+      "samples": [
+        "アシュガル",
+        "ラクヴァシュ",
+        "ケシュカーン"
+      ]
+    },
+    "fey": {
+      "label": "妖精種≪フェイ≫",
+      "roots": [
+        "mir",
+        "eira",
+        "vela",
+        "fia",
+        "lune"
+      ],
+      "suffixes": [
+        "lune",
+        "miel",
+        "fia",
+        "veil"
+      ],
+      "themes": [
+        "囁き",
+        "月露",
+        "夢花",
+        "蝶幕",
+        "鈴庭"
+      ],
+      "annotations": [
+        "囁きの庭",
+        "月露",
+        "蝶の幕",
+        "香りの契り"
+      ],
+      "samples": [
+        "ミレルーン",
+        "エイラミエル",
+        "ヴェラフィア"
+      ]
+    },
+    "demonian": {
+      "label": "魔生種≪デモニアン≫",
+      "roots": [
+        "vex",
+        "zel",
+        "keth",
+        "nox",
+        "mor"
+      ],
+      "suffixes": [
+        "xil",
+        "ket",
+        "vex",
+        "zor"
+      ],
+      "themes": [
+        "冥鍵",
+        "深印",
+        "黒署",
+        "封鎖",
+        "代価"
+      ],
+      "annotations": [
+        "冥鍵",
+        "黒い署名",
+        "深印",
+        "夜矩の条文"
+      ],
+      "samples": [
+        "ヴェクシル",
+        "ゼルケト",
+        "ノクスヴェクス"
+      ]
+    },
+    "fallen": {
+      "label": "堕性種≪フォールン≫",
+      "roots": [
+        "sera",
+        "ash",
+        "vael",
+        "kain",
+        "mour"
+      ],
+      "suffixes": [
+        "fel",
+        "vain",
+        "veil",
+        "sel"
+      ],
+      "themes": [
+        "断翼",
+        "灰礼",
+        "燃え残り",
+        "悔悟",
+        "審き"
+      ],
+      "annotations": [
+        "断翼",
+        "灰の審き",
+        "燃え残り",
+        "片翼の悔悟"
+      ],
+      "samples": [
+        "セラフェル",
+        "ヴェイルカイン",
+        "アシュヴェイン"
+      ]
+    },
+    "plantfolk": {
+      "label": "樹生種≪プラントフォーク≫",
+      "roots": [
+        "ver",
+        "rowe",
+        "briar",
+        "lora",
+        "thorn"
+      ],
+      "suffixes": [
+        "verna",
+        "briar",
+        "wen",
+        "root"
+      ],
+      "themes": [
+        "春の掌",
+        "花守",
+        "白樹",
+        "根結び",
+        "芽吹き"
+      ],
+      "annotations": [
+        "春の掌",
+        "花守",
+        "芽の歌",
+        "白樹の環"
+      ],
+      "samples": [
+        "ヴェルナ",
+        "ブライアル",
+        "ロウェンルート"
+      ]
+    },
+    "gemfolk": {
+      "label": "石人種≪ジェムフォーク≫",
+      "roots": [
+        "ori",
+        "lex",
+        "cor",
+        "dri",
+        "sarn"
+      ],
+      "suffixes": [
+        "dim",
+        "lexar",
+        "vol",
+        "core"
+      ],
+      "themes": [
+        "断面",
+        "晶核",
+        "共鳴",
+        "白い層",
+        "研磨"
+      ],
+      "annotations": [
+        "断面の歌",
+        "共鳴の核",
+        "白い層",
+        "研磨の王"
+      ],
+      "samples": [
+        "オルディム",
+        "レクサル",
+        "コルヴォル"
+      ]
+    }
+  }
+}

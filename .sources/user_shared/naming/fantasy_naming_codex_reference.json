@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "name": "Fantasy_Naming_System_Codex_Reference",
+  "purpose": "Codex / game logic / content generation 用の参照仕様書",
+  "core_policy": {
+    "do": [
+      "表示名はカタカナ主体にする",
+      "意味注釈は《》に隔離する",
+      "種族ごとに音韻ルールを固定する",
+      "都市・人物・装備で語尾規則を分離する",
+      "同じ文化圏では語根の再利用率を高める",
+      "意味語は内部タグとして扱い、表名に直出ししすぎない"
+    ],
+    "dont": [
+      "漢字だけで名称を完結させない",
+      "同じ名前の中で近い意味語を重複させない",
+      "種族間で語尾の癖を無秩序に混ぜない",
+      "長すぎる説明的な表名を量産しない"
+    ]
+  },
+  "display_rules": {
+    "race": "{jp_class}≪{call_name}≫",
+    "city_short": "{surface_name}",
+    "city_full": "{surface_name}《{annotation}》",
+    "person_short": "{surface_name}",
+    "person_full": "{surface_name}《{annotation_optional}》",
+    "item_short": "{surface_name}",
+    "item_full": "{surface_name}（{weapon_type}）《{annotation}》"
+  },
+  "recommended_generation_flows": {
+    "city": [
+      "pick race",
+      "pick settlement_tier",
+      "pick race root",
+      "pick race city suffix",
+      "compose katakana surface",
+      "attach semantic annotation optionally"
+    ],
+    "person": [
+      "pick race",
+      "pick social layer optional",
+      "pick given root",
+      "pick person suffix",
+      "compose given name",
+      "attach house name or title when needed"
+    ],
+    "item": [
+      "pick race of origin",
+      "pick weapon_type",
+      "pick rarity tier",
+      "pick item root",
+      "pick item suffix",
+      "compose surface name",
+      "attach artifact annotation for named/relic/legendary items"
+    ]
+  },
+  "integration_rules": {
+    "use_with_meaning_dictionary": [
+      "既存の漢字辞書は semantic_tags / annotation_source として利用する",
+      "surface_name は本辞典の phoneme_root + suffix から構成する",
+      "annotation は意味辞書から短く抽出する"
+    ],
+    "mixed_culture_naming": [
+      "主文化の語尾を優先する",
+      "副文化は annotation または district name に反映する",
+      "混住都市は主権種族の city suffix を維持する"
+    ]
+  },
+  "example_prompts_for_codex": [
+    {
+      "task": "街名生成",
+      "prompt": "Generate 20 city names for 長命種≪エルフ≫ using only elf roots and elf city suffixes. Output JSON with surface_name and annotation."
+    },
+    {
+      "task": "人物名生成",
+      "prompt": "Generate 30 personal names for 小人種≪ドワーフ≫. Include given_name, optional clan_name, and role title."
+    },
+    {
+      "task": "装備名生成",
+      "prompt": "Generate 40 named weapons for 魔生種≪デモニアン≫. Use katakana surface names first, and attach short annotations in 《》."
+    }
+  ],
+  "file_dependencies": {
+    "master_dictionary": "fantasy_naming_external_dictionary.json",
+    "city_dictionary": "fantasy_city_naming_dictionary.json",
+    "person_dictionary": "fantasy_personal_name_dictionary.json",
+    "equipment_dictionary": "fantasy_equipment_naming_dictionary.json",
+    "codex_reference": "fantasy_naming_codex_reference.json"
+  }
+}

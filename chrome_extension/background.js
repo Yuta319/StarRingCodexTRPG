@@ -63,10 +63,29 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
         return sendToActiveTab({ type: "shell.hide" });
       case "shell.refresh-active":
         return sendToActiveTab({ type: "shell.refresh" });
+      case "hub.open-window": {
+        const drawer = String(message.drawer || "character");
+        const url = chrome.runtime.getURL(`hub/hub.html?drawer=${encodeURIComponent(drawer)}`);
+        const created = await chrome.windows.create({
+          url,
+          type: "popup",
+          width: 1380,
+          height: 940
+        });
+        return { windowId: created.id, url };
+      }
+      case "hub.get-state": {
+        const settings = await chrome.storage.sync.get(DEFAULT_SETTINGS);
+        const local = await chrome.storage.local.get({ shellSnapshotCache: null });
+        return {
+          settings: { ...DEFAULT_SETTINGS, ...settings },
+          cache: local.shellSnapshotCache
+        };
+      }
       case "sidepanel.open-active": {
         const tab = await getActiveTab();
         if (!tab?.windowId) {
-          throw new Error("side panel を開く対象のウィンドウが見つかりません。");
+          throw new Error("設定パネルを開く対象のウィンドウが見つかりません。");
         }
         await chrome.sidePanel.open({ windowId: tab.windowId });
         return { opened: true };

@@ -5,6 +5,7 @@ from typing import Any, Dict, Optional
 import json
 
 from .assets import CanonicalAssets, load_canonical_assets
+from .character_creation import CharacterProfile, apply_character_profile
 from .gameplay_experience import ensure_campaign_state
 from .scene_builder import build_scene_output
 from .ui_builder import build_shell_snapshot, build_ui_event
@@ -53,6 +54,7 @@ def build_bundle(
     seasons: int = 10,
     archetype: str = "balanced",
     world_json: Optional[Path] = None,
+    character_profile: Optional[CharacterProfile] = None,
     assets: Optional[CanonicalAssets] = None,
     include_runtime_context: bool = False,
 ) -> Dict[str, Any]:
@@ -63,6 +65,8 @@ def build_bundle(
         if seed is None:
             raise ValueError("seed is required when world_json is not provided")
         world_state = generate_world_state(seed=seed, seasons=seasons, archetype=archetype)
+        if character_profile is not None:
+            world_state = apply_character_profile(world_state, character_profile, seed=seed)
     return build_bundle_from_world_state(world_state, canonical_assets, include_runtime_context=include_runtime_context)
 
 

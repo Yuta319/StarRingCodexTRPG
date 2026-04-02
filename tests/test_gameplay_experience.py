@@ -7,6 +7,7 @@ import tempfile
 import unittest
 
 from star_ring_codex_trpg.playable_loop import play_choice, play_free_action
+from star_ring_codex_trpg.character_creation import CharacterProfile
 from star_ring_codex_trpg.gameplay_experience import (
     _archive_role_slot_overlays,
     _prioritized_archive_entries,
@@ -88,6 +89,75 @@ class GameplayExperienceTests(unittest.TestCase):
             self.assertIn("occupantId", npc)
             self.assertTrue(npc["viceExposure"] or npc["tabooExposure"])
             self.assertTrue(npc["exposureProfile"]["viceIds"] or npc["exposureProfile"]["tabooIds"])
+
+    def test_new_game_genesis_attaches_session_one_story_setup(self) -> None:
+        bundle = build_bundle(
+            seed=1729,
+            seasons=10,
+            character_profile=CharacterProfile(
+                name="セイル",
+                race="fishfolk",
+                style="shadow",
+                temperament="curious",
+                origin="harbor",
+                loadout="tailored",
+                source_mode="reincarnated",
+                source_title="別世界の冒険者",
+                source_name="セイル",
+                appearance_notes="海色の髪と軽装の旅装。",
+                reinterpretation_notes="この世界では渡し場と湿地に馴染む姿へ寄せる。",
+            ),
+        )
+        campaign = bundle["world_state"]["campaign_state"]
+        genesis = campaign["newGameGenesis"]
+        self.assertEqual(campaign["sessionLoadout"]["sessionNumber"], 1)
+        self.assertEqual(campaign["currentHubId"], genesis["sessionOneLoadout"]["hubId"])
+        self.assertEqual(campaign["currentDungeonId"], genesis["sessionOneLoadout"]["dungeonId"])
+        self.assertEqual(
+            campaign["npcs"]["slot_truce_warden"]["occupantIndex"],
+            genesis["npcOccupantIndices"]["slot_truce_warden"],
+        )
+        self.assertIn(campaign["hub"]["label"], campaign["sessionOpeningHooks"]["1"])
+        self.assertIn(campaign["events"]["catalog"][campaign["currentEventId"]]["label"], campaign["sessionOpeningHooks"]["1"])
+
+    def test_character_profile_changes_new_game_genesis_even_with_same_seed(self) -> None:
+        left = build_bundle(
+            seed=1729,
+            seasons=10,
+            character_profile=CharacterProfile(
+                name="リオネル",
+                race="human",
+                style="envoy",
+                temperament="devout",
+                origin="court",
+                loadout="oathblade",
+                source_mode="native",
+            ),
+        )["world_state"]["campaign_state"]
+        right = build_bundle(
+            seed=1729,
+            seasons=10,
+            character_profile=CharacterProfile(
+                name="ルア",
+                race="fishfolk",
+                style="shadow",
+                temperament="rebellious",
+                origin="marsh",
+                loadout="shadowknife",
+                source_mode="reincarnated",
+                source_title="別世界の追跡者",
+                source_name="ルア",
+            ),
+        )["world_state"]["campaign_state"]
+        self.assertTrue(
+            left["currentHubId"] != right["currentHubId"]
+            or left["currentDungeonId"] != right["currentDungeonId"]
+            or left["currentEventId"] != right["currentEventId"]
+        )
+        self.assertTrue(
+            any(left["npcs"][slot_id]["occupantId"] != right["npcs"][slot_id]["occupantId"] for slot_id in left["npcs"])
+        )
+        self.assertNotEqual(left["sessionOpeningHooks"]["1"], right["sessionOpeningHooks"]["1"])
 
     def test_play_choice_advances_campaign_turn_and_mutation(self) -> None:
         result = play_choice(choice_id="observe", seed=1729, seasons=10)

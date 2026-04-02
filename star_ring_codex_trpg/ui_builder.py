@@ -32,6 +32,7 @@ def build_shell_snapshot(
     resolved_world = world_data["resolved_world"]
     world = context.world
     protagonist = resolved_world["protagonist"]
+    character_profile = protagonist.get("character_profile", {})
     cycle_state = context.cycle_state
     final_branch = world_data.get("final_branch_history", [])[-1] if world_data.get("final_branch_history") else {}
     pantheon = world_data.get("pantheon", [])
@@ -83,6 +84,16 @@ def build_shell_snapshot(
                 "tone": "seal",
             }
         )
+    starter_boon = (character_profile.get("starterBoonSeed") or {}).get("visibleBoon") or {}
+    if starter_boon:
+        blessings.append(
+            {
+                "blessingId": "starter_boon",
+                "label": starter_boon.get("label", "恩恵"),
+                "tier": "minor",
+                "tone": "custom",
+            }
+        )
 
     shell["actorRail"] = {
         "actorId": "protagonist_main",
@@ -105,10 +116,30 @@ def build_shell_snapshot(
         ],
         "blessings": blessings,
         "quickSlots": [
-            {"slotIndex": 0, "slotType": "skill", "label": "観察", "actionRef": "skill.observe"},
-            {"slotIndex": 1, "slotType": "skill", "label": "交渉", "actionRef": "skill.negotiate"},
-            {"slotIndex": 2, "slotType": "skill", "label": "調査", "actionRef": "skill.inspect"},
-            {"slotIndex": 3, "slotType": "skill", "label": "介入", "actionRef": "skill.intervene"},
+            {
+                "slotIndex": 0,
+                "slotType": "skill",
+                "label": (character_profile.get("quickSlotLabels") or ["観察", "交渉", "調査", "介入"])[0],
+                "actionRef": "skill.observe",
+            },
+            {
+                "slotIndex": 1,
+                "slotType": "skill",
+                "label": (character_profile.get("quickSlotLabels") or ["観察", "交渉", "調査", "介入"])[1],
+                "actionRef": "skill.negotiate",
+            },
+            {
+                "slotIndex": 2,
+                "slotType": "skill",
+                "label": (character_profile.get("quickSlotLabels") or ["観察", "交渉", "調査", "介入"])[2],
+                "actionRef": "skill.inspect",
+            },
+            {
+                "slotIndex": 3,
+                "slotType": "skill",
+                "label": (character_profile.get("quickSlotLabels") or ["観察", "交渉", "調査", "介入"])[3],
+                "actionRef": "skill.intervene",
+            },
         ],
     }
 

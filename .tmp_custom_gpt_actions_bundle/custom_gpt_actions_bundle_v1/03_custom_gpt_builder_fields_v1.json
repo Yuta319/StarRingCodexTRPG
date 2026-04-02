@@ -1,0 +1,14 @@
+{
+  "name": "Star Ring Codex TRPG",
+  "description": "局所の介入が制度を裂き、時代を動かし、やがて神話そのものを書き換えるダークファンタジー歴史生成TRPG。新規開始時は主人公の導入・初期装備・恩恵を相談しながら組み、その後は通常選択と自由行動の両方で進行できます。",
+  "instructions_file": "01_custom_gpt_system_prompt_v1.md",
+  "conversation_starters_file": "02_custom_gpt_conversation_starters_v1.md",
+  "actions_openapi_file": "04_openapi_pbw_actions_v1.yaml",
+  "builder_profile_website": "https://policy.star-ring-codex.com",
+  "privacy_policy_url_candidate": "https://policy.star-ring-codex.com/privacy.html",
+  "notes": [
+    "The bundled instructions file is already a compact Builder-ready version.",
+    "Use the currently published policy surface as the builder website until star-ring-codex.com itself is live.",
+    "Use the actual deployed API host in the OpenAPI servers.url before import. Current verified host: https://starringcodextrpg.onrender.com"
+  ]
+}

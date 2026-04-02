@@ -102,6 +102,8 @@ def _strings_from_display(display: dict) -> list[tuple[str, str, str]]:
     for index, npc in enumerate(display["namedCast"]):
         values.extend(
             [
+                (f"namedCast[{index}].summaryText", npc["summaryText"], "explanation"),
+                (f"namedCast[{index}].attitudeText", npc["attitudeText"], "afterglow"),
                 (f"namedCast[{index}].trustText", npc["trustText"], "afterglow"),
                 (f"namedCast[{index}].stressText", npc["stressText"], "afterglow"),
                 (f"namedCast[{index}].secretText", npc["secretText"], "afterglow"),
