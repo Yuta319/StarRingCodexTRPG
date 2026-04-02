@@ -69,6 +69,22 @@ class CustomGptPublishPacket:
         return asdict(self)
 
 
+@dataclass
+class CustomGptPublishRelease:
+    bundle_root: str
+    validation: CustomGptBundleReport
+    packet: CustomGptPublishPacket
+    manifest_path: str
+
+    def to_dict(self) -> dict:
+        return {
+            "bundle_root": self.bundle_root,
+            "validation": self.validation.to_dict(),
+            "packet": self.packet.to_dict(),
+            "manifest_path": self.manifest_path,
+        }
+
+
 def _read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
@@ -485,4 +501,52 @@ def export_custom_gpt_publish_packet(
         files=files,
         smoke_ok=smoke_ok,
         archive_path=archive_path,
+    )
+
+
+def prepare_custom_gpt_publish_release(
+    bundle_root: Path,
+    *,
+    output_dir: Path | None = None,
+    manifest_path: Path | None = None,
+    seed: int = 1729,
+    timeout_seconds: float = 20.0,
+    include_live_smoke: bool = True,
+    create_zip: bool = True,
+) -> CustomGptPublishRelease:
+    root = Path(bundle_root)
+    validation = validate_custom_gpt_bundle(root)
+    if not validation.ok:
+        raise ValueError("bundle validation failed: " + "; ".join(validation.errors))
+
+    packet = export_custom_gpt_publish_packet(
+        root,
+        output_dir=output_dir,
+        seed=seed,
+        timeout_seconds=timeout_seconds,
+        include_live_smoke=include_live_smoke,
+        create_zip=create_zip,
+    )
+
+    builder_fields, _system_prompt, _starters_text, openapi_text, _input_pack = _load_bundle_parts(root)
+    server_match = re.search(r"^\s*-\s+url:\s*(\S+)\s*$", openapi_text, flags=re.MULTILINE)
+    server_url = server_match.group(1).strip() if server_match else ""
+    manifest_file = manifest_path or (Path(packet.output_dir) / "14_publish_release_manifest_v1.json")
+    packet.files["release_manifest"] = str(manifest_file)
+    manifest = {
+        "bundle_root": str(root),
+        "builder_website": str(builder_fields.get("builder_profile_website") or "").strip(),
+        "privacy_policy_url": str(builder_fields.get("privacy_policy_url_candidate") or "").strip(),
+        "actions_server_url": server_url,
+        "seed": seed,
+        "validation": validation.to_dict(),
+        "packet": packet.to_dict(),
+    }
+    manifest_file.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    return CustomGptPublishRelease(
+        bundle_root=str(root),
+        validation=validation,
+        packet=packet,
+        manifest_path=str(manifest_file),
     )

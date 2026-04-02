@@ -31,6 +31,11 @@
 5. `07_privacy_policy_and_publish_checklist_v1.md` に従って Privacy Policy URL と Builder Profile を整える
 6. 実際の登録直前は `11_gpt_publish_ready_handoff_v1.md` を見て、live URL と貼り込み順を確認する
 7. 手元でそのまま使う最終パケットが必要なら `12_gpt_publish_packet_v1` を開く
+8. 一発で公開準備をやり直すなら次を実行する
+
+```powershell
+py -3 scripts\prepare_gpt_publish_release.py
+```
 
 ## この版の方針
 - `01_custom_gpt_system_prompt_v1.md` は Builder にそのまま貼りやすい圧縮版です

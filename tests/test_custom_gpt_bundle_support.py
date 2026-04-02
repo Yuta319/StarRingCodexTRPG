@@ -8,6 +8,7 @@ from star_ring_codex_trpg.custom_gpt_bundle_support import (
     build_custom_gpt_editor_paste_pack,
     export_custom_gpt_publish_packet,
     export_custom_gpt_editor_field_fragments,
+    prepare_custom_gpt_publish_release,
     validate_custom_gpt_bundle,
 )
 from star_ring_codex_trpg.custom_gpt_preview_fixtures import export_custom_gpt_preview_fixtures
@@ -72,6 +73,25 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             self.assertTrue(Path(packet.archive_path).exists())
             self.assertEqual(Path(packet.archive_path).suffix, ".zip")
             self.assertIn("archive_zip", packet.files)
+
+    def test_prepare_publish_release_builds_manifest_and_packet(self) -> None:
+        bundle_root = PROJECT_ROOT / ".tmp_custom_gpt_actions_bundle" / "custom_gpt_actions_bundle_v1"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "publish_packet"
+            release = prepare_custom_gpt_publish_release(
+                bundle_root,
+                output_dir=output_dir,
+                include_live_smoke=False,
+                create_zip=True,
+            )
+            self.assertTrue(release.validation.ok)
+            self.assertTrue(Path(release.manifest_path).exists())
+            self.assertEqual(Path(release.manifest_path).name, "14_publish_release_manifest_v1.json")
+            self.assertIn("release_manifest", release.packet.files)
+            self.assertIsNotNone(release.packet.archive_path)
+            manifest_text = Path(release.manifest_path).read_text(encoding="utf-8")
+            self.assertIn("builder_website", manifest_text)
+            self.assertIn("packet", manifest_text)
 
     def test_export_preview_fixtures_builds_local_examples(self) -> None:
         bundle_root = PROJECT_ROOT / ".tmp_custom_gpt_actions_bundle" / "custom_gpt_actions_bundle_v1"

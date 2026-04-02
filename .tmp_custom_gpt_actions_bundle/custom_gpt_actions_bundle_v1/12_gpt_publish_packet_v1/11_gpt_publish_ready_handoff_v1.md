@@ -48,6 +48,12 @@
 py -3 scripts\run_custom_gpt_publish_smoke.py
 ```
 
+公開準備を packet / zip / manifest ごとまとめて作り直す場合:
+
+```powershell
+py -3 scripts\prepare_gpt_publish_release.py
+```
+
 ## 4. Recommended Editor Flow
 
 1. GPT editor の `Configure` を開く
