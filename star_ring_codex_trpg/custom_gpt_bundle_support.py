@@ -666,6 +666,88 @@ def export_custom_gpt_publish_dashboard(
         """
         for index, item in enumerate(action_request_templates, start=1)
     )
+    action_response_checks = [
+        {
+            "title": "getGptReadModel",
+            "note": "read model の最初の受け取り",
+            "body": "\n".join(
+                [
+                    "PASS 条件",
+                    "- readModel.scene.title がある",
+                    "- readModel.guidance.storyGuide.now がある",
+                    "- 新規開始では guidance.openingPackage.promptHint がある",
+                    "- truth を増やさず scene / guidance を説明している",
+                ]
+            ),
+        },
+        {
+            "title": "finalizeCharacter",
+            "note": "確定後の正本確認",
+            "body": "\n".join(
+                [
+                    "PASS 条件",
+                    "- playSource.world_json が更新されている",
+                    "- readModel.guidance.openingPackage が残っている",
+                    "- appliedGenesis がある",
+                    "- 確定後の内容を案ではなく確定内容として説明できる",
+                ]
+            ),
+        },
+        {
+            "title": "playChoice",
+            "note": "通常進行の返り値確認",
+            "body": "\n".join(
+                [
+                    "PASS 条件",
+                    "- playSource.world_json がある",
+                    "- transition がある",
+                    "- readModel.scene.title がある",
+                    "- readModel.source.turnInSession が進んでいる",
+                ]
+            ),
+        },
+        {
+            "title": "playFreeAction",
+            "note": "自由行動の返り値確認",
+            "body": "\n".join(
+                [
+                    "PASS 条件",
+                    "- playSource.world_json がある",
+                    "- structuredResult がある",
+                    "- readModel.scene.title がある",
+                    "- raw 入力ではなく structuredResult と readModel を元に説明している",
+                ]
+            ),
+        },
+        {
+            "title": "saveSession / loadSession / nextSession",
+            "note": "セッション系 action の返り値確認",
+            "body": "\n".join(
+                [
+                    "PASS 条件",
+                    "- saveSession: saveId / savePath / savedAt がある",
+                    "- loadSession: playSource.world_json と readModel がある",
+                    "- nextSession: playSource.world_json と readModel がある",
+                    "- nextSession では sessionNumber や nextSessionHook を確認する",
+                ]
+            ),
+        },
+    ]
+    action_response_checks_html = "".join(
+        f"""
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>{escape(item["title"])}</h3>
+                <p class="field__meta">{escape(item["note"])}</p>
+              </div>
+              <button type="button" data-copy-target="action-response-{index}">Copy</button>
+            </div>
+            <pre id="action-response-{index}">{escape(item["body"])}</pre>
+          </article>
+        """
+        for index, item in enumerate(action_response_checks, start=1)
+    )
     troubleshooting_items = [
         {
             "title": "Action import が失敗する",
@@ -1563,6 +1645,19 @@ def export_custom_gpt_publish_dashboard(
             </div>
             <div class="action-stack">
               {action_request_templates_html}
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Action Response Checks</h2>
+                <p class="field__meta">返り値で最低限見る項目</p>
+              </div>
+            </div>
+            <div class="action-stack">
+              {action_response_checks_html}
             </div>
           </div>
         </section>
