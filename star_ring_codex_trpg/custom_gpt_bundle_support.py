@@ -651,6 +651,8 @@ def export_custom_gpt_publish_packet(
     output_dir: Path | None = None,
     seed: int = 1729,
     timeout_seconds: float = 20.0,
+    smoke_retries: int = 2,
+    smoke_retry_delay_seconds: float = 1.0,
     include_live_smoke: bool = True,
     create_zip: bool = False,
 ) -> CustomGptPublishPacket:
@@ -691,7 +693,13 @@ def export_custom_gpt_publish_packet(
     if include_live_smoke:
         from .custom_gpt_publish_smoke import run_custom_gpt_publish_smoke
 
-        smoke_report = run_custom_gpt_publish_smoke(root, seed=seed, timeout_seconds=timeout_seconds)
+        smoke_report = run_custom_gpt_publish_smoke(
+            root,
+            seed=seed,
+            timeout_seconds=timeout_seconds,
+            retries=smoke_retries,
+            retry_delay_seconds=smoke_retry_delay_seconds,
+        )
         smoke_ok = smoke_report.ok
         smoke_report_path.write_text(json.dumps(smoke_report.to_dict(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -793,6 +801,8 @@ def prepare_custom_gpt_publish_release(
     manifest_path: Path | None = None,
     seed: int = 1729,
     timeout_seconds: float = 20.0,
+    smoke_retries: int = 2,
+    smoke_retry_delay_seconds: float = 1.0,
     include_live_smoke: bool = True,
     create_zip: bool = True,
 ) -> CustomGptPublishRelease:
@@ -806,6 +816,8 @@ def prepare_custom_gpt_publish_release(
         output_dir=output_dir,
         seed=seed,
         timeout_seconds=timeout_seconds,
+        smoke_retries=smoke_retries,
+        smoke_retry_delay_seconds=smoke_retry_delay_seconds,
         include_live_smoke=include_live_smoke,
         create_zip=create_zip,
     )
@@ -821,6 +833,8 @@ def prepare_custom_gpt_publish_release(
         "privacy_policy_url": str(builder_fields.get("privacy_policy_url_candidate") or "").strip(),
         "actions_server_url": server_url,
         "seed": seed,
+        "smoke_retries": smoke_retries,
+        "smoke_retry_delay_seconds": smoke_retry_delay_seconds,
         "validation": validation.to_dict(),
         "packet": packet.to_dict(),
     }

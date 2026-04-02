@@ -22,6 +22,13 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--seed", type=int, default=1729, help="Seed used for snapshot/read-model smoke checks")
     parser.add_argument("--timeout-seconds", type=float, default=20.0, help="HTTP timeout per request")
+    parser.add_argument("--retries", type=int, default=2, help="Retry count for transient HTTP failures")
+    parser.add_argument(
+        "--retry-delay-seconds",
+        type=float,
+        default=1.0,
+        help="Delay between transient-failure retries",
+    )
     return parser
 
 
@@ -31,6 +38,8 @@ def main() -> None:
         args.bundle_root,
         seed=args.seed,
         timeout_seconds=args.timeout_seconds,
+        retries=args.retries,
+        retry_delay_seconds=args.retry_delay_seconds,
     )
     print(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))
     if not report.ok:

@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from star_ring_codex_trpg.custom_gpt_bundle_support import (
     build_custom_gpt_editor_paste_pack,
@@ -12,6 +13,7 @@ from star_ring_codex_trpg.custom_gpt_bundle_support import (
     prepare_custom_gpt_publish_release,
     validate_custom_gpt_bundle,
 )
+from star_ring_codex_trpg.custom_gpt_publish_smoke import CustomGptPublishSmokeReport
 from star_ring_codex_trpg.custom_gpt_preview_fixtures import export_custom_gpt_preview_fixtures
 
 
@@ -94,6 +96,35 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             manifest_text = Path(release.manifest_path).read_text(encoding="utf-8")
             self.assertIn("builder_website", manifest_text)
             self.assertIn("packet", manifest_text)
+
+    def test_export_publish_packet_forwards_smoke_retry_settings(self) -> None:
+        bundle_root = PROJECT_ROOT / ".tmp_custom_gpt_actions_bundle" / "custom_gpt_actions_bundle_v1"
+        smoke_report = CustomGptPublishSmokeReport(
+            bundle_root=str(bundle_root),
+            ok=True,
+            seed=1729,
+            targets={"api_server_url": "https://starringcodextrpg.onrender.com"},
+            checks=[],
+            errors=[],
+        )
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "publish_packet"
+            with patch(
+                "star_ring_codex_trpg.custom_gpt_publish_smoke.run_custom_gpt_publish_smoke",
+                return_value=smoke_report,
+            ) as smoke_mock:
+                packet = export_custom_gpt_publish_packet(
+                    bundle_root,
+                    output_dir=output_dir,
+                    include_live_smoke=True,
+                    smoke_retries=4,
+                    smoke_retry_delay_seconds=0.25,
+                )
+            self.assertTrue(packet.smoke_ok)
+            smoke_mock.assert_called_once()
+            _, kwargs = smoke_mock.call_args
+            self.assertEqual(kwargs["retries"], 4)
+            self.assertEqual(kwargs["retry_delay_seconds"], 0.25)
 
     def test_build_publish_workspace_resolves_packet_and_urls(self) -> None:
         bundle_root = PROJECT_ROOT / ".tmp_custom_gpt_actions_bundle" / "custom_gpt_actions_bundle_v1"

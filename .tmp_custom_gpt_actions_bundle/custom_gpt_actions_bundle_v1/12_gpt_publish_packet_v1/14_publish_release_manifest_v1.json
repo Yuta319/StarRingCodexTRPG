@@ -4,6 +4,8 @@
   "privacy_policy_url": "https://starringcodextrpg.onrender.com/privacy.html",
   "actions_server_url": "https://starringcodextrpg.onrender.com",
   "seed": 1729,
+  "smoke_retries": 2,
+  "smoke_retry_delay_seconds": 1.0,
   "validation": {
     "bundle_root": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1",
     "ok": true,

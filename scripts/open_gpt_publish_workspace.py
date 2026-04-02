@@ -43,6 +43,13 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Skip live smoke when used together with --prepare",
     )
+    parser.add_argument("--retries", type=int, default=2, help="Retry count for transient HTTP failures when preparing")
+    parser.add_argument(
+        "--retry-delay-seconds",
+        type=float,
+        default=1.0,
+        help="Delay between transient-failure retries when preparing",
+    )
     parser.add_argument(
         "--no-zip",
         action="store_true",
@@ -74,6 +81,8 @@ def main() -> None:
         prepare_custom_gpt_publish_release(
             args.bundle_root,
             output_dir=args.packet_dir,
+            smoke_retries=args.retries,
+            smoke_retry_delay_seconds=args.retry_delay_seconds,
             include_live_smoke=not args.skip_live_smoke,
             create_zip=not args.no_zip,
         )

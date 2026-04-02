@@ -36,6 +36,13 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--seed", type=int, default=1729, help="Seed used for live smoke validation")
     parser.add_argument("--timeout-seconds", type=float, default=20.0, help="HTTP timeout per request")
+    parser.add_argument("--retries", type=int, default=2, help="Retry count for transient HTTP failures")
+    parser.add_argument(
+        "--retry-delay-seconds",
+        type=float,
+        default=1.0,
+        help="Delay between transient-failure retries",
+    )
     parser.add_argument(
         "--skip-live-smoke",
         action="store_true",
@@ -57,6 +64,8 @@ def main() -> None:
         manifest_path=args.manifest_path,
         seed=args.seed,
         timeout_seconds=args.timeout_seconds,
+        smoke_retries=args.retries,
+        smoke_retry_delay_seconds=args.retry_delay_seconds,
         include_live_smoke=not args.skip_live_smoke,
         create_zip=not args.no_zip,
     )

@@ -4,6 +4,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 import json
 import socket
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -117,17 +118,49 @@ def _status_ok(status: int | None) -> bool:
     return isinstance(status, int) and 200 <= status < 300
 
 
+def _is_retryable_status(status: int | None) -> bool:
+    return status is None or status in {502, 503, 504}
+
+
+def _http_request_with_retries(
+    url: str,
+    *,
+    method: str = "GET",
+    body: dict | None = None,
+    timeout_seconds: float = 20.0,
+    retries: int = 2,
+    retry_delay_seconds: float = 1.0,
+) -> tuple[int | None, str, object]:
+    attempts = max(0, retries) + 1
+    last_result: tuple[int | None, str, object] = (None, "", {"error": "request not attempted"})
+    for attempt in range(attempts):
+        last_result = _http_request(url, method=method, body=body, timeout_seconds=timeout_seconds)
+        status, _raw, _payload = last_result
+        if not _is_retryable_status(status) or attempt == attempts - 1:
+            return last_result
+        if retry_delay_seconds > 0:
+            time.sleep(retry_delay_seconds)
+    return last_result
+
+
 def run_custom_gpt_publish_smoke(
     bundle_root: Path,
     *,
     seed: int = 1729,
     timeout_seconds: float = 20.0,
+    retries: int = 2,
+    retry_delay_seconds: float = 1.0,
 ) -> CustomGptPublishSmokeReport:
     targets = load_custom_gpt_publish_targets(bundle_root)
     checks: list[PublishCheckResult] = []
     errors: list[str] = []
 
-    website_status, website_raw, _website_payload = _http_request(targets.builder_website, timeout_seconds=timeout_seconds)
+    website_status, website_raw, _website_payload = _http_request_with_retries(
+        targets.builder_website,
+        timeout_seconds=timeout_seconds,
+        retries=retries,
+        retry_delay_seconds=retry_delay_seconds,
+    )
     checks.append(
         PublishCheckResult(
             name="builder_website",
@@ -138,7 +171,12 @@ def run_custom_gpt_publish_smoke(
         )
     )
 
-    privacy_status, privacy_raw, _privacy_payload = _http_request(targets.privacy_policy_url, timeout_seconds=timeout_seconds)
+    privacy_status, privacy_raw, _privacy_payload = _http_request_with_retries(
+        targets.privacy_policy_url,
+        timeout_seconds=timeout_seconds,
+        retries=retries,
+        retry_delay_seconds=retry_delay_seconds,
+    )
     checks.append(
         PublishCheckResult(
             name="privacy_policy",
@@ -150,7 +188,12 @@ def run_custom_gpt_publish_smoke(
     )
 
     api_base = targets.api_server_url.rstrip("/")
-    health_status, _health_raw, health_payload = _http_request(f"{api_base}/health", timeout_seconds=timeout_seconds)
+    health_status, _health_raw, health_payload = _http_request_with_retries(
+        f"{api_base}/health",
+        timeout_seconds=timeout_seconds,
+        retries=retries,
+        retry_delay_seconds=retry_delay_seconds,
+    )
     checks.append(
         PublishCheckResult(
             name="api_health",
@@ -162,7 +205,12 @@ def run_custom_gpt_publish_smoke(
     )
 
     snapshot_url = f"{api_base}/api/front/snapshot?{urllib.parse.urlencode({'seed': seed})}"
-    snapshot_status, _snapshot_raw, snapshot_payload = _http_request(snapshot_url, timeout_seconds=timeout_seconds)
+    snapshot_status, _snapshot_raw, snapshot_payload = _http_request_with_retries(
+        snapshot_url,
+        timeout_seconds=timeout_seconds,
+        retries=retries,
+        retry_delay_seconds=retry_delay_seconds,
+    )
     world_json = _json_detail(snapshot_payload, "playSource", "world_json")
     checks.append(
         PublishCheckResult(
@@ -175,7 +223,12 @@ def run_custom_gpt_publish_smoke(
     )
 
     read_model_url = f"{api_base}/api/gpt-read-model?{urllib.parse.urlencode({'seed': seed})}"
-    read_status, _read_raw, read_payload = _http_request(read_model_url, timeout_seconds=timeout_seconds)
+    read_status, _read_raw, read_payload = _http_request_with_retries(
+        read_model_url,
+        timeout_seconds=timeout_seconds,
+        retries=retries,
+        retry_delay_seconds=retry_delay_seconds,
+    )
     opening_package_hint = _json_detail(read_payload, "readModel", "guidance", "openingPackage", "promptHint")
     checks.append(
         PublishCheckResult(
@@ -195,11 +248,13 @@ def run_custom_gpt_publish_smoke(
             "openingLines": ["公開前の疎通確認として、開始導入を短く整える。"],
         },
     }
-    finalize_status, _finalize_raw, finalize_payload = _http_request(
+    finalize_status, _finalize_raw, finalize_payload = _http_request_with_retries(
         finalize_url,
         method="POST",
         body=finalize_body,
         timeout_seconds=timeout_seconds,
+        retries=retries,
+        retry_delay_seconds=retry_delay_seconds,
     )
     finalize_hint = _json_detail(finalize_payload, "readModel", "guidance", "openingPackage", "promptHint")
     checks.append(
