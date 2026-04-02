@@ -31,6 +31,7 @@
     "output_dir": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1",
     "files": {
       "summary": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\00_publish_summary.md",
+      "dashboard": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\15_gpt_publish_dashboard_v1.html",
       "paste_pack": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\09_gpt_editor_paste_ready_pack_v1.md",
       "field_fragments_dir": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1",
       "preview_fixtures_dir": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\13_gpt_preview_fixtures_v1",

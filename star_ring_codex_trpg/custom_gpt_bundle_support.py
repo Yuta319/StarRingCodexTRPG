@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+from html import escape
 from pathlib import Path
 import json
 import re
@@ -99,6 +100,17 @@ class CustomGptPublishWorkspace:
 
 def _read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
+
+
+def _read_optional_text(path: Path) -> str:
+    return path.read_text(encoding="utf-8") if path.exists() else ""
+
+
+def _relative_href(base_dir: Path, target: Path) -> str:
+    try:
+        return target.relative_to(base_dir).as_posix()
+    except ValueError:
+        return target.resolve().as_uri()
 
 
 def _find_operation_ids(openapi_text: str) -> list[str]:
@@ -378,6 +390,259 @@ def export_custom_gpt_editor_field_fragments(
     )
 
 
+def export_custom_gpt_publish_dashboard(
+    bundle_root: Path,
+    *,
+    packet_dir: Path | None = None,
+    output_path: Path | None = None,
+) -> Path:
+    root = Path(bundle_root)
+    packet_root = packet_dir or (root / "12_gpt_publish_packet_v1")
+    workspace = build_custom_gpt_publish_workspace(root, packet_dir=packet_root)
+    fragments_dir = Path(workspace.local_paths["field_fragments_dir"])
+    dashboard_path = output_path or (packet_root / "15_gpt_publish_dashboard_v1.html")
+
+    fields = {
+        "Name": _read_optional_text(Path(fragments_dir / "name.txt")).strip(),
+        "Description": _read_optional_text(Path(fragments_dir / "description.txt")).strip(),
+        "Instructions": _read_optional_text(Path(fragments_dir / "instructions.txt")).strip(),
+        "Conversation Starters": _read_optional_text(Path(fragments_dir / "conversation_starters.txt")).strip(),
+        "Builder Website": _read_optional_text(Path(fragments_dir / "builder_website.txt")).strip(),
+        "Privacy Policy URL": _read_optional_text(Path(fragments_dir / "privacy_policy_url.txt")).strip(),
+        "Actions Import Path": _read_optional_text(Path(fragments_dir / "actions_import_path.txt")).strip(),
+        "Actions Server URL": _read_optional_text(Path(fragments_dir / "actions_server_url.txt")).strip(),
+    }
+    summary = _read_optional_text(Path(workspace.local_paths["summary"])).strip()
+    scorecard = _read_optional_text(Path(workspace.local_paths["preview_scorecard"])).strip()
+
+    resource_links = [
+        ("Publish Summary", Path(workspace.local_paths["summary"])),
+        ("Handoff", Path(workspace.local_paths["handoff"])),
+        ("Paste-Ready Pack", Path(workspace.local_paths["paste_pack"])),
+        ("Field Fragments Manifest", Path(workspace.local_paths["field_fragments_manifest"])),
+        ("OpenAPI Import", Path(workspace.local_paths["openapi_import"])),
+        ("Preview Scorecard", Path(workspace.local_paths["preview_scorecard"])),
+        ("Release Manifest", Path(workspace.local_paths["release_manifest"])),
+    ]
+
+    html = f"""<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GPT Publish Dashboard v1</title>
+  <style>
+    :root {{
+      color-scheme: dark;
+      --bg: #120f0d;
+      --panel: #1d1713;
+      --panel-2: #241d18;
+      --text: #f4eadc;
+      --muted: #c8b69d;
+      --line: rgba(223, 187, 130, 0.22);
+      --accent: #dfbb82;
+      --accent-2: #8bb39a;
+    }}
+    * {{ box-sizing: border-box; }}
+    body {{
+      margin: 0;
+      font-family: "Segoe UI", "Hiragino Sans", "Yu Gothic UI", sans-serif;
+      background: radial-gradient(circle at top, #2b2119 0%, var(--bg) 48%);
+      color: var(--text);
+    }}
+    main {{
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px;
+    }}
+    h1, h2, h3, p {{ margin: 0; }}
+    .hero, .panel {{
+      background: linear-gradient(180deg, rgba(36,29,24,0.94), rgba(24,18,14,0.94));
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.22);
+    }}
+    .hero {{
+      display: grid;
+      gap: 14px;
+      margin-bottom: 18px;
+    }}
+    .hero__meta, .url-list, .resource-list {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }}
+    .chip, .resource-link, .url-link, button {{
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      padding: 8px 14px;
+      text-decoration: none;
+      cursor: pointer;
+    }}
+    .grid {{
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 18px;
+      align-items: start;
+    }}
+    .stack {{
+      display: grid;
+      gap: 18px;
+    }}
+    .field {{
+      display: grid;
+      gap: 10px;
+      margin-bottom: 16px;
+    }}
+    .field:last-child {{ margin-bottom: 0; }}
+    .field__head {{
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }}
+    .field__meta {{
+      color: var(--muted);
+      font-size: 13px;
+    }}
+    textarea {{
+      width: 100%;
+      min-height: 92px;
+      resize: vertical;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.18);
+      color: var(--text);
+      padding: 14px;
+      font: inherit;
+      line-height: 1.55;
+    }}
+    textarea.is-tall {{ min-height: 240px; }}
+    pre {{
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      color: var(--text);
+      line-height: 1.6;
+      max-height: 320px;
+      overflow: auto;
+    }}
+    .status {{
+      color: var(--accent-2);
+      font-size: 14px;
+      min-height: 1.4em;
+    }}
+    @media (max-width: 980px) {{
+      .grid {{ grid-template-columns: 1fr; }}
+    }}
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="field__meta">GPT Editor Registration</p>
+        <h1>{escape(fields["Name"] or "Star Ring Codex TRPG")}</h1>
+      </div>
+      <p>公開用 packet の断片、live URL、Preview の確認表を一枚にまとめた dashboard です。必要なテキストをその場でコピーできます。</p>
+      <div class="hero__meta">
+        <span class="chip">Packet: {escape(packet_root.name)}</span>
+        <span class="chip">Missing: {escape(str(len(workspace.missing)))}</span>
+        <span class="chip">Server: {escape(workspace.urls["actions_server_url"])}</span>
+      </div>
+      <div class="url-list">
+        <a class="url-link" href="{escape(workspace.urls['builder_website'])}" target="_blank" rel="noreferrer">Builder Website</a>
+        <a class="url-link" href="{escape(workspace.urls['privacy_policy_url'])}" target="_blank" rel="noreferrer">Privacy Policy</a>
+      </div>
+      <div class="resource-list">
+        {"".join(f'<a class="resource-link" href="{escape(_relative_href(packet_root, target))}" target="_blank" rel="noreferrer">{escape(label)}</a>' for label, target in resource_links)}
+      </div>
+    </section>
+    <div class="grid">
+      <section class="panel">
+        <div class="field">
+          <div class="field__head">
+            <div>
+              <h2>Editor Fields</h2>
+              <p class="field__meta">Name / Description / Instructions / Conversation Starters / URLs</p>
+            </div>
+            <div class="status" id="copy-status"></div>
+          </div>
+        </div>
+        {"".join(
+            f'''
+            <div class="field">
+              <div class="field__head">
+                <div>
+                  <h3>{escape(label)}</h3>
+                  <p class="field__meta">{escape(str(len(value)))} chars</p>
+                </div>
+                <button type="button" data-copy-target="field-{index}">Copy</button>
+              </div>
+              <textarea id="field-{index}" class="{'is-tall' if label in ('Instructions', 'Conversation Starters') else ''}">{escape(value)}</textarea>
+            </div>
+            '''
+            for index, (label, value) in enumerate(fields.items(), start=1)
+        )}
+      </section>
+      <section class="stack">
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Publish Summary</h2>
+                <p class="field__meta">packet 全体の入口</p>
+              </div>
+              <button type="button" data-copy-target="summary-block">Copy</button>
+            </div>
+            <pre id="summary-block">{escape(summary)}</pre>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Preview Scorecard</h2>
+                <p class="field__meta">Preview の合格ライン</p>
+              </div>
+              <button type="button" data-copy-target="scorecard-block">Copy</button>
+            </div>
+            <pre id="scorecard-block">{escape(scorecard)}</pre>
+          </div>
+        </section>
+      </section>
+    </div>
+  </main>
+  <script>
+    const status = document.getElementById("copy-status");
+    async function copyFromElement(id) {{
+      const element = document.getElementById(id);
+      const value = element?.value ?? element?.textContent ?? "";
+      await navigator.clipboard.writeText(value);
+      status.textContent = "Copied: " + id;
+      window.setTimeout(() => {{
+        if (status.textContent === "Copied: " + id) {{
+          status.textContent = "";
+        }}
+      }}, 1600);
+    }}
+    document.querySelectorAll("[data-copy-target]").forEach((button) => {{
+      button.addEventListener("click", () => copyFromElement(button.dataset.copyTarget));
+    }});
+  </script>
+</body>
+</html>
+"""
+    dashboard_path.write_text(html, encoding="utf-8")
+    return dashboard_path
+
+
 def export_custom_gpt_publish_packet(
     bundle_root: Path,
     *,
@@ -442,6 +707,7 @@ def export_custom_gpt_publish_packet(
         "## Included Files",
         "",
         f"- Paste-ready pack: `{paste_pack_path.name}`",
+        f"- Dashboard: `15_gpt_publish_dashboard_v1.html`",
         f"- Field fragments: `{fragments_dir.name}`",
         f"- Preview fixtures: `{preview_dir.name}`",
         f"- OpenAPI import: `{copied_files['openapi'].name}`",
@@ -465,7 +731,7 @@ def export_custom_gpt_publish_packet(
             "## Recommended Start",
             "",
             "1. `11_gpt_publish_ready_handoff_v1.md` を開く",
-            "2. `09_gpt_editor_paste_ready_pack_v1.md` か `10_gpt_editor_field_fragments_v1` を使って GPT editor に貼る",
+            "2. `15_gpt_publish_dashboard_v1.html` か `09_gpt_editor_paste_ready_pack_v1.md` を開く",
             "3. `04_openapi_pbw_actions_v1.yaml` を Actions へ import する",
             "4. `13_gpt_preview_fixtures_v1` を見ながら Preview で新規開始と通常進行を確認する",
         ]
@@ -481,9 +747,11 @@ def export_custom_gpt_publish_packet(
         )
     summary_path = out_dir / "00_publish_summary.md"
     summary_path.write_text("\n".join(summary_lines).strip() + "\n", encoding="utf-8")
+    dashboard_path = export_custom_gpt_publish_dashboard(root, packet_dir=out_dir)
 
     files = {
         "summary": str(summary_path),
+        "dashboard": str(dashboard_path),
         "paste_pack": str(paste_pack_path),
         "field_fragments_dir": str(fragments_dir),
         "preview_fixtures_dir": str(preview_dir),
@@ -579,6 +847,7 @@ def build_custom_gpt_publish_workspace(
         "packet_dir": str(packet_root),
         "zip_archive": str(root / "12_gpt_publish_packet_v1.zip"),
         "summary": str(packet_root / "00_publish_summary.md"),
+        "dashboard": str(packet_root / "15_gpt_publish_dashboard_v1.html"),
         "handoff": str(packet_root / "11_gpt_publish_ready_handoff_v1.md"),
         "paste_pack": str(packet_root / "09_gpt_editor_paste_ready_pack_v1.md"),
         "field_fragments_dir": str(packet_root / "10_gpt_editor_field_fragments_v1"),
@@ -592,7 +861,7 @@ def build_custom_gpt_publish_workspace(
         "privacy_policy_url": str(builder_fields.get("privacy_policy_url_candidate") or "").strip(),
         "actions_server_url": server_url,
     }
-    missing = [label for label, target in local_paths.items() if not Path(target).exists()]
+    missing = [label for label, target in local_paths.items() if label != "zip_archive" and not Path(target).exists()]
 
     return CustomGptPublishWorkspace(
         bundle_root=str(root),

@@ -88,7 +88,7 @@ def main() -> None:
         raise SystemExit(1)
 
     if args.open:
-        for key in ("packet_dir", "handoff", "field_fragments_dir", "preview_scorecard"):
+        for key in ("dashboard", "handoff", "field_fragments_dir", "preview_scorecard"):
             _open_target(workspace.local_paths[key])
         for key in ("builder_website", "privacy_policy_url"):
             _open_target(workspace.urls[key])

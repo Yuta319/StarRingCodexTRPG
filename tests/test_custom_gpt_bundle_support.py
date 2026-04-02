@@ -53,6 +53,7 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             output_dir = Path(temp_dir) / "publish_packet"
             packet = export_custom_gpt_publish_packet(bundle_root, output_dir=output_dir, include_live_smoke=False)
             self.assertTrue(Path(packet.files["summary"]).exists())
+            self.assertTrue(Path(packet.files["dashboard"]).exists())
             self.assertTrue(Path(packet.files["paste_pack"]).exists())
             self.assertTrue(Path(packet.files["openapi"]).exists())
             self.assertTrue(Path(packet.files["handoff"]).exists())
@@ -99,6 +100,7 @@ class CustomGptBundleSupportTests(unittest.TestCase):
         workspace = build_custom_gpt_publish_workspace(bundle_root)
         self.assertEqual(workspace.missing, [])
         self.assertIn("packet_dir", workspace.local_paths)
+        self.assertIn("dashboard", workspace.local_paths)
         self.assertIn("preview_scorecard", workspace.local_paths)
         self.assertIn("builder_website", workspace.urls)
         self.assertTrue(workspace.urls["builder_website"].startswith("https://"))
