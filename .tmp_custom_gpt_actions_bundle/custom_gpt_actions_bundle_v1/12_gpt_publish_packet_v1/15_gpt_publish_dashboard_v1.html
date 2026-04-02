@@ -601,12 +601,12 @@
               
           <div class="snapshot-row">
             <span>Generated (UTC)</span>
-            <strong>2026-04-02T19:28:31Z</strong>
+            <strong>2026-04-02T19:31:55Z</strong>
           </div>
         
           <div class="snapshot-row">
             <span>Git Commit</span>
-            <strong>f153b1dd696f62efb6e66128fd2e8283258805a9-dirty</strong>
+            <strong>b13eb96610e671ec5aab609e9546750824b71ca1-dirty</strong>
           </div>
         
           <div class="snapshot-row">
@@ -645,8 +645,8 @@
   &quot;builder_website&quot;: &quot;https://starringcodextrpg.onrender.com/builder-profile.html&quot;,
   &quot;privacy_policy_url&quot;: &quot;https://starringcodextrpg.onrender.com/privacy.html&quot;,
   &quot;actions_server_url&quot;: &quot;https://starringcodextrpg.onrender.com&quot;,
-  &quot;generated_at_utc&quot;: &quot;2026-04-02T19:28:31Z&quot;,
-  &quot;git_commit&quot;: &quot;f153b1dd696f62efb6e66128fd2e8283258805a9-dirty&quot;,
+  &quot;generated_at_utc&quot;: &quot;2026-04-02T19:31:55Z&quot;,
+  &quot;git_commit&quot;: &quot;b13eb96610e671ec5aab609e9546750824b71ca1-dirty&quot;,
   &quot;seed&quot;: 1729,
   &quot;smoke_retries&quot;: 2,
   &quot;smoke_retry_delay_seconds&quot;: 1.0,
@@ -756,7 +756,7 @@
             <span class="readiness-row__status is-warn">CHECK</span>
             <div class="readiness-row__body">
               <strong>Git State</strong>
-              <p>f153b1dd696f62efb6e66128fd2e8283258805a9-dirty</p>
+              <p>b13eb96610e671ec5aab609e9546750824b71ca1-dirty</p>
             </div>
           </article>
         
@@ -1031,6 +1031,127 @@
               </div>
             </div>
             <pre id="action-example-4">turn: 2 / scene: 非武装境界破り</pre>
+          </article>
+        
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Action Request Templates</h2>
+                <p class="field__meta">operation ごとの最小 request 例</p>
+              </div>
+            </div>
+            <div class="action-stack">
+              
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>getGptReadModel / initial</h3>
+                <p class="field__meta">新規開始の最初の read</p>
+              </div>
+              <button type="button" data-copy-target="action-request-1">Copy</button>
+            </div>
+            <pre id="action-request-1">GET /api/gpt-read-model?seed=1729</pre>
+          </article>
+        
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>getGptReadModel / follow-up</h3>
+                <p class="field__meta">world_json を持った後の再読</p>
+              </div>
+              <button type="button" data-copy-target="action-request-2">Copy</button>
+            </div>
+            <pre id="action-request-2">GET /api/gpt-read-model?world_json=C:\Users\quiet\Desktop\myproject\StarRingCodexTRPG\.runtime\ui_sessions\world_d2f9aebac4b116e6.json</pre>
+          </article>
+        
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>finalizeCharacter</h3>
+                <p class="field__meta">導入と開始装備の案を backend へ確定させる</p>
+              </div>
+              <button type="button" data-copy-target="action-request-3">Copy</button>
+            </div>
+            <pre id="action-request-3">{
+  &quot;world_json&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_b4757f62d86c870e.json&quot;,
+  &quot;proposal&quot;: {
+    &quot;openingHeadline&quot;: &quot;公開前確認の導入&quot;,
+    &quot;openingLines&quot;: [
+      &quot;公開前の疎通確認として、開始導入を短く整える。&quot;
+    ]
+  }
+}</pre>
+          </article>
+        
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>playChoice</h3>
+                <p class="field__meta">通常 choice を進める最小 request</p>
+              </div>
+              <button type="button" data-copy-target="action-request-4">Copy</button>
+            </div>
+            <pre id="action-request-4">{
+  &quot;choiceId&quot;: &quot;observe&quot;,
+  &quot;world_json&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_922e08f46f312f04.json&quot;
+}</pre>
+          </article>
+        
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>playFreeAction</h3>
+                <p class="field__meta">自由行動を進める最小 request</p>
+              </div>
+              <button type="button" data-copy-target="action-request-5">Copy</button>
+            </div>
+            <pre id="action-request-5">{
+  &quot;actionText&quot;: &quot;夜中に裏帳面を盗み見たい。&quot;,
+  &quot;world_json&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_922e08f46f312f04.json&quot;
+}</pre>
+          </article>
+        
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>saveSession</h3>
+                <p class="field__meta">現在の world を保存する request</p>
+              </div>
+              <button type="button" data-copy-target="action-request-6">Copy</button>
+            </div>
+            <pre id="action-request-6">{
+  &quot;world_json&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_922e08f46f312f04.json&quot;
+}</pre>
+          </article>
+        
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>loadSession</h3>
+                <p class="field__meta">saveSession 後に戻す request</p>
+              </div>
+              <button type="button" data-copy-target="action-request-7">Copy</button>
+            </div>
+            <pre id="action-request-7">{
+  &quot;saveId&quot;: &quot;&lt;saveId from saveSession&gt;&quot;
+}</pre>
+          </article>
+        
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>nextSession</h3>
+                <p class="field__meta">次のセッションへ進める request</p>
+              </div>
+              <button type="button" data-copy-target="action-request-8">Copy</button>
+            </div>
+            <pre id="action-request-8">{
+  &quot;world_json&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_922e08f46f312f04.json&quot;
+}</pre>
           </article>
         
             </div>

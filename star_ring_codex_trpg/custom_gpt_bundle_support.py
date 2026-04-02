@@ -562,6 +562,110 @@ def export_custom_gpt_publish_dashboard(
         """
         for item in action_examples
     )
+    initial_world_json = str(initial_fixture.get("playSource", {}).get("world_json") or "")
+    finalized_world_json = str(finalize_fixture.get("playSource", {}).get("world_json") or initial_world_json)
+    play_world_json = str(choice_fixture.get("playSource", {}).get("world_json") or finalized_world_json)
+    action_request_templates = [
+        {
+            "title": "getGptReadModel / initial",
+            "note": "新規開始の最初の read",
+            "body": f"GET /api/gpt-read-model?seed={release_manifest.get('seed') or 1729}",
+        },
+        {
+            "title": "getGptReadModel / follow-up",
+            "note": "world_json を持った後の再読",
+            "body": f"GET /api/gpt-read-model?world_json={finalized_world_json or '<world_json>'}",
+        },
+        {
+            "title": "finalizeCharacter",
+            "note": "導入と開始装備の案を backend へ確定させる",
+            "body": json.dumps(
+                {
+                    "world_json": initial_world_json or "<world_json>",
+                    "proposal": {
+                        "openingHeadline": "公開前確認の導入",
+                        "openingLines": [
+                            "公開前の疎通確認として、開始導入を短く整える。"
+                        ],
+                    },
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+        },
+        {
+            "title": "playChoice",
+            "note": "通常 choice を進める最小 request",
+            "body": json.dumps(
+                {
+                    "choiceId": "observe",
+                    "world_json": play_world_json or "<world_json>",
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+        },
+        {
+            "title": "playFreeAction",
+            "note": "自由行動を進める最小 request",
+            "body": json.dumps(
+                {
+                    "actionText": "夜中に裏帳面を盗み見たい。",
+                    "world_json": play_world_json or "<world_json>",
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+        },
+        {
+            "title": "saveSession",
+            "note": "現在の world を保存する request",
+            "body": json.dumps(
+                {
+                    "world_json": play_world_json or "<world_json>",
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+        },
+        {
+            "title": "loadSession",
+            "note": "saveSession 後に戻す request",
+            "body": json.dumps(
+                {
+                    "saveId": "<saveId from saveSession>",
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+        },
+        {
+            "title": "nextSession",
+            "note": "次のセッションへ進める request",
+            "body": json.dumps(
+                {
+                    "world_json": play_world_json or "<world_json>",
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+        },
+    ]
+    action_request_templates_html = "".join(
+        f"""
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>{escape(item["title"])}</h3>
+                <p class="field__meta">{escape(item["note"])}</p>
+              </div>
+              <button type="button" data-copy-target="action-request-{index}">Copy</button>
+            </div>
+            <pre id="action-request-{index}">{escape(item["body"])}</pre>
+          </article>
+        """
+        for index, item in enumerate(action_request_templates, start=1)
+    )
     troubleshooting_items = [
         {
             "title": "Action import が失敗する",
@@ -1446,6 +1550,19 @@ def export_custom_gpt_publish_dashboard(
             </div>
             <div class="action-stack">
               {action_examples_html}
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Action Request Templates</h2>
+                <p class="field__meta">operation ごとの最小 request 例</p>
+              </div>
+            </div>
+            <div class="action-stack">
+              {action_request_templates_html}
             </div>
           </div>
         </section>
