@@ -416,6 +416,24 @@ def export_custom_gpt_publish_dashboard(
     field_index_by_label = {label: index for index, (label, _value) in enumerate(field_items, start=1)}
     summary = _read_optional_text(Path(workspace.local_paths["summary"])).strip()
     scorecard = _read_optional_text(Path(workspace.local_paths["preview_scorecard"])).strip()
+    fragments_manifest = json.loads(_read_optional_text(Path(workspace.local_paths["field_fragments_manifest"])) or "{}")
+    live_smoke_report = json.loads(_read_optional_text(packet_root / "live_smoke_report.json") or "{}")
+    smoke_checks = live_smoke_report.get("checks") or []
+    smoke_check_rows = "".join(
+        f"""
+            <div class="smoke-row">
+              <span>{escape(str(check.get("name") or ""))}</span>
+              <strong class="smoke-row__status {'is-ok' if check.get('ok') else 'is-bad'}">
+                {escape('OK' if check.get('ok') else 'NG')}
+              </strong>
+            </div>
+        """
+        for check in smoke_checks
+    ) or "<p class='field__meta'>live smoke の記録はまだありません。</p>"
+    actions_operations = fragments_manifest.get("operations_found") or []
+    actions_operations_html = "".join(
+        f"<span class=\"chip chip--operation\">{escape(str(item))}</span>" for item in actions_operations
+    ) or "<span class='field__meta'>operation 情報なし</span>"
 
     resource_links = [
         ("Publish Summary", Path(workspace.local_paths["summary"])),
@@ -674,6 +692,43 @@ def export_custom_gpt_publish_dashboard(
       color: var(--muted);
       font-size: 13px;
     }}
+    .actions-box {{
+      display: grid;
+      gap: 12px;
+    }}
+    .actions-box__grid {{
+      display: grid;
+      gap: 12px;
+    }}
+    .actions-box__ops {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }}
+    .chip--operation {{
+      background: rgba(139, 179, 154, 0.08);
+      border-color: rgba(139, 179, 154, 0.28);
+    }}
+    .smoke-list {{
+      display: grid;
+      gap: 8px;
+    }}
+    .smoke-row {{
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }}
+    .smoke-row__status.is-ok {{
+      color: var(--accent-2);
+    }}
+    .smoke-row__status.is-bad {{
+      color: #d98272;
+    }}
     @media (max-width: 980px) {{
       .grid {{ grid-template-columns: 1fr; }}
     }}
@@ -732,6 +787,61 @@ def export_custom_gpt_publish_dashboard(
         )}
       </section>
       <section class="stack">
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Actions Setup</h2>
+                <p class="field__meta">import / server / operations / smoke</p>
+              </div>
+              <div class="status">{escape('live smoke: OK' if live_smoke_report.get('ok') else 'live smoke: not ready')}</div>
+            </div>
+          </div>
+          <div class="actions-box">
+            <div class="actions-box__grid">
+              <div class="field">
+                <div class="field__head">
+                  <div>
+                    <h3>Import Path</h3>
+                    <p class="field__meta">Actions へ読み込む YAML</p>
+                  </div>
+                  <button type="button" data-copy-target="field-{field_index_by_label['Actions Import Path']}">Copy</button>
+                </div>
+                <textarea id="actions-import-path" rows="2">{escape(fields["Actions Import Path"])}</textarea>
+              </div>
+              <div class="field">
+                <div class="field__head">
+                  <div>
+                    <h3>Server URL</h3>
+                    <p class="field__meta">OpenAPI の servers.url と一致させる</p>
+                  </div>
+                  <button type="button" data-copy-target="field-{field_index_by_label['Actions Server URL']}">Copy</button>
+                </div>
+                <textarea id="actions-server-url" rows="2">{escape(fields["Actions Server URL"])}</textarea>
+              </div>
+            </div>
+            <div class="field">
+              <div class="field__head">
+                <div>
+                  <h3>Expected Operations</h3>
+                  <p class="field__meta">import 後に揃っているか確認する</p>
+                </div>
+                <button type="button" data-copy-target="actions-operations-block">Copy</button>
+              </div>
+              <div id="actions-operations-block" class="actions-box__ops">{actions_operations_html}</div>
+            </div>
+            <div class="field">
+              <div class="field__head">
+                <div>
+                  <h3>Latest Smoke</h3>
+                  <p class="field__meta">直近の live smoke 状態</p>
+                </div>
+                <button type="button" data-copy-target="actions-smoke-block">Copy</button>
+              </div>
+              <div id="actions-smoke-block" class="smoke-list">{smoke_check_rows}</div>
+            </div>
+          </div>
+        </section>
         <section class="panel">
           <div class="checklist__head">
             <div>

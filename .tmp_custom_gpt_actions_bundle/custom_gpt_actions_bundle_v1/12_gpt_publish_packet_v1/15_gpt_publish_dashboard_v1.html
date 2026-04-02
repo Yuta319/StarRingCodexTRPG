@@ -162,6 +162,43 @@
       color: var(--muted);
       font-size: 13px;
     }
+    .actions-box {
+      display: grid;
+      gap: 12px;
+    }
+    .actions-box__grid {
+      display: grid;
+      gap: 12px;
+    }
+    .actions-box__ops {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip--operation {
+      background: rgba(139, 179, 154, 0.08);
+      border-color: rgba(139, 179, 154, 0.28);
+    }
+    .smoke-list {
+      display: grid;
+      gap: 8px;
+    }
+    .smoke-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+    .smoke-row__status.is-ok {
+      color: var(--accent-2);
+    }
+    .smoke-row__status.is-bad {
+      color: #d98272;
+    }
     @media (max-width: 980px) {
       .grid { grid-template-columns: 1fr; }
     }
@@ -366,6 +403,103 @@
             
       </section>
       <section class="stack">
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Actions Setup</h2>
+                <p class="field__meta">import / server / operations / smoke</p>
+              </div>
+              <div class="status">live smoke: OK</div>
+            </div>
+          </div>
+          <div class="actions-box">
+            <div class="actions-box__grid">
+              <div class="field">
+                <div class="field__head">
+                  <div>
+                    <h3>Import Path</h3>
+                    <p class="field__meta">Actions へ読み込む YAML</p>
+                  </div>
+                  <button type="button" data-copy-target="field-7">Copy</button>
+                </div>
+                <textarea id="actions-import-path" rows="2">C:\Users\quiet\Desktop\myproject\StarRingCodexTRPG\.tmp_custom_gpt_actions_bundle\custom_gpt_actions_bundle_v1\04_openapi_pbw_actions_v1.yaml</textarea>
+              </div>
+              <div class="field">
+                <div class="field__head">
+                  <div>
+                    <h3>Server URL</h3>
+                    <p class="field__meta">OpenAPI の servers.url と一致させる</p>
+                  </div>
+                  <button type="button" data-copy-target="field-8">Copy</button>
+                </div>
+                <textarea id="actions-server-url" rows="2">https://starringcodextrpg.onrender.com</textarea>
+              </div>
+            </div>
+            <div class="field">
+              <div class="field__head">
+                <div>
+                  <h3>Expected Operations</h3>
+                  <p class="field__meta">import 後に揃っているか確認する</p>
+                </div>
+                <button type="button" data-copy-target="actions-operations-block">Copy</button>
+              </div>
+              <div id="actions-operations-block" class="actions-box__ops"><span class="chip chip--operation">finalizeCharacter</span><span class="chip chip--operation">getGptReadModel</span><span class="chip chip--operation">loadSession</span><span class="chip chip--operation">nextSession</span><span class="chip chip--operation">playChoice</span><span class="chip chip--operation">playFreeAction</span><span class="chip chip--operation">saveSession</span></div>
+            </div>
+            <div class="field">
+              <div class="field__head">
+                <div>
+                  <h3>Latest Smoke</h3>
+                  <p class="field__meta">直近の live smoke 状態</p>
+                </div>
+                <button type="button" data-copy-target="actions-smoke-block">Copy</button>
+              </div>
+              <div id="actions-smoke-block" class="smoke-list">
+            <div class="smoke-row">
+              <span>builder_website</span>
+              <strong class="smoke-row__status is-ok">
+                OK
+              </strong>
+            </div>
+        
+            <div class="smoke-row">
+              <span>privacy_policy</span>
+              <strong class="smoke-row__status is-ok">
+                OK
+              </strong>
+            </div>
+        
+            <div class="smoke-row">
+              <span>api_health</span>
+              <strong class="smoke-row__status is-ok">
+                OK
+              </strong>
+            </div>
+        
+            <div class="smoke-row">
+              <span>front_snapshot</span>
+              <strong class="smoke-row__status is-ok">
+                OK
+              </strong>
+            </div>
+        
+            <div class="smoke-row">
+              <span>gpt_read_model</span>
+              <strong class="smoke-row__status is-ok">
+                OK
+              </strong>
+            </div>
+        
+            <div class="smoke-row">
+              <span>gpt_finalize_character</span>
+              <strong class="smoke-row__status is-ok">
+                OK
+              </strong>
+            </div>
+        </div>
+            </div>
+          </div>
+        </section>
         <section class="panel">
           <div class="checklist__head">
             <div>

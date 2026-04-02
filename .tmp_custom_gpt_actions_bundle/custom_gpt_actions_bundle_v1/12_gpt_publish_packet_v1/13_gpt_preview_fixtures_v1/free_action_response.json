@@ -1,7 +1,7 @@
 {
   "playSource": {
     "seed": null,
-    "world_json": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_efd92f869be2a349.json"
+    "world_json": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_7dfedb9827726624.json"
   },
   "readModel": {
     "version": "gpt_read_model_v1",
@@ -24,7 +24,7 @@
     },
     "source": {
       "seed": 1729,
-      "worldJson": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_efd92f869be2a349.json",
+      "worldJson": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_7dfedb9827726624.json",
       "archetype": "balanced",
       "seasons": 10,
       "sessionNumber": 1,
@@ -32,7 +32,7 @@
       "phaseLabel": "偵察局面"
     },
     "scene": {
-      "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_29941_5",
+      "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_10634_6",
       "title": "非武装境界破り",
       "location": "灰の辺境州",
       "headline": "渡し場の検札違いの余波が、灰の辺境州の「非武装境界破り」へ直結している。",
@@ -85,7 +85,7 @@
       "storyGuide": {
         "now": "第1セッションの偵察局面だ。いま問題になっているのは「渡し場の検札違い」で、場面の焦点は「非武装境界破り」にある。",
         "stakes": "渡し札と検疫札の順が食い違い、誰を先に舟へ乗せるかで場が割れている。検疫の手順が崩れると、水運も避難も同時に止まりやすい。序盤二手で渡し場の流れを読めないと、以後の補給と封路対応が両方遅れる。",
-        "worldState": "ルアカイの渡し場では拠点の足元が揺らいでいる。補給はひとまず保たれている。場の空気はまだ荒れきっていない。塩鏡の祠洞では封印はまだ働いている。坑路の危険が増している。奥へ踏み込んで道筋を確かめている。世界のゆらぎが目立ち始めている。神々の対立が表に出始めている。継承争いが各地で表に出始めている。昇神をめぐる気配が濃くなっている。",
+        "worldState": "ルアカイの渡し場では拠点の足元が揺らいでいる。補給はひとまず保たれている。場の空気はまだ荒れきっていない。塩鏡の祠洞では封印はまだ働いている。坑路の危険が増している。奥へ踏み込んで道筋を確かめている。世界のゆらぎが目立ち始めている。神々の対立が強く噴き出している。継承争いが各地で表に出始めている。昇神をめぐる気配が濃くなっている。",
         "trace": "最近は「周囲を見る」を選ぶことが多い。自由行動の隠れた成功: 必要な物証を確保し、相手より先に流れを握る。",
         "forecast": "鐘路に猶予が残りそうだ。拠点と坑路の両方にまだ持ち直しの余地がある。",
         "recommendedChoices": [
@@ -364,15 +364,15 @@
     "world": {
       "worldSpine": {
         "worldName": "霧環連界",
-        "calendarName": "オルシェル暦",
-        "year": 7,
+        "calendarName": "セディオン暦",
+        "year": 6,
         "seasonIndex": 10,
         "eraLabel": "昇神期",
-        "mainGodLabel": "オルシェル",
+        "mainGodLabel": "セディオン",
         "activeChainLabel": "境界軍事化連鎖",
-        "cycleDistortion": 57.0,
-        "divineWarPressure": 66.7,
-        "dominantBranch": "管理者の端",
+        "cycleDistortion": 59.0,
+        "divineWarPressure": 72.0,
+        "dominantBranch": "代替わりの介添え",
         "topNotes": [
           "渡し場の検札違い",
           "ルアカイの渡し場: 緊張が高まっている",
@@ -381,7 +381,7 @@
         "syncState": "synced"
       },
       "worldPulse": {
-        "summary": "世界のゆらぎが目立ち始めている。神々の対立が表に出始めている。継承争いが各地で表に出始めている。昇神をめぐる気配が濃くなっている。",
+        "summary": "世界のゆらぎが目立ち始めている。神々の対立が強く噴き出している。継承争いが各地で表に出始めている。昇神をめぐる気配が濃くなっている。",
         "focus": "いま特に強いのは「昇神のうねり」だ。局地の事件にもその圧が表に出やすい。",
         "read": "数字が高い項目ほど、その場面の判断や事件の空気に割り込んできやすい。"
       },
@@ -758,14 +758,14 @@
         ]
       },
       "activeNode": {
-        "nodeId": "node_inst_border_01_cl_demilitarized_border_29941_5",
+        "nodeId": "node_inst_border_01_cl_demilitarized_border_10634_6",
         "title": "非武装境界破り",
         "chainLabel": "境界軍事化連鎖",
         "institutionLabel": "穀冠王国と灰縁侯の不可侵条約",
         "questTitle": "渡し札と検疫札のどちらを先に通すか決める。",
         "severity": 100.0,
         "urgency": 100.0,
-        "stage": 1,
+        "stage": 5,
         "status": "active",
         "recommendedVectors": [
           "diplomacy",
@@ -780,14 +780,14 @@
         "guide": {
           "summary": "先送りしにくい局面だ。次の一手で被害や対立の広がり方が決まりやすい。",
           "action": "向いているのは diplomacy, stewardship, authority だ。",
-          "timing": "まだ入口だ。観察や聞き取りで責任の流れをつかみやすい。"
+          "timing": "流れはかなり固まりつつある。大きくひっくり返すより、損を減らす判断が重くなる。"
         }
       },
       "institutionAlert": {
         "institutionId": "inst_border_01",
         "label": "穀冠王国と灰縁侯の不可侵条約",
-        "status": "strained",
-        "breachRisk": 83.0,
+        "status": "broken",
+        "breachRisk": 100.0,
         "guide": {
           "summary": "「穀冠王国と灰縁侯の不可侵条約」はかなり危うい。このまま崩れると、渡し場の検札違いの収め方の選択肢まで狭くなる。",
           "consequence": "取り決めが崩れると、次の交渉、補給、通行のどれかが止まりやすい。"
@@ -802,9 +802,9 @@
         "pressureStyle": "渡し順、検疫、船荷札のどれを優先するかが主題になる。",
         "protectedAsset": "澱舟泊へ届く渡し舟",
         "lostAsset": "澱舟泊の検疫線",
-        "stability": 49.0,
-        "supply": 63.9,
-        "heat": 43.7,
+        "stability": 48.7,
+        "supply": 63.8,
+        "heat": 45.7,
         "status": "tense",
         "statusLabel": "緊張が高まっている",
         "statusText": "いまにも荒れそうだ。",
@@ -821,8 +821,8 @@
         "lostAsset": "塩鏡の祠洞の神託路",
         "depth": 1,
         "maxDepth": 4,
-        "sealIntegrity": 62.4,
-        "threat": 62.8,
+        "sealIntegrity": 62.3,
+        "threat": 63.3,
         "status": "unstable",
         "statusLabel": "揺らいでいる",
         "statusText": "いまにも崩れそうだ。",
@@ -831,7 +831,7 @@
       "endingForecast": {
         "title": "鐘路に猶予が残りそうだ",
         "tone": "steady",
-        "score": 0.6,
+        "score": -0.5,
         "dominantChoice": "observe",
         "summary": "拠点と坑路の両方にまだ持ち直しの余地がある。"
       }
@@ -996,7 +996,7 @@
     },
     "runtime": {
       "readOnly": true,
-      "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_29941_5",
+      "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_10634_6",
       "sessionId": "sess_1729",
       "archiveCount": 0
     }
