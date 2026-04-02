@@ -1,7 +1,7 @@
 {
   "playSource": {
     "seed": null,
-    "world_json": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_8cf39243e1cdf80f.json"
+    "world_json": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_a145cb27ff22e654.json"
   },
   "readModel": {
     "version": "gpt_read_model_v1",
@@ -24,7 +24,7 @@
     },
     "source": {
       "seed": 1729,
-      "worldJson": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_8cf39243e1cdf80f.json",
+      "worldJson": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_a145cb27ff22e654.json",
       "archetype": "balanced",
       "seasons": 10,
       "sessionNumber": 1,
@@ -32,21 +32,21 @@
       "phaseLabel": "偵察局面"
     },
     "scene": {
-      "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_71318_5",
-      "title": "非武装境界破り",
-      "location": "灰の辺境州",
-      "headline": "渡し場の検札違いの余波が、灰の辺境州の「非武装境界破り」へ直結している。",
+      "sceneId": "scene_white_shrine_node_inst_blockade_01_cl_refugee_corridor_98817_10",
+      "title": "難民回廊封鎖",
+      "location": "白祠圏",
+      "headline": "渡し場の検札違いの余波が、白祠圏の「難民回廊封鎖」へ直結している。",
       "openingLines": [
-        "灰の辺境州では、非武装境界破りをめぐるざわめきが、もう奥に隠れきっていない。",
-        "穀冠王国と灰縁侯のあいだで責任の押し付け合いが始まり、見張りも通行人も視線を落ち着けられずにいる。",
-        "境界の軍事化により相互不可侵の根幹が崩れている。",
+        "白祠圏では、難民回廊封鎖をめぐるざわめきが、もう奥に隠れきっていない。",
+        "白祠教会と瘴冠領のあいだで責任の押し付け合いが始まり、見張りも通行人も視線を落ち着けられずにいる。",
+        "難民回廊が襲撃と配給破綻で崩れかけている。",
         "固有事件「渡し場の検札違い」では、渡し札と検疫札の順が食い違い、誰を先に舟へ乗せるかで場が割れている。",
         "検疫の手順が崩れると、水運も避難も同時に止まりやすい。序盤二手で渡し場の流れを読めないと、以後の補給と封路対応が両方遅れる。",
         "ルアカイの渡し場では拠点の足元が揺らいでいる。補給はひとまず保たれている。場の空気はまだ荒れきっていない。"
       ],
       "dramaticLayers": {
-        "place": "灰の辺境州",
-        "focus": "非武装境界破り",
+        "place": "白祠圏",
+        "focus": "難民回廊封鎖",
         "discrepancy": "渡し札と検疫札の順が食い違い、誰を先に舟へ乗せるかで場が割れている。",
         "reaction": "ルアカイの渡し場の荒れ方と塩鏡の祠洞の封印の揺れが、同じ局面を別方向から押している",
         "aftermath": "検疫の手順が崩れると、水運も避難も同時に止まりやすい。"
@@ -83,10 +83,10 @@
         ]
       },
       "storyGuide": {
-        "now": "第1セッションの偵察局面だ。いま問題になっているのは「渡し場の検札違い」で、場面の焦点は「非武装境界破り」にある。",
+        "now": "第1セッションの偵察局面だ。いま問題になっているのは「渡し場の検札違い」で、場面の焦点は「難民回廊封鎖」にある。",
         "stakes": "渡し札と検疫札の順が食い違い、誰を先に舟へ乗せるかで場が割れている。検疫の手順が崩れると、水運も避難も同時に止まりやすい。序盤二手で渡し場の流れを読めないと、以後の補給と封路対応が両方遅れる。",
         "worldState": "ルアカイの渡し場では拠点の足元が揺らいでいる。補給はひとまず保たれている。場の空気はまだ荒れきっていない。塩鏡の祠洞では封印はまだ働いている。坑路の危険が増している。奥へ踏み込んで道筋を確かめている。世界のゆらぎが目立ち始めている。神々の対立が表に出始めている。継承争いが各地で表に出始めている。昇神をめぐる気配が濃くなっている。",
-        "trace": "最近は「周囲を見る」を選ぶことが多い。自由行動の隠れた成功: 必要な物証を確保し、相手より先に流れを握る。",
+        "trace": "最近は「周囲を見る」を選ぶことが多い。自由行動の代償: 必要な物証を確保し、相手より先に流れを握る。",
         "forecast": "鐘路に猶予が残りそうだ。拠点と坑路の両方にまだ持ち直しの余地がある。",
         "recommendedChoices": [
           "observe",
@@ -126,7 +126,7 @@
         "starterLoadout": [
           {
             "slotLabel": "右手武器",
-            "name": "検札の直剣",
+            "name": "舟の直剣",
             "subtitle": "直剣 / 光",
             "rarityLabel": "冠位",
             "stats": [
@@ -134,11 +134,11 @@
               "信仰補正 59",
               "戦技: 誓約の返し"
             ],
-            "flavorText": "直剣と手灯で、列と約束を守るための基本装備。 検札の局面で抜くために整えられており、目立ちすぎず、それでも役割が通る形に収められている。"
+            "flavorText": "直剣と手灯で、列と約束を守るための基本装備。 舟の局面で抜くために整えられており、目立ちすぎず、それでも役割が通る形に収められている。"
           },
           {
             "slotLabel": "左手灯具",
-            "name": "検札の灯",
+            "name": "舟の灯",
             "subtitle": "灯 / 補助具",
             "rarityLabel": "奉納",
             "stats": [
@@ -146,7 +146,7 @@
               "詠唱補助 51",
               "固有: 露見抑制"
             ],
-            "flavorText": "直剣と手灯で、列と約束を守るための基本装備。 検札の手順を見失わないための補助具で、見落としを減らす一方、持ち手の迷いまでは隠せない。"
+            "flavorText": "直剣と手灯で、列と約束を守るための基本装備。 舟の手順を見失わないための補助具で、見落としを減らす一方、持ち手の迷いまでは隠せない。"
           },
           {
             "slotLabel": "頭防具",
@@ -162,7 +162,7 @@
           },
           {
             "slotLabel": "胴防具",
-            "name": "検札の外套",
+            "name": "舟の外套",
             "subtitle": "胴防具 / 外套",
             "rarityLabel": "秘蔵",
             "stats": [
@@ -369,14 +369,14 @@
         "seasonIndex": 10,
         "eraLabel": "昇神期",
         "mainGodLabel": "セディオン",
-        "activeChainLabel": "境界軍事化連鎖",
-        "cycleDistortion": 53.6,
-        "divineWarPressure": 61.2,
+        "activeChainLabel": "食糧危機連鎖",
+        "cycleDistortion": 57.5,
+        "divineWarPressure": 62.1,
         "dominantBranch": "管理者の端",
         "topNotes": [
           "渡し場の検札違い",
           "ルアカイの渡し場: 緊張が高まっている",
-          "塩鏡の祠洞: 揺らいでいる"
+          "塩鏡の祠洞: まだ封じられている"
         ],
         "syncState": "synced"
       },
@@ -390,7 +390,7 @@
         "statusLabel": "かなり切迫している",
         "summaryText": "渡し札と検疫札の順が食い違い、誰を先に舟へ乗せるかで場が割れている。",
         "importanceText": "検疫の手順が崩れると、水運も避難も同時に止まりやすい。序盤二手で渡し場の流れを読めないと、以後の補給と封路対応が両方遅れる。",
-        "lastOutcomeText": "綱がさらに絡み、渡し順と責任の押し付け合いだけが増えた。",
+        "lastOutcomeText": "綱はほどけたが、後回しにされた列の恨みが残った。",
         "branchPreview": [
           {
             "branchId": "branch_brine_pass_compare",
@@ -758,14 +758,14 @@
         ]
       },
       "activeNode": {
-        "nodeId": "node_inst_border_01_cl_demilitarized_border_71318_5",
-        "title": "非武装境界破り",
-        "chainLabel": "境界軍事化連鎖",
-        "institutionLabel": "穀冠王国と灰縁侯の不可侵条約",
+        "nodeId": "node_inst_blockade_01_cl_refugee_corridor_98817_10",
+        "title": "難民回廊封鎖",
+        "chainLabel": "食糧危機連鎖",
+        "institutionLabel": "白祠教会による瘴冠領封鎖令",
         "questTitle": "渡し札と検疫札のどちらを先に通すか決める。",
         "severity": 100.0,
         "urgency": 100.0,
-        "stage": 1,
+        "stage": 3,
         "status": "active",
         "recommendedVectors": [
           "diplomacy",
@@ -773,23 +773,23 @@
           "authority"
         ],
         "projectedLegacies": [
-          "建築",
           "制度",
-          "伝承"
+          "伝承",
+          "正史"
         ],
         "guide": {
           "summary": "先送りしにくい局面だ。次の一手で被害や対立の広がり方が決まりやすい。",
           "action": "向いているのは diplomacy, stewardship, authority だ。",
-          "timing": "まだ入口だ。観察や聞き取りで責任の流れをつかみやすい。"
+          "timing": "事件は途中段階だ。ここで選んだ向きが、後の分岐を決めやすい。"
         }
       },
       "institutionAlert": {
-        "institutionId": "inst_border_01",
-        "label": "穀冠王国と灰縁侯の不可侵条約",
-        "status": "broken",
-        "breachRisk": 91.2,
+        "institutionId": "inst_blockade_01",
+        "label": "白祠教会による瘴冠領封鎖令",
+        "status": "strained",
+        "breachRisk": 100.0,
         "guide": {
-          "summary": "「穀冠王国と灰縁侯の不可侵条約」はかなり危うい。このまま崩れると、渡し場の検札違いの収め方の選択肢まで狭くなる。",
+          "summary": "「白祠教会による瘴冠領封鎖令」はかなり危うい。このまま崩れると、渡し場の検札違いの収め方の選択肢まで狭くなる。",
           "consequence": "取り決めが崩れると、次の交渉、補給、通行のどれかが止まりやすい。"
         }
       },
@@ -803,8 +803,8 @@
         "protectedAsset": "澱舟泊へ届く渡し舟",
         "lostAsset": "澱舟泊の検疫線",
         "stability": 49.2,
-        "supply": 64.1,
-        "heat": 43.8,
+        "supply": 64.7,
+        "heat": 41.8,
         "status": "tense",
         "statusLabel": "緊張が高まっている",
         "statusText": "いまにも荒れそうだ。",
@@ -821,17 +821,17 @@
         "lostAsset": "塩鏡の祠洞の神託路",
         "depth": 1,
         "maxDepth": 4,
-        "sealIntegrity": 62.7,
-        "threat": 62.2,
-        "status": "unstable",
-        "statusLabel": "揺らいでいる",
-        "statusText": "いまにも崩れそうだ。",
+        "sealIntegrity": 66.0,
+        "threat": 59.2,
+        "status": "sealed",
+        "statusLabel": "まだ封じられている",
+        "statusText": "封印はまだ働いている。",
         "supportText": "塩鏡の祠洞では封印はまだ働いている。坑路の危険が増している。奥へ踏み込んで道筋を確かめている。"
       },
       "endingForecast": {
         "title": "鐘路に猶予が残りそうだ",
         "tone": "steady",
-        "score": 1.3,
+        "score": 5.4,
         "dominantChoice": "observe",
         "summary": "拠点と坑路の両方にまだ持ち直しの余地がある。"
       }
@@ -846,8 +846,8 @@
         "trustText": "協力の余地はあるが、全面的には任せていない。",
         "stressText": "平静を装っているが余裕は薄い。",
         "conflictText": "停戦執行官は街道を止めずに回したいが、目録官は帳簿の穴を塞がないまま列を動かすことを認めない。",
-        "traceText": "「舟綱列をほどく」の傷を自分の持ち場へ押し返されたと感じている。視線が印章と見張りの往復へ向くと、先に停戦の大義を口にする。 今回の傷は簡単には忘れない。",
-        "secretText": "隠し事の気配がある。記録の余白だけ別の筆圧で埋まっている。さらに余白の筆跡と交換記録を公に突き合わせられると、隠した名が表に出る。",
+        "traceText": "「舟綱列をほどく」のあとも、こちらの次の手を測っている。視線が印章と見張りの往復へ向くと、先に停戦の大義を口にする。 今回の傷は簡単には忘れない。",
+        "secretText": "まだ隠していることがある。交換記録の余白を追うと、消された名の跡が浮かぶ。",
         "weaknessText": "負傷者の搬送列を見ると強くは押し切れない。搬送列が目の前にある場面では、停戦の建前より救命を優先しやすい。"
       },
       {
@@ -868,11 +868,11 @@
         "roleLabel": "目録官",
         "occupantLabel": "ユノ〈目録官〉",
         "summaryText": "目録官として、台帳の穴と責任の所在を見える形にする。",
-        "attitudeText": "協力の余地はあるが、全面的には任せていない。平静を装っているが余裕は薄い。",
-        "trustText": "協力の余地はあるが、全面的には任せていない。",
+        "attitudeText": "助けは欲していても、簡単には腹を割らない。平静を装っているが余裕は薄い。",
+        "trustText": "助けは欲していても、簡単には腹を割らない。",
         "stressText": "平静を装っているが余裕は薄い。",
         "conflictText": "目録官は数字を公開して責任をはっきりさせたいが、停戦執行官は街道を保つために帳簿の穴を伏せたい。",
-        "traceText": "前のセッションの余波以来、まだ疑いを解かず、細かな違和感から先に拾おうとしている。まだこちらの出方を測っている。荷札や荷車の流れを見られると、数字より順路の話へ逸らそうとする。",
+        "traceText": "前のセッションの余波以来、役目そのものを信じ切らず、まず距離を測っている。まだこちらの出方を測っている。荷札や荷車の流れを見られると、数字より順路の話へ逸らそうとする。",
         "secretText": "まだ隠していることがある。荷札番号の抜けを追うと、故意に外した痕が見える。",
         "weaknessText": "人前で数字の整合を問われると焦って取り繕う。群衆の前で即答を迫られると、誤差をごまかそうとする。"
       },
@@ -881,9 +881,9 @@
         "roleLabel": "坑路案内",
         "occupantLabel": "ガルド〈坑路案内〉",
         "summaryText": "坑路案内として、白灰坑道の深部へ届き、生きて戻す。",
-        "attitudeText": "助けは欲していても、簡単には腹を割らない。かなり追い詰められている。",
-        "trustText": "助けは欲していても、簡単には腹を割らない。",
-        "stressText": "かなり追い詰められている。",
+        "attitudeText": "協力の余地はあるが、全面的には任せていない。平静を装っているが余裕は薄い。",
+        "trustText": "協力の余地はあるが、全面的には任せていない。",
+        "stressText": "平静を装っているが余裕は薄い。",
         "conflictText": "坑路案内は生還の道を確保したいが、祈鐘士は禁制を犯してでも鐘譜と封印を守ろうとする。",
         "traceText": "あなたが「周囲を見る」を選んだことを、まだ好意的に見ている。地形を読む目には協力するが、退路の本数だけは最後まで濁す。",
         "secretText": "まだ隠していることがある。古い崩落図を見せると、継ぎ目の先にある退路を即座に示す。",
@@ -898,7 +898,7 @@
         "trustText": "協力の余地はあるが、全面的には任せていない。",
         "stressText": "平静を装っているが余裕は薄い。",
         "conflictText": "宿場差配は列を先へ流したいが、目録官は台帳が合わないまま寝床札と配給を増やしたくない。",
-        "traceText": "前のセッションの余波以来、まだ疑いを解かず、細かな違和感から先に拾おうとしている。まだこちらの出方を測っている。列の長さを数えられると、先に今夜の寒さを理由にする。",
+        "traceText": "前のセッションの余波以来、役目そのものを信じ切らず、まず距離を測っている。まだこちらの出方を測っている。列の長さを数えられると、先に今夜の寒さを理由にする。",
         "secretText": "まだ隠していることがある。寝床札の束と夜番の控えを照らすと、別札の折り癖が浮かぶ。",
         "weaknessText": "泣き声と空腹を前にすると列を乱してでも配ってしまう。子どもや負傷者の列を前にすると、優先順位を崩してでも寝床と粥を回したくなる。"
       },
@@ -937,7 +937,7 @@
         "trustText": "助けは欲していても、簡単には腹を割らない。",
         "stressText": "かなり追い詰められている。",
         "conflictText": "渡し守は舟を切らさず流したいが、宿場差配は寝床と配給の順を守るために渡しへ回す人数を絞りたい。",
-        "traceText": "前のセッションの余波以来、まだ疑いを解かず、細かな違和感から先に拾おうとしている。「舟綱列をほどく」の傷を自分の持ち場へ押し返されたと感じている。水位と杭を読む相手には目を向けるが、裏の渡し場の流れは最後まで濁す。 今回の傷は簡単には忘れない。",
+        "traceText": "前のセッションの余波以来、役目そのものを信じ切らず、まず距離を測っている。「舟綱列をほどく」のあとも、こちらの次の手を測っている。水位と杭を読む相手には目を向けるが、裏の渡し場の流れは最後まで濁す。",
         "secretText": "まだ隠していることがある。舟印の塩跡と夜番控えを照らすと、余計な一本を通した跡が見える。",
         "weaknessText": "溺死と置き去りを前にすると、検疫より先に舟を出してしまう。足止めされた列に幼子やけが人がいると、規則より先に舟を出したくなる。"
       },
@@ -978,7 +978,7 @@
     "freeActionSurface": {
       "latest": {
         "summary": "目録官まわりの物証を抜き取ろうとした",
-        "outcome": "concealed_success",
+        "outcome": "partial_success",
         "afterglow": "まだ誰も確信していないが、静かな違和感だけが残る。",
         "residue": "隠れた不正の痕"
       },
@@ -996,7 +996,7 @@
     },
     "runtime": {
       "readOnly": true,
-      "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_71318_5",
+      "sceneId": "scene_white_shrine_node_inst_blockade_01_cl_refugee_corridor_98817_10",
       "sessionId": "sess_1729",
       "archiveCount": 0
     }
@@ -1005,10 +1005,10 @@
     "summary": "目録官まわりの物証を抜き取ろうとした",
     "residue": "隠れた不正の痕",
     "intentType": "custom_action",
-    "outcome": "concealed_success",
-    "successBand": "clean",
+    "outcome": "partial_success",
+    "successBand": "mixed",
     "discoveryState": "unseen",
-    "note": "窃盗・掠奪は気づかれ切らないまま通ったが、跡だけは残った。 まだ誰も確信していない。",
+    "note": "窃盗・掠奪は通ったが、借りと疑いが残った。 まだ誰も確信していない。",
     "viceTags": [
       "theft"
     ],
@@ -1017,10 +1017,10 @@
   "transition": {
     "choiceId": "custom_action",
     "intentType": "custom_action",
-    "outcome": "concealed_success",
-    "beforeScene": "賠償履行争議",
-    "afterScene": "非武装境界破り",
-    "message": "目録官まわりの物証を抜き取ろうとした。窃盗・掠奪は気づかれ切らないまま通ったが、跡だけは残った。 まだ誰も確信していない。 まだ誰も確信していないが、静かな違和感だけが残る。",
+    "outcome": "partial_success",
+    "beforeScene": "供給割当破綻",
+    "afterScene": "難民回廊封鎖",
+    "message": "目録官まわりの物証を抜き取ろうとした。窃盗・掠奪は通ったが、借りと疑いが残った。 まだ誰も確信していない。 まだ誰も確信していないが、静かな違和感だけが残る。",
     "discoveryState": "unseen"
   }
 }

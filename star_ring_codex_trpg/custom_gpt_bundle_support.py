@@ -558,7 +558,9 @@ def export_custom_gpt_publish_dashboard(
       </div>
       <div class="url-list">
         <a class="url-link" href="{escape(workspace.urls['gpt_editor_url'])}" target="_blank" rel="noreferrer">Open GPT Editor</a>
-        <a class="url-link" href="{escape(workspace.urls['gpt_create_help_url'])}" target="_blank" rel="noreferrer">OpenAI Help</a>
+        <a class="url-link" href="{escape(workspace.urls['gpt_create_help_url'])}" target="_blank" rel="noreferrer">Create Help</a>
+        <a class="url-link" href="{escape(workspace.urls['gpt_publish_help_url'])}" target="_blank" rel="noreferrer">Publish Help</a>
+        <a class="url-link" href="{escape(workspace.urls['gpt_actions_help_url'])}" target="_blank" rel="noreferrer">Actions Help</a>
         <a class="url-link" href="{escape(workspace.urls['builder_website'])}" target="_blank" rel="noreferrer">Builder Website</a>
         <a class="url-link" href="{escape(workspace.urls['privacy_policy_url'])}" target="_blank" rel="noreferrer">Privacy Policy</a>
       </div>
@@ -713,6 +715,12 @@ def export_custom_gpt_publish_packet(
         f"- Builder website: {str(builder_fields.get('builder_profile_website') or '').strip()}",
         f"- Privacy Policy URL: {str(builder_fields.get('privacy_policy_url_candidate') or '').strip()}",
         f"- Actions server: {server_url}",
+        "",
+        "## Official Help",
+        "",
+        "- Create a GPT: https://help.openai.com/en/articles/8554397-create-a-gpt",
+        "- Building and publishing a GPT: https://help.openai.com/en/articles/8798878-building-and-publishing-a-gpt",
+        "- Configuring actions in GPTs: https://help.openai.com/en/articles/9442513-configuring-actions-in-gpts",
         "",
         "## Included Files",
         "",
@@ -875,6 +883,8 @@ def build_custom_gpt_publish_workspace(
     urls = {
         "gpt_editor_url": "https://chatgpt.com/gpts/editor",
         "gpt_create_help_url": "https://help.openai.com/en/articles/8554397-create-a-gpt",
+        "gpt_publish_help_url": "https://help.openai.com/en/articles/8798878-building-and-publishing-a-gpt",
+        "gpt_actions_help_url": "https://help.openai.com/en/articles/9442513-configuring-actions-in-gpts",
         "builder_website": str(builder_fields.get("builder_profile_website") or "").strip(),
         "privacy_policy_url": str(builder_fields.get("privacy_policy_url_candidate") or "").strip(),
         "actions_server_url": server_url,

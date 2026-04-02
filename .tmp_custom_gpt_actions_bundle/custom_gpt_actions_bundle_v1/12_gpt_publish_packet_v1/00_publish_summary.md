@@ -8,6 +8,12 @@
 - Privacy Policy URL: https://starringcodextrpg.onrender.com/privacy.html
 - Actions server: https://starringcodextrpg.onrender.com
 
+## Official Help
+
+- Create a GPT: https://help.openai.com/en/articles/8554397-create-a-gpt
+- Building and publishing a GPT: https://help.openai.com/en/articles/8798878-building-and-publishing-a-gpt
+- Configuring actions in GPTs: https://help.openai.com/en/articles/9442513-configuring-actions-in-gpts
+
 ## Included Files
 
 - Paste-ready pack: `09_gpt_editor_paste_ready_pack_v1.md`

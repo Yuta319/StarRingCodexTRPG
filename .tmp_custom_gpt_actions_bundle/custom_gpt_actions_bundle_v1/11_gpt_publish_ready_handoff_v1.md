@@ -6,8 +6,12 @@
 
 - GPT editor  
   `https://chatgpt.com/gpts/editor`
-- OpenAI Help  
+- OpenAI Help: Create a GPT  
   `https://help.openai.com/en/articles/8554397-create-a-gpt`
+- OpenAI Help: Building and publishing a GPT  
+  `https://help.openai.com/en/articles/8798878-building-and-publishing-a-gpt`
+- OpenAI Help: Configuring actions in GPTs  
+  `https://help.openai.com/en/articles/9442513-configuring-actions-in-gpts`
 - Builder website  
   `https://starringcodextrpg.onrender.com/builder-profile.html`
 - Privacy Policy  
@@ -128,6 +132,13 @@ py -3 scripts\open_gpt_publish_workspace.py --open
 - internal key や raw debug 情報を出さない
 - truth を GPT が直接決めない
 - 装備や恩恵の提案が backend constraints を超えない
+
+## 7.5. Official Guardrails To Remember
+
+- 公開前に、Builder website と Privacy Policy URL はどちらも実際に開ける状態にしておく
+- Actions を使う場合、OpenAPI の `servers.url` は live の API を指している必要がある
+- Preview で成功しても、公開前にもう一度 live smoke を回して URL と operation を確認する
+- editor 上で出る説明と実際の応答がずれたら、まず official help の publish / actions 記事を見直す
 
 ## 8. Current Code State
 

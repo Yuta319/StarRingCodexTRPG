@@ -135,8 +135,14 @@ class CustomGptBundleSupportTests(unittest.TestCase):
         self.assertIn("preview_scorecard", workspace.local_paths)
         self.assertIn("gpt_editor_url", workspace.urls)
         self.assertIn("gpt_create_help_url", workspace.urls)
+        self.assertIn("gpt_publish_help_url", workspace.urls)
+        self.assertIn("gpt_actions_help_url", workspace.urls)
         self.assertIn("builder_website", workspace.urls)
         self.assertEqual(workspace.urls["gpt_editor_url"], "https://chatgpt.com/gpts/editor")
+        self.assertEqual(
+            workspace.urls["gpt_publish_help_url"],
+            "https://help.openai.com/en/articles/8798878-building-and-publishing-a-gpt",
+        )
         self.assertTrue(workspace.urls["builder_website"].startswith("https://"))
         self.assertTrue(workspace.urls["privacy_policy_url"].startswith("https://"))
 
