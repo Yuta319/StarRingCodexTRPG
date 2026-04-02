@@ -33,6 +33,11 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Skip live smoke and only export local packet files",
     )
+    parser.add_argument(
+        "--zip",
+        action="store_true",
+        help="Also create a zip archive next to the publish packet directory",
+    )
     return parser
 
 
@@ -44,6 +49,7 @@ def main() -> None:
         seed=args.seed,
         timeout_seconds=args.timeout_seconds,
         include_live_smoke=not args.skip_live_smoke,
+        create_zip=args.zip,
     )
     print(json.dumps(packet.to_dict(), ensure_ascii=False, indent=2))
 

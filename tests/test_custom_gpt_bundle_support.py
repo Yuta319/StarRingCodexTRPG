@@ -58,6 +58,21 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             self.assertIn("GPT editor", summary)
             self.assertIsNone(packet.smoke_ok)
 
+    def test_export_publish_packet_can_create_zip_archive(self) -> None:
+        bundle_root = PROJECT_ROOT / ".tmp_custom_gpt_actions_bundle" / "custom_gpt_actions_bundle_v1"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "publish_packet"
+            packet = export_custom_gpt_publish_packet(
+                bundle_root,
+                output_dir=output_dir,
+                include_live_smoke=False,
+                create_zip=True,
+            )
+            self.assertIsNotNone(packet.archive_path)
+            self.assertTrue(Path(packet.archive_path).exists())
+            self.assertEqual(Path(packet.archive_path).suffix, ".zip")
+            self.assertIn("archive_zip", packet.files)
+
     def test_export_preview_fixtures_builds_local_examples(self) -> None:
         bundle_root = PROJECT_ROOT / ".tmp_custom_gpt_actions_bundle" / "custom_gpt_actions_bundle_v1"
         with tempfile.TemporaryDirectory() as temp_dir:

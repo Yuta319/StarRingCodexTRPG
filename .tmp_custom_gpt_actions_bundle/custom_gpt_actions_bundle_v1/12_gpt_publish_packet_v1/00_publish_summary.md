@@ -29,3 +29,7 @@
 2. `09_gpt_editor_paste_ready_pack_v1.md` か `10_gpt_editor_field_fragments_v1` を使って GPT editor に貼る
 3. `04_openapi_pbw_actions_v1.yaml` を Actions へ import する
 4. `13_gpt_preview_fixtures_v1` を見ながら Preview で新規開始と通常進行を確認する
+
+## Archive
+
+- Zip archive: `12_gpt_publish_packet_v1.zip`

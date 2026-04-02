@@ -15,6 +15,8 @@
 
 - Publish packet  
   [12_gpt_publish_packet_v1](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/12_gpt_publish_packet_v1)
+- Zip archive  
+  `c:\Users\quiet\Desktop\myproject\StarRingCodexTRPG\.tmp_custom_gpt_actions_bundle\custom_gpt_actions_bundle_v1\12_gpt_publish_packet_v1.zip`
 - Instructions source  
   [01_custom_gpt_system_prompt_v1.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/01_custom_gpt_system_prompt_v1.md)
 - Conversation starters source  

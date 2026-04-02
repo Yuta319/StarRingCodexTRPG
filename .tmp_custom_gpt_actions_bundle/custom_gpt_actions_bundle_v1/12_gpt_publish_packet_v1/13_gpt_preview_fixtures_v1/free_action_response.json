@@ -1,7 +1,7 @@
 {
   "playSource": {
     "seed": null,
-    "world_json": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_02bec55494d15360.json"
+    "world_json": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_98380f0a71cfee21.json"
   },
   "readModel": {
     "version": "gpt_read_model_v1",
@@ -24,7 +24,7 @@
     },
     "source": {
       "seed": 1729,
-      "worldJson": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_02bec55494d15360.json",
+      "worldJson": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_98380f0a71cfee21.json",
       "archetype": "balanced",
       "seasons": 10,
       "sessionNumber": 1,
@@ -32,7 +32,7 @@
       "phaseLabel": "偵察局面"
     },
     "scene": {
-      "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_37934_5",
+      "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_42062_6",
       "title": "非武装境界破り",
       "location": "灰の辺境州",
       "headline": "渡し場の検札違いの余波が、灰の辺境州の「非武装境界破り」へ直結している。",
@@ -365,13 +365,13 @@
       "worldSpine": {
         "worldName": "霧環連界",
         "calendarName": "セディオン暦",
-        "year": 6,
+        "year": 7,
         "seasonIndex": 10,
         "eraLabel": "昇神期",
         "mainGodLabel": "セディオン",
         "activeChainLabel": "境界軍事化連鎖",
-        "cycleDistortion": 58.2,
-        "divineWarPressure": 71.8,
+        "cycleDistortion": 59.0,
+        "divineWarPressure": 67.2,
         "dominantBranch": "管理者の端",
         "topNotes": [
           "渡し場の検札違い",
@@ -758,14 +758,14 @@
         ]
       },
       "activeNode": {
-        "nodeId": "node_inst_border_01_cl_demilitarized_border_37934_5",
+        "nodeId": "node_inst_border_01_cl_demilitarized_border_42062_6",
         "title": "非武装境界破り",
         "chainLabel": "境界軍事化連鎖",
         "institutionLabel": "穀冠王国と灰縁侯の不可侵条約",
         "questTitle": "渡し札と検疫札のどちらを先に通すか決める。",
         "severity": 100.0,
         "urgency": 100.0,
-        "stage": 3,
+        "stage": 1,
         "status": "active",
         "recommendedVectors": [
           "diplomacy",
@@ -780,14 +780,14 @@
         "guide": {
           "summary": "先送りしにくい局面だ。次の一手で被害や対立の広がり方が決まりやすい。",
           "action": "向いているのは diplomacy, stewardship, authority だ。",
-          "timing": "事件は途中段階だ。ここで選んだ向きが、後の分岐を決めやすい。"
+          "timing": "まだ入口だ。観察や聞き取りで責任の流れをつかみやすい。"
         }
       },
       "institutionAlert": {
         "institutionId": "inst_border_01",
         "label": "穀冠王国と灰縁侯の不可侵条約",
         "status": "broken",
-        "breachRisk": 88.1,
+        "breachRisk": 71.0,
         "guide": {
           "summary": "「穀冠王国と灰縁侯の不可侵条約」はかなり危うい。このまま崩れると、渡し場の検札違いの収め方の選択肢まで狭くなる。",
           "consequence": "取り決めが崩れると、次の交渉、補給、通行のどれかが止まりやすい。"
@@ -802,9 +802,9 @@
         "pressureStyle": "渡し順、検疫、船荷札のどれを優先するかが主題になる。",
         "protectedAsset": "澱舟泊へ届く渡し舟",
         "lostAsset": "澱舟泊の検疫線",
-        "stability": 48.7,
-        "supply": 63.9,
-        "heat": 45.2,
+        "stability": 48.9,
+        "supply": 63.8,
+        "heat": 43.7,
         "status": "tense",
         "statusLabel": "緊張が高まっている",
         "statusText": "いまにも荒れそうだ。",
@@ -821,8 +821,8 @@
         "lostAsset": "塩鏡の祠洞の神託路",
         "depth": 1,
         "maxDepth": 4,
-        "sealIntegrity": 62.4,
-        "threat": 63.3,
+        "sealIntegrity": 62.3,
+        "threat": 62.8,
         "status": "unstable",
         "statusLabel": "揺らいでいる",
         "statusText": "いまにも崩れそうだ。",
@@ -831,7 +831,7 @@
       "endingForecast": {
         "title": "鐘路に猶予が残りそうだ",
         "tone": "steady",
-        "score": -0.2,
+        "score": 0.4,
         "dominantChoice": "observe",
         "summary": "拠点と坑路の両方にまだ持ち直しの余地がある。"
       }
@@ -996,7 +996,7 @@
     },
     "runtime": {
       "readOnly": true,
-      "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_37934_5",
+      "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_42062_6",
       "sessionId": "sess_1729",
       "archiveCount": 0
     }
@@ -1006,7 +1006,7 @@
     "residue": "隠れた不正の痕",
     "intentType": "custom_action",
     "outcome": "concealed_success",
-    "successBand": "costly",
+    "successBand": "clean",
     "discoveryState": "unseen",
     "note": "窃盗・掠奪は気づかれ切らないまま通ったが、跡だけは残った。 まだ誰も確信していない。",
     "viceTags": [

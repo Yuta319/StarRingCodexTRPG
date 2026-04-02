@@ -63,6 +63,7 @@ class CustomGptPublishPacket:
     output_dir: str
     files: dict[str, str]
     smoke_ok: bool | None
+    archive_path: str | None = None
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -356,6 +357,7 @@ def export_custom_gpt_publish_packet(
     seed: int = 1729,
     timeout_seconds: float = 20.0,
     include_live_smoke: bool = True,
+    create_zip: bool = False,
 ) -> CustomGptPublishPacket:
     root = Path(bundle_root)
     report = validate_custom_gpt_bundle(root)
@@ -429,7 +431,7 @@ def export_custom_gpt_publish_packet(
                 f"- seed: `{seed}`",
             ]
         )
-    summary_lines.extend(
+        summary_lines.extend(
         [
             "",
             "## Recommended Start",
@@ -440,6 +442,15 @@ def export_custom_gpt_publish_packet(
             "4. `13_gpt_preview_fixtures_v1` を見ながら Preview で新規開始と通常進行を確認する",
         ]
     )
+    if create_zip:
+        summary_lines.extend(
+            [
+                "",
+                "## Archive",
+                "",
+                f"- Zip archive: `{out_dir.name}.zip`",
+            ]
+        )
     summary_path = out_dir / "00_publish_summary.md"
     summary_path.write_text("\n".join(summary_lines).strip() + "\n", encoding="utf-8")
 
@@ -457,9 +468,21 @@ def export_custom_gpt_publish_packet(
     files.update({f"fragment_{key}": value for key, value in fragments.files.items()})
     files.update({f"preview_{key}": value for key, value in preview_fixtures.files.items()})
 
+    archive_path: str | None = None
+    if create_zip:
+        archive_file = shutil.make_archive(
+            base_name=str(out_dir.parent / f"{out_dir.name}"),
+            format="zip",
+            root_dir=str(out_dir.parent),
+            base_dir=out_dir.name,
+        )
+        archive_path = archive_file
+        files["archive_zip"] = archive_file
+
     return CustomGptPublishPacket(
         bundle_root=str(root),
         output_dir=str(out_dir),
         files=files,
         smoke_ok=smoke_ok,
+        archive_path=archive_path,
     )
