@@ -59,13 +59,13 @@ Expected operations:
 Builder Profile website:
 
 ```text
-https://policy.star-ring-codex.com
+https://starringcodextrpg.onrender.com/builder-profile.html
 ```
 
 Privacy Policy URL:
 
 ```text
-https://policy.star-ring-codex.com/privacy.html
+https://starringcodextrpg.onrender.com/privacy.html
 ```
 
 ## 7. Recommended Configure Flow

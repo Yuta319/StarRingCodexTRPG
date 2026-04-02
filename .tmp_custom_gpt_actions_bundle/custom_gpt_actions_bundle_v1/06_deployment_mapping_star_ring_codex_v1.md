@@ -3,7 +3,7 @@
 ## Current recommended split
 ### Public docs / policy / landing
 Use the currently published surface:
-- `https://policy.star-ring-codex.com`
+- `https://starringcodextrpg.onrender.com/builder-profile.html`
 
 Recommended contents there:
 - Privacy Policy

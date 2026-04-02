@@ -6,8 +6,8 @@
 - A working action domain reachable from the imported OpenAPI spec
 
 ## Suggested URLs
-- Builder profile website: `https://policy.star-ring-codex.com`
-- Privacy Policy: `https://policy.star-ring-codex.com/privacy.html`
+- Builder profile website: `https://starringcodextrpg.onrender.com/builder-profile.html`
+- Privacy Policy: `https://starringcodextrpg.onrender.com/privacy.html`
 
 If you later publish the apex domain, you can switch these URLs after confirming they are live.
 

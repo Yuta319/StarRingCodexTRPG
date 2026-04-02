@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Star Ring Codex | Privacy Policy</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #100c09;
+        --panel: #1b140f;
+        --line: rgba(214, 172, 107, 0.18);
+        --text: #f5eee6;
+        --muted: #c1b09d;
+        --accent: #d79a4d;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", "Hiragino Sans", "Yu Gothic UI", sans-serif;
+        background:
+          radial-gradient(circle at top, rgba(215, 154, 77, 0.15), transparent 35%),
+          linear-gradient(180deg, #140f0b 0%, var(--bg) 100%);
+        color: var(--text);
+      }
+
+      main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 48px 24px 72px;
+      }
+
+      section {
+        background: rgba(27, 20, 15, 0.92);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 28px;
+        margin-bottom: 18px;
+        backdrop-filter: blur(8px);
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--accent);
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2 {
+        margin: 0 0 14px;
+      }
+
+      p,
+      li {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      a {
+        color: #ffd39e;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <p class="eyebrow">Privacy Policy</p>
+        <h1>Star Ring Codex Custom GPT Actions</h1>
+        <p>
+          This page describes how the public Custom GPT actions for Star Ring Codex handle data.
+        </p>
+      </section>
+
+      <section>
+        <h2>What the actions receive</h2>
+        <ul>
+          <li>Session state sent as <code>world_json</code> or generated from a supplied seed.</li>
+          <li>Player action text for free actions and structured choice requests.</li>
+          <li>Character setup proposals when the player finalizes a new-game opening.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>How the data is used</h2>
+        <ul>
+          <li>To generate the next world state, update the session archive, and build a read model for the GPT and UI.</li>
+          <li>To save or load a session only when the player explicitly requests it.</li>
+          <li>To keep canonical state on the backend so the GPT narrates from backend truth instead of inventing state.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>What is not done</h2>
+        <ul>
+          <li>No public social feed, ad profiling, or third-party analytics are used by these action routes.</li>
+          <li>Player data is not sold.</li>
+          <li>The GPT is not allowed to mutate truth directly without going through backend constraints.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Operational note</h2>
+        <p>
+          Saved session files can contain player-provided text and generated world state. Treat exported or saved session
+          files as private game data.
+        </p>
+      </section>
+    </main>
+  </body>
+  </html>

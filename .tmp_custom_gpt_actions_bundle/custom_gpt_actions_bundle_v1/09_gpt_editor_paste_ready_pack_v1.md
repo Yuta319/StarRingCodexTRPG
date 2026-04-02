@@ -107,8 +107,8 @@ Star Ring Codex TRPG
 ## Website / Privacy
 
 ```text
-Builder website: https://policy.star-ring-codex.com
-Privacy Policy URL: https://policy.star-ring-codex.com/privacy.html
+Builder website: https://starringcodextrpg.onrender.com/builder-profile.html
+Privacy Policy URL: https://starringcodextrpg.onrender.com/privacy.html
 ```
 
 ## Validation

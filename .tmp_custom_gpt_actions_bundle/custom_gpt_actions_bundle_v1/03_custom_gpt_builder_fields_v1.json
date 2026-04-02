@@ -4,8 +4,8 @@
   "instructions_file": "01_custom_gpt_system_prompt_v1.md",
   "conversation_starters_file": "02_custom_gpt_conversation_starters_v1.md",
   "actions_openapi_file": "04_openapi_pbw_actions_v1.yaml",
-  "builder_profile_website": "https://policy.star-ring-codex.com",
-  "privacy_policy_url_candidate": "https://policy.star-ring-codex.com/privacy.html",
+  "builder_profile_website": "https://starringcodextrpg.onrender.com/builder-profile.html",
+  "privacy_policy_url_candidate": "https://starringcodextrpg.onrender.com/privacy.html",
   "notes": [
     "The bundled instructions file is already a compact Builder-ready version.",
     "Use the currently published policy surface as the builder website until star-ring-codex.com itself is live.",

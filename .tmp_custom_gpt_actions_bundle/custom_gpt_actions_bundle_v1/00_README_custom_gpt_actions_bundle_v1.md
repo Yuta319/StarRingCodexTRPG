@@ -3,13 +3,13 @@
 このバンドルは、`Star Ring Codex TRPG` を **Custom GPT + Actions** として公開・運用するための最小構成です。
 
 ## 前提
-- 現在の公開ポリシー面: `https://policy.star-ring-codex.com`
-- 現在の公開プライバシーページ候補: `https://policy.star-ring-codex.com/privacy.html`
+- 現在の公開ポリシー面: `https://starringcodextrpg.onrender.com/builder-profile.html`
+- 現在の公開プライバシーページ候補: `https://starringcodextrpg.onrender.com/privacy.html`
 - Actions API: `api.star-ring-codex.com` が未開通なら、**実際に到達できる公開 API ホスト** を使う
 
 ## 推奨構成
 - 公開説明・ポリシー:
-  - `https://policy.star-ring-codex.com`
+  - `https://starringcodextrpg.onrender.com/builder-profile.html`
 - Actions API:
   - `https://api.star-ring-codex.com` を使うなら、DNS / TLS / backend 公開が完了してから
   - それまでは `https://<actual-public-api-host>` を OpenAPI の `servers.url` に入れる

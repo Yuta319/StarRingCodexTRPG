@@ -451,6 +451,23 @@ class ReadOnlyUiTests(unittest.TestCase):
             server.server_close()
             thread.join(timeout=1)
 
+    def test_public_builder_and_privacy_pages_are_served(self) -> None:
+        server = ThreadingHTTPServer(("127.0.0.1", 0), ReadOnlyUiHandler)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        try:
+            port = server.server_address[1]
+            with urllib.request.urlopen(f"http://127.0.0.1:{port}/builder-profile.html") as response:
+                builder_html = response.read().decode("utf-8")
+            with urllib.request.urlopen(f"http://127.0.0.1:{port}/privacy.html") as response:
+                privacy_html = response.read().decode("utf-8")
+            self.assertIn("Star Ring Codex", builder_html)
+            self.assertIn("Privacy Policy", privacy_html)
+        finally:
+            server.shutdown()
+            server.server_close()
+            thread.join(timeout=1)
+
     def test_gpt_load_session_payload_returns_compact_state(self) -> None:
         initial = build_ui_payload(viewer_request_from_query({"seed": ["1729"]}))
         saved = save_session_state = None

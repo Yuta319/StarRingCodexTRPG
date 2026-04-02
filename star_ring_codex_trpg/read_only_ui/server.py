@@ -49,6 +49,12 @@ class ReadOnlyUiHandler(BaseHTTPRequestHandler):
         if parsed.path == "/":
             self._serve_static("index.html")
             return
+        if parsed.path == "/builder-profile.html":
+            self._serve_static("builder-profile.html")
+            return
+        if parsed.path == "/privacy.html":
+            self._serve_static("privacy.html")
+            return
         if parsed.path == "/app.js":
             self._serve_static("app.js")
             return
