@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+from datetime import datetime, timezone
 from html import escape
 from pathlib import Path
 import json
 import re
 import shutil
+import subprocess
 from typing import Iterable
 
 
@@ -104,6 +106,49 @@ def _read_text(path: Path) -> str:
 
 def _read_optional_text(path: Path) -> str:
     return path.read_text(encoding="utf-8") if path.exists() else ""
+
+
+def _utc_now_iso() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def _git_head_commit(root: Path) -> str | None:
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(root), "rev-parse", "HEAD"],
+            capture_output=True,
+            check=True,
+            text=True,
+            timeout=5,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+    value = (result.stdout or "").strip()
+    return value or None
+
+
+def _git_is_dirty(root: Path) -> bool | None:
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(root), "status", "--short"],
+            capture_output=True,
+            check=True,
+            text=True,
+            timeout=5,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+    return bool((result.stdout or "").strip())
+
+
+def _git_head_descriptor(root: Path) -> str | None:
+    commit = _git_head_commit(root)
+    if not commit:
+        return None
+    dirty = _git_is_dirty(root)
+    if dirty:
+        return f"{commit}-dirty"
+    return commit
 
 
 def _relative_href(base_dir: Path, target: Path) -> str:
@@ -417,6 +462,7 @@ def export_custom_gpt_publish_dashboard(
     summary = _read_optional_text(Path(workspace.local_paths["summary"])).strip()
     scorecard = _read_optional_text(Path(workspace.local_paths["preview_scorecard"])).strip()
     fragments_manifest = json.loads(_read_optional_text(Path(workspace.local_paths["field_fragments_manifest"])) or "{}")
+    release_manifest = json.loads(_read_optional_text(Path(workspace.local_paths["release_manifest"])) or "{}")
     live_smoke_report = json.loads(_read_optional_text(packet_root / "live_smoke_report.json") or "{}")
     initial_fixture = json.loads(_read_optional_text(Path(workspace.local_paths["packet_dir"]) / "13_gpt_preview_fixtures_v1" / "initial_gpt_read_model.json") or "{}")
     finalize_fixture = json.loads(_read_optional_text(Path(workspace.local_paths["packet_dir"]) / "13_gpt_preview_fixtures_v1" / "finalize_character_response.json") or "{}")
@@ -485,6 +531,47 @@ def export_custom_gpt_publish_dashboard(
           </article>
         """
         for item in action_examples
+    )
+    troubleshooting_items = [
+        {
+            "title": "Action import が失敗する",
+            "detail": "OpenAPI の servers.url が live API を指し、Actions Setup の Server URL と一致しているか確認する。",
+            "command": "py -3 scripts\\open_gpt_publish_workspace.py --copy actions_server_url",
+            "copy_target": "troubleshooting-command-1",
+        },
+        {
+            "title": "Privacy / Builder URL が弾かれる",
+            "detail": "live URL が実際に開けるかを smoke で確認してから editor に貼り直す。",
+            "command": "py -3 scripts\\run_custom_gpt_publish_smoke.py --retries 2 --retry-delay-seconds 1.0",
+            "copy_target": "troubleshooting-command-2",
+        },
+        {
+            "title": "Preview の新規開始が弱い",
+            "detail": "`guidance.openingPackage` を使っているか、確定前の内容を『案』として扱っているかを見直す。",
+            "command": "py -3 scripts\\open_gpt_publish_workspace.py --open",
+            "copy_target": "troubleshooting-command-3",
+        },
+        {
+            "title": "finalizeCharacter が失敗する",
+            "detail": "request に `world_json` が入っているか、Action Examples の finalize fixture と見比べる。",
+            "command": "py -3 scripts\\prepare_gpt_publish_release.py --retries 2 --retry-delay-seconds 1.0",
+            "copy_target": "troubleshooting-command-4",
+        },
+    ]
+    troubleshooting_html = "".join(
+        f"""
+          <article class="trouble-card">
+            <div class="field__head">
+              <div>
+                <h3>{escape(item["title"])}</h3>
+                <p class="field__meta">{escape(item["detail"])}</p>
+              </div>
+              <button type="button" data-copy-target="{escape(item['copy_target'])}">Copy</button>
+            </div>
+            <pre id="{escape(item['copy_target'])}">{escape(item["command"])}</pre>
+          </article>
+        """
+        for item in troubleshooting_items
     )
 
     resource_links = [
@@ -640,25 +727,39 @@ def export_custom_gpt_publish_dashboard(
         {
             "title": "Action import が失敗する",
             "detail": "OpenAPI の servers.url が live API を指し、Actions Setup の Server URL と一致しているか確認する。",
+            "command": "py -3 scripts\\open_gpt_publish_workspace.py --copy actions_server_url",
+            "copy_target": "trouble-command-1",
         },
         {
             "title": "Privacy URL が通らない",
             "detail": "Builder Website と Privacy Policy URL が両方ともブラウザで 200 で開くことを確認する。",
+            "command": "py -3 scripts\\run_custom_gpt_publish_smoke.py --retries 2 --retry-delay-seconds 1.0",
+            "copy_target": "trouble-command-2",
         },
         {
             "title": "新規開始の導入が弱い",
             "detail": "`guidance.openingPackage` を使い、確定前の内容を案として扱っているか確認する。",
+            "command": "py -3 scripts\\open_gpt_publish_workspace.py --open",
+            "copy_target": "trouble-command-3",
         },
         {
             "title": "finalizeCharacter が失敗する",
             "detail": "request に `world_json` が入っているかを確認し、Preview Test Pack の新規開始フローから再試行する。",
+            "command": "py -3 scripts\\prepare_gpt_publish_release.py --retries 2 --retry-delay-seconds 1.0",
+            "copy_target": "trouble-command-4",
         },
     ]
     troubleshooting_html = "".join(
         f"""
           <article class="trouble-card">
-            <strong>{escape(item["title"])}</strong>
-            <p>{escape(item["detail"])}</p>
+            <div class="field__head">
+              <div>
+                <strong>{escape(item["title"])}</strong>
+                <p>{escape(item["detail"])}</p>
+              </div>
+              <button type="button" data-copy-target="{escape(item['copy_target'])}">Copy</button>
+            </div>
+            <pre id="{escape(item['copy_target'])}">{escape(item["command"])}</pre>
           </article>
         """
         for item in troubleshooting_items
@@ -698,6 +799,73 @@ def export_custom_gpt_publish_dashboard(
           </article>
         """
         for index, item in enumerate(quick_commands, start=1)
+    )
+    manifest_packet = release_manifest.get("packet") or {}
+    snapshot_items = [
+        ("Generated (UTC)", str(release_manifest.get("generated_at_utc") or "not written yet")),
+        ("Git Commit", str(release_manifest.get("git_commit") or "unknown")),
+        ("Seed", str(release_manifest.get("seed") or "1729")),
+        ("Smoke Retries", str(release_manifest.get("smoke_retries") or "n/a")),
+        ("Retry Delay", f"{release_manifest.get('smoke_retry_delay_seconds') or 'n/a'}s"),
+        ("Smoke OK", "true" if manifest_packet.get("smoke_ok") else "false"),
+        ("Packet Dir", str(manifest_packet.get("output_dir") or workspace.local_paths["packet_dir"])),
+        ("Zip Archive", str(manifest_packet.get("archive_path") or workspace.local_paths["zip_archive"])),
+    ]
+    release_snapshot_html = "".join(
+        f"""
+          <div class="snapshot-row">
+            <span>{escape(label)}</span>
+            <strong>{escape(value)}</strong>
+          </div>
+        """
+        for label, value in snapshot_items
+    )
+    validation_report = release_manifest.get("validation") or {}
+    release_commit = str(release_manifest.get("git_commit") or "")
+    operations_found = list(validation_report.get("operations_found") or actions_operations)
+    readiness_checks = [
+        {
+            "title": "Bundle Validation",
+            "detail": f"errors: {len(validation_report.get('errors') or [])} / warnings: {len(validation_report.get('warnings') or [])}",
+            "ok": bool(validation_report.get("ok")),
+            "tone": "ok" if validation_report.get("ok") else "bad",
+        },
+        {
+            "title": "Live Smoke",
+            "detail": f"latest smoke: {'OK' if live_smoke_report.get('ok') else 'NG'} / checks: {len(smoke_checks)}",
+            "ok": bool(live_smoke_report.get("ok")),
+            "tone": "ok" if live_smoke_report.get("ok") else "bad",
+        },
+        {
+            "title": "Builder / Privacy URLs",
+            "detail": "builder website と privacy policy URL が https で埋まっている",
+            "ok": fields["Builder Website"].startswith("https://") and fields["Privacy Policy URL"].startswith("https://"),
+            "tone": "ok" if fields["Builder Website"].startswith("https://") and fields["Privacy Policy URL"].startswith("https://") else "bad",
+        },
+        {
+            "title": "Expected Operations",
+            "detail": f"{len(operations_found)} / {len(EXPECTED_OPERATIONS)} operations found",
+            "ok": set(operations_found) == EXPECTED_OPERATIONS,
+            "tone": "ok" if set(operations_found) == EXPECTED_OPERATIONS else "bad",
+        },
+        {
+            "title": "Git State",
+            "detail": release_commit or "unknown",
+            "ok": bool(release_commit and not release_commit.endswith("-dirty")),
+            "tone": "ok" if release_commit and not release_commit.endswith("-dirty") else "warn",
+        },
+    ]
+    readiness_html = "".join(
+        f"""
+          <article class="readiness-row">
+            <span class="readiness-row__status is-{escape(item['tone'])}">{'PASS' if item['ok'] else 'CHECK' if item['tone'] == 'warn' else 'FAIL'}</span>
+            <div class="readiness-row__body">
+              <strong>{escape(item['title'])}</strong>
+              <p>{escape(item['detail'])}</p>
+            </div>
+          </article>
+        """
+        for item in readiness_checks
     )
 
     html = f"""<!DOCTYPE html>
@@ -901,6 +1069,76 @@ def export_custom_gpt_publish_dashboard(
     .smoke-row__status.is-bad {{
       color: #d98272;
     }}
+    .snapshot-list {{
+      display: grid;
+      gap: 8px;
+    }}
+    .snapshot-row {{
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }}
+    .snapshot-row span {{
+      color: var(--muted);
+      font-size: 13px;
+    }}
+    .snapshot-row strong {{
+      text-align: right;
+      font-size: 13px;
+      word-break: break-word;
+    }}
+    .readiness-list {{
+      display: grid;
+      gap: 8px;
+    }}
+    .readiness-row {{
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }}
+    .readiness-row__status {{
+      min-width: 52px;
+      text-align: center;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }}
+    .readiness-row__status.is-ok {{
+      color: var(--accent-2);
+      border-color: rgba(139, 179, 154, 0.32);
+      background: rgba(139, 179, 154, 0.08);
+    }}
+    .readiness-row__status.is-bad {{
+      color: #d98272;
+      border-color: rgba(217, 130, 114, 0.32);
+      background: rgba(217, 130, 114, 0.08);
+    }}
+    .readiness-row__status.is-warn {{
+      color: #dfbb82;
+      border-color: rgba(223, 187, 130, 0.32);
+      background: rgba(223, 187, 130, 0.08);
+    }}
+    .readiness-row__body {{
+      display: grid;
+      gap: 4px;
+    }}
+    .readiness-row__body p {{
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }}
     .prompt-stack {{
       display: grid;
       gap: 14px;
@@ -961,6 +1199,10 @@ def export_custom_gpt_publish_dashboard(
       color: var(--muted);
       font-size: 13px;
       line-height: 1.5;
+    }}
+    .trouble-card pre {{
+      margin: 0;
+      max-height: none;
     }}
     .command-stack {{
       display: grid;
@@ -1036,6 +1278,37 @@ def export_custom_gpt_publish_dashboard(
         )}
       </section>
       <section class="stack">
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Release Snapshot</h2>
+                <p class="field__meta">この packet がどの状態から出たかを確認する</p>
+              </div>
+              <div class="checklist-step__actions">
+                <button type="button" data-copy-target="release-snapshot-block">Copy</button>
+                <button type="button" data-open-url="{escape(_relative_href(packet_root, Path(workspace.local_paths["release_manifest"])))}">Open Manifest</button>
+              </div>
+            </div>
+            <div class="snapshot-list">
+              {release_snapshot_html}
+            </div>
+            <pre id="release-snapshot-block">{escape(json.dumps(release_manifest, ensure_ascii=False, indent=2) if release_manifest else 'release manifest not written yet')}</pre>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Readiness Checks</h2>
+                <p class="field__meta">editor へ入る前の合否だけ先に見る</p>
+              </div>
+            </div>
+            <div class="readiness-list">
+              {readiness_html}
+            </div>
+          </div>
+        </section>
         <section class="panel">
           <div class="field">
             <div class="field__head">
@@ -1440,6 +1713,8 @@ def prepare_custom_gpt_publish_release(
         "builder_website": str(builder_fields.get("builder_profile_website") or "").strip(),
         "privacy_policy_url": str(builder_fields.get("privacy_policy_url_candidate") or "").strip(),
         "actions_server_url": server_url,
+        "generated_at_utc": _utc_now_iso(),
+        "git_commit": _git_head_descriptor(root),
         "seed": seed,
         "smoke_retries": smoke_retries,
         "smoke_retry_delay_seconds": smoke_retry_delay_seconds,
@@ -1447,6 +1722,7 @@ def prepare_custom_gpt_publish_release(
         "packet": packet.to_dict(),
     }
     manifest_file.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    export_custom_gpt_publish_dashboard(root, packet_dir=Path(packet.output_dir))
 
     return CustomGptPublishRelease(
         bundle_root=str(root),

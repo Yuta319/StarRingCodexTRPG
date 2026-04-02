@@ -199,6 +199,29 @@
     .smoke-row__status.is-bad {
       color: #d98272;
     }
+    .snapshot-list {
+      display: grid;
+      gap: 8px;
+    }
+    .snapshot-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+    .snapshot-row span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .snapshot-row strong {
+      text-align: right;
+      font-size: 13px;
+      word-break: break-word;
+    }
     .prompt-stack {
       display: grid;
       gap: 14px;
@@ -259,6 +282,10 @@
       color: var(--muted);
       font-size: 13px;
       line-height: 1.5;
+    }
+    .trouble-card pre {
+      margin: 0;
+      max-height: none;
     }
     .command-stack {
       display: grid;
@@ -480,6 +507,131 @@
             
       </section>
       <section class="stack">
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Release Snapshot</h2>
+                <p class="field__meta">この packet がどの状態から出たかを確認する</p>
+              </div>
+              <div class="checklist-step__actions">
+                <button type="button" data-copy-target="release-snapshot-block">Copy</button>
+                <button type="button" data-open-url="14_publish_release_manifest_v1.json">Open Manifest</button>
+              </div>
+            </div>
+            <div class="snapshot-list">
+              
+          <div class="snapshot-row">
+            <span>Generated (UTC)</span>
+            <strong>2026-04-02T19:18:56Z</strong>
+          </div>
+        
+          <div class="snapshot-row">
+            <span>Git Commit</span>
+            <strong>cb60f36fc2176d1e10cf1174636daa1b79059e8b-dirty</strong>
+          </div>
+        
+          <div class="snapshot-row">
+            <span>Seed</span>
+            <strong>1729</strong>
+          </div>
+        
+          <div class="snapshot-row">
+            <span>Smoke Retries</span>
+            <strong>2</strong>
+          </div>
+        
+          <div class="snapshot-row">
+            <span>Retry Delay</span>
+            <strong>1.0s</strong>
+          </div>
+        
+          <div class="snapshot-row">
+            <span>Smoke OK</span>
+            <strong>true</strong>
+          </div>
+        
+          <div class="snapshot-row">
+            <span>Packet Dir</span>
+            <strong>.tmp_custom_gpt_actions_bundle\custom_gpt_actions_bundle_v1\12_gpt_publish_packet_v1</strong>
+          </div>
+        
+          <div class="snapshot-row">
+            <span>Zip Archive</span>
+            <strong>C:\Users\quiet\Desktop\myproject\StarRingCodexTRPG\.tmp_custom_gpt_actions_bundle\custom_gpt_actions_bundle_v1\12_gpt_publish_packet_v1.zip</strong>
+          </div>
+        
+            </div>
+            <pre id="release-snapshot-block">{
+  &quot;bundle_root&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1&quot;,
+  &quot;builder_website&quot;: &quot;https://starringcodextrpg.onrender.com/builder-profile.html&quot;,
+  &quot;privacy_policy_url&quot;: &quot;https://starringcodextrpg.onrender.com/privacy.html&quot;,
+  &quot;actions_server_url&quot;: &quot;https://starringcodextrpg.onrender.com&quot;,
+  &quot;generated_at_utc&quot;: &quot;2026-04-02T19:18:56Z&quot;,
+  &quot;git_commit&quot;: &quot;cb60f36fc2176d1e10cf1174636daa1b79059e8b-dirty&quot;,
+  &quot;seed&quot;: 1729,
+  &quot;smoke_retries&quot;: 2,
+  &quot;smoke_retry_delay_seconds&quot;: 1.0,
+  &quot;validation&quot;: {
+    &quot;bundle_root&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1&quot;,
+    &quot;ok&quot;: true,
+    &quot;checked_files&quot;: [
+      &quot;01_custom_gpt_system_prompt_v1.md&quot;,
+      &quot;02_custom_gpt_conversation_starters_v1.md&quot;,
+      &quot;03_custom_gpt_builder_fields_v1.json&quot;,
+      &quot;04_openapi_pbw_actions_v1.yaml&quot;,
+      &quot;08_gpt_editor_final_input_pack_v1.md&quot;
+    ],
+    &quot;operations_found&quot;: [
+      &quot;finalizeCharacter&quot;,
+      &quot;getGptReadModel&quot;,
+      &quot;loadSession&quot;,
+      &quot;nextSession&quot;,
+      &quot;playChoice&quot;,
+      &quot;playFreeAction&quot;,
+      &quot;saveSession&quot;
+    ],
+    &quot;errors&quot;: [],
+    &quot;warnings&quot;: []
+  },
+  &quot;packet&quot;: {
+    &quot;bundle_root&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1&quot;,
+    &quot;output_dir&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1&quot;,
+    &quot;files&quot;: {
+      &quot;summary&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\00_publish_summary.md&quot;,
+      &quot;dashboard&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\15_gpt_publish_dashboard_v1.html&quot;,
+      &quot;paste_pack&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\09_gpt_editor_paste_ready_pack_v1.md&quot;,
+      &quot;field_fragments_dir&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1&quot;,
+      &quot;preview_fixtures_dir&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\13_gpt_preview_fixtures_v1&quot;,
+      &quot;openapi&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\04_openapi_pbw_actions_v1.yaml&quot;,
+      &quot;builder_fields&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\03_custom_gpt_builder_fields_v1.json&quot;,
+      &quot;handoff&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\11_gpt_publish_ready_handoff_v1.md&quot;,
+      &quot;live_smoke_report&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\live_smoke_report.json&quot;,
+      &quot;fragment_name&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\name.txt&quot;,
+      &quot;fragment_description&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\description.txt&quot;,
+      &quot;fragment_instructions&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\instructions.txt&quot;,
+      &quot;fragment_conversation_starters&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\conversation_starters.txt&quot;,
+      &quot;fragment_builder_website&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\builder_website.txt&quot;,
+      &quot;fragment_privacy_policy_url&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\privacy_policy_url.txt&quot;,
+      &quot;fragment_actions_import_path&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\actions_import_path.txt&quot;,
+      &quot;fragment_actions_server_url&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\actions_server_url.txt&quot;,
+      &quot;fragment_manifest&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\manifest.json&quot;,
+      &quot;preview_initial_read_model&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\13_gpt_preview_fixtures_v1\\initial_gpt_read_model.json&quot;,
+      &quot;preview_opening_package&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\13_gpt_preview_fixtures_v1\\opening_package_excerpt.json&quot;,
+      &quot;preview_finalize_response&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\13_gpt_preview_fixtures_v1\\finalize_character_response.json&quot;,
+      &quot;preview_choice_response&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\13_gpt_preview_fixtures_v1\\play_choice_response.json&quot;,
+      &quot;preview_free_action_response&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\13_gpt_preview_fixtures_v1\\free_action_response.json&quot;,
+      &quot;preview_summary&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\13_gpt_preview_fixtures_v1\\00_preview_summary.md&quot;,
+      &quot;preview_scorecard&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\13_gpt_preview_fixtures_v1\\01_preview_scorecard.md&quot;,
+      &quot;archive_zip&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1.zip&quot;,
+      &quot;release_manifest&quot;: &quot;.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\14_publish_release_manifest_v1.json&quot;
+    },
+    &quot;smoke_ok&quot;: true,
+    &quot;archive_path&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1.zip&quot;
+  }
+}</pre>
+          </div>
+        </section>
         <section class="panel">
           <div class="field">
             <div class="field__head">
@@ -909,23 +1061,47 @@
             <div class="trouble-list">
               
           <article class="trouble-card">
-            <strong>Action import が失敗する</strong>
-            <p>OpenAPI の servers.url が live API を指し、Actions Setup の Server URL と一致しているか確認する。</p>
+            <div class="field__head">
+              <div>
+                <strong>Action import が失敗する</strong>
+                <p>OpenAPI の servers.url が live API を指し、Actions Setup の Server URL と一致しているか確認する。</p>
+              </div>
+              <button type="button" data-copy-target="trouble-command-1">Copy</button>
+            </div>
+            <pre id="trouble-command-1">py -3 scripts\open_gpt_publish_workspace.py --copy actions_server_url</pre>
           </article>
         
           <article class="trouble-card">
-            <strong>Privacy URL が通らない</strong>
-            <p>Builder Website と Privacy Policy URL が両方ともブラウザで 200 で開くことを確認する。</p>
+            <div class="field__head">
+              <div>
+                <strong>Privacy URL が通らない</strong>
+                <p>Builder Website と Privacy Policy URL が両方ともブラウザで 200 で開くことを確認する。</p>
+              </div>
+              <button type="button" data-copy-target="trouble-command-2">Copy</button>
+            </div>
+            <pre id="trouble-command-2">py -3 scripts\run_custom_gpt_publish_smoke.py --retries 2 --retry-delay-seconds 1.0</pre>
           </article>
         
           <article class="trouble-card">
-            <strong>新規開始の導入が弱い</strong>
-            <p>`guidance.openingPackage` を使い、確定前の内容を案として扱っているか確認する。</p>
+            <div class="field__head">
+              <div>
+                <strong>新規開始の導入が弱い</strong>
+                <p>`guidance.openingPackage` を使い、確定前の内容を案として扱っているか確認する。</p>
+              </div>
+              <button type="button" data-copy-target="trouble-command-3">Copy</button>
+            </div>
+            <pre id="trouble-command-3">py -3 scripts\open_gpt_publish_workspace.py --open</pre>
           </article>
         
           <article class="trouble-card">
-            <strong>finalizeCharacter が失敗する</strong>
-            <p>request に `world_json` が入っているかを確認し、Preview Test Pack の新規開始フローから再試行する。</p>
+            <div class="field__head">
+              <div>
+                <strong>finalizeCharacter が失敗する</strong>
+                <p>request に `world_json` が入っているかを確認し、Preview Test Pack の新規開始フローから再試行する。</p>
+              </div>
+              <button type="button" data-copy-target="trouble-command-4">Copy</button>
+            </div>
+            <pre id="trouble-command-4">py -3 scripts\prepare_gpt_publish_release.py --retries 2 --retry-delay-seconds 1.0</pre>
           </article>
         
             </div>

@@ -65,6 +65,8 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             self.assertIn("Preview Test Pack", dashboard)
             self.assertIn("Actions Setup", dashboard)
             self.assertIn("Action Examples", dashboard)
+            self.assertIn("Release Snapshot", dashboard)
+            self.assertIn("Readiness Checks", dashboard)
             self.assertIn("Editor Troubleshooting", dashboard)
             self.assertIn("Quick Commands", dashboard)
             self.assertIn("getGptReadModel", dashboard)
@@ -101,8 +103,15 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             self.assertIn("release_manifest", release.packet.files)
             self.assertIsNotNone(release.packet.archive_path)
             manifest_text = Path(release.manifest_path).read_text(encoding="utf-8")
+            dashboard_text = Path(release.packet.files["dashboard"]).read_text(encoding="utf-8")
             self.assertIn("builder_website", manifest_text)
             self.assertIn("packet", manifest_text)
+            self.assertIn("generated_at_utc", manifest_text)
+            self.assertIn("git_commit", manifest_text)
+            self.assertIn("Release Snapshot", dashboard_text)
+            self.assertIn("Readiness Checks", dashboard_text)
+            self.assertIn("Generated (UTC)", dashboard_text)
+            self.assertIn("Git Commit", dashboard_text)
 
     def test_export_publish_packet_forwards_smoke_retry_settings(self) -> None:
         bundle_root = PROJECT_ROOT / ".tmp_custom_gpt_actions_bundle" / "custom_gpt_actions_bundle_v1"

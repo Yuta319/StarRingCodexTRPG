@@ -3,6 +3,8 @@
   "builder_website": "https://starringcodextrpg.onrender.com/builder-profile.html",
   "privacy_policy_url": "https://starringcodextrpg.onrender.com/privacy.html",
   "actions_server_url": "https://starringcodextrpg.onrender.com",
+  "generated_at_utc": "2026-04-02T19:18:56Z",
+  "git_commit": "cb60f36fc2176d1e10cf1174636daa1b79059e8b-dirty",
   "seed": 1729,
   "smoke_retries": 2,
   "smoke_retry_delay_seconds": 1.0,
