@@ -8,7 +8,7 @@
   },
   "playSource": {
     "seed": null,
-    "world_json": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_b22672f6b31f7455.json"
+    "world_json": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_f71518fb49d6d19d.json"
   },
   "readModel": {
     "version": "gpt_read_model_v1",
@@ -39,7 +39,7 @@
       "phaseLabel": "偵察局面"
     },
     "scene": {
-      "sceneId": "scene_ash_frontier_node_inst_blockade_01_cl_war_reparation_54289_5",
+      "sceneId": "scene_ash_frontier_node_inst_blockade_01_cl_war_reparation_94272_4",
       "title": "賠償争議",
       "location": "灰の辺境州",
       "headline": "渡し場の検札違いの余波が、灰の辺境州の「賠償争議」へ直結している。",
@@ -358,14 +358,14 @@
     "world": {
       "worldSpine": {
         "worldName": "霧環連界",
-        "calendarName": "オルシェル暦",
-        "year": 7,
+        "calendarName": "セディオン暦",
+        "year": 6,
         "seasonIndex": 10,
         "eraLabel": "昇神期",
-        "mainGodLabel": "オルシェル",
+        "mainGodLabel": "セディオン",
         "activeChainLabel": "制度崩落連鎖",
         "cycleDistortion": 58.2,
-        "divineWarPressure": 67.0,
+        "divineWarPressure": 71.8,
         "dominantBranch": "管理者の端",
         "topNotes": [
           "渡し場の検札違い",
@@ -752,7 +752,7 @@
         ]
       },
       "activeNode": {
-        "nodeId": "node_inst_blockade_01_cl_war_reparation_54289_5",
+        "nodeId": "node_inst_blockade_01_cl_war_reparation_94272_4",
         "title": "賠償争議",
         "chainLabel": "制度崩落連鎖",
         "institutionLabel": "白祠教会による瘴冠領封鎖令",
@@ -780,8 +780,8 @@
       "institutionAlert": {
         "institutionId": "inst_blockade_01",
         "label": "白祠教会による瘴冠領封鎖令",
-        "status": "broken",
-        "breachRisk": 89.7,
+        "status": "strained",
+        "breachRisk": 73.7,
         "guide": {
           "summary": "「白祠教会による瘴冠領封鎖令」はかなり危うい。このまま崩れると、渡し場の検札違いの収め方の選択肢まで狭くなる。",
           "consequence": "取り決めが崩れると、次の交渉、補給、通行のどれかが止まりやすい。"
@@ -796,9 +796,9 @@
         "pressureStyle": "渡し順、検疫、船荷札のどれを優先するかが主題になる。",
         "protectedAsset": "澱舟泊へ届く渡し舟",
         "lostAsset": "澱舟泊の検疫線",
-        "stability": 48.9,
+        "stability": 48.7,
         "supply": 64.7,
-        "heat": 40.2,
+        "heat": 41.6,
         "status": "tense",
         "statusLabel": "緊張が高まっている",
         "statusText": "いまにも荒れそうだ。",
@@ -816,7 +816,7 @@
         "depth": 0,
         "maxDepth": 4,
         "sealIntegrity": 64.7,
-        "threat": 60.7,
+        "threat": 61.2,
         "status": "unstable",
         "statusLabel": "揺らいでいる",
         "statusText": "いまにも崩れそうだ。",
@@ -825,7 +825,7 @@
       "endingForecast": {
         "title": "鐘路に猶予が残りそうだ",
         "tone": "steady",
-        "score": 4.3,
+        "score": 3.6,
         "dominantChoice": "observe",
         "summary": "拠点と坑路の両方にまだ持ち直しの余地がある。"
       }
@@ -990,7 +990,7 @@
     },
     "runtime": {
       "readOnly": true,
-      "sceneId": "scene_ash_frontier_node_inst_blockade_01_cl_war_reparation_54289_5",
+      "sceneId": "scene_ash_frontier_node_inst_blockade_01_cl_war_reparation_94272_4",
       "sessionId": "sess_1729",
       "archiveCount": 0
     }

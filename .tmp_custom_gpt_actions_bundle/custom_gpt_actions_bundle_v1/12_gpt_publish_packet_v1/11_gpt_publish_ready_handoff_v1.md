@@ -4,6 +4,10 @@
 
 ## 1. Current Live Endpoints
 
+- GPT editor  
+  `https://chatgpt.com/gpts/editor`
+- OpenAI Help  
+  `https://help.openai.com/en/articles/8554397-create-a-gpt`
 - Builder website  
   `https://starringcodextrpg.onrender.com/builder-profile.html`
 - Privacy Policy  

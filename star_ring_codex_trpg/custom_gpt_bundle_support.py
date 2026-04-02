@@ -557,6 +557,8 @@ def export_custom_gpt_publish_dashboard(
         <span class="chip">Server: {escape(workspace.urls["actions_server_url"])}</span>
       </div>
       <div class="url-list">
+        <a class="url-link" href="{escape(workspace.urls['gpt_editor_url'])}" target="_blank" rel="noreferrer">Open GPT Editor</a>
+        <a class="url-link" href="{escape(workspace.urls['gpt_create_help_url'])}" target="_blank" rel="noreferrer">OpenAI Help</a>
         <a class="url-link" href="{escape(workspace.urls['builder_website'])}" target="_blank" rel="noreferrer">Builder Website</a>
         <a class="url-link" href="{escape(workspace.urls['privacy_policy_url'])}" target="_blank" rel="noreferrer">Privacy Policy</a>
       </div>
@@ -857,6 +859,8 @@ def build_custom_gpt_publish_workspace(
         "release_manifest": str(packet_root / "14_publish_release_manifest_v1.json"),
     }
     urls = {
+        "gpt_editor_url": "https://chatgpt.com/gpts/editor",
+        "gpt_create_help_url": "https://help.openai.com/en/articles/8554397-create-a-gpt",
         "builder_website": str(builder_fields.get("builder_profile_website") or "").strip(),
         "privacy_policy_url": str(builder_fields.get("privacy_policy_url_candidate") or "").strip(),
         "actions_server_url": server_url,

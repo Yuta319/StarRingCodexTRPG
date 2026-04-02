@@ -90,7 +90,7 @@ def main() -> None:
     if args.open:
         for key in ("dashboard", "handoff", "field_fragments_dir", "preview_scorecard"):
             _open_target(workspace.local_paths[key])
-        for key in ("builder_website", "privacy_policy_url"):
+        for key in ("gpt_editor_url", "gpt_create_help_url", "builder_website", "privacy_policy_url"):
             _open_target(workspace.urls[key])
 
 

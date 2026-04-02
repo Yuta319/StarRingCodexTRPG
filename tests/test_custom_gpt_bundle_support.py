@@ -102,7 +102,10 @@ class CustomGptBundleSupportTests(unittest.TestCase):
         self.assertIn("packet_dir", workspace.local_paths)
         self.assertIn("dashboard", workspace.local_paths)
         self.assertIn("preview_scorecard", workspace.local_paths)
+        self.assertIn("gpt_editor_url", workspace.urls)
+        self.assertIn("gpt_create_help_url", workspace.urls)
         self.assertIn("builder_website", workspace.urls)
+        self.assertEqual(workspace.urls["gpt_editor_url"], "https://chatgpt.com/gpts/editor")
         self.assertTrue(workspace.urls["builder_website"].startswith("https://"))
         self.assertTrue(workspace.urls["privacy_policy_url"].startswith("https://"))
 

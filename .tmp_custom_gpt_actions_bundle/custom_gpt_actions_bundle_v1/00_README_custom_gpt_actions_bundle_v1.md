@@ -43,7 +43,7 @@ py -3 scripts\prepare_gpt_publish_release.py
 py -3 scripts\open_gpt_publish_workspace.py --open
 ```
 
-このコマンドは `15_gpt_publish_dashboard_v1.html` を先に開きます。
+このコマンドは `15_gpt_publish_dashboard_v1.html` を先に開き、その後に GPT editor と OpenAI Help も開きます。
 
 ## この版の方針
 - `01_custom_gpt_system_prompt_v1.md` は Builder にそのまま貼りやすい圧縮版です
