@@ -130,7 +130,17 @@ def _git_head_commit(root: Path) -> str | None:
 def _git_is_dirty(root: Path) -> bool | None:
     try:
         result = subprocess.run(
-            ["git", "-C", str(root), "status", "--short"],
+            [
+                "git",
+                "-C",
+                str(root),
+                "status",
+                "--short",
+                "--",
+                ".",
+                ":(exclude).tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/12_gpt_publish_packet_v1",
+                ":(exclude).tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/12_gpt_publish_packet_v1.zip",
+            ],
             capture_output=True,
             check=True,
             text=True,

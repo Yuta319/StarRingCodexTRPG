@@ -6,6 +6,7 @@ import unittest
 from unittest.mock import patch
 
 from star_ring_codex_trpg.custom_gpt_bundle_support import (
+    _git_is_dirty,
     build_custom_gpt_editor_paste_pack,
     build_custom_gpt_publish_workspace,
     export_custom_gpt_publish_packet,
@@ -262,6 +263,23 @@ finalizeCharacter guidance.openingPackage
             report = validate_custom_gpt_bundle(root)
             self.assertFalse(report.ok)
             self.assertTrue(any("missing OpenAPI operations" in error for error in report.errors))
+
+    def test_git_dirty_check_excludes_generated_publish_artifacts(self) -> None:
+        with patch("star_ring_codex_trpg.custom_gpt_bundle_support.subprocess.run") as run_mock:
+            run_mock.return_value.stdout = ""
+            run_mock.return_value.stderr = ""
+            run_mock.return_value.returncode = 0
+            dirty = _git_is_dirty(PROJECT_ROOT)
+        self.assertFalse(dirty)
+        command = run_mock.call_args.args[0]
+        self.assertIn(
+            ":(exclude).tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/12_gpt_publish_packet_v1",
+            command,
+        )
+        self.assertIn(
+            ":(exclude).tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/12_gpt_publish_packet_v1.zip",
+            command,
+        )
 
 
 if __name__ == "__main__":
