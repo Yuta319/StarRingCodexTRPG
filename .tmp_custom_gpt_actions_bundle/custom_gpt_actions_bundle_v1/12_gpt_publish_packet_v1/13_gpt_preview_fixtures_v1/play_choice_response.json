@@ -1,7 +1,7 @@
 {
   "playSource": {
     "seed": null,
-    "world_json": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_21fc876fc27ea226.json"
+    "world_json": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_d49f9bb99dd1bffc.json"
   },
   "readModel": {
     "version": "gpt_read_model_v1",
@@ -24,7 +24,7 @@
     },
     "source": {
       "seed": 1729,
-      "worldJson": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_21fc876fc27ea226.json",
+      "worldJson": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_d49f9bb99dd1bffc.json",
       "archetype": "balanced",
       "seasons": 10,
       "sessionNumber": 1,
@@ -32,7 +32,7 @@
       "phaseLabel": "偵察局面"
     },
     "scene": {
-      "sceneId": "scene_ash_frontier_node_inst_blockade_01_cl_war_reparation_76304_4",
+      "sceneId": "scene_ash_frontier_node_inst_blockade_01_cl_war_reparation_57393_4",
       "title": "賠償争議",
       "location": "灰の辺境州",
       "headline": "渡し場の検札違いの余波が、灰の辺境州の「賠償争議」へ直結している。",
@@ -370,8 +370,8 @@
         "eraLabel": "昇神期",
         "mainGodLabel": "オルシェル",
         "activeChainLabel": "制度崩落連鎖",
-        "cycleDistortion": 54.0,
-        "divineWarPressure": 71.6,
+        "cycleDistortion": 58.9,
+        "divineWarPressure": 67.9,
         "dominantBranch": "管理者の端",
         "topNotes": [
           "渡し場の検札違い",
@@ -758,14 +758,14 @@
         ]
       },
       "activeNode": {
-        "nodeId": "node_inst_blockade_01_cl_war_reparation_76304_4",
+        "nodeId": "node_inst_blockade_01_cl_war_reparation_57393_4",
         "title": "賠償争議",
         "chainLabel": "制度崩落連鎖",
         "institutionLabel": "白祠教会による瘴冠領封鎖令",
         "questTitle": "渡し札と検疫札のどちらを先に通すか決める。",
         "severity": 100.0,
         "urgency": 100.0,
-        "stage": 4,
+        "stage": 2,
         "status": "active",
         "recommendedVectors": [
           "diplomacy",
@@ -780,14 +780,14 @@
         "guide": {
           "summary": "先送りしにくい局面だ。次の一手で被害や対立の広がり方が決まりやすい。",
           "action": "向いているのは diplomacy, stewardship, authority だ。",
-          "timing": "流れはかなり固まりつつある。大きくひっくり返すより、損を減らす判断が重くなる。"
+          "timing": "事件は途中段階だ。ここで選んだ向きが、後の分岐を決めやすい。"
         }
       },
       "institutionAlert": {
         "institutionId": "inst_blockade_01",
         "label": "白祠教会による瘴冠領封鎖令",
         "status": "broken",
-        "breachRisk": 91.7,
+        "breachRisk": 85.6,
         "guide": {
           "summary": "「白祠教会による瘴冠領封鎖令」はかなり危うい。このまま崩れると、渡し場の検札違いの収め方の選択肢まで狭くなる。",
           "consequence": "取り決めが崩れると、次の交渉、補給、通行のどれかが止まりやすい。"
@@ -802,9 +802,9 @@
         "pressureStyle": "渡し順、検疫、船荷札のどれを優先するかが主題になる。",
         "protectedAsset": "澱舟泊へ届く渡し舟",
         "lostAsset": "澱舟泊の検疫線",
-        "stability": 48.8,
-        "supply": 64.1,
-        "heat": 44.0,
+        "stability": 49.0,
+        "supply": 63.9,
+        "heat": 43.7,
         "status": "tense",
         "statusLabel": "緊張が高まっている",
         "statusText": "いまにも荒れそうだ。",
@@ -821,8 +821,8 @@
         "lostAsset": "塩鏡の祠洞の神託路",
         "depth": 1,
         "maxDepth": 4,
-        "sealIntegrity": 62.8,
-        "threat": 63.1,
+        "sealIntegrity": 62.4,
+        "threat": 62.8,
         "status": "unstable",
         "statusLabel": "揺らいでいる",
         "statusText": "いまにも崩れそうだ。",
@@ -996,7 +996,7 @@
     },
     "runtime": {
       "readOnly": true,
-      "sceneId": "scene_ash_frontier_node_inst_blockade_01_cl_war_reparation_76304_4",
+      "sceneId": "scene_ash_frontier_node_inst_blockade_01_cl_war_reparation_57393_4",
       "sessionId": "sess_1729",
       "archiveCount": 0
     }

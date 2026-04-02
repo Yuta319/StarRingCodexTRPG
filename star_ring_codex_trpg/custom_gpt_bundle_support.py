@@ -412,6 +412,8 @@ def export_custom_gpt_publish_dashboard(
         "Actions Import Path": _read_optional_text(Path(fragments_dir / "actions_import_path.txt")).strip(),
         "Actions Server URL": _read_optional_text(Path(fragments_dir / "actions_server_url.txt")).strip(),
     }
+    field_items = list(fields.items())
+    field_index_by_label = {label: index for index, (label, _value) in enumerate(field_items, start=1)}
     summary = _read_optional_text(Path(workspace.local_paths["summary"])).strip()
     scorecard = _read_optional_text(Path(workspace.local_paths["preview_scorecard"])).strip()
 
@@ -424,6 +426,89 @@ def export_custom_gpt_publish_dashboard(
         ("Preview Scorecard", Path(workspace.local_paths["preview_scorecard"])),
         ("Release Manifest", Path(workspace.local_paths["release_manifest"])),
     ]
+    checklist_steps = [
+        {
+            "id": "open-editor",
+            "title": "GPT editor を開く",
+            "note": "まず editor の Configure 画面を開く",
+            "copy_target": None,
+            "open_url": workspace.urls["gpt_editor_url"],
+        },
+        {
+            "id": "name",
+            "title": "Name を貼る",
+            "note": "短い名前だけ先に埋める",
+            "copy_target": f"field-{field_index_by_label['Name']}",
+            "open_url": None,
+        },
+        {
+            "id": "description",
+            "title": "Description を貼る",
+            "note": "editor の説明欄を埋める",
+            "copy_target": f"field-{field_index_by_label['Description']}",
+            "open_url": None,
+        },
+        {
+            "id": "instructions",
+            "title": "Instructions を貼る",
+            "note": "最重要。全文をそのまま使う",
+            "copy_target": f"field-{field_index_by_label['Instructions']}",
+            "open_url": None,
+        },
+        {
+            "id": "starters",
+            "title": "Conversation Starters を貼る",
+            "note": "改行ごとに starter を登録する",
+            "copy_target": f"field-{field_index_by_label['Conversation Starters']}",
+            "open_url": None,
+        },
+        {
+            "id": "import-openapi",
+            "title": "OpenAPI を import する",
+            "note": "Actions へ YAML を読み込む",
+            "copy_target": f"field-{field_index_by_label['Actions Import Path']}",
+            "open_url": _relative_href(packet_root, Path(workspace.local_paths["openapi_import"])),
+        },
+        {
+            "id": "builder-website",
+            "title": "Builder Website を貼る",
+            "note": "公開プロフィール用の live URL",
+            "copy_target": f"field-{field_index_by_label['Builder Website']}",
+            "open_url": workspace.urls["builder_website"],
+        },
+        {
+            "id": "privacy",
+            "title": "Privacy Policy URL を貼る",
+            "note": "公開前に実際に開けるか確認する",
+            "copy_target": f"field-{field_index_by_label['Privacy Policy URL']}",
+            "open_url": workspace.urls["privacy_policy_url"],
+        },
+        {
+            "id": "preview",
+            "title": "Preview を確認する",
+            "note": "scorecard を見ながら新規開始と通常進行を試す",
+            "copy_target": "scorecard-block",
+            "open_url": _relative_href(packet_root, Path(workspace.local_paths["preview_scorecard"])),
+        },
+    ]
+    checklist_steps_html = "".join(
+        f"""
+            <label class="checklist-step" for="check-{escape(step['id'])}">
+              <div class="checklist-step__toggle">
+                <input id="check-{escape(step['id'])}" type="checkbox" data-checklist-id="{escape(step['id'])}" />
+              </div>
+              <div class="checklist-step__body">
+                <strong>{escape(step['title'])}</strong>
+                <p>{escape(step['note'])}</p>
+                <div class="checklist-step__actions">
+                  {f'<button type="button" data-copy-target="{escape(step["copy_target"])}">Copy</button>' if step["copy_target"] else ""}
+                  {f'<button type="button" data-open-url="{escape(step["open_url"])}">Open</button>' if step["open_url"] else ""}
+                </div>
+              </div>
+            </label>
+        """
+        for step in checklist_steps
+    )
 
     html = f"""<!DOCTYPE html>
 <html lang="ja">
@@ -538,6 +623,57 @@ def export_custom_gpt_publish_dashboard(
       font-size: 14px;
       min-height: 1.4em;
     }}
+    .checklist {{
+      display: grid;
+      gap: 12px;
+    }}
+    .checklist__head {{
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 12px;
+    }}
+    .checklist-step {{
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(0, 0, 0, 0.12);
+    }}
+    .checklist-step__toggle {{
+      padding-top: 2px;
+    }}
+    .checklist-step__toggle input {{
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent-2);
+    }}
+    .checklist-step__body {{
+      display: grid;
+      gap: 8px;
+    }}
+    .checklist-step__body p {{
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }}
+    .checklist-step__actions {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }}
+    .status-row {{
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px;
+    }}
     @media (max-width: 980px) {{
       .grid {{ grid-template-columns: 1fr; }}
     }}
@@ -597,6 +733,22 @@ def export_custom_gpt_publish_dashboard(
       </section>
       <section class="stack">
         <section class="panel">
+          <div class="checklist__head">
+            <div>
+              <h2>Registration Checklist</h2>
+              <p class="field__meta">この画面で進捗を保持します</p>
+            </div>
+            <button type="button" id="reset-checklist">Reset</button>
+          </div>
+          <div class="status-row">
+            <span>進捗</span>
+            <strong id="checklist-progress">0 / {len(checklist_steps)}</strong>
+          </div>
+          <div class="checklist">
+            {checklist_steps_html}
+          </div>
+        </section>
+        <section class="panel">
           <div class="field">
             <div class="field__head">
               <div>
@@ -625,6 +777,7 @@ def export_custom_gpt_publish_dashboard(
   </main>
   <script>
     const status = document.getElementById("copy-status");
+    const checklistKey = "src-gpt-publish-checklist-v1::{escape(packet_root.name)}";
     async function copyFromElement(id) {{
       const element = document.getElementById(id);
       const value = element?.value ?? element?.textContent ?? "";
@@ -639,6 +792,44 @@ def export_custom_gpt_publish_dashboard(
     document.querySelectorAll("[data-copy-target]").forEach((button) => {{
       button.addEventListener("click", () => copyFromElement(button.dataset.copyTarget));
     }});
+    document.querySelectorAll("[data-open-url]").forEach((button) => {{
+      button.addEventListener("click", () => window.open(button.dataset.openUrl, "_blank", "noopener,noreferrer"));
+    }});
+    function loadChecklistState() {{
+      try {{
+        return JSON.parse(localStorage.getItem(checklistKey) || "{{}}");
+      }} catch (_error) {{
+        return {{}};
+      }}
+    }}
+    function saveChecklistState(state) {{
+      localStorage.setItem(checklistKey, JSON.stringify(state));
+    }}
+    function refreshChecklistProgress() {{
+      const boxes = [...document.querySelectorAll("[data-checklist-id]")];
+      const completed = boxes.filter((box) => box.checked).length;
+      const progress = document.getElementById("checklist-progress");
+      if (progress) {{
+        progress.textContent = completed + " / " + boxes.length;
+      }}
+    }}
+    const checklistState = loadChecklistState();
+    document.querySelectorAll("[data-checklist-id]").forEach((box) => {{
+      box.checked = Boolean(checklistState[box.dataset.checklistId]);
+      box.addEventListener("change", () => {{
+        checklistState[box.dataset.checklistId] = box.checked;
+        saveChecklistState(checklistState);
+        refreshChecklistProgress();
+      }});
+    }});
+    document.getElementById("reset-checklist")?.addEventListener("click", () => {{
+      document.querySelectorAll("[data-checklist-id]").forEach((box) => {{
+        box.checked = false;
+      }});
+      saveChecklistState({{}});
+      refreshChecklistProgress();
+    }});
+    refreshChecklistProgress();
   </script>
 </body>
 </html>

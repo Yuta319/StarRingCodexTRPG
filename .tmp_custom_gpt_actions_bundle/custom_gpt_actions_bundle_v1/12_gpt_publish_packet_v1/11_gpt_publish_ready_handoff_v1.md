@@ -69,6 +69,7 @@ py -3 scripts\open_gpt_publish_workspace.py --open
 ```
 
 このとき、公開用 dashboard `15_gpt_publish_dashboard_v1.html` が最初に開きます。
+dashboard には `Registration Checklist` があり、貼り込み進捗をブラウザの localStorage に保持できます。
 
 欄ごとのテキストをそのままクリップボードへ送る場合:
 
