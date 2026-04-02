@@ -181,6 +181,7 @@ py -3 scripts\export_gpt_publish_packet.py
 - `09_gpt_editor_paste_ready_pack_v1.md`
 - `10_gpt_editor_field_fragments_v1`
 - `13_gpt_preview_fixtures_v1`
+  - `01_preview_scorecard.md`
 - `04_openapi_pbw_actions_v1.yaml`
 - `11_gpt_publish_ready_handoff_v1.md`
 - `live_smoke_report.json`

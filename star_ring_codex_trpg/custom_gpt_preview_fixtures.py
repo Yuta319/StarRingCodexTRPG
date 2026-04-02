@@ -99,6 +99,7 @@ def export_custom_gpt_preview_fixtures(
         "choice_response": out_dir / "play_choice_response.json",
         "free_action_response": out_dir / "free_action_response.json",
         "summary": out_dir / "00_preview_summary.md",
+        "scorecard": out_dir / "01_preview_scorecard.md",
     }
 
     files["initial_read_model"].write_text(json.dumps(initial_read_model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -146,6 +147,76 @@ def export_custom_gpt_preview_fixtures(
         "3. `play_choice_response.json` と `free_action_response.json` で通常進行を比べる",
     ]
     files["summary"].write_text("\n".join(summary_lines).strip() + "\n", encoding="utf-8")
+
+    opening_package = initial_read_model["readModel"]["guidance"]["openingPackage"]
+    opening_anchors = opening_package.get("anchors") or {}
+    finalize_read_model = finalize_payload.get("readModel") or {}
+    finalize_guidance = finalize_read_model.get("guidance") or {}
+    choice_read_model = choice_payload.get("readModel") or {}
+    choice_scene = choice_read_model.get("scene") or {}
+    free_action_result = free_action_payload.get("structuredResult") or {}
+    free_story_guide = ((free_action_payload.get("readModel") or {}).get("guidance") or {}).get("storyGuide") or {}
+
+    scorecard_lines = [
+        "# Preview Scorecard v1",
+        "",
+        "このファイルは、GPT editor の Preview で返答を確認するときの合格ラインです。",
+        "",
+        "## 1. 新規開始の開始案",
+        "",
+        "次の要素が説明に入っていれば正常です。",
+        "",
+        f"- 導入見出しの核: `{opening_package.get('headline') or ''}`",
+        f"- 最初の火種: `{opening_anchors.get('incitingIncidentLabel') or ''}`",
+        f"- 拠点: `{opening_anchors.get('hubLabel') or ''}`",
+        f"- 坑路: `{opening_anchors.get('dungeonLabel') or ''}`",
+        "- 最初に関わる主要人物 2〜3 人",
+        "",
+        "この段階では、導入・装備・恩恵を確定事項ではなく『案』として扱っている必要があります。",
+        "",
+        "最初に関わる人物:",
+        *(f"- `{item.get('displayName')}` / {item.get('agenda')}" for item in (opening_anchors.get("castLabels") or [])[:3]),
+        "",
+        "## 2. 確定後の説明",
+        "",
+        "次の要素が見えていれば正常です。",
+        "",
+        f"- 確定した導入見出し: `{(finalize_guidance.get('sessionOpeningGuide') or {}).get('headline') or ''}`",
+        f"- 見える恩恵: `{(((finalize_guidance.get('characterGenesis') or {}).get('starterBoonSeed') or {}).get('visibleBoon') or {}).get('label') or ''}`",
+        f"- 眠る恩寵: `{(((finalize_guidance.get('characterGenesis') or {}).get('starterBoonSeed') or {}).get('dormantGrace') or {}).get('label') or ''}`",
+        "",
+        "この段階では、確定後の内容として話してよく、`finalizeCharacter` を通っている前提です。",
+        "",
+        "## 3. 通常 choice の説明",
+        "",
+        "次の要素が見えていれば正常です。",
+        "",
+        f"- 現在の場面: `{choice_scene.get('headline') or ''}`",
+        f"- 場面の焦点: `{choice_scene.get('title') or ''}`",
+        "- 推奨 choice を比較して説明する",
+        "",
+        "推奨 choice の例:",
+        *(f"- `{item.get('label')}`" for item in (choice_scene.get("choiceSurface") or []) if item.get("recommended")),
+        "",
+        "## 4. 自由行動の説明",
+        "",
+        "次の要素が見えていれば正常です。",
+        "",
+        f"- 自由行動 summary: `{free_action_result.get('summary') or ''}`",
+        f"- outcome: `{free_action_result.get('outcome') or ''}`",
+        f"- 物語上の現在位置: `{free_story_guide.get('now') or ''}`",
+        "",
+        "この段階では、raw の自由入力をそのまま保存済み canon のように扱わず、summary と outcome を基に語っている必要があります。",
+        "",
+        "## 5. NG 例",
+        "",
+        "- internal key や debug 用語を出す",
+        "- 返っていない truth を勝手に増やす",
+        "- 確定前の開始案を既成事実として言い切る",
+        "- 自由行動の raw テキストをそのまま保存された事実として扱う",
+        "- backend constraints を無視した強すぎる装備や恩恵を断定する",
+    ]
+    files["scorecard"].write_text("\n".join(scorecard_lines).strip() + "\n", encoding="utf-8")
 
     return CustomGptPreviewFixtures(
         bundle_root=str(root),

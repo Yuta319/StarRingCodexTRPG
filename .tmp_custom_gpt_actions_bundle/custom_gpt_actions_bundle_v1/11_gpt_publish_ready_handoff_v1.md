@@ -27,6 +27,7 @@
   [10_gpt_editor_field_fragments_v1](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/10_gpt_editor_field_fragments_v1)
 - Preview fixtures  
   [13_gpt_preview_fixtures_v1](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/13_gpt_preview_fixtures_v1)
+  - 特に [01_preview_scorecard.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/13_gpt_preview_fixtures_v1/01_preview_scorecard.md) を見ると、Preview の合格ラインが早く分かる
 
 ## 3. Live Validation Status
 
@@ -65,6 +66,8 @@ py -3 scripts\run_custom_gpt_publish_smoke.py
   [12_gpt_publish_packet_v1](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/12_gpt_publish_packet_v1)
 - Preview 比較用  
   [13_gpt_preview_fixtures_v1](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/13_gpt_preview_fixtures_v1)
+  - まず見る  
+    [01_preview_scorecard.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/13_gpt_preview_fixtures_v1/01_preview_scorecard.md)
 
 - まとめて見る  
   [09_gpt_editor_paste_ready_pack_v1.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/09_gpt_editor_paste_ready_pack_v1.md)

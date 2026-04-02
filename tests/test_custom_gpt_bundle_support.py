@@ -68,9 +68,13 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             self.assertTrue(Path(fixtures.files["finalize_response"]).exists())
             self.assertTrue(Path(fixtures.files["choice_response"]).exists())
             self.assertTrue(Path(fixtures.files["free_action_response"]).exists())
+            self.assertTrue(Path(fixtures.files["scorecard"]).exists())
             opening_excerpt = Path(fixtures.files["opening_package"]).read_text(encoding="utf-8")
             self.assertIn("openingPackage", opening_excerpt)
             self.assertIn("characterGenesis", opening_excerpt)
+            scorecard = Path(fixtures.files["scorecard"]).read_text(encoding="utf-8")
+            self.assertIn("Preview Scorecard", scorecard)
+            self.assertIn("NG 例", scorecard)
 
     def test_validate_bundle_reports_missing_operation(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
