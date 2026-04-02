@@ -1,0 +1,19 @@
+{
+  "name": "Star Ring Codex TRPG",
+  "description_file": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\description.txt",
+  "instructions_file": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\instructions.txt",
+  "conversation_starters_file": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\conversation_starters.txt",
+  "builder_website_file": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\builder_website.txt",
+  "privacy_policy_url_file": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\privacy_policy_url.txt",
+  "actions_import_path_file": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\actions_import_path.txt",
+  "actions_server_url_file": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1\\10_gpt_editor_field_fragments_v1\\actions_server_url.txt",
+  "operations_found": [
+    "finalizeCharacter",
+    "getGptReadModel",
+    "loadSession",
+    "nextSession",
+    "playChoice",
+    "playFreeAction",
+    "saveSession"
+  ]
+}

@@ -164,3 +164,22 @@ py -3 scripts\run_custom_gpt_publish_smoke.py
 - `GET /api/front/snapshot?seed=1729`
 - `GET /api/gpt-read-model?seed=1729`
 - `POST /api/gpt/finalize-character`
+
+## 14. Publish Packet
+
+登録作業に使う self-contained な最終パケットを 1 フォルダで出したい時:
+
+```powershell
+py -3 scripts\export_gpt_publish_packet.py
+```
+
+出力先:
+- [12_gpt_publish_packet_v1](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/12_gpt_publish_packet_v1)
+
+このフォルダには次がまとまっています:
+- `00_publish_summary.md`
+- `09_gpt_editor_paste_ready_pack_v1.md`
+- `10_gpt_editor_field_fragments_v1`
+- `04_openapi_pbw_actions_v1.yaml`
+- `11_gpt_publish_ready_handoff_v1.md`
+- `live_smoke_report.json`

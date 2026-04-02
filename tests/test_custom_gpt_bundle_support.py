@@ -6,6 +6,7 @@ import unittest
 
 from star_ring_codex_trpg.custom_gpt_bundle_support import (
     build_custom_gpt_editor_paste_pack,
+    export_custom_gpt_publish_packet,
     export_custom_gpt_editor_field_fragments,
     validate_custom_gpt_bundle,
 )
@@ -42,6 +43,19 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             self.assertIn("name", fragments.files)
             instructions = Path(fragments.files["instructions"]).read_text(encoding="utf-8")
             self.assertIn("guidance.openingPackage", instructions)
+
+    def test_export_publish_packet_builds_self_contained_folder(self) -> None:
+        bundle_root = PROJECT_ROOT / ".tmp_custom_gpt_actions_bundle" / "custom_gpt_actions_bundle_v1"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "publish_packet"
+            packet = export_custom_gpt_publish_packet(bundle_root, output_dir=output_dir, include_live_smoke=False)
+            self.assertTrue(Path(packet.files["summary"]).exists())
+            self.assertTrue(Path(packet.files["paste_pack"]).exists())
+            self.assertTrue(Path(packet.files["openapi"]).exists())
+            self.assertTrue(Path(packet.files["handoff"]).exists())
+            summary = Path(packet.files["summary"]).read_text(encoding="utf-8")
+            self.assertIn("GPT editor", summary)
+            self.assertIsNone(packet.smoke_ok)
 
     def test_validate_bundle_reports_missing_operation(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

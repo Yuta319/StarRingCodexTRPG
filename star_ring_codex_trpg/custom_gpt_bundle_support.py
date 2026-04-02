@@ -4,6 +4,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 import json
 import re
+import shutil
 from typing import Iterable
 
 
@@ -51,6 +52,17 @@ class CustomGptEditorFieldFragments:
     bundle_root: str
     output_dir: str
     files: dict[str, str]
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+@dataclass
+class CustomGptPublishPacket:
+    bundle_root: str
+    output_dir: str
+    files: dict[str, str]
+    smoke_ok: bool | None
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -334,4 +346,112 @@ def export_custom_gpt_editor_field_fragments(
         bundle_root=str(root),
         output_dir=str(out_dir),
         files={key: str(path) for key, path in file_map.items()},
+    )
+
+
+def export_custom_gpt_publish_packet(
+    bundle_root: Path,
+    *,
+    output_dir: Path | None = None,
+    seed: int = 1729,
+    timeout_seconds: float = 20.0,
+    include_live_smoke: bool = True,
+) -> CustomGptPublishPacket:
+    root = Path(bundle_root)
+    report = validate_custom_gpt_bundle(root)
+    if not report.ok:
+        raise ValueError("bundle validation failed: " + "; ".join(report.errors))
+
+    builder_fields, _system_prompt, _starters_text, openapi_text, _input_pack = _load_bundle_parts(root)
+    server_match = re.search(r"^\s*-\s+url:\s*(\S+)\s*$", openapi_text, flags=re.MULTILINE)
+    server_url = server_match.group(1).strip() if server_match else ""
+
+    out_dir = output_dir or (root / "12_gpt_publish_packet_v1")
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    paste_pack_path = out_dir / "09_gpt_editor_paste_ready_pack_v1.md"
+    paste_pack = build_custom_gpt_editor_paste_pack(root, output_path=paste_pack_path)
+
+    fragments_dir = out_dir / "10_gpt_editor_field_fragments_v1"
+    fragments = export_custom_gpt_editor_field_fragments(root, output_dir=fragments_dir)
+
+    copied_files = {
+        "openapi": out_dir / "04_openapi_pbw_actions_v1.yaml",
+        "builder_fields": out_dir / "03_custom_gpt_builder_fields_v1.json",
+        "handoff": out_dir / "11_gpt_publish_ready_handoff_v1.md",
+    }
+    shutil.copy2(root / "04_openapi_pbw_actions_v1.yaml", copied_files["openapi"])
+    shutil.copy2(root / "03_custom_gpt_builder_fields_v1.json", copied_files["builder_fields"])
+    shutil.copy2(root / "11_gpt_publish_ready_handoff_v1.md", copied_files["handoff"])
+
+    smoke_ok: bool | None = None
+    smoke_report_path = out_dir / "live_smoke_report.json"
+    if include_live_smoke:
+        from .custom_gpt_publish_smoke import run_custom_gpt_publish_smoke
+
+        smoke_report = run_custom_gpt_publish_smoke(root, seed=seed, timeout_seconds=timeout_seconds)
+        smoke_ok = smoke_report.ok
+        smoke_report_path.write_text(json.dumps(smoke_report.to_dict(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    summary_lines = [
+        "# GPT Publish Packet v1",
+        "",
+        "このフォルダは、GPT editor へ登録する時にそのまま使う最終パケットです。",
+        "",
+        "## Live URLs",
+        "",
+        f"- Builder website: {str(builder_fields.get('builder_profile_website') or '').strip()}",
+        f"- Privacy Policy URL: {str(builder_fields.get('privacy_policy_url_candidate') or '').strip()}",
+        f"- Actions server: {server_url}",
+        "",
+        "## Included Files",
+        "",
+        f"- Paste-ready pack: `{paste_pack_path.name}`",
+        f"- Field fragments: `{fragments_dir.name}`",
+        f"- OpenAPI import: `{copied_files['openapi'].name}`",
+        f"- Builder fields: `{copied_files['builder_fields'].name}`",
+        f"- Handoff note: `{copied_files['handoff'].name}`",
+    ]
+    if include_live_smoke:
+        summary_lines.extend(
+            [
+                f"- Live smoke report: `{smoke_report_path.name}`",
+                "",
+                "## Live Smoke Status",
+                "",
+                f"- ok: `{str(smoke_ok).lower()}`",
+                f"- seed: `{seed}`",
+            ]
+        )
+    summary_lines.extend(
+        [
+            "",
+            "## Recommended Start",
+            "",
+            "1. `11_gpt_publish_ready_handoff_v1.md` を開く",
+            "2. `09_gpt_editor_paste_ready_pack_v1.md` か `10_gpt_editor_field_fragments_v1` を使って GPT editor に貼る",
+            "3. `04_openapi_pbw_actions_v1.yaml` を Actions へ import する",
+            "4. Preview で新規開始と通常進行を確認する",
+        ]
+    )
+    summary_path = out_dir / "00_publish_summary.md"
+    summary_path.write_text("\n".join(summary_lines).strip() + "\n", encoding="utf-8")
+
+    files = {
+        "summary": str(summary_path),
+        "paste_pack": str(paste_pack_path),
+        "field_fragments_dir": str(fragments_dir),
+        "openapi": str(copied_files["openapi"]),
+        "builder_fields": str(copied_files["builder_fields"]),
+        "handoff": str(copied_files["handoff"]),
+    }
+    if include_live_smoke:
+        files["live_smoke_report"] = str(smoke_report_path)
+    files.update({f"fragment_{key}": value for key, value in fragments.files.items()})
+
+    return CustomGptPublishPacket(
+        bundle_root=str(root),
+        output_dir=str(out_dir),
+        files=files,
+        smoke_ok=smoke_ok,
     )

@@ -1,0 +1,56 @@
+{
+  "bundle_root": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1",
+  "ok": true,
+  "seed": 1729,
+  "targets": {
+    "bundle_root": ".tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1",
+    "builder_website": "https://starringcodextrpg.onrender.com/builder-profile.html",
+    "privacy_policy_url": "https://starringcodextrpg.onrender.com/privacy.html",
+    "api_server_url": "https://starringcodextrpg.onrender.com"
+  },
+  "checks": [
+    {
+      "name": "builder_website",
+      "ok": true,
+      "status": 200,
+      "url": "https://starringcodextrpg.onrender.com/builder-profile.html",
+      "detail": "html ok"
+    },
+    {
+      "name": "privacy_policy",
+      "ok": true,
+      "status": 200,
+      "url": "https://starringcodextrpg.onrender.com/privacy.html",
+      "detail": "html ok"
+    },
+    {
+      "name": "api_health",
+      "ok": true,
+      "status": 200,
+      "url": "https://starringcodextrpg.onrender.com/health",
+      "detail": "True"
+    },
+    {
+      "name": "front_snapshot",
+      "ok": true,
+      "status": 200,
+      "url": "https://starringcodextrpg.onrender.com/api/front/snapshot?seed=1729",
+      "detail": "world_json returned"
+    },
+    {
+      "name": "gpt_read_model",
+      "ok": true,
+      "status": 200,
+      "url": "https://starringcodextrpg.onrender.com/api/gpt-read-model?seed=1729",
+      "detail": "openingPackage.promptHint present"
+    },
+    {
+      "name": "gpt_finalize_character",
+      "ok": true,
+      "status": 200,
+      "url": "https://starringcodextrpg.onrender.com/api/gpt/finalize-character",
+      "detail": "readModel updated"
+    }
+  ],
+  "errors": []
+}
