@@ -1,0 +1,1012 @@
+{
+  "playSource": {
+    "seed": null,
+    "world_json": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_c37e267f5032d6c7.json"
+  },
+  "readModel": {
+    "version": "gpt_read_model_v1",
+    "contracts": {
+      "truthMutation": "backend_only",
+      "rawFreeTextPersisted": false,
+      "roleSlotPrimary": true,
+      "gptResponsibilities": [
+        "narration",
+        "npc_dialogue_surface",
+        "free_action_narrative_surface",
+        "character_genesis_surface"
+      ],
+      "gptMustNot": [
+        "mutate_world_state",
+        "override_resolution",
+        "persist_raw_free_text",
+        "edit_saves_directly"
+      ]
+    },
+    "source": {
+      "seed": 1729,
+      "worldJson": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_c37e267f5032d6c7.json",
+      "archetype": "balanced",
+      "seasons": 10,
+      "sessionNumber": 1,
+      "turnInSession": 2,
+      "phaseLabel": "偵察局面"
+    },
+    "scene": {
+      "sceneId": "scene_ash_frontier_node_inst_blockade_01_cl_war_reparation_89729_4",
+      "title": "賠償争議",
+      "location": "灰の辺境州",
+      "headline": "渡し場の検札違いの余波が、灰の辺境州の「賠償争議」へ直結している。",
+      "openingLines": [
+        "灰の辺境州では、賠償争議をめぐるざわめきが、もう奥に隠れきっていない。",
+        "瘴冠領と白祠教会のあいだで責任の押し付け合いが始まり、見張りも通行人も視線を落ち着けられずにいる。",
+        "戦後賠償をめぐり再び封鎖と略奪が起こり始めた。",
+        "固有事件「渡し場の検札違い」では、渡し札と検疫札の順が食い違い、誰を先に舟へ乗せるかで場が割れている。",
+        "検疫の手順が崩れると、水運も避難も同時に止まりやすい。序盤二手で渡し場の流れを読めないと、以後の補給と封路対応が両方遅れる。",
+        "ルアカイの渡し場では拠点の足元が揺らいでいる。補給はひとまず保たれている。場の空気はまだ荒れきっていない。"
+      ],
+      "dramaticLayers": {
+        "place": "灰の辺境州",
+        "focus": "賠償争議",
+        "discrepancy": "渡し札と検疫札の順が食い違い、誰を先に舟へ乗せるかで場が割れている。",
+        "reaction": "ルアカイの渡し場の荒れ方と塩鏡の祠洞の封印の揺れが、同じ局面を別方向から押している",
+        "aftermath": "検疫の手順が崩れると、水運も避難も同時に止まりやすい。"
+      },
+      "choiceSurface": [
+        {
+          "choiceId": "observe",
+          "label": "周囲の様子を見る",
+          "recommended": true
+        },
+        {
+          "choiceId": "speak",
+          "label": "関係者に話を聞く",
+          "recommended": true
+        },
+        {
+          "choiceId": "inspect",
+          "label": "記録と条文を確かめる",
+          "recommended": true
+        },
+        {
+          "choiceId": "intervene",
+          "label": "危険を承知で踏み込む",
+          "recommended": false
+        }
+      ]
+    },
+    "guidance": {
+      "sessionOpeningGuide": {
+        "headline": "灰の関所で始まる旅",
+        "lines": [
+          "ルアカイの渡し場からカルドルンの関所へ向かう街道で、旅は始まる。",
+          "停戦のきしみと渡し場の検札違いが、最初の火種として立ち上がっている。"
+        ]
+      },
+      "storyGuide": {
+        "now": "第1セッションの偵察局面だ。いま問題になっているのは「渡し場の検札違い」で、場面の焦点は「賠償争議」にある。",
+        "stakes": "渡し札と検疫札の順が食い違い、誰を先に舟へ乗せるかで場が割れている。検疫の手順が崩れると、水運も避難も同時に止まりやすい。序盤二手で渡し場の流れを読めないと、以後の補給と封路対応が両方遅れる。",
+        "worldState": "ルアカイの渡し場では拠点の足元が揺らいでいる。補給はひとまず保たれている。場の空気はまだ荒れきっていない。塩鏡の祠洞では封印はまだ働いている。坑路の危険が増している。奥へ踏み込んで道筋を確かめている。世界のゆらぎが目立ち始めている。神々の対立が表に出始めている。継承争いが各地で表に出始めている。昇神をめぐる気配が濃くなっている。",
+        "trace": "最近は「周囲を見る」を選ぶことが多い。舟綱列がさらに絡んだ。",
+        "forecast": "鐘路に猶予が残りそうだ。拠点と坑路の両方にまだ持ち直しの余地がある。",
+        "recommendedChoices": [
+          "observe",
+          "inspect",
+          "speak"
+        ],
+        "recommendedChoiceLabels": [
+          "周囲を見る",
+          "手がかりを調べる",
+          "関係者に話す"
+        ],
+        "objective": "渡し札と検疫札のどちらを先に通すか決める。"
+      },
+      "actionGuide": {
+        "choiceMode": "まずは通常の選択で場面を進める。迷ったら「周囲を見る」から始めると流れをつかみやすい。",
+        "freeActionMode": "自由行動は、選択肢にない手を試したいときだけ使う。通っても露見や反動が残ることがある。",
+        "sessionFlow": "途中で区切るなら保存する。6手を終えたら次のセッションへ進み、持ち越しを見てから一手目を選ぶ。"
+      },
+      "characterGenesis": {
+        "profile": {
+          "name": null,
+          "raceLabel": null,
+          "styleLabel": null,
+          "temperamentLabel": null,
+          "originLabel": null,
+          "loadoutLabel": null,
+          "sourceModeLabel": null,
+          "sourceTitle": null,
+          "sourceName": null,
+          "summaryText": null,
+          "appearanceNotes": null,
+          "reinterpretationNotes": null,
+          "selectedOpeningVariantLabel": null
+        },
+        "openingVariants": [],
+        "openingPromptHint": null,
+        "starterLoadout": [
+          {
+            "slotLabel": "右手武器",
+            "name": "検札の直剣",
+            "subtitle": "直剣 / 光",
+            "rarityLabel": "冠位",
+            "stats": [
+              "攻撃 147",
+              "信仰補正 59",
+              "戦技: 誓約の返し"
+            ],
+            "flavorText": "直剣と手灯で、列と約束を守るための基本装備。 検札の局面で抜くために整えられており、目立ちすぎず、それでも役割が通る形に収められている。"
+          },
+          {
+            "slotLabel": "左手灯具",
+            "name": "検札の灯",
+            "subtitle": "灯 / 補助具",
+            "rarityLabel": "奉納",
+            "stats": [
+              "防御 65",
+              "詠唱補助 51",
+              "固有: 露見抑制"
+            ],
+            "flavorText": "直剣と手灯で、列と約束を守るための基本装備。 検札の手順を見失わないための補助具で、見落としを減らす一方、持ち手の迷いまでは隠せない。"
+          },
+          {
+            "slotLabel": "頭防具",
+            "name": "旅人の冠",
+            "subtitle": "頭防具 / 冠",
+            "rarityLabel": "名工作",
+            "stats": [
+              "物理 21",
+              "精神 26",
+              "発見力 +8"
+            ],
+            "flavorText": "王都の役人が使う冠を簡素にした品。門をくぐる者の立場を、ひと目で分かるようにしている。"
+          },
+          {
+            "slotLabel": "胴防具",
+            "name": "検札の外套",
+            "subtitle": "胴防具 / 外套",
+            "rarityLabel": "秘蔵",
+            "stats": [
+              "物理 42",
+              "信仰 36",
+              "耐候 +14"
+            ],
+            "flavorText": "潮気と灰をはじく外套。背の紋は所属章ではなく、通行を許された者だと示すための印だ。"
+          },
+          {
+            "slotLabel": "腕防具",
+            "name": "誓いの手甲",
+            "subtitle": "腕防具 / 手甲",
+            "rarityLabel": "現場仕立て",
+            "stats": [
+              "物理 18",
+              "器用 12",
+              "手順補正 +6"
+            ],
+            "flavorText": "誓紙を扱うときに手元がぶれないよう補強された手甲。誓いを破る場では、冷えが先に指へ返る。"
+          },
+          {
+            "slotLabel": "脚防具",
+            "name": "湿地の長靴",
+            "subtitle": "脚防具 / 長靴",
+            "rarityLabel": "量産",
+            "stats": [
+              "機動 24",
+              "静歩 18",
+              "湿地適性 +10"
+            ],
+            "flavorText": "泥と板橋で足音を抑える長靴。逃げるためではなく、ぬかるみで踏みとどまるために作られている。"
+          }
+        ],
+        "starterBoonSeed": {
+          "visibleBoon": {
+            "label": "旅路の加護",
+            "summary": "迷いかけた道で、進むべき筋をひとつだけ照らす。",
+            "kind": "恩恵"
+          },
+          "dormantGrace": {
+            "label": "まだ名を持たない恩寵",
+            "summary": "危うい局面でだけ、遠い世界の勘が薄く戻る。",
+            "kind": "恩寵"
+          }
+        },
+        "constraints": {},
+        "portraitGuide": {
+          "styleSummary": "旅人の旅人を基準に、全キャラクターを同じ筆致と陰影でそろえる。",
+          "negativePrompt": "禁止: スクリーンショットのUI/HUD/ロゴ/ギルドマーク/文字を残すこと、現代服、SF装備、過度な露出、極端なデフォルメ、別作品の衣装や紋章のそのままの複製、顔が見えない構図、複数人物、武器で顔を隠す構図、過剰な発光、過剰な被写界深度。",
+          "consistencyRules": [
+            "旅人 / 旅人 / どこかの出 / 誓約の旅装 の情報を毎回 prompt に入れる。",
+            "主要人物は全員、同じ陰影の強さと筆致で描く。",
+            "顔アイコンは胸上、立ち絵は全身3/4立ちを基本にする。"
+          ],
+          "referenceHandling": [
+            "参照画像がある場合は、顔立ちの印象、髪型の輪郭、年齢感、体格、主な配色、印象的な装飾や武器のシルエットを優先して拾う。",
+            "元画像のUI、ロゴ、HUD、作品固有の紋章、文字は捨てる。服の素材や模様は、この世界の宗務会・街道・湿地・坑道の意匠へ置き換える。",
+            "同じキャラクターで顔アイコンと立ち絵を作るときは、髪色、瞳色、肌色、顔の骨格、装備の主色を固定する。"
+          ]
+        },
+        "gptTasks": [
+          "設定と転生元の要素を踏まえて、開始装備一式の意味づけと見た目を語れる。",
+          "ただし性能値は constraints の上限を超えない前提で語る。world truth を直接変更しない。",
+          "starterBoonSeed を起点に、恩恵と恩寵の手触りを語れるが、件数は constraints を超えない。",
+          "openingVariants を種にして、導入は 2〜4 文で自由に組み替えてよい。"
+        ]
+      },
+      "newGameGenesis": {
+        "profileSurface": {
+          "name": "均衡者の旅人",
+          "raceLabel": "human",
+          "styleLabel": "",
+          "originLabel": "境目育ち",
+          "loadoutLabel": null,
+          "sourceModeLabel": null,
+          "summaryText": null
+        },
+        "openingSummary": "最初のセッションだ。境目育ちのhumanである均衡者の旅人は、ルアカイの渡し場を足場にして『渡し場の検札違い』へ踏み込む。事の余波は塩鏡の祠洞にも及びそうだ。",
+        "phaseEventLabels": [
+          "渡し場の検札違い",
+          "荷札の滲み",
+          "祠洞の逆さ祈り"
+        ],
+        "hub": {
+          "hubId": "hub_tide_wharf",
+          "label": "ルアカイの渡し場",
+          "regionLabel": "封泥湿域",
+          "pressureStyle": "渡し順、検疫、船荷札のどれを優先するかが主題になる。"
+        },
+        "dungeon": {
+          "dungeonId": "dungeon_salt_oracle_crypt",
+          "label": "塩鏡の祠洞",
+          "regionLabel": "白祠圏",
+          "pressureStyle": "神託の真偽と封泥の継ぎ直しをどう両立するかが主題になる。"
+        },
+        "incitingIncident": {
+          "eventId": "evt_quarantine_pass_split",
+          "label": "渡し場の検札違い",
+          "summary": "渡し札と検疫札の順が食い違い、誰を先に舟へ乗せるかで場が割れている。",
+          "objective": "渡し札と検疫札のどちらを先に通すか決める。"
+        },
+        "storyAxes": [
+          "渡し順、検疫、船荷札のどれを優先するかが主題になる。",
+          "神託の真偽と封泥の継ぎ直しをどう両立するかが主題になる。",
+          "検疫の手順が崩れると、水運も避難も同時に止まりやすい。"
+        ],
+        "preferredFactions": [],
+        "castSeed": [
+          {
+            "roleSlotId": "slot_truce_warden",
+            "roleLabel": "停戦執行官",
+            "displayName": "ドヴァン〈停戦執行官〉",
+            "affiliationLabel": "穀冠王国",
+            "agenda": "街道と人質交換を崩させない。"
+          },
+          {
+            "roleSlotId": "slot_cantor",
+            "roleLabel": "祈鐘士",
+            "displayName": "リス〈祈鐘士〉",
+            "affiliationLabel": "白祠教会",
+            "agenda": "儀礼の破断と世界圧の悪化を遅らせる。"
+          },
+          {
+            "roleSlotId": "slot_ledger_clerk",
+            "roleLabel": "目録官",
+            "displayName": "ユノ〈目録官〉",
+            "affiliationLabel": "黒鎚採鉱盟",
+            "agenda": "台帳の穴と責任の所在を見える形にする。"
+          },
+          {
+            "roleSlotId": "slot_tunnel_guide",
+            "roleLabel": "坑路案内",
+            "displayName": "ガルド〈坑路案内〉",
+            "affiliationLabel": "灰縁侯",
+            "agenda": "白灰坑道の深部へ届き、生きて戻す。"
+          }
+        ],
+        "gptTasks": [
+          "新規開始では openingSummary, incitingIncident, storyAxes を起点に、この世界固有の導入を組み立てる。",
+          "phaseEventLabels はセッション1の火種として扱い、別のイベントへ勝手に差し替えない。",
+          "castSeed の agenda と affiliationLabel を見て、最初に誰が何を守りたいかを明確に語る。"
+        ]
+      },
+      "openingPackage": {
+        "headline": "灰の関所で始まる旅",
+        "selectedVariantLabel": null,
+        "promptHint": "主人公の導入を 2〜4 文で語る。 導入見出しは「灰の関所で始まる旅」。 最初の火種は「渡し場の検札違い」。 拠点は ルアカイの渡し場。 坑路は 塩鏡の祠洞。 最初に強く関わるのは ドヴァン〈停戦執行官〉（停戦執行官）、リス〈祈鐘士〉（祈鐘士）、ユノ〈目録官〉（目録官）。 意味を先に、雰囲気はその後に置く。truth は増やさない。",
+        "openingLines": [
+          "ルアカイの渡し場からカルドルンの関所へ向かう街道で、旅は始まる。",
+          "停戦のきしみと渡し場の検札違いが、最初の火種として立ち上がっている。"
+        ],
+        "anchors": {
+          "incitingIncidentLabel": "渡し場の検札違い",
+          "incitingIncidentSummary": "渡し札と検疫札の順が食い違い、誰を先に舟へ乗せるかで場が割れている。",
+          "hubLabel": "ルアカイの渡し場",
+          "dungeonLabel": "塩鏡の祠洞",
+          "castLabels": [
+            {
+              "displayName": "ドヴァン〈停戦執行官〉",
+              "roleLabel": "停戦執行官",
+              "affiliationLabel": "穀冠王国",
+              "agenda": "街道と人質交換を崩させない。"
+            },
+            {
+              "displayName": "リス〈祈鐘士〉",
+              "roleLabel": "祈鐘士",
+              "affiliationLabel": "白祠教会",
+              "agenda": "儀礼の破断と世界圧の悪化を遅らせる。"
+            },
+            {
+              "displayName": "ユノ〈目録官〉",
+              "roleLabel": "目録官",
+              "affiliationLabel": "黒鎚採鉱盟",
+              "agenda": "台帳の穴と責任の所在を見える形にする。"
+            },
+            {
+              "displayName": "ガルド〈坑路案内〉",
+              "roleLabel": "坑路案内",
+              "affiliationLabel": "灰縁侯",
+              "agenda": "白灰坑道の深部へ届き、生きて戻す。"
+            }
+          ],
+          "storyAxes": [
+            "渡し順、検疫、船荷札のどれを優先するかが主題になる。",
+            "神託の真偽と封泥の継ぎ直しをどう両立するかが主題になる。",
+            "検疫の手順が崩れると、水運も避難も同時に止まりやすい。"
+          ]
+        },
+        "outputRules": [
+          "導入は 2〜4 文で語る。",
+          "最初に意味と状況、その後に雰囲気を置く。",
+          "truth にない設定や勝手な既成事実を増やさない。",
+          "確定前の導入・装備・恩恵は必ず案として扱う。"
+        ],
+        "finalizeReminder": "プレイヤーが同意したら finalizeCharacter を呼び、返り値を正本として開始導入を確定する。"
+      }
+    },
+    "world": {
+      "worldSpine": {
+        "worldName": "霧環連界",
+        "calendarName": "セディオン暦",
+        "year": 6,
+        "seasonIndex": 10,
+        "eraLabel": "昇神期",
+        "mainGodLabel": "セディオン",
+        "activeChainLabel": "制度崩落連鎖",
+        "cycleDistortion": 61.6,
+        "divineWarPressure": 68.5,
+        "dominantBranch": "管理者の端",
+        "topNotes": [
+          "渡し場の検札違い",
+          "ルアカイの渡し場: 緊張が高まっている",
+          "塩鏡の祠洞: 揺らいでいる"
+        ],
+        "syncState": "synced"
+      },
+      "worldPulse": {
+        "summary": "世界のゆらぎが目立ち始めている。神々の対立が表に出始めている。継承争いが各地で表に出始めている。昇神をめぐる気配が濃くなっている。",
+        "focus": "いま特に強いのは「昇神のうねり」だ。局地の事件にもその圧が表に出やすい。",
+        "read": "数字が高い項目ほど、その場面の判断や事件の空気に割り込んできやすい。"
+      },
+      "currentEvent": {
+        "label": "渡し場の検札違い",
+        "statusLabel": "かなり切迫している",
+        "summaryText": "渡し札と検疫札の順が食い違い、誰を先に舟へ乗せるかで場が割れている。",
+        "importanceText": "検疫の手順が崩れると、水運も避難も同時に止まりやすい。序盤二手で渡し場の流れを読めないと、以後の補給と封路対応が両方遅れる。",
+        "lastOutcomeText": "綱がさらに絡み、渡し順と責任の押し付け合いだけが増えた。",
+        "branchPreview": [
+          {
+            "branchId": "branch_brine_pass_compare",
+            "label": "札の照合",
+            "summary": "渡し札と検疫札の欠番を照らし、誰の列が止まっているかを見切る。",
+            "preferredIntents": [
+              "inspect",
+              "observe"
+            ],
+            "focusNpcIds": [
+              "slot_oath_scribe",
+              "slot_ferrymaster"
+            ],
+            "notes": {
+              "success": "欠番の流れが見え、渡しと検疫の順を立て直せた。",
+              "partial_success": "流れは見えたが、誰かへの便宜がまだ帳面に載っていない。",
+              "failure": "欠番だけが増え、渡し札と検疫札の両方への不信が強まった。"
+            },
+            "fx": {
+              "success": {
+                "pressure": -3.8,
+                "hub_heat": -1.6,
+                "hub_stability": 1.8,
+                "trust": {
+                  "slot_oath_scribe": 2.2,
+                  "slot_ferrymaster": 1.8
+                },
+                "marks": [
+                  "渡し札と検疫札の欠番を照合した"
+                ],
+                "stress": {},
+                "hints": [],
+                "weaknesses": []
+              },
+              "partial_success": {
+                "pressure": -0.8,
+                "hub_heat": 0.8,
+                "stress": {
+                  "slot_oath_scribe": 1.2
+                },
+                "marks": [
+                  "欠番は見えたが便宜の帳尻が残った"
+                ],
+                "trust": {},
+                "hints": [],
+                "weaknesses": []
+              },
+              "failure": {
+                "pressure": 3.0,
+                "hub_heat": 2.0,
+                "hub_stability": -1.0,
+                "stress": {
+                  "slot_oath_scribe": 1.8,
+                  "slot_ferrymaster": 1.6
+                },
+                "marks": [
+                  "渡し札と検疫札の不信が広がった"
+                ],
+                "trust": {},
+                "hints": [],
+                "weaknesses": []
+              }
+            },
+            "selectors": {},
+            "summaryText": "渡し札と検疫札の欠番を照らし、誰の列が止まっているかを見切る。",
+            "resultText": "欠番の流れが見え、渡しと検疫の順を立て直せた。",
+            "riskText": "ここで失敗すると、欠番だけが増え、渡し札と検疫札の両方への不信が強まった。",
+            "preferredChoiceLabels": [
+              "手がかりを調べる",
+              "周囲を見る"
+            ]
+          },
+          {
+            "branchId": "branch_fever_barge_split",
+            "label": "病列と荷舟の切り分け",
+            "summary": "病列と荷舟を同じ渡し場に溜めず、舟ごとに流れを分ける。",
+            "preferredIntents": [
+              "speak",
+              "intervene"
+            ],
+            "focusNpcIds": [
+              "slot_quartermaster",
+              "slot_ferrymaster"
+            ],
+            "notes": {
+              "success": "病列と荷舟が離れ、渡し場の空気が少し静まった。",
+              "partial_success": "列は分けたが、荷の遅れへの不満が残った。",
+              "failure": "病列も荷舟も詰まり、渡し場全体が互いを責め始めた。"
+            },
+            "fx": {
+              "success": {
+                "pressure": -2.8,
+                "hub_heat": -1.8,
+                "hub_stability": 1.2,
+                "trust": {
+                  "slot_quartermaster": 1.8,
+                  "slot_ferrymaster": 1.6
+                },
+                "marks": [
+                  "病列と荷舟の流れを分けた"
+                ],
+                "stress": {},
+                "hints": [],
+                "weaknesses": []
+              },
+              "partial_success": {
+                "pressure": -0.4,
+                "hub_supply": -0.6,
+                "stress": {
+                  "slot_quartermaster": 1.4
+                },
+                "marks": [
+                  "列は分けたが荷の遅れが残った"
+                ],
+                "trust": {},
+                "hints": [],
+                "weaknesses": []
+              },
+              "failure": {
+                "pressure": 2.8,
+                "hub_heat": 2.2,
+                "hub_stability": -0.8,
+                "stress": {
+                  "slot_quartermaster": 1.8,
+                  "slot_ferrymaster": 2.0
+                },
+                "marks": [
+                  "渡し場で病列と荷舟がぶつかった"
+                ],
+                "trust": {},
+                "hints": [],
+                "weaknesses": []
+              }
+            },
+            "selectors": {},
+            "summaryText": "病列と荷舟を同じ渡し場に溜めず、舟ごとに流れを分ける。",
+            "resultText": "病列と荷舟が離れ、渡し場の空気が少し静まった。",
+            "riskText": "ここで失敗すると、病列も荷舟も詰まり、渡し場全体が互いを責め始めた。",
+            "preferredChoiceLabels": [
+              "関係者に話す",
+              "踏み込んで動く"
+            ]
+          },
+          {
+            "branchId": "branch_oath_salt_reading",
+            "label": "塩の跡を読む",
+            "summary": "誓紙に残った塩の跡を読み、どの札が正しい手順で残ったのかを確かめる。",
+            "preferredIntents": [
+              "inspect",
+              "speak"
+            ],
+            "focusNpcIds": [
+              "slot_oath_scribe",
+              "slot_cantor"
+            ],
+            "notes": {
+              "success": "塩の跡が読めて、どの札を先に通すべきかが定まった。",
+              "partial_success": "筋は読めたが、祈り場へ借りを残して順番を通した。",
+              "failure": "誓塩の読みが割れ、検疫そのものが争点になった。"
+            },
+            "fx": {
+              "success": {
+                "pressure": -2.6,
+                "hub_stability": 1.2,
+                "dungeon_seal": 0.8,
+                "trust": {
+                  "slot_oath_scribe": 1.8,
+                  "slot_cantor": 1.4
+                },
+                "marks": [
+                  "誓塩の筋を読み直した"
+                ],
+                "stress": {},
+                "hints": [],
+                "weaknesses": []
+              },
+              "partial_success": {
+                "pressure": -0.2,
+                "hub_heat": 0.8,
+                "stress": {
+                  "slot_cantor": 1.2
+                },
+                "marks": [
+                  "誓塩の読み直しに祈り場の借りが残った"
+                ],
+                "trust": {},
+                "hints": [],
+                "weaknesses": []
+              },
+              "failure": {
+                "pressure": 2.4,
+                "hub_heat": 1.6,
+                "dungeon_seal": -0.8,
+                "stress": {
+                  "slot_oath_scribe": 1.8,
+                  "slot_cantor": 1.6
+                },
+                "marks": [
+                  "検疫の筋そのものが争点になった"
+                ],
+                "trust": {},
+                "hints": [],
+                "weaknesses": []
+              }
+            },
+            "selectors": {},
+            "summaryText": "誓紙に残った塩の跡を読み、どの札が正しい手順で残ったのかを確かめる。",
+            "resultText": "塩の跡が読めて、どの札を先に通すべきかが定まった。",
+            "riskText": "ここで失敗すると、誓塩の読みが割れ、検疫そのものが争点になった。",
+            "preferredChoiceLabels": [
+              "手がかりを調べる",
+              "関係者に話す"
+            ]
+          },
+          {
+            "branchId": "branch_rope_lane_release",
+            "label": "舟綱列をほどく",
+            "summary": "絡んだ舟綱列をほどき、先に渡す列と残す列を明確にする。",
+            "preferredIntents": [
+              "observe",
+              "intervene"
+            ],
+            "focusNpcIds": [
+              "slot_ferrymaster",
+              "slot_truce_warden"
+            ],
+            "selectors": {
+              "heatAbove": 32.0,
+              "turnAtLeast": 2
+            },
+            "notes": {
+              "success": "舟綱列がほどけ、渡し場の詰まりは一息ついた。",
+              "partial_success": "綱はほどけたが、後回しにされた列の恨みが残った。",
+              "failure": "綱がさらに絡み、渡し順と責任の押し付け合いだけが増えた。"
+            },
+            "fx": {
+              "success": {
+                "pressure": -2.4,
+                "hub_heat": -1.0,
+                "hub_supply": 1.2,
+                "trust": {
+                  "slot_ferrymaster": 1.8,
+                  "slot_truce_warden": 1.2
+                },
+                "marks": [
+                  "舟綱列をほどいた"
+                ],
+                "stress": {},
+                "hints": [],
+                "weaknesses": []
+              },
+              "partial_success": {
+                "pressure": -0.2,
+                "hub_heat": 1.0,
+                "stress": {
+                  "slot_truce_warden": 1.2
+                },
+                "marks": [
+                  "後回しの列に恨みが残った"
+                ],
+                "trust": {},
+                "hints": [],
+                "weaknesses": []
+              },
+              "failure": {
+                "pressure": 2.6,
+                "hub_heat": 2.0,
+                "hub_supply": -0.8,
+                "stress": {
+                  "slot_ferrymaster": 2.0,
+                  "slot_truce_warden": 1.6
+                },
+                "marks": [
+                  "舟綱列がさらに絡んだ"
+                ],
+                "trust": {},
+                "hints": [],
+                "weaknesses": []
+              }
+            },
+            "summaryText": "絡んだ舟綱列をほどき、先に渡す列と残す列を明確にする。",
+            "resultText": "舟綱列がほどけ、渡し場の詰まりは一息ついた。",
+            "riskText": "ここで失敗すると、綱がさらに絡み、渡し順と責任の押し付け合いだけが増えた。",
+            "preferredChoiceLabels": [
+              "周囲を見る",
+              "踏み込んで動く"
+            ]
+          },
+          {
+            "branchId": "branch_mud_seal_patch",
+            "label": "泥封の補修",
+            "summary": "渡し札の泥封と祠洞側の封泥をつなぎ直し、札の効きそのものを保たせる。",
+            "preferredIntents": [
+              "inspect",
+              "intervene"
+            ],
+            "focusNpcIds": [
+              "slot_oath_scribe",
+              "slot_ward_mason"
+            ],
+            "selectors": {
+              "threatAbove": 44.0,
+              "turnAtLeast": 2
+            },
+            "notes": {
+              "success": "札の効きが戻り、渡し筋と封路の両方が少し持ち直した。",
+              "partial_success": "泥封はもったが、その場しのぎの跡が残った。",
+              "failure": "泥封が割れ、札も封路も同時に頼りなくなった。"
+            },
+            "fx": {
+              "success": {
+                "pressure": -2.8,
+                "hub_stability": 1.0,
+                "dungeon_seal": 1.6,
+                "dungeon_threat": -0.8,
+                "trust": {
+                  "slot_oath_scribe": 1.4,
+                  "slot_ward_mason": 1.8
+                },
+                "marks": [
+                  "泥封を継ぎ足して渡し筋を保った"
+                ],
+                "stress": {},
+                "hints": [],
+                "weaknesses": []
+              },
+              "partial_success": {
+                "pressure": -0.2,
+                "dungeon_seal": 0.8,
+                "stress": {
+                  "slot_ward_mason": 1.2
+                },
+                "marks": [
+                  "泥封はもったが継ぎ足しの跡が残った"
+                ],
+                "trust": {},
+                "hints": [],
+                "weaknesses": []
+              },
+              "failure": {
+                "pressure": 2.8,
+                "hub_heat": 1.0,
+                "dungeon_seal": -1.4,
+                "dungeon_threat": 1.8,
+                "stress": {
+                  "slot_oath_scribe": 1.6,
+                  "slot_ward_mason": 2.2
+                },
+                "marks": [
+                  "泥封が割れて渡し札の効きが落ちた"
+                ],
+                "trust": {},
+                "hints": [],
+                "weaknesses": []
+              }
+            },
+            "summaryText": "渡し札の泥封と祠洞側の封泥をつなぎ直し、札の効きそのものを保たせる。",
+            "resultText": "札の効きが戻り、渡し場の流れと封路の両方が少し持ち直した。",
+            "riskText": "ここで失敗すると、泥封が割れ、札も封路も同時に頼りなくなった。",
+            "preferredChoiceLabels": [
+              "手がかりを調べる",
+              "踏み込んで動く"
+            ]
+          }
+        ]
+      },
+      "activeNode": {
+        "nodeId": "node_inst_blockade_01_cl_war_reparation_89729_4",
+        "title": "賠償争議",
+        "chainLabel": "制度崩落連鎖",
+        "institutionLabel": "白祠教会による瘴冠領封鎖令",
+        "questTitle": "渡し札と検疫札のどちらを先に通すか決める。",
+        "severity": 100.0,
+        "urgency": 100.0,
+        "stage": 4,
+        "status": "active",
+        "recommendedVectors": [
+          "diplomacy",
+          "stewardship",
+          "authority"
+        ],
+        "projectedLegacies": [
+          "制度",
+          "正史",
+          "伝承"
+        ],
+        "guide": {
+          "summary": "先送りしにくい局面だ。次の一手で被害や対立の広がり方が決まりやすい。",
+          "action": "向いているのは diplomacy, stewardship, authority だ。",
+          "timing": "流れはかなり固まりつつある。大きくひっくり返すより、損を減らす判断が重くなる。"
+        }
+      },
+      "institutionAlert": {
+        "institutionId": "inst_blockade_01",
+        "label": "白祠教会による瘴冠領封鎖令",
+        "status": "broken",
+        "breachRisk": 86.9,
+        "guide": {
+          "summary": "「白祠教会による瘴冠領封鎖令」はかなり危うい。このまま崩れると、渡し場の検札違いの収め方の選択肢まで狭くなる。",
+          "consequence": "取り決めが崩れると、次の交渉、補給、通行のどれかが止まりやすい。"
+        }
+      },
+      "hub": {
+        "hubId": "hub_tide_wharf",
+        "label": "ルアカイの渡し場",
+        "regionId": "seal_marsh",
+        "regionLabel": "封泥湿域",
+        "description": "渡し舟、検疫札、船荷札が一か所で絡む湿地の船着き拠点。",
+        "pressureStyle": "渡し順、検疫、船荷札のどれを優先するかが主題になる。",
+        "protectedAsset": "澱舟泊へ届く渡し舟",
+        "lostAsset": "澱舟泊の検疫線",
+        "stability": 48.9,
+        "supply": 63.8,
+        "heat": 43.6,
+        "status": "tense",
+        "statusLabel": "緊張が高まっている",
+        "statusText": "いまにも荒れそうだ。",
+        "supportText": "ルアカイの渡し場では拠点の足元が揺らいでいる。補給はひとまず保たれている。場の空気はまだ荒れきっていない。"
+      },
+      "dungeon": {
+        "dungeonId": "dungeon_salt_oracle_crypt",
+        "label": "塩鏡の祠洞",
+        "regionId": "white_shrine",
+        "regionLabel": "白祠圏",
+        "description": "塩の結晶で神託を封じる祠洞。罅が入ると、祈りと予兆が同時に逆流する。",
+        "pressureStyle": "神託の真偽と封泥の継ぎ直しをどう両立するかが主題になる。",
+        "protectedAsset": "塩鏡の祠洞の祭壇",
+        "lostAsset": "塩鏡の祠洞の神託路",
+        "depth": 1,
+        "maxDepth": 4,
+        "sealIntegrity": 62.2,
+        "threat": 62.8,
+        "status": "unstable",
+        "statusLabel": "揺らいでいる",
+        "statusText": "いまにも崩れそうだ。",
+        "supportText": "塩鏡の祠洞では封印はまだ働いている。坑路の危険が増している。奥へ踏み込んで道筋を確かめている。"
+      },
+      "endingForecast": {
+        "title": "鐘路に猶予が残りそうだ",
+        "tone": "steady",
+        "score": 4.1,
+        "dominantChoice": "observe",
+        "summary": "拠点と坑路の両方にまだ持ち直しの余地がある。"
+      }
+    },
+    "cast": [
+      {
+        "roleSlotId": "slot_truce_warden",
+        "roleLabel": "停戦執行官",
+        "occupantLabel": "ドヴァン〈停戦執行官〉",
+        "summaryText": "停戦執行官として、街道と人質交換を崩させない。",
+        "attitudeText": "協力の余地はあるが、全面的には任せていない。平静を装っているが余裕は薄い。",
+        "trustText": "協力の余地はあるが、全面的には任せていない。",
+        "stressText": "平静を装っているが余裕は薄い。",
+        "conflictText": "停戦執行官は街道を止めずに回したいが、目録官は帳簿の穴を塞がないまま列を動かすことを認めない。",
+        "traceText": "「舟綱列をほどく」の傷を自分の持ち場へ押し返されたと感じている。視線が印章と見張りの往復へ向くと、先に停戦の大義を口にする。 今回の傷は簡単には忘れない。",
+        "secretText": "隠し事の気配がある。記録の余白だけ別の筆圧で埋まっている。さらに余白の筆跡と交換記録を公に突き合わせられると、隠した名が表に出る。",
+        "weaknessText": "負傷者の搬送列を見ると強くは押し切れない。搬送列が目の前にある場面では、停戦の建前より救命を優先しやすい。"
+      },
+      {
+        "roleSlotId": "slot_cantor",
+        "roleLabel": "祈鐘士",
+        "occupantLabel": "リス〈祈鐘士〉",
+        "summaryText": "祈鐘士として、儀礼の破断と世界圧の悪化を遅らせる。",
+        "attitudeText": "助けは欲していても、簡単には腹を割らない。平静を装っているが余裕は薄い。",
+        "trustText": "助けは欲していても、簡単には腹を割らない。",
+        "stressText": "平静を装っているが余裕は薄い。",
+        "conflictText": "祈鐘士は封印と儀礼を守りたいが、坑路案内は生還のために退路と近道を優先する。",
+        "traceText": "まだこちらの出方を測っている。こちらが鐘音の流れを読むと、祈りの手順を隠すように話題をずらす。",
+        "secretText": "まだ隠していることがある。鐘譜や祈りの手順を確かめると、正式な鐘式から外れた抑揚が見える。",
+        "weaknessText": "聖遺物や鐘譜を前にすると見捨てられない。封印より保全を迫られた場面で、捨てる判断が極端に遅くなる。"
+      },
+      {
+        "roleSlotId": "slot_ledger_clerk",
+        "roleLabel": "目録官",
+        "occupantLabel": "ユノ〈目録官〉",
+        "summaryText": "目録官として、台帳の穴と責任の所在を見える形にする。",
+        "attitudeText": "協力の余地はあるが、全面的には任せていない。平静を装っているが余裕は薄い。",
+        "trustText": "協力の余地はあるが、全面的には任せていない。",
+        "stressText": "平静を装っているが余裕は薄い。",
+        "conflictText": "目録官は数字を公開して責任をはっきりさせたいが、停戦執行官は街道を保つために帳簿の穴を伏せたい。",
+        "traceText": "まだこちらの出方を測っている。荷札や荷車の流れを見られると、数字より順路の話へ逸らそうとする。",
+        "secretText": "まだ隠していることがある。荷札番号の抜けを追うと、故意に外した痕が見える。",
+        "weaknessText": "人前で数字の整合を問われると焦って取り繕う。群衆の前で即答を迫られると、誤差をごまかそうとする。"
+      },
+      {
+        "roleSlotId": "slot_tunnel_guide",
+        "roleLabel": "坑路案内",
+        "occupantLabel": "ガルド〈坑路案内〉",
+        "summaryText": "坑路案内として、白灰坑道の深部へ届き、生きて戻す。",
+        "attitudeText": "助けは欲していても、簡単には腹を割らない。かなり追い詰められている。",
+        "trustText": "助けは欲していても、簡単には腹を割らない。",
+        "stressText": "かなり追い詰められている。",
+        "conflictText": "坑路案内は生還の道を確保したいが、祈鐘士は禁制を犯してでも鐘譜と封印を守ろうとする。",
+        "traceText": "あなたが「周囲を見る」を選んだことを、まだ好意的に見ている。地形を読む目には協力するが、退路の本数だけは最後まで濁す。",
+        "secretText": "まだ隠していることがある。古い崩落図を見せると、継ぎ目の先にある退路を即座に示す。",
+        "weaknessText": "崩落音が長引くと生還以外を考えられなくなる。崩落音が続くか退路が潰れると、判断が退路一択に寄る。"
+      },
+      {
+        "roleSlotId": "slot_quartermaster",
+        "roleLabel": "宿場差配",
+        "occupantLabel": "エドラ〈宿場差配〉",
+        "summaryText": "宿場差配として、寝床と配給を止めず、列の夜越えを成立させる。",
+        "attitudeText": "協力の余地はあるが、全面的には任せていない。平静を装っているが余裕は薄い。",
+        "trustText": "協力の余地はあるが、全面的には任せていない。",
+        "stressText": "平静を装っているが余裕は薄い。",
+        "conflictText": "宿場差配は列を先へ流したいが、目録官は台帳が合わないまま寝床札と配給を増やしたくない。",
+        "traceText": "まだこちらの出方を測っている。列の長さを数えられると、先に今夜の寒さを理由にする。",
+        "secretText": "まだ隠していることがある。寝床札の束と夜番の控えを照らすと、別札の折り癖が浮かぶ。",
+        "weaknessText": "泣き声と空腹を前にすると列を乱してでも配ってしまう。子どもや負傷者の列を前にすると、優先順位を崩してでも寝床と粥を回したくなる。"
+      },
+      {
+        "roleSlotId": "slot_relic_keeper",
+        "roleLabel": "遺物番",
+        "occupantLabel": "メレク〈遺物番〉",
+        "summaryText": "遺物番として、危うい遺物を外へ漏らさず、封庫そのものを保たせる。",
+        "attitudeText": "協力の余地はあるが、全面的には任せていない。平静を装っているが余裕は薄い。",
+        "trustText": "協力の余地はあるが、全面的には任せていない。",
+        "stressText": "平静を装っているが余裕は薄い。",
+        "conflictText": "遺物番は封箱を閉じたまま運びたいが、祈鐘士は儀礼に要る品を手元へ残したがる。",
+        "traceText": "まだこちらの出方を測っている。封箱の並びを読まれると、まず泥鏡の危うさを理由にして距離を取る。",
+        "secretText": "まだ隠していることがある。鍵穴と封箱目録を照らすと、訓練で使った痕が見える。",
+        "weaknessText": "危うい遺物でも目の前で砕く判断に弱い。封蔵品の破棄を迫られると、封印より保管へ寄りやすい。"
+      },
+      {
+        "roleSlotId": "slot_oath_scribe",
+        "roleLabel": "誓紙検分官",
+        "occupantLabel": "タヴィス〈誓紙検分官〉",
+        "summaryText": "誓紙検分官として、検疫と通行の流れを切らさず、誓紙の信用を守る。",
+        "attitudeText": "助けは欲していても、簡単には腹を割らない。平静を装っているが余裕は薄い。",
+        "trustText": "助けは欲していても、簡単には腹を割らない。",
+        "stressText": "平静を装っているが余裕は薄い。",
+        "conflictText": "誓紙検分官は誓紙と検疫印の筋を守りたいが、停戦執行官は街道を止めないために便法を残したまま列を動かしたい。",
+        "traceText": "まだこちらの出方を測っている。札束と列を見比べる視線には敏感で、まず検分の理屈を口にする。",
+        "secretText": "まだ隠していることがある。誓紙の端と刻印幅を見比べると、古い便法の癖が残っていると分かる。",
+        "weaknessText": "検疫で足止めされた家族列を見ると、裏の便法へ寄りやすい。家族ごと列を止める決定を迫られると、裏の通し方に逃げやすい。"
+      },
+      {
+        "roleSlotId": "slot_ferrymaster",
+        "roleLabel": "渡し守",
+        "occupantLabel": "ジョラ〈渡し守〉",
+        "summaryText": "渡し守として、舟を止めず、検疫路と水運の両方を持たせる。",
+        "attitudeText": "助けは欲していても、簡単には腹を割らない。平静を装っているが余裕は薄い。",
+        "trustText": "助けは欲していても、簡単には腹を割らない。",
+        "stressText": "平静を装っているが余裕は薄い。",
+        "conflictText": "渡し守は舟を切らさず流したいが、宿場差配は寝床と配給の順を守るために渡しへ回す人数を絞りたい。",
+        "traceText": "「舟綱列をほどく」の傷を自分の持ち場へ押し返されたと感じている。水位と杭を読む相手には目を向けるが、裏の渡し場の流れは最後まで濁す。 今回の傷は簡単には忘れない。",
+        "secretText": "隠し事の気配がある。舟印の縁だけ夜露の塩が深く残っている。さらに舟印と夜番控えの本数を公開で突き合わせられると、余舟を隠せない。",
+        "weaknessText": "溺死と置き去りを前にすると、検疫より先に舟を出してしまう。足止めされた列に幼子やけが人がいると、規則より先に舟を出したくなる。"
+      },
+      {
+        "roleSlotId": "slot_ward_mason",
+        "roleLabel": "封継師",
+        "occupantLabel": "エリス〈封継師〉",
+        "summaryText": "封継師として、罅を閉じ、封路を保ち、神託の逆流を押し返す。",
+        "attitudeText": "助けは欲していても、簡単には腹を割らない。平静を装っているが余裕は薄い。",
+        "trustText": "助けは欲していても、簡単には腹を割らない。",
+        "stressText": "平静を装っているが余裕は薄い。",
+        "conflictText": "封継師は罅を閉じるために封泥と時間を欲しがるが、遺物番は封箱を動かさず、継ぎ直しより保管の秩序を優先したい。",
+        "traceText": "まだこちらの出方を測っている。継ぎ目を見る目には協力するが、古い罅図までは簡単に渡さない。",
+        "secretText": "まだ隠していることがある。継泥の匂いと祈り場の配合を比べると、禁じた継泥の痕が分かる。",
+        "weaknessText": "神託が逆流すると、封じ切るため乱暴な継ぎ方へ寄る。逆流の兆しが強いと、後の歪みより今の封じを優先しやすい。"
+      }
+    ],
+    "memory": {
+      "archiveSummary": {
+        "latestArchiveSummary": "",
+        "resurfacingSpark": "",
+        "hiddenWound": "",
+        "entries": []
+      },
+      "nextSessionHook": {
+        "nextMainEventCandidates": [],
+        "carriedPressures": [],
+        "npcCarryOvers": [],
+        "scarsRemaining": [],
+        "protectedAssets": [],
+        "archivedCauseEchoes": [],
+        "resurfacingRisks": [],
+        "unresolvedVice": [],
+        "unresolvedTaboo": []
+      },
+      "sessionEnding": null
+    },
+    "freeActionSurface": {
+      "latest": {
+        "summary": "",
+        "outcome": "",
+        "afterglow": "",
+        "residue": ""
+      },
+      "narrativeSurfaceRules": [
+        "自由入力の原文は保存しない。語りは summary と structured result の outcome から作る。",
+        "結果の確定、世界状態の変更、保存は backend のみが行う。",
+        "語りでは成功・露見・反動の手触りを補うが、truth を言い換えて改変しない。"
+      ]
+    },
+    "narrationPolicy": {
+      "tone": "意味を先に、雰囲気はその後に置く。",
+      "openingTask": "scene.openingLines と guidance.sessionOpeningGuide を基に、guidance.openingPackage があればそれを優先し、必要なら guidance.characterGenesis.openingVariants と guidance.newGameGenesis を使って、場面の導入を 2〜4 文で語る。",
+      "npcTask": "cast を見て current occupant の反応を台詞や地の文で補う。",
+      "hookTask": "memory.nextSessionHook を使い、次に何が再燃するかを短く示す。"
+    },
+    "runtime": {
+      "readOnly": true,
+      "sceneId": "scene_ash_frontier_node_inst_blockade_01_cl_war_reparation_89729_4",
+      "sessionId": "sess_1729",
+      "archiveCount": 0
+    }
+  },
+  "transition": {
+    "choiceId": "observe",
+    "intentType": "observe",
+    "outcome": "failure",
+    "beforeScene": "賠償履行争議",
+    "afterScene": "賠償履行争議",
+    "message": "「舟綱列をほどく」では綱がさらに絡み、渡し順と責任の押し付け合いだけが増えた。責任争いがさらに重くなった。宿の空気が荒れた。"
+  }
+}

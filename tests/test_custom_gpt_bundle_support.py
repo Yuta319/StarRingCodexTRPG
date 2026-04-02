@@ -10,6 +10,7 @@ from star_ring_codex_trpg.custom_gpt_bundle_support import (
     export_custom_gpt_editor_field_fragments,
     validate_custom_gpt_bundle,
 )
+from star_ring_codex_trpg.custom_gpt_preview_fixtures import export_custom_gpt_preview_fixtures
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -56,6 +57,20 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             summary = Path(packet.files["summary"]).read_text(encoding="utf-8")
             self.assertIn("GPT editor", summary)
             self.assertIsNone(packet.smoke_ok)
+
+    def test_export_preview_fixtures_builds_local_examples(self) -> None:
+        bundle_root = PROJECT_ROOT / ".tmp_custom_gpt_actions_bundle" / "custom_gpt_actions_bundle_v1"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "preview_fixtures"
+            fixtures = export_custom_gpt_preview_fixtures(bundle_root, output_dir=output_dir)
+            self.assertTrue(Path(fixtures.files["initial_read_model"]).exists())
+            self.assertTrue(Path(fixtures.files["opening_package"]).exists())
+            self.assertTrue(Path(fixtures.files["finalize_response"]).exists())
+            self.assertTrue(Path(fixtures.files["choice_response"]).exists())
+            self.assertTrue(Path(fixtures.files["free_action_response"]).exists())
+            opening_excerpt = Path(fixtures.files["opening_package"]).read_text(encoding="utf-8")
+            self.assertIn("openingPackage", opening_excerpt)
+            self.assertIn("characterGenesis", opening_excerpt)
 
     def test_validate_bundle_reports_missing_operation(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

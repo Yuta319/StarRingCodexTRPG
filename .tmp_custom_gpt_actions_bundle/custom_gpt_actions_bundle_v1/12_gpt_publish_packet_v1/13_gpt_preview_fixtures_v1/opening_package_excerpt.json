@@ -1,0 +1,245 @@
+{
+  "openingPackage": {
+    "headline": "第1セッションの入り口",
+    "selectedVariantLabel": null,
+    "promptHint": "主人公の導入を 2〜4 文で語る。 導入見出しは「第1セッションの入り口」。 最初の火種は「渡し場の検札違い」。 拠点は ルアカイの渡し場。 坑路は 塩鏡の祠洞。 最初に強く関わるのは ドヴァン〈停戦執行官〉（停戦執行官）、リス〈祈鐘士〉（祈鐘士）、ユノ〈目録官〉（目録官）。 意味を先に、雰囲気はその後に置く。truth は増やさない。",
+    "openingLines": [
+      "最初のセッションだ。境目育ちのhumanである均衡者の旅人は、ルアカイの渡し場を足場にして『渡し場の検札違い』へ踏み込む。事の余波は塩鏡の祠洞にも及びそうだ。"
+    ],
+    "anchors": {
+      "incitingIncidentLabel": "渡し場の検札違い",
+      "incitingIncidentSummary": "渡し札と検疫札の順が食い違い、誰を先に舟へ乗せるかで場が割れている。",
+      "hubLabel": "ルアカイの渡し場",
+      "dungeonLabel": "塩鏡の祠洞",
+      "castLabels": [
+        {
+          "displayName": "ドヴァン〈停戦執行官〉",
+          "roleLabel": "停戦執行官",
+          "affiliationLabel": "穀冠王国",
+          "agenda": "街道と人質交換を崩させない。"
+        },
+        {
+          "displayName": "リス〈祈鐘士〉",
+          "roleLabel": "祈鐘士",
+          "affiliationLabel": "白祠教会",
+          "agenda": "儀礼の破断と世界圧の悪化を遅らせる。"
+        },
+        {
+          "displayName": "ユノ〈目録官〉",
+          "roleLabel": "目録官",
+          "affiliationLabel": "黒鎚採鉱盟",
+          "agenda": "台帳の穴と責任の所在を見える形にする。"
+        },
+        {
+          "displayName": "ガルド〈坑路案内〉",
+          "roleLabel": "坑路案内",
+          "affiliationLabel": "灰縁侯",
+          "agenda": "白灰坑道の深部へ届き、生きて戻す。"
+        }
+      ],
+      "storyAxes": [
+        "渡し順、検疫、船荷札のどれを優先するかが主題になる。",
+        "神託の真偽と封泥の継ぎ直しをどう両立するかが主題になる。",
+        "検疫の手順が崩れると、水運も避難も同時に止まりやすい。"
+      ]
+    },
+    "outputRules": [
+      "導入は 2〜4 文で語る。",
+      "最初に意味と状況、その後に雰囲気を置く。",
+      "truth にない設定や勝手な既成事実を増やさない。",
+      "確定前の導入・装備・恩恵は必ず案として扱う。"
+    ],
+    "finalizeReminder": "プレイヤーが同意したら finalizeCharacter を呼び、返り値を正本として開始導入を確定する。"
+  },
+  "characterGenesis": {
+    "profile": {
+      "name": null,
+      "raceLabel": null,
+      "styleLabel": null,
+      "temperamentLabel": null,
+      "originLabel": null,
+      "loadoutLabel": null,
+      "sourceModeLabel": null,
+      "sourceTitle": null,
+      "sourceName": null,
+      "summaryText": null,
+      "appearanceNotes": null,
+      "reinterpretationNotes": null,
+      "selectedOpeningVariantLabel": null
+    },
+    "openingVariants": [],
+    "openingPromptHint": null,
+    "starterLoadout": [
+      {
+        "slotLabel": "右手武器",
+        "name": "検札の直剣",
+        "subtitle": "直剣 / 光",
+        "rarityLabel": "冠位",
+        "stats": [
+          "攻撃 147",
+          "信仰補正 59",
+          "戦技: 誓約の返し"
+        ],
+        "flavorText": "直剣と手灯で、列と約束を守るための基本装備。 検札の局面で抜くために整えられており、目立ちすぎず、それでも役割が通る形に収められている。"
+      },
+      {
+        "slotLabel": "左手灯具",
+        "name": "検札の灯",
+        "subtitle": "灯 / 補助具",
+        "rarityLabel": "奉納",
+        "stats": [
+          "防御 65",
+          "詠唱補助 51",
+          "固有: 露見抑制"
+        ],
+        "flavorText": "直剣と手灯で、列と約束を守るための基本装備。 検札の手順を見失わないための補助具で、見落としを減らす一方、持ち手の迷いまでは隠せない。"
+      },
+      {
+        "slotLabel": "頭防具",
+        "name": "旅人の冠",
+        "subtitle": "頭防具 / 冠",
+        "rarityLabel": "名工作",
+        "stats": [
+          "物理 21",
+          "精神 26",
+          "発見力 +8"
+        ],
+        "flavorText": "王都の役人が使う冠を簡素にした品。門をくぐる者の立場を、ひと目で分かるようにしている。"
+      },
+      {
+        "slotLabel": "胴防具",
+        "name": "検札の外套",
+        "subtitle": "胴防具 / 外套",
+        "rarityLabel": "秘蔵",
+        "stats": [
+          "物理 42",
+          "信仰 36",
+          "耐候 +14"
+        ],
+        "flavorText": "潮気と灰をはじく外套。背の紋は所属章ではなく、通行を許された者だと示すための印だ。"
+      },
+      {
+        "slotLabel": "腕防具",
+        "name": "誓いの手甲",
+        "subtitle": "腕防具 / 手甲",
+        "rarityLabel": "現場仕立て",
+        "stats": [
+          "物理 18",
+          "器用 12",
+          "手順補正 +6"
+        ],
+        "flavorText": "誓紙を扱うときに手元がぶれないよう補強された手甲。誓いを破る場では、冷えが先に指へ返る。"
+      },
+      {
+        "slotLabel": "脚防具",
+        "name": "湿地の長靴",
+        "subtitle": "脚防具 / 長靴",
+        "rarityLabel": "量産",
+        "stats": [
+          "機動 24",
+          "静歩 18",
+          "湿地適性 +10"
+        ],
+        "flavorText": "泥と板橋で足音を抑える長靴。逃げるためではなく、ぬかるみで踏みとどまるために作られている。"
+      }
+    ],
+    "starterBoonSeed": {},
+    "constraints": {},
+    "portraitGuide": {
+      "styleSummary": "旅人の旅人を基準に、全キャラクターを同じ筆致と陰影でそろえる。",
+      "negativePrompt": "禁止: スクリーンショットのUI/HUD/ロゴ/ギルドマーク/文字を残すこと、現代服、SF装備、過度な露出、極端なデフォルメ、別作品の衣装や紋章のそのままの複製、顔が見えない構図、複数人物、武器で顔を隠す構図、過剰な発光、過剰な被写界深度。",
+      "consistencyRules": [
+        "旅人 / 旅人 / どこかの出 / 誓約の旅装 の情報を毎回 prompt に入れる。",
+        "主要人物は全員、同じ陰影の強さと筆致で描く。",
+        "顔アイコンは胸上、立ち絵は全身3/4立ちを基本にする。"
+      ],
+      "referenceHandling": [
+        "参照画像がある場合は、顔立ちの印象、髪型の輪郭、年齢感、体格、主な配色、印象的な装飾や武器のシルエットを優先して拾う。",
+        "元画像のUI、ロゴ、HUD、作品固有の紋章、文字は捨てる。服の素材や模様は、この世界の宗務会・街道・湿地・坑道の意匠へ置き換える。",
+        "同じキャラクターで顔アイコンと立ち絵を作るときは、髪色、瞳色、肌色、顔の骨格、装備の主色を固定する。"
+      ]
+    },
+    "gptTasks": [
+      "設定と転生元の要素を踏まえて、開始装備一式の意味づけと見た目を語れる。",
+      "ただし性能値は constraints の上限を超えない前提で語る。world truth を直接変更しない。",
+      "starterBoonSeed を起点に、恩恵と恩寵の手触りを語れるが、件数は constraints を超えない。",
+      "openingVariants を種にして、導入は 2〜4 文で自由に組み替えてよい。"
+    ]
+  },
+  "newGameGenesis": {
+    "profileSurface": {
+      "name": "均衡者の旅人",
+      "raceLabel": "human",
+      "styleLabel": "",
+      "originLabel": "境目育ち",
+      "loadoutLabel": null,
+      "sourceModeLabel": null,
+      "summaryText": null
+    },
+    "openingSummary": "最初のセッションだ。境目育ちのhumanである均衡者の旅人は、ルアカイの渡し場を足場にして『渡し場の検札違い』へ踏み込む。事の余波は塩鏡の祠洞にも及びそうだ。",
+    "phaseEventLabels": [
+      "渡し場の検札違い",
+      "荷札の滲み",
+      "祠洞の逆さ祈り"
+    ],
+    "hub": {
+      "hubId": "hub_tide_wharf",
+      "label": "ルアカイの渡し場",
+      "regionLabel": "封泥湿域",
+      "pressureStyle": "渡し順、検疫、船荷札のどれを優先するかが主題になる。"
+    },
+    "dungeon": {
+      "dungeonId": "dungeon_salt_oracle_crypt",
+      "label": "塩鏡の祠洞",
+      "regionLabel": "白祠圏",
+      "pressureStyle": "神託の真偽と封泥の継ぎ直しをどう両立するかが主題になる。"
+    },
+    "incitingIncident": {
+      "eventId": "evt_quarantine_pass_split",
+      "label": "渡し場の検札違い",
+      "summary": "渡し札と検疫札の順が食い違い、誰を先に舟へ乗せるかで場が割れている。",
+      "objective": "渡し札と検疫札のどちらを先に通すか決める。"
+    },
+    "storyAxes": [
+      "渡し順、検疫、船荷札のどれを優先するかが主題になる。",
+      "神託の真偽と封泥の継ぎ直しをどう両立するかが主題になる。",
+      "検疫の手順が崩れると、水運も避難も同時に止まりやすい。"
+    ],
+    "preferredFactions": [],
+    "castSeed": [
+      {
+        "roleSlotId": "slot_truce_warden",
+        "roleLabel": "停戦執行官",
+        "displayName": "ドヴァン〈停戦執行官〉",
+        "affiliationLabel": "穀冠王国",
+        "agenda": "街道と人質交換を崩させない。"
+      },
+      {
+        "roleSlotId": "slot_cantor",
+        "roleLabel": "祈鐘士",
+        "displayName": "リス〈祈鐘士〉",
+        "affiliationLabel": "白祠教会",
+        "agenda": "儀礼の破断と世界圧の悪化を遅らせる。"
+      },
+      {
+        "roleSlotId": "slot_ledger_clerk",
+        "roleLabel": "目録官",
+        "displayName": "ユノ〈目録官〉",
+        "affiliationLabel": "黒鎚採鉱盟",
+        "agenda": "台帳の穴と責任の所在を見える形にする。"
+      },
+      {
+        "roleSlotId": "slot_tunnel_guide",
+        "roleLabel": "坑路案内",
+        "displayName": "ガルド〈坑路案内〉",
+        "affiliationLabel": "灰縁侯",
+        "agenda": "白灰坑道の深部へ届き、生きて戻す。"
+      }
+    ],
+    "gptTasks": [
+      "新規開始では openingSummary, incitingIncident, storyAxes を起点に、この世界固有の導入を組み立てる。",
+      "phaseEventLabels はセッション1の火種として扱い、別のイベントへ勝手に差し替えない。",
+      "castSeed の agenda と affiliationLabel を見て、最初に誰が何を守りたいかを明確に語る。"
+    ]
+  }
+}

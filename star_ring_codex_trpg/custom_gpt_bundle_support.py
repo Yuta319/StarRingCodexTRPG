@@ -375,6 +375,11 @@ def export_custom_gpt_publish_packet(
     fragments_dir = out_dir / "10_gpt_editor_field_fragments_v1"
     fragments = export_custom_gpt_editor_field_fragments(root, output_dir=fragments_dir)
 
+    preview_dir = out_dir / "13_gpt_preview_fixtures_v1"
+    from .custom_gpt_preview_fixtures import export_custom_gpt_preview_fixtures
+
+    preview_fixtures = export_custom_gpt_preview_fixtures(root, seed=seed, output_dir=preview_dir)
+
     copied_files = {
         "openapi": out_dir / "04_openapi_pbw_actions_v1.yaml",
         "builder_fields": out_dir / "03_custom_gpt_builder_fields_v1.json",
@@ -408,6 +413,7 @@ def export_custom_gpt_publish_packet(
         "",
         f"- Paste-ready pack: `{paste_pack_path.name}`",
         f"- Field fragments: `{fragments_dir.name}`",
+        f"- Preview fixtures: `{preview_dir.name}`",
         f"- OpenAPI import: `{copied_files['openapi'].name}`",
         f"- Builder fields: `{copied_files['builder_fields'].name}`",
         f"- Handoff note: `{copied_files['handoff'].name}`",
@@ -431,7 +437,7 @@ def export_custom_gpt_publish_packet(
             "1. `11_gpt_publish_ready_handoff_v1.md` を開く",
             "2. `09_gpt_editor_paste_ready_pack_v1.md` か `10_gpt_editor_field_fragments_v1` を使って GPT editor に貼る",
             "3. `04_openapi_pbw_actions_v1.yaml` を Actions へ import する",
-            "4. Preview で新規開始と通常進行を確認する",
+            "4. `13_gpt_preview_fixtures_v1` を見ながら Preview で新規開始と通常進行を確認する",
         ]
     )
     summary_path = out_dir / "00_publish_summary.md"
@@ -441,6 +447,7 @@ def export_custom_gpt_publish_packet(
         "summary": str(summary_path),
         "paste_pack": str(paste_pack_path),
         "field_fragments_dir": str(fragments_dir),
+        "preview_fixtures_dir": str(preview_dir),
         "openapi": str(copied_files["openapi"]),
         "builder_fields": str(copied_files["builder_fields"]),
         "handoff": str(copied_files["handoff"]),
@@ -448,6 +455,7 @@ def export_custom_gpt_publish_packet(
     if include_live_smoke:
         files["live_smoke_report"] = str(smoke_report_path)
     files.update({f"fragment_{key}": value for key, value in fragments.files.items()})
+    files.update({f"preview_{key}": value for key, value in preview_fixtures.files.items()})
 
     return CustomGptPublishPacket(
         bundle_root=str(root),

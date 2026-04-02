@@ -25,6 +25,8 @@
   [09_gpt_editor_paste_ready_pack_v1.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/09_gpt_editor_paste_ready_pack_v1.md)
 - Field fragments  
   [10_gpt_editor_field_fragments_v1](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/10_gpt_editor_field_fragments_v1)
+- Preview fixtures  
+  [13_gpt_preview_fixtures_v1](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/13_gpt_preview_fixtures_v1)
 
 ## 3. Live Validation Status
 
@@ -61,6 +63,8 @@ py -3 scripts\run_custom_gpt_publish_smoke.py
 
 - まとめ済みパケット  
   [12_gpt_publish_packet_v1](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/12_gpt_publish_packet_v1)
+- Preview 比較用  
+  [13_gpt_preview_fixtures_v1](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/13_gpt_preview_fixtures_v1)
 
 - まとめて見る  
   [09_gpt_editor_paste_ready_pack_v1.md](/c:/Users/quiet/Desktop/myproject/StarRingCodexTRPG/.tmp_custom_gpt_actions_bundle/custom_gpt_actions_bundle_v1/09_gpt_editor_paste_ready_pack_v1.md)
