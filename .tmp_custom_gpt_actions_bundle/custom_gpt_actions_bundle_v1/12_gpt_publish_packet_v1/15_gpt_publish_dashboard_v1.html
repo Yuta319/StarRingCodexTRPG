@@ -222,6 +222,53 @@
       font-size: 13px;
       word-break: break-word;
     }
+    .readiness-list {
+      display: grid;
+      gap: 8px;
+    }
+    .readiness-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+    .readiness-row__status {
+      min-width: 52px;
+      text-align: center;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .readiness-row__status.is-ok {
+      color: var(--accent-2);
+      border-color: rgba(139, 179, 154, 0.32);
+      background: rgba(139, 179, 154, 0.08);
+    }
+    .readiness-row__status.is-bad {
+      color: #d98272;
+      border-color: rgba(217, 130, 114, 0.32);
+      background: rgba(217, 130, 114, 0.08);
+    }
+    .readiness-row__status.is-warn {
+      color: #dfbb82;
+      border-color: rgba(223, 187, 130, 0.32);
+      background: rgba(223, 187, 130, 0.08);
+    }
+    .readiness-row__body {
+      display: grid;
+      gap: 4px;
+    }
+    .readiness-row__body p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
     .prompt-stack {
       display: grid;
       gap: 14px;
@@ -523,12 +570,12 @@
               
           <div class="snapshot-row">
             <span>Generated (UTC)</span>
-            <strong>2026-04-02T19:18:56Z</strong>
+            <strong>2026-04-02T19:20:58Z</strong>
           </div>
         
           <div class="snapshot-row">
             <span>Git Commit</span>
-            <strong>cb60f36fc2176d1e10cf1174636daa1b79059e8b-dirty</strong>
+            <strong>0bdf06d21e5bb7864bf84a1aa53a00c0d164f543-dirty</strong>
           </div>
         
           <div class="snapshot-row">
@@ -567,8 +614,8 @@
   &quot;builder_website&quot;: &quot;https://starringcodextrpg.onrender.com/builder-profile.html&quot;,
   &quot;privacy_policy_url&quot;: &quot;https://starringcodextrpg.onrender.com/privacy.html&quot;,
   &quot;actions_server_url&quot;: &quot;https://starringcodextrpg.onrender.com&quot;,
-  &quot;generated_at_utc&quot;: &quot;2026-04-02T19:18:56Z&quot;,
-  &quot;git_commit&quot;: &quot;cb60f36fc2176d1e10cf1174636daa1b79059e8b-dirty&quot;,
+  &quot;generated_at_utc&quot;: &quot;2026-04-02T19:20:58Z&quot;,
+  &quot;git_commit&quot;: &quot;0bdf06d21e5bb7864bf84a1aa53a00c0d164f543-dirty&quot;,
   &quot;seed&quot;: 1729,
   &quot;smoke_retries&quot;: 2,
   &quot;smoke_retry_delay_seconds&quot;: 1.0,
@@ -630,6 +677,59 @@
     &quot;archive_path&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.tmp_custom_gpt_actions_bundle\\custom_gpt_actions_bundle_v1\\12_gpt_publish_packet_v1.zip&quot;
   }
 }</pre>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Readiness Checks</h2>
+                <p class="field__meta">editor へ入る前の合否だけ先に見る</p>
+              </div>
+            </div>
+            <div class="readiness-list">
+              
+          <article class="readiness-row">
+            <span class="readiness-row__status is-ok">PASS</span>
+            <div class="readiness-row__body">
+              <strong>Bundle Validation</strong>
+              <p>errors: 0 / warnings: 0</p>
+            </div>
+          </article>
+        
+          <article class="readiness-row">
+            <span class="readiness-row__status is-ok">PASS</span>
+            <div class="readiness-row__body">
+              <strong>Live Smoke</strong>
+              <p>latest smoke: OK / checks: 6</p>
+            </div>
+          </article>
+        
+          <article class="readiness-row">
+            <span class="readiness-row__status is-ok">PASS</span>
+            <div class="readiness-row__body">
+              <strong>Builder / Privacy URLs</strong>
+              <p>builder website と privacy policy URL が https で埋まっている</p>
+            </div>
+          </article>
+        
+          <article class="readiness-row">
+            <span class="readiness-row__status is-ok">PASS</span>
+            <div class="readiness-row__body">
+              <strong>Expected Operations</strong>
+              <p>7 / 7 operations found</p>
+            </div>
+          </article>
+        
+          <article class="readiness-row">
+            <span class="readiness-row__status is-warn">CHECK</span>
+            <div class="readiness-row__body">
+              <strong>Git State</strong>
+              <p>0bdf06d21e5bb7864bf84a1aa53a00c0d164f543-dirty</p>
+            </div>
+          </article>
+        
+            </div>
           </div>
         </section>
         <section class="panel">
