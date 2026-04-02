@@ -29,6 +29,7 @@
 3. `04_openapi_pbw_actions_v1.yaml` を Actions にインポートする
 4. `servers.url` を**実際に 200 を返す API ホスト**へ合わせる
 5. `07_privacy_policy_and_publish_checklist_v1.md` に従って Privacy Policy URL と Builder Profile を整える
+6. 実際の登録直前は `11_gpt_publish_ready_handoff_v1.md` を見て、live URL と貼り込み順を確認する
 
 ## この版の方針
 - `01_custom_gpt_system_prompt_v1.md` は Builder にそのまま貼りやすい圧縮版です
