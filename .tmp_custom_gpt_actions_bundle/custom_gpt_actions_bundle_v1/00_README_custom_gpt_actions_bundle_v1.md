@@ -37,6 +37,12 @@
 py -3 scripts\prepare_gpt_publish_release.py
 ```
 
+公開に使うファイルと URL をまとめて開く場合:
+
+```powershell
+py -3 scripts\open_gpt_publish_workspace.py --open
+```
+
 ## この版の方針
 - `01_custom_gpt_system_prompt_v1.md` は Builder にそのまま貼りやすい圧縮版です
 - 詳しい設計意図や補足は `docs/` 側の文書を参照します

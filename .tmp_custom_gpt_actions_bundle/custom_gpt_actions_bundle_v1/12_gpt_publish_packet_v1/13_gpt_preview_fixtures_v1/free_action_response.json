@@ -1,7 +1,7 @@
 {
   "playSource": {
     "seed": null,
-    "world_json": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_e3bbbe7ffbf84c0c.json"
+    "world_json": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_1a163b6acdcc2f8f.json"
   },
   "readModel": {
     "version": "gpt_read_model_v1",
@@ -24,7 +24,7 @@
     },
     "source": {
       "seed": 1729,
-      "worldJson": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_e3bbbe7ffbf84c0c.json",
+      "worldJson": "C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_1a163b6acdcc2f8f.json",
       "archetype": "balanced",
       "seasons": 10,
       "sessionNumber": 1,
@@ -32,7 +32,7 @@
       "phaseLabel": "偵察局面"
     },
     "scene": {
-      "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_33682_5",
+      "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_58216_5",
       "title": "非武装境界破り",
       "location": "灰の辺境州",
       "headline": "渡し場の検札違いの余波が、灰の辺境州の「非武装境界破り」へ直結している。",
@@ -364,14 +364,14 @@
     "world": {
       "worldSpine": {
         "worldName": "霧環連界",
-        "calendarName": "セディオン暦",
+        "calendarName": "オルシェル暦",
         "year": 6,
         "seasonIndex": 10,
         "eraLabel": "昇神期",
-        "mainGodLabel": "セディオン",
+        "mainGodLabel": "オルシェル",
         "activeChainLabel": "境界軍事化連鎖",
-        "cycleDistortion": 59.1,
-        "divineWarPressure": 67.2,
+        "cycleDistortion": 57.9,
+        "divineWarPressure": 66.9,
         "dominantBranch": "管理者の端",
         "topNotes": [
           "渡し場の検札違い",
@@ -758,7 +758,7 @@
         ]
       },
       "activeNode": {
-        "nodeId": "node_inst_border_01_cl_demilitarized_border_33682_5",
+        "nodeId": "node_inst_border_01_cl_demilitarized_border_58216_5",
         "title": "非武装境界破り",
         "chainLabel": "境界軍事化連鎖",
         "institutionLabel": "穀冠王国と灰縁侯の不可侵条約",
@@ -787,7 +787,7 @@
         "institutionId": "inst_border_01",
         "label": "穀冠王国と灰縁侯の不可侵条約",
         "status": "broken",
-        "breachRisk": 96.0,
+        "breachRisk": 89.0,
         "guide": {
           "summary": "「穀冠王国と灰縁侯の不可侵条約」はかなり危うい。このまま崩れると、渡し場の検札違いの収め方の選択肢まで狭くなる。",
           "consequence": "取り決めが崩れると、次の交渉、補給、通行のどれかが止まりやすい。"
@@ -802,9 +802,9 @@
         "pressureStyle": "渡し順、検疫、船荷札のどれを優先するかが主題になる。",
         "protectedAsset": "澱舟泊へ届く渡し舟",
         "lostAsset": "澱舟泊の検疫線",
-        "stability": 48.9,
-        "supply": 63.8,
-        "heat": 44.4,
+        "stability": 49.0,
+        "supply": 63.9,
+        "heat": 44.2,
         "status": "tense",
         "statusLabel": "緊張が高まっている",
         "statusText": "いまにも荒れそうだ。",
@@ -821,7 +821,7 @@
         "lostAsset": "塩鏡の祠洞の神託路",
         "depth": 1,
         "maxDepth": 4,
-        "sealIntegrity": 62.3,
+        "sealIntegrity": 62.4,
         "threat": 62.8,
         "status": "unstable",
         "statusLabel": "揺らいでいる",
@@ -831,7 +831,7 @@
       "endingForecast": {
         "title": "鐘路に猶予が残りそうだ",
         "tone": "steady",
-        "score": 0.2,
+        "score": 0.4,
         "dominantChoice": "observe",
         "summary": "拠点と坑路の両方にまだ持ち直しの余地がある。"
       }
@@ -996,7 +996,7 @@
     },
     "runtime": {
       "readOnly": true,
-      "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_33682_5",
+      "sceneId": "scene_ash_frontier_node_inst_border_01_cl_demilitarized_border_58216_5",
       "sessionId": "sess_1729",
       "archiveCount": 0
     }

@@ -54,6 +54,12 @@ py -3 scripts\run_custom_gpt_publish_smoke.py
 py -3 scripts\prepare_gpt_publish_release.py
 ```
 
+公開に使うフォルダ、主要ドキュメント、builder / privacy URL をまとめて開く場合:
+
+```powershell
+py -3 scripts\open_gpt_publish_workspace.py --open
+```
+
 ## 4. Recommended Editor Flow
 
 1. GPT editor の `Configure` を開く

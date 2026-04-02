@@ -6,6 +6,7 @@ import unittest
 
 from star_ring_codex_trpg.custom_gpt_bundle_support import (
     build_custom_gpt_editor_paste_pack,
+    build_custom_gpt_publish_workspace,
     export_custom_gpt_publish_packet,
     export_custom_gpt_editor_field_fragments,
     prepare_custom_gpt_publish_release,
@@ -92,6 +93,16 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             manifest_text = Path(release.manifest_path).read_text(encoding="utf-8")
             self.assertIn("builder_website", manifest_text)
             self.assertIn("packet", manifest_text)
+
+    def test_build_publish_workspace_resolves_packet_and_urls(self) -> None:
+        bundle_root = PROJECT_ROOT / ".tmp_custom_gpt_actions_bundle" / "custom_gpt_actions_bundle_v1"
+        workspace = build_custom_gpt_publish_workspace(bundle_root)
+        self.assertEqual(workspace.missing, [])
+        self.assertIn("packet_dir", workspace.local_paths)
+        self.assertIn("preview_scorecard", workspace.local_paths)
+        self.assertIn("builder_website", workspace.urls)
+        self.assertTrue(workspace.urls["builder_website"].startswith("https://"))
+        self.assertTrue(workspace.urls["privacy_policy_url"].startswith("https://"))
 
     def test_export_preview_fixtures_builds_local_examples(self) -> None:
         bundle_root = PROJECT_ROOT / ".tmp_custom_gpt_actions_bundle" / "custom_gpt_actions_bundle_v1"

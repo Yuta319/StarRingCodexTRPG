@@ -85,6 +85,18 @@ class CustomGptPublishRelease:
         }
 
 
+@dataclass
+class CustomGptPublishWorkspace:
+    bundle_root: str
+    packet_dir: str
+    local_paths: dict[str, str]
+    urls: dict[str, str]
+    missing: list[str]
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
 def _read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
@@ -549,4 +561,43 @@ def prepare_custom_gpt_publish_release(
         validation=validation,
         packet=packet,
         manifest_path=str(manifest_file),
+    )
+
+
+def build_custom_gpt_publish_workspace(
+    bundle_root: Path,
+    *,
+    packet_dir: Path | None = None,
+) -> CustomGptPublishWorkspace:
+    root = Path(bundle_root)
+    builder_fields, _system_prompt, _starters_text, openapi_text, _input_pack = _load_bundle_parts(root)
+    server_match = re.search(r"^\s*-\s+url:\s*(\S+)\s*$", openapi_text, flags=re.MULTILINE)
+    server_url = server_match.group(1).strip() if server_match else ""
+    packet_root = packet_dir or (root / "12_gpt_publish_packet_v1")
+
+    local_paths = {
+        "packet_dir": str(packet_root),
+        "zip_archive": str(root / "12_gpt_publish_packet_v1.zip"),
+        "summary": str(packet_root / "00_publish_summary.md"),
+        "handoff": str(packet_root / "11_gpt_publish_ready_handoff_v1.md"),
+        "paste_pack": str(packet_root / "09_gpt_editor_paste_ready_pack_v1.md"),
+        "field_fragments_dir": str(packet_root / "10_gpt_editor_field_fragments_v1"),
+        "field_fragments_manifest": str(packet_root / "10_gpt_editor_field_fragments_v1" / "manifest.json"),
+        "openapi_import": str(packet_root / "04_openapi_pbw_actions_v1.yaml"),
+        "preview_scorecard": str(packet_root / "13_gpt_preview_fixtures_v1" / "01_preview_scorecard.md"),
+        "release_manifest": str(packet_root / "14_publish_release_manifest_v1.json"),
+    }
+    urls = {
+        "builder_website": str(builder_fields.get("builder_profile_website") or "").strip(),
+        "privacy_policy_url": str(builder_fields.get("privacy_policy_url_candidate") or "").strip(),
+        "actions_server_url": server_url,
+    }
+    missing = [label for label, target in local_paths.items() if not Path(target).exists()]
+
+    return CustomGptPublishWorkspace(
+        bundle_root=str(root),
+        packet_dir=str(packet_root),
+        local_paths=local_paths,
+        urls=urls,
+        missing=missing,
     )
