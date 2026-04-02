@@ -527,6 +527,63 @@ def export_custom_gpt_publish_dashboard(
         """
         for step in checklist_steps
     )
+    preview_prompt_groups = [
+        {
+            "title": "新規開始",
+            "note": "キャラ相談から導入確定までの確認用",
+            "prompts": [
+                "既存キャラをこの世界へ転生させたい。導入と初期装備から一緒に決めて。",
+                "見える恩恵と眠る恩寵も含めて、開始案を仕上げて。",
+                "その内容で確定して。",
+            ],
+        },
+        {
+            "title": "通常進行",
+            "note": "状況説明、通常行動、自由行動の確認用",
+            "prompts": [
+                "現在の場面で何が起きているか、まず短く説明して。",
+                "この場面で選べる通常行動を比較して。",
+                "自由行動として、夜中に裏帳面を盗み見たい。",
+            ],
+        },
+        {
+            "title": "保存と再開",
+            "note": "セッション系 action の確認用",
+            "prompts": [
+                "このセッションを保存して。",
+                "前回の続きから再開して。",
+                "次のセッションへ進めて。",
+            ],
+        },
+    ]
+    preview_prompt_groups_html = "".join(
+        f"""
+          <section class="prompt-group">
+            <div class="field__head">
+              <div>
+                <h3>{escape(group["title"])}</h3>
+                <p class="field__meta">{escape(group["note"])}</p>
+              </div>
+            </div>
+            <div class="prompt-list">
+              {
+                "".join(
+                    f'''
+                    <article class="prompt-card">
+                      <pre id="preview-prompt-{group_index}-{prompt_index}">{escape(prompt)}</pre>
+                      <div class="prompt-card__actions">
+                        <button type="button" data-copy-target="preview-prompt-{group_index}-{prompt_index}">Copy</button>
+                      </div>
+                    </article>
+                    '''
+                    for prompt_index, prompt in enumerate(group["prompts"], start=1)
+                )
+              }
+            </div>
+          </section>
+        """
+        for group_index, group in enumerate(preview_prompt_groups, start=1)
+    )
 
     html = f"""<!DOCTYPE html>
 <html lang="ja">
@@ -729,6 +786,34 @@ def export_custom_gpt_publish_dashboard(
     .smoke-row__status.is-bad {{
       color: #d98272;
     }}
+    .prompt-stack {{
+      display: grid;
+      gap: 14px;
+    }}
+    .prompt-group {{
+      display: grid;
+      gap: 10px;
+    }}
+    .prompt-list {{
+      display: grid;
+      gap: 10px;
+    }}
+    .prompt-card {{
+      display: grid;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }}
+    .prompt-card pre {{
+      margin: 0;
+      max-height: none;
+    }}
+    .prompt-card__actions {{
+      display: flex;
+      justify-content: flex-end;
+    }}
     @media (max-width: 980px) {{
       .grid {{ grid-template-columns: 1fr; }}
     }}
@@ -856,6 +941,19 @@ def export_custom_gpt_publish_dashboard(
           </div>
           <div class="checklist">
             {checklist_steps_html}
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Preview Test Pack</h2>
+                <p class="field__meta">登録後にそのまま打つ確認文</p>
+              </div>
+            </div>
+            <div class="prompt-stack">
+              {preview_prompt_groups_html}
+            </div>
           </div>
         </section>
         <section class="panel">

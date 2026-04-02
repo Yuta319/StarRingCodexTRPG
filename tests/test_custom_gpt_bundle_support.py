@@ -60,7 +60,10 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             self.assertTrue(Path(packet.files["openapi"]).exists())
             self.assertTrue(Path(packet.files["handoff"]).exists())
             summary = Path(packet.files["summary"]).read_text(encoding="utf-8")
+            dashboard = Path(packet.files["dashboard"]).read_text(encoding="utf-8")
             self.assertIn("GPT editor", summary)
+            self.assertIn("Preview Test Pack", dashboard)
+            self.assertIn("Actions Setup", dashboard)
             self.assertIsNone(packet.smoke_ok)
 
     def test_export_publish_packet_can_create_zip_archive(self) -> None:
