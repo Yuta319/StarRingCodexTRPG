@@ -344,6 +344,34 @@
       margin: 0;
       max-height: none;
     }
+    .playbook-list {
+      display: grid;
+      gap: 10px;
+    }
+    .playbook-card {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+    .playbook-card ol {
+      margin: 0 0 0 18px;
+      padding: 0;
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .playbook-card li strong {
+      color: var(--text);
+    }
+    .playbook-card pre {
+      margin: 0;
+      max-height: none;
+    }
     .trouble-list {
       display: grid;
       gap: 10px;
@@ -601,12 +629,12 @@
               
           <div class="snapshot-row">
             <span>Generated (UTC)</span>
-            <strong>2026-04-02T19:34:26Z</strong>
+            <strong>2026-04-02T19:42:14Z</strong>
           </div>
         
           <div class="snapshot-row">
             <span>Git Commit</span>
-            <strong>eacaad6fed5c5fc4246a482c6d028fc17806896c-dirty</strong>
+            <strong>b2ef0f798b46baf90abaff20cb511d9088fa195a-dirty</strong>
           </div>
         
           <div class="snapshot-row">
@@ -645,8 +673,8 @@
   &quot;builder_website&quot;: &quot;https://starringcodextrpg.onrender.com/builder-profile.html&quot;,
   &quot;privacy_policy_url&quot;: &quot;https://starringcodextrpg.onrender.com/privacy.html&quot;,
   &quot;actions_server_url&quot;: &quot;https://starringcodextrpg.onrender.com&quot;,
-  &quot;generated_at_utc&quot;: &quot;2026-04-02T19:34:26Z&quot;,
-  &quot;git_commit&quot;: &quot;eacaad6fed5c5fc4246a482c6d028fc17806896c-dirty&quot;,
+  &quot;generated_at_utc&quot;: &quot;2026-04-02T19:42:14Z&quot;,
+  &quot;git_commit&quot;: &quot;b2ef0f798b46baf90abaff20cb511d9088fa195a-dirty&quot;,
   &quot;seed&quot;: 1729,
   &quot;smoke_retries&quot;: 2,
   &quot;smoke_retry_delay_seconds&quot;: 1.0,
@@ -756,7 +784,7 @@
             <span class="readiness-row__status is-warn">CHECK</span>
             <div class="readiness-row__body">
               <strong>Git State</strong>
-              <p>eacaad6fed5c5fc4246a482c6d028fc17806896c-dirty</p>
+              <p>b2ef0f798b46baf90abaff20cb511d9088fa195a-dirty</p>
             </div>
           </article>
         
@@ -988,7 +1016,7 @@
                 <button type="button" data-open-url="13_gpt_preview_fixtures_v1/initial_gpt_read_model.json">Open</button>
               </div>
             </div>
-            <pre id="action-example-1">scene: 白祠教会による瘴冠領封鎖令崩壊 / phase: 偵察局面</pre>
+            <pre id="action-example-1">scene: 賠償争議 / phase: 偵察局面</pre>
           </article>
         
           <article class="action-card">
@@ -1016,7 +1044,7 @@
                 <button type="button" data-open-url="13_gpt_preview_fixtures_v1/play_choice_response.json">Open</button>
               </div>
             </div>
-            <pre id="action-example-3">turn: 2 / scene: 白祠教会による瘴冠領封鎖令崩壊</pre>
+            <pre id="action-example-3">turn: 2 / scene: 賠償争議</pre>
           </article>
         
           <article class="action-card">
@@ -1030,7 +1058,7 @@
                 <button type="button" data-open-url="13_gpt_preview_fixtures_v1/free_action_response.json">Open</button>
               </div>
             </div>
-            <pre id="action-example-4">turn: 2 / scene: 配給割当の崩れ</pre>
+            <pre id="action-example-4">turn: 2 / scene: 非武装境界破り</pre>
           </article>
         
             </div>
@@ -1065,7 +1093,7 @@
               </div>
               <button type="button" data-copy-target="action-request-2">Copy</button>
             </div>
-            <pre id="action-request-2">GET /api/gpt-read-model?world_json=C:\Users\quiet\Desktop\myproject\StarRingCodexTRPG\.runtime\ui_sessions\world_a6e05e3ae8920d7d.json</pre>
+            <pre id="action-request-2">GET /api/gpt-read-model?world_json=C:\Users\quiet\Desktop\myproject\StarRingCodexTRPG\.runtime\ui_sessions\world_b61957cba4b6cf7d.json</pre>
           </article>
         
           <article class="action-card">
@@ -1077,7 +1105,7 @@
               <button type="button" data-copy-target="action-request-3">Copy</button>
             </div>
             <pre id="action-request-3">{
-  &quot;world_json&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_4e75b4ee0dce6e7a.json&quot;,
+  &quot;world_json&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_bc95e276a6f3e1c3.json&quot;,
   &quot;proposal&quot;: {
     &quot;openingHeadline&quot;: &quot;公開前確認の導入&quot;,
     &quot;openingLines&quot;: [
@@ -1097,7 +1125,7 @@
             </div>
             <pre id="action-request-4">{
   &quot;choiceId&quot;: &quot;observe&quot;,
-  &quot;world_json&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_79e66d824694d5d4.json&quot;
+  &quot;world_json&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_4ce64e7bd1b16d27.json&quot;
 }</pre>
           </article>
         
@@ -1111,7 +1139,7 @@
             </div>
             <pre id="action-request-5">{
   &quot;actionText&quot;: &quot;夜中に裏帳面を盗み見たい。&quot;,
-  &quot;world_json&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_79e66d824694d5d4.json&quot;
+  &quot;world_json&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_4ce64e7bd1b16d27.json&quot;
 }</pre>
           </article>
         
@@ -1124,7 +1152,7 @@
               <button type="button" data-copy-target="action-request-6">Copy</button>
             </div>
             <pre id="action-request-6">{
-  &quot;world_json&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_79e66d824694d5d4.json&quot;
+  &quot;world_json&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_4ce64e7bd1b16d27.json&quot;
 }</pre>
           </article>
         
@@ -1150,7 +1178,7 @@
               <button type="button" data-copy-target="action-request-8">Copy</button>
             </div>
             <pre id="action-request-8">{
-  &quot;world_json&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_79e66d824694d5d4.json&quot;
+  &quot;world_json&quot;: &quot;C:\\Users\\quiet\\Desktop\\myproject\\StarRingCodexTRPG\\.runtime\\ui_sessions\\world_4ce64e7bd1b16d27.json&quot;
 }</pre>
           </article>
         
@@ -1240,6 +1268,88 @@
 - loadSession: playSource.world_json と readModel がある
 - nextSession: playSource.world_json と readModel がある
 - nextSession では sessionNumber や nextSessionHook を確認する</pre>
+          </article>
+        
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Scenario Playbooks</h2>
+                <p class="field__meta">新規開始 / 通常進行 / 保存と再開の順番</p>
+              </div>
+            </div>
+            <div class="playbook-list">
+              
+          <article class="playbook-card">
+            <div class="field__head">
+              <div>
+                <h3>新規開始</h3>
+                <p class="field__meta">キャラ相談から導入確定までの基本順</p>
+              </div>
+              <button type="button" data-copy-target="scenario-playbook-1">Copy</button>
+            </div>
+            <ol>
+              <li><strong>getGptReadModel / initial</strong>: seed ベースの read model を取り、guidance.characterGenesis と guidance.openingPackage を読む。</li><li><strong>開始案の整理</strong>: 種族、転生設定、初期装備、恩恵、導入を『案』としてまとめる。</li><li><strong>finalizeCharacter</strong>: world_json と proposal を送り、開始内容を制約付きで確定する。</li><li><strong>返り値の確認</strong>: appliedGenesis、playSource.world_json、readModel.guidance.openingPackage を見る。</li><li><strong>開始演出</strong>: 確定後の truth だけで導入を短く語り、そのまま進行へ入る。</li>
+            </ol>
+            <pre id="scenario-playbook-1">新規開始
+1. getGptReadModel / initial: seed ベースの read model を取り、guidance.characterGenesis と guidance.openingPackage を読む。
+2. 開始案の整理: 種族、転生設定、初期装備、恩恵、導入を『案』としてまとめる。
+3. finalizeCharacter: world_json と proposal を送り、開始内容を制約付きで確定する。
+4. 返り値の確認: appliedGenesis、playSource.world_json、readModel.guidance.openingPackage を見る。
+5. 開始演出: 確定後の truth だけで導入を短く語り、そのまま進行へ入る。
+PASS 条件
+- 確定前の導入と装備は案として扱う
+- finalizeCharacter 後は確定内容として扱う
+- truth を足さず readModel / guidance を優先する</pre>
+          </article>
+        
+          <article class="playbook-card">
+            <div class="field__head">
+              <div>
+                <h3>通常進行</h3>
+                <p class="field__meta">状況確認から choice / free action までの順</p>
+              </div>
+              <button type="button" data-copy-target="scenario-playbook-2">Copy</button>
+            </div>
+            <ol>
+              <li><strong>getGptReadModel / follow-up</strong>: 現在の world_json から scene と guidance.storyGuide.now を読む。</li><li><strong>状況説明</strong>: scene.title、storyGuide.now、choices を短く整理する。</li><li><strong>playChoice か playFreeAction</strong>: 通常行動なら playChoice、自由入力なら playFreeAction を使う。</li><li><strong>返り値の確認</strong>: playChoice は transition、playFreeAction は structuredResult を優先して読む。</li><li><strong>次の手へ接続</strong>: 更新後の world_json を保持し、必要なら saveSession へつなぐ。</li>
+            </ol>
+            <pre id="scenario-playbook-2">通常進行
+1. getGptReadModel / follow-up: 現在の world_json から scene と guidance.storyGuide.now を読む。
+2. 状況説明: scene.title、storyGuide.now、choices を短く整理する。
+3. playChoice か playFreeAction: 通常行動なら playChoice、自由入力なら playFreeAction を使う。
+4. 返り値の確認: playChoice は transition、playFreeAction は structuredResult を優先して読む。
+5. 次の手へ接続: 更新後の world_json を保持し、必要なら saveSession へつなぐ。
+PASS 条件
+- choice 比較は readModel.choices を基準にする
+- 自由行動の説明は raw 入力ではなく structuredResult を基準にする
+- 更新後の playSource.world_json を次の正本にする</pre>
+          </article>
+        
+          <article class="playbook-card">
+            <div class="field__head">
+              <div>
+                <h3>保存と再開</h3>
+                <p class="field__meta">保存、復帰、次セッション移行の順</p>
+              </div>
+              <button type="button" data-copy-target="scenario-playbook-3">Copy</button>
+            </div>
+            <ol>
+              <li><strong>saveSession</strong>: 現在の world_json を保存し、saveId / savePath / savedAt を受け取る。</li><li><strong>loadSession</strong>: saveId か savePath で復帰し、新しい playSource.world_json と readModel を受け取る。</li><li><strong>状態確認</strong>: 復帰後は scene.title、source.sessionNumber、nextSessionHook を確認する。</li><li><strong>nextSession</strong>: 現在の局面が終わっていれば次セッションへ進める。</li><li><strong>再開説明</strong>: 保存前との差分ではなく、復帰後の readModel を基準に現在地を説明する。</li>
+            </ol>
+            <pre id="scenario-playbook-3">保存と再開
+1. saveSession: 現在の world_json を保存し、saveId / savePath / savedAt を受け取る。
+2. loadSession: saveId か savePath で復帰し、新しい playSource.world_json と readModel を受け取る。
+3. 状態確認: 復帰後は scene.title、source.sessionNumber、nextSessionHook を確認する。
+4. nextSession: 現在の局面が終わっていれば次セッションへ進める。
+5. 再開説明: 保存前との差分ではなく、復帰後の readModel を基準に現在地を説明する。
+PASS 条件
+- saveSession 後は saveId を保持する
+- loadSession 後は返り値の world_json を使う
+- nextSession では sessionNumber と nextSessionHook の更新を見る</pre>
           </article>
         
             </div>
@@ -1716,8 +1826,8 @@
 
 次の要素が見えていれば正常です。
 
-- 現在の場面: `渡し場の検札違いの余波が、灰の辺境州の「白祠教会による瘴冠領封鎖令崩壊」へ直結している。`
-- 場面の焦点: `白祠教会による瘴冠領封鎖令崩壊`
+- 現在の場面: `渡し場の検札違いの余波が、灰の辺境州の「賠償争議」へ直結している。`
+- 場面の焦点: `賠償争議`
 - 推奨 choice を比較して説明する
 
 推奨 choice の例:
@@ -1730,8 +1840,8 @@
 次の要素が見えていれば正常です。
 
 - 自由行動 summary: `目録官まわりの物証を抜き取ろうとした`
-- outcome: `partial_success`
-- 物語上の現在位置: `第1セッションの偵察局面だ。いま問題になっているのは「渡し場の検札違い」で、場面の焦点は「配給割当の崩れ」にある。`
+- outcome: `concealed_success`
+- 物語上の現在位置: `第1セッションの偵察局面だ。いま問題になっているのは「渡し場の検札違い」で、場面の焦点は「非武装境界破り」にある。`
 
 この段階では、raw の自由入力をそのまま保存済み canon のように扱わず、summary と outcome を基に語っている必要があります。
 

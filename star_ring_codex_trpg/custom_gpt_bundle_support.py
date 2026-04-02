@@ -748,6 +748,79 @@ def export_custom_gpt_publish_dashboard(
         """
         for index, item in enumerate(action_response_checks, start=1)
     )
+    scenario_playbooks = [
+        {
+            "title": "新規開始",
+            "note": "キャラ相談から導入確定までの基本順",
+            "steps": [
+                ("getGptReadModel / initial", "seed ベースの read model を取り、guidance.characterGenesis と guidance.openingPackage を読む。"),
+                ("開始案の整理", "種族、転生設定、初期装備、恩恵、導入を『案』としてまとめる。"),
+                ("finalizeCharacter", "world_json と proposal を送り、開始内容を制約付きで確定する。"),
+                ("返り値の確認", "appliedGenesis、playSource.world_json、readModel.guidance.openingPackage を見る。"),
+                ("開始演出", "確定後の truth だけで導入を短く語り、そのまま進行へ入る。"),
+            ],
+            "checks": [
+                "確定前の導入と装備は案として扱う",
+                "finalizeCharacter 後は確定内容として扱う",
+                "truth を足さず readModel / guidance を優先する",
+            ],
+        },
+        {
+            "title": "通常進行",
+            "note": "状況確認から choice / free action までの順",
+            "steps": [
+                ("getGptReadModel / follow-up", "現在の world_json から scene と guidance.storyGuide.now を読む。"),
+                ("状況説明", "scene.title、storyGuide.now、choices を短く整理する。"),
+                ("playChoice か playFreeAction", "通常行動なら playChoice、自由入力なら playFreeAction を使う。"),
+                ("返り値の確認", "playChoice は transition、playFreeAction は structuredResult を優先して読む。"),
+                ("次の手へ接続", "更新後の world_json を保持し、必要なら saveSession へつなぐ。"),
+            ],
+            "checks": [
+                "choice 比較は readModel.choices を基準にする",
+                "自由行動の説明は raw 入力ではなく structuredResult を基準にする",
+                "更新後の playSource.world_json を次の正本にする",
+            ],
+        },
+        {
+            "title": "保存と再開",
+            "note": "保存、復帰、次セッション移行の順",
+            "steps": [
+                ("saveSession", "現在の world_json を保存し、saveId / savePath / savedAt を受け取る。"),
+                ("loadSession", "saveId か savePath で復帰し、新しい playSource.world_json と readModel を受け取る。"),
+                ("状態確認", "復帰後は scene.title、source.sessionNumber、nextSessionHook を確認する。"),
+                ("nextSession", "現在の局面が終わっていれば次セッションへ進める。"),
+                ("再開説明", "保存前との差分ではなく、復帰後の readModel を基準に現在地を説明する。"),
+            ],
+            "checks": [
+                "saveSession 後は saveId を保持する",
+                "loadSession 後は返り値の world_json を使う",
+                "nextSession では sessionNumber と nextSessionHook の更新を見る",
+            ],
+        },
+    ]
+    scenario_playbooks_html = "".join(
+        f"""
+          <article class="playbook-card">
+            <div class="field__head">
+              <div>
+                <h3>{escape(item["title"])}</h3>
+                <p class="field__meta">{escape(item["note"])}</p>
+              </div>
+              <button type="button" data-copy-target="scenario-playbook-{index}">Copy</button>
+            </div>
+            <ol>
+              {"".join(f"<li><strong>{escape(step_title)}</strong>: {escape(step_detail)}</li>" for step_title, step_detail in item["steps"])}
+            </ol>
+            <pre id="scenario-playbook-{index}">{escape(chr(10).join(
+                [item["title"]]
+                + [f"{step_index}. {step_title}: {step_detail}" for step_index, (step_title, step_detail) in enumerate(item["steps"], start=1)]
+                + ["PASS 条件"]
+                + [f"- {check}" for check in item["checks"]]
+            ))}</pre>
+          </article>
+        """
+        for index, item in enumerate(scenario_playbooks, start=1)
+    )
     troubleshooting_items = [
         {
             "title": "Action import が失敗する",
@@ -1430,6 +1503,34 @@ def export_custom_gpt_publish_dashboard(
       margin: 0;
       max-height: none;
     }}
+    .playbook-list {{
+      display: grid;
+      gap: 10px;
+    }}
+    .playbook-card {{
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }}
+    .playbook-card ol {{
+      margin: 0 0 0 18px;
+      padding: 0;
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }}
+    .playbook-card li strong {{
+      color: var(--text);
+    }}
+    .playbook-card pre {{
+      margin: 0;
+      max-height: none;
+    }}
     .trouble-list {{
       display: grid;
       gap: 10px;
@@ -1658,6 +1759,19 @@ def export_custom_gpt_publish_dashboard(
             </div>
             <div class="action-stack">
               {action_response_checks_html}
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Scenario Playbooks</h2>
+                <p class="field__meta">新規開始 / 通常進行 / 保存と再開の順番</p>
+              </div>
+            </div>
+            <div class="playbook-list">
+              {scenario_playbooks_html}
             </div>
           </div>
         </section>
