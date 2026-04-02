@@ -4,6 +4,7 @@ from pathlib import Path
 import argparse
 import json
 import os
+import subprocess
 import sys
 import webbrowser
 
@@ -15,6 +16,17 @@ from star_ring_codex_trpg.custom_gpt_bundle_support import (
     build_custom_gpt_publish_workspace,
     prepare_custom_gpt_publish_release,
 )
+
+FIELD_FRAGMENT_KEYS = {
+    "name": "name.txt",
+    "description": "description.txt",
+    "instructions": "instructions.txt",
+    "conversation_starters": "conversation_starters.txt",
+    "builder_website": "builder_website.txt",
+    "privacy_policy_url": "privacy_policy_url.txt",
+    "actions_import_path": "actions_import_path.txt",
+    "actions_server_url": "actions_server_url.txt",
+}
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -60,6 +72,18 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Open the key local files and live URLs after printing the workspace manifest",
     )
+    parser.add_argument(
+        "--copy",
+        choices=sorted(FIELD_FRAGMENT_KEYS.keys()),
+        default=None,
+        help="Copy one editor field fragment directly to the clipboard",
+    )
+    parser.add_argument(
+        "--show-field",
+        choices=sorted(FIELD_FRAGMENT_KEYS.keys()),
+        default=None,
+        help="Print one editor field fragment to stdout",
+    )
     return parser
 
 
@@ -73,6 +97,26 @@ def _open_target(target: str) -> None:
             webbrowser.open(path.resolve().as_uri())
             return
     webbrowser.open(target)
+
+
+def _field_fragment_path(workspace: dict, key: str) -> Path:
+    return Path(workspace["field_fragments_dir"]) / FIELD_FRAGMENT_KEYS[key]
+
+
+def _read_field_fragment(workspace: dict, key: str) -> str:
+    path = _field_fragment_path(workspace, key)
+    if not path.exists():
+        raise FileNotFoundError(f"field fragment is missing: {path}")
+    return path.read_text(encoding="utf-8")
+
+
+def _copy_to_clipboard(text: str) -> None:
+    try:
+        subprocess.run(["clip"], input=text, text=True, check=True)
+    except FileNotFoundError as exc:
+        raise RuntimeError("clipboard utility 'clip' was not found on this system") from exc
+    except subprocess.CalledProcessError as exc:
+        raise RuntimeError("failed to copy text to the clipboard") from exc
 
 
 def main() -> None:
@@ -95,6 +139,15 @@ def main() -> None:
             file=sys.stderr,
         )
         raise SystemExit(1)
+
+    if args.show_field:
+        print("\n--- field fragment ---")
+        print(_read_field_fragment(workspace.local_paths, args.show_field).rstrip())
+
+    if args.copy:
+        text = _read_field_fragment(workspace.local_paths, args.copy)
+        _copy_to_clipboard(text)
+        print(f"\nCopied field fragment: {args.copy}")
 
     if args.open:
         for key in ("dashboard", "handoff", "field_fragments_dir", "preview_scorecard"):

@@ -70,6 +70,14 @@ py -3 scripts\open_gpt_publish_workspace.py --open
 
 このとき、公開用 dashboard `15_gpt_publish_dashboard_v1.html` が最初に開きます。
 
+欄ごとのテキストをそのままクリップボードへ送る場合:
+
+```powershell
+py -3 scripts\open_gpt_publish_workspace.py --copy instructions
+py -3 scripts\open_gpt_publish_workspace.py --copy conversation_starters
+py -3 scripts\open_gpt_publish_workspace.py --copy privacy_policy_url
+```
+
 ## 4. Recommended Editor Flow
 
 1. GPT editor の `Configure` を開く
