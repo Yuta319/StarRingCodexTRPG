@@ -72,6 +72,8 @@ py -3 scripts\open_gpt_publish_workspace.py --open
 dashboard には `Registration Checklist` があり、貼り込み進捗をブラウザの localStorage に保持できます。
 また `Actions Setup` パネルで import path / server URL / expected operations / latest smoke を同じ画面で確認できます。
 さらに `Preview Test Pack` パネルで、新規開始・通常進行・保存再開の確認文をそのままコピーできます。
+詰まったときは `Editor Troubleshooting` パネルを見ると、import / privacy / finalize の失敗点をすぐ確認できます。
+加えて `Action Examples` パネルで、主要 action の fixture 要約と元 JSON へのリンクも確認できます。
 
 欄ごとのテキストをそのままクリップボードへ送る場合:
 

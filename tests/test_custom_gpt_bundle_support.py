@@ -64,6 +64,9 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             self.assertIn("GPT editor", summary)
             self.assertIn("Preview Test Pack", dashboard)
             self.assertIn("Actions Setup", dashboard)
+            self.assertIn("Action Examples", dashboard)
+            self.assertIn("Editor Troubleshooting", dashboard)
+            self.assertIn("getGptReadModel", dashboard)
             self.assertIsNone(packet.smoke_ok)
 
     def test_export_publish_packet_can_create_zip_archive(self) -> None:

@@ -418,6 +418,10 @@ def export_custom_gpt_publish_dashboard(
     scorecard = _read_optional_text(Path(workspace.local_paths["preview_scorecard"])).strip()
     fragments_manifest = json.loads(_read_optional_text(Path(workspace.local_paths["field_fragments_manifest"])) or "{}")
     live_smoke_report = json.loads(_read_optional_text(packet_root / "live_smoke_report.json") or "{}")
+    initial_fixture = json.loads(_read_optional_text(Path(workspace.local_paths["packet_dir"]) / "13_gpt_preview_fixtures_v1" / "initial_gpt_read_model.json") or "{}")
+    finalize_fixture = json.loads(_read_optional_text(Path(workspace.local_paths["packet_dir"]) / "13_gpt_preview_fixtures_v1" / "finalize_character_response.json") or "{}")
+    choice_fixture = json.loads(_read_optional_text(Path(workspace.local_paths["packet_dir"]) / "13_gpt_preview_fixtures_v1" / "play_choice_response.json") or "{}")
+    free_action_fixture = json.loads(_read_optional_text(Path(workspace.local_paths["packet_dir"]) / "13_gpt_preview_fixtures_v1" / "free_action_response.json") or "{}")
     smoke_checks = live_smoke_report.get("checks") or []
     smoke_check_rows = "".join(
         f"""
@@ -434,6 +438,54 @@ def export_custom_gpt_publish_dashboard(
     actions_operations_html = "".join(
         f"<span class=\"chip chip--operation\">{escape(str(item))}</span>" for item in actions_operations
     ) or "<span class='field__meta'>operation 情報なし</span>"
+    action_examples = [
+        {
+            "title": "getGptReadModel",
+            "note": "新規開始時に最初に読む read model",
+            "summary": f"scene: {initial_fixture.get('readModel', {}).get('scene', {}).get('title', 'n/a')} / phase: {initial_fixture.get('readModel', {}).get('source', {}).get('phaseLabel', 'n/a')}",
+            "href": _relative_href(packet_root, Path(workspace.local_paths["preview_initial_read_model"])),
+            "copy_target": "action-example-1",
+        },
+        {
+            "title": "finalizeCharacter",
+            "note": "導入・初期装備・恩恵案を確定した後の返り値",
+            "summary": f"world_json updated: {'yes' if finalize_fixture.get('playSource', {}).get('world_json') else 'no'} / promptHint: {'yes' if finalize_fixture.get('readModel', {}).get('guidance', {}).get('openingPackage', {}).get('promptHint') else 'no'}",
+            "href": _relative_href(packet_root, Path(workspace.local_paths["preview_finalize_response"])),
+            "copy_target": "action-example-2",
+        },
+        {
+            "title": "playChoice",
+            "note": "通常 choice 実行後の返り値",
+            "summary": f"turn: {choice_fixture.get('readModel', {}).get('source', {}).get('turnInSession', 'n/a')} / scene: {choice_fixture.get('readModel', {}).get('scene', {}).get('title', 'n/a')}",
+            "href": _relative_href(packet_root, Path(workspace.local_paths["preview_choice_response"])),
+            "copy_target": "action-example-3",
+        },
+        {
+            "title": "playFreeAction",
+            "note": "自由行動の narrative surface を確認する返り値",
+            "summary": f"turn: {free_action_fixture.get('readModel', {}).get('source', {}).get('turnInSession', 'n/a')} / scene: {free_action_fixture.get('readModel', {}).get('scene', {}).get('title', 'n/a')}",
+            "href": _relative_href(packet_root, Path(workspace.local_paths["preview_free_action_response"])),
+            "copy_target": "action-example-4",
+        },
+    ]
+    action_examples_html = "".join(
+        f"""
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>{escape(item["title"])}</h3>
+                <p class="field__meta">{escape(item["note"])}</p>
+              </div>
+              <div class="checklist-step__actions">
+                <button type="button" data-copy-target="{escape(item['copy_target'])}">Copy</button>
+                <button type="button" data-open-url="{escape(item['href'])}">Open</button>
+              </div>
+            </div>
+            <pre id="{escape(item['copy_target'])}">{escape(item["summary"])}</pre>
+          </article>
+        """
+        for item in action_examples
+    )
 
     resource_links = [
         ("Publish Summary", Path(workspace.local_paths["summary"])),
@@ -583,6 +635,33 @@ def export_custom_gpt_publish_dashboard(
           </section>
         """
         for group_index, group in enumerate(preview_prompt_groups, start=1)
+    )
+    troubleshooting_items = [
+        {
+            "title": "Action import が失敗する",
+            "detail": "OpenAPI の servers.url が live API を指し、Actions Setup の Server URL と一致しているか確認する。",
+        },
+        {
+            "title": "Privacy URL が通らない",
+            "detail": "Builder Website と Privacy Policy URL が両方ともブラウザで 200 で開くことを確認する。",
+        },
+        {
+            "title": "新規開始の導入が弱い",
+            "detail": "`guidance.openingPackage` を使い、確定前の内容を案として扱っているか確認する。",
+        },
+        {
+            "title": "finalizeCharacter が失敗する",
+            "detail": "request に `world_json` が入っているかを確認し、Preview Test Pack の新規開始フローから再試行する。",
+        },
+    ]
+    troubleshooting_html = "".join(
+        f"""
+          <article class="trouble-card">
+            <strong>{escape(item["title"])}</strong>
+            <p>{escape(item["detail"])}</p>
+          </article>
+        """
+        for item in troubleshooting_items
     )
 
     html = f"""<!DOCTYPE html>
@@ -814,6 +893,39 @@ def export_custom_gpt_publish_dashboard(
       display: flex;
       justify-content: flex-end;
     }}
+    .action-stack {{
+      display: grid;
+      gap: 10px;
+    }}
+    .action-card {{
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }}
+    .action-card pre {{
+      margin: 0;
+      max-height: none;
+    }}
+    .trouble-list {{
+      display: grid;
+      gap: 10px;
+    }}
+    .trouble-card {{
+      display: grid;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }}
+    .trouble-card p {{
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }}
     @media (max-width: 980px) {{
       .grid {{ grid-template-columns: 1fr; }}
     }}
@@ -926,6 +1038,17 @@ def export_custom_gpt_publish_dashboard(
               <div id="actions-smoke-block" class="smoke-list">{smoke_check_rows}</div>
             </div>
           </div>
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h3>Action Examples</h3>
+                <p class="field__meta">fixture と見比べる時の入口</p>
+              </div>
+            </div>
+            <div class="action-stack">
+              {action_examples_html}
+            </div>
+          </div>
         </section>
         <section class="panel">
           <div class="checklist__head">
@@ -953,6 +1076,19 @@ def export_custom_gpt_publish_dashboard(
             </div>
             <div class="prompt-stack">
               {preview_prompt_groups_html}
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Editor Troubleshooting</h2>
+                <p class="field__meta">よくある失敗だけを先に見る</p>
+              </div>
+            </div>
+            <div class="trouble-list">
+              {troubleshooting_html}
             </div>
           </div>
         </section>
@@ -1276,6 +1412,12 @@ def build_custom_gpt_publish_workspace(
         "field_fragments_dir": str(packet_root / "10_gpt_editor_field_fragments_v1"),
         "field_fragments_manifest": str(packet_root / "10_gpt_editor_field_fragments_v1" / "manifest.json"),
         "openapi_import": str(packet_root / "04_openapi_pbw_actions_v1.yaml"),
+        "preview_initial_read_model": str(packet_root / "13_gpt_preview_fixtures_v1" / "initial_gpt_read_model.json"),
+        "preview_opening_package": str(packet_root / "13_gpt_preview_fixtures_v1" / "opening_package_excerpt.json"),
+        "preview_finalize_response": str(packet_root / "13_gpt_preview_fixtures_v1" / "finalize_character_response.json"),
+        "preview_choice_response": str(packet_root / "13_gpt_preview_fixtures_v1" / "play_choice_response.json"),
+        "preview_free_action_response": str(packet_root / "13_gpt_preview_fixtures_v1" / "free_action_response.json"),
+        "preview_summary": str(packet_root / "13_gpt_preview_fixtures_v1" / "00_preview_summary.md"),
         "preview_scorecard": str(packet_root / "13_gpt_preview_fixtures_v1" / "01_preview_scorecard.md"),
         "release_manifest": str(packet_root / "14_publish_release_manifest_v1.json"),
     }

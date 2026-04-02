@@ -227,6 +227,39 @@
       display: flex;
       justify-content: flex-end;
     }
+    .action-stack {
+      display: grid;
+      gap: 10px;
+    }
+    .action-card {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+    .action-card pre {
+      margin: 0;
+      max-height: none;
+    }
+    .trouble-list {
+      display: grid;
+      gap: 10px;
+    }
+    .trouble-card {
+      display: grid;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+    .trouble-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
     @media (max-width: 980px) {
       .grid { grid-template-columns: 1fr; }
     }
@@ -527,6 +560,73 @@
         </div>
             </div>
           </div>
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h3>Action Examples</h3>
+                <p class="field__meta">fixture と見比べる時の入口</p>
+              </div>
+            </div>
+            <div class="action-stack">
+              
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>getGptReadModel</h3>
+                <p class="field__meta">新規開始時に最初に読む read model</p>
+              </div>
+              <div class="checklist-step__actions">
+                <button type="button" data-copy-target="action-example-1">Copy</button>
+                <button type="button" data-open-url="13_gpt_preview_fixtures_v1/initial_gpt_read_model.json">Open</button>
+              </div>
+            </div>
+            <pre id="action-example-1">scene: 賠償争議 / phase: 偵察局面</pre>
+          </article>
+        
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>finalizeCharacter</h3>
+                <p class="field__meta">導入・初期装備・恩恵案を確定した後の返り値</p>
+              </div>
+              <div class="checklist-step__actions">
+                <button type="button" data-copy-target="action-example-2">Copy</button>
+                <button type="button" data-open-url="13_gpt_preview_fixtures_v1/finalize_character_response.json">Open</button>
+              </div>
+            </div>
+            <pre id="action-example-2">world_json updated: yes / promptHint: yes</pre>
+          </article>
+        
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>playChoice</h3>
+                <p class="field__meta">通常 choice 実行後の返り値</p>
+              </div>
+              <div class="checklist-step__actions">
+                <button type="button" data-copy-target="action-example-3">Copy</button>
+                <button type="button" data-open-url="13_gpt_preview_fixtures_v1/play_choice_response.json">Open</button>
+              </div>
+            </div>
+            <pre id="action-example-3">turn: 2 / scene: 賠償争議</pre>
+          </article>
+        
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>playFreeAction</h3>
+                <p class="field__meta">自由行動の narrative surface を確認する返り値</p>
+              </div>
+              <div class="checklist-step__actions">
+                <button type="button" data-copy-target="action-example-4">Copy</button>
+                <button type="button" data-open-url="13_gpt_preview_fixtures_v1/free_action_response.json">Open</button>
+              </div>
+            </div>
+            <pre id="action-example-4">turn: 2 / scene: 非武装境界破り</pre>
+          </article>
+        
+            </div>
+          </div>
         </section>
         <section class="panel">
           <div class="checklist__head">
@@ -778,6 +878,39 @@
                     
             </div>
           </section>
+        
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Editor Troubleshooting</h2>
+                <p class="field__meta">よくある失敗だけを先に見る</p>
+              </div>
+            </div>
+            <div class="trouble-list">
+              
+          <article class="trouble-card">
+            <strong>Action import が失敗する</strong>
+            <p>OpenAPI の servers.url が live API を指し、Actions Setup の Server URL と一致しているか確認する。</p>
+          </article>
+        
+          <article class="trouble-card">
+            <strong>Privacy URL が通らない</strong>
+            <p>Builder Website と Privacy Policy URL が両方ともブラウザで 200 で開くことを確認する。</p>
+          </article>
+        
+          <article class="trouble-card">
+            <strong>新規開始の導入が弱い</strong>
+            <p>`guidance.openingPackage` を使い、確定前の内容を案として扱っているか確認する。</p>
+          </article>
+        
+          <article class="trouble-card">
+            <strong>finalizeCharacter が失敗する</strong>
+            <p>request に `world_json` が入っているかを確認し、Preview Test Pack の新規開始フローから再試行する。</p>
+          </article>
         
             </div>
           </div>
