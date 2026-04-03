@@ -821,6 +821,127 @@ def export_custom_gpt_publish_dashboard(
         """
         for index, item in enumerate(scenario_playbooks, start=1)
     )
+    visibility_guidance = [
+        {
+            "title": "非公開で始める",
+            "note": "editor 登録直後の最初の確認向け",
+            "body": "\n".join(
+                [
+                    "向いている場面",
+                    "- まず自分だけで action と Preview を確認したい",
+                    "",
+                    "確認点",
+                    "- 新規開始で guidance.openingPackage を使っている",
+                    "- finalizeCharacter が通る",
+                    "- 通常進行と保存再開が一巡する",
+                ]
+            ),
+        },
+        {
+            "title": "リンク共有で回す",
+            "note": "少人数テストや身内確認向け",
+            "body": "\n".join(
+                [
+                    "向いている場面",
+                    "- editor 外の人に本体利用を試してもらいたい",
+                    "",
+                    "確認点",
+                    "- Builder website / Privacy URL が 200 で開く",
+                    "- 初回開始、通常進行、保存再開の3本が安定する",
+                    "- 内部キーや debug 文が表に出ない",
+                ]
+            ),
+        },
+        {
+            "title": "公開前の最終確認",
+            "note": "広い共有の直前向け",
+            "body": "\n".join(
+                [
+                    "向いている場面",
+                    "- 公開設定を広げる前に最後の sanity check をしたい",
+                    "",
+                    "確認点",
+                    "- live smoke が最新 packet で OK",
+                    "- Actions Setup の operations が全部揃う",
+                    "- Preview Scorecard の PASS 条件を満たす",
+                ]
+            ),
+        },
+    ]
+    visibility_guidance_html = "".join(
+        f"""
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>{escape(item["title"])}</h3>
+                <p class="field__meta">{escape(item["note"])}</p>
+              </div>
+              <button type="button" data-copy-target="visibility-guidance-{index}">Copy</button>
+            </div>
+            <pre id="visibility-guidance-{index}">{escape(item["body"])}</pre>
+          </article>
+        """
+        for index, item in enumerate(visibility_guidance, start=1)
+    )
+    post_publish_checks = [
+        {
+            "title": "1. 新規開始を通す",
+            "note": "導入案から確定までの確認",
+            "body": "\n".join(
+                [
+                    "見るもの",
+                    "- getGptReadModel -> guidance.characterGenesis / openingPackage",
+                    "- finalizeCharacter の appliedGenesis",
+                    "",
+                    "PASS",
+                    "- 確定前は案、確定後は正本として話している",
+                ]
+            ),
+        },
+        {
+            "title": "2. 通常進行を通す",
+            "note": "choice と free action の往復確認",
+            "body": "\n".join(
+                [
+                    "見るもの",
+                    "- playChoice の transition",
+                    "- playFreeAction の structuredResult",
+                    "",
+                    "PASS",
+                    "- 更新後の world_json を次の正本として使っている",
+                ]
+            ),
+        },
+        {
+            "title": "3. 保存と再開を通す",
+            "note": "save / load / next session の確認",
+            "body": "\n".join(
+                [
+                    "見るもの",
+                    "- saveSession の saveId / savePath",
+                    "- loadSession / nextSession の readModel",
+                    "",
+                    "PASS",
+                    "- 復帰後の readModel で現在地を説明できる",
+                ]
+            ),
+        },
+    ]
+    post_publish_checks_html = "".join(
+        f"""
+          <article class="action-card">
+            <div class="field__head">
+              <div>
+                <h3>{escape(item["title"])}</h3>
+                <p class="field__meta">{escape(item["note"])}</p>
+              </div>
+              <button type="button" data-copy-target="post-publish-check-{index}">Copy</button>
+            </div>
+            <pre id="post-publish-check-{index}">{escape(item["body"])}</pre>
+          </article>
+        """
+        for index, item in enumerate(post_publish_checks, start=1)
+    )
     troubleshooting_items = [
         {
             "title": "Action import が失敗する",
@@ -1789,6 +1910,32 @@ def export_custom_gpt_publish_dashboard(
           </div>
           <div class="checklist">
             {checklist_steps_html}
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Visibility Guidance</h2>
+                <p class="field__meta">公開範囲を広げる前に見る目安</p>
+              </div>
+            </div>
+            <div class="action-stack">
+              {visibility_guidance_html}
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="field">
+            <div class="field__head">
+              <div>
+                <h2>Post-Publish Checks</h2>
+                <p class="field__meta">保存後に最低限通す 3 本</p>
+              </div>
+            </div>
+            <div class="action-stack">
+              {post_publish_checks_html}
+            </div>
           </div>
         </section>
         <section class="panel">

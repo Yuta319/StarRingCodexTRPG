@@ -69,6 +69,8 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             self.assertIn("Action Request Templates", dashboard)
             self.assertIn("Action Response Checks", dashboard)
             self.assertIn("Scenario Playbooks", dashboard)
+            self.assertIn("Visibility Guidance", dashboard)
+            self.assertIn("Post-Publish Checks", dashboard)
             self.assertIn("Release Snapshot", dashboard)
             self.assertIn("Readiness Checks", dashboard)
             self.assertIn("Smoke Drilldown", dashboard)
@@ -119,6 +121,8 @@ class CustomGptBundleSupportTests(unittest.TestCase):
             self.assertIn("Action Request Templates", dashboard_text)
             self.assertIn("Action Response Checks", dashboard_text)
             self.assertIn("Scenario Playbooks", dashboard_text)
+            self.assertIn("Visibility Guidance", dashboard_text)
+            self.assertIn("Post-Publish Checks", dashboard_text)
             self.assertIn("Generated (UTC)", dashboard_text)
             self.assertIn("Git Commit", dashboard_text)
 

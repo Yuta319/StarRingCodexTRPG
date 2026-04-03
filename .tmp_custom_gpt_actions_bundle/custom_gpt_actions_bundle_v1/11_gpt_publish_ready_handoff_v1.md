@@ -72,6 +72,8 @@ py -3 scripts\open_gpt_publish_workspace.py --open
 dashboard には `Registration Checklist` があり、貼り込み進捗をブラウザの localStorage に保持できます。
 また `Actions Setup` パネルで import path / server URL / expected operations / latest smoke を同じ画面で確認できます。
 さらに `Preview Test Pack` パネルで、新規開始・通常進行・保存再開の確認文をそのままコピーできます。
+`Visibility Guidance` パネルでは、非公開で始めるか、リンク共有へ広げるか、公開前に何を見るかをすぐ確認できます。
+`Post-Publish Checks` パネルでは、保存後に最低限通す `新規開始 / 通常進行 / 保存と再開` の3本を短く追えます。
 詰まったときは `Editor Troubleshooting` パネルを見ると、import / privacy / finalize の失敗点をすぐ確認できます。
 terminal 側で使う `prepare / open / smoke / copy` コマンドは `Quick Commands` パネルからそのまま拾えます。
 加えて `Action Examples` パネルで、主要 action の fixture 要約と元 JSON へのリンクも確認できます。
@@ -95,6 +97,12 @@ py -3 scripts\open_gpt_publish_workspace.py --copy privacy_policy_url
 7. `Builder website` と `Privacy Policy URL` を入れる
 8. Preview で新規開始と通常進行を試す
 9. 問題なければ Save / Publish へ進む
+
+## 4.5. Publish Scope Guidance
+
+- 最初は非公開で始めて、action と Preview の通りを確認する
+- 次にリンク共有で少人数テストを回す
+- 公開範囲を広げる前に、live smoke と Preview Scorecard をもう一度通す
 
 ## 5. Fastest Copy Path
 
